@@ -1,9 +1,8 @@
-package elements;
+package elements.basic;
 
-import java.sql.Time;
 import java.time.LocalDateTime;
 
-public class TimePeriod implements Comparable {
+public class TimePeriod implements Comparable<TimePeriod> {
     LocalDateTime beginDateTime;
     LocalDateTime endDateTime;
 
@@ -56,17 +55,13 @@ public class TimePeriod implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        if (o instanceof TimePeriod) {
-            if (isBefore(o)) {
-                return 1;
-            } else if (isAfter(o)) {
-                return -1;
-            } else {
-                return 0;
-            }
+    public int compareTo(TimePeriod o) {
+        if (isBefore(o)) {
+            return 1;
+        } else if (isAfter(o)) {
+            return -1;
         } else {
-            throw new IllegalArgumentException("Type cannot be compared");
+            return 0;
         }
     }
 }

@@ -1,12 +1,11 @@
-package components;
+package components.eventCard;
 
 import elements.BasicStoryElement;
-import elements.TimePeriod;
+import elements.basic.TimePeriod;
 
 import java.awt.*;
-import java.time.LocalDateTime;
 
-public class EventCard extends BasicStoryElement implements Comparable{
+public class EventCard extends BasicStoryElement implements Comparable<EventCard> {
     private String character;
     private String place;
 
@@ -34,11 +33,11 @@ public class EventCard extends BasicStoryElement implements Comparable{
 
     @Override
     public String toString() {
-        return null;
+        return "";
     }
 
     @Override
-    public int compareTo(Object o) throws IllegalArgumentException {
-        return timePeriod.compareTo(o);
+    public int compareTo(EventCard o) throws IllegalArgumentException {
+        return timePeriod.compareTo(o.timePeriod);
     }
 }

@@ -1,14 +1,15 @@
-package components;
+package components.chapter;
 
+import components.eventCard.EventCard;
 import elements.BasicStoryElement;
-import elements.TimePeriod;
+import elements.basic.TimePeriod;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Chapter extends BasicStoryElement {
-    private ArrayList<EventCard> eventCards;
+    private final ArrayList<EventCard> eventCards;
 
     public Chapter(String title, String description, Color color, TimePeriod timePeriod, ArrayList<EventCard> eventCards) {
         super(title, description, color, timePeriod);
@@ -22,9 +23,7 @@ public class Chapter extends BasicStoryElement {
     }
 
     public ArrayList<EventCard> addAllEventCards(ArrayList<EventCard> eventCards) {
-        for(EventCard eventCard: eventCards){
-            eventCards.add(eventCard);
-        }
+        this.eventCards.addAll(eventCards);
         Collections.sort(eventCards);
         return eventCards;
     }
@@ -36,6 +35,10 @@ public class Chapter extends BasicStoryElement {
 
     @Override
     public String toString() {
-        return null;
+        return "Chapter [" + title + "]\n"
+                + "\tdescription: " + description + "\n"
+                + "\tcolor: " + color + "\n"
+                + "\ttime period: " + timePeriod + "\n"
+                + "\tevent card: " + eventCards.size() + "\n";
     }
 }

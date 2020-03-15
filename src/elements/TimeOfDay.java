@@ -1,12 +1,10 @@
 package elements;
 
+import elements.basic.TimePeriod;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-
-enum Period {
-    DAWN, MORNING, MIDDAY, AFTERNOON, EVENING, NIGHT
-}
 
 public class TimeOfDay {
 
@@ -64,7 +62,7 @@ public class TimeOfDay {
         return time;
     }
 
-    public TimePeriod getTimePeriod(LocalDate localDate, Period period) {
+    public TimePeriod getTimePeriodFromPeriod(LocalDate localDate, Period period) {
         LocalTime beginTime = getBeginTimeOfDay(period);
         LocalTime endTime = getEndTimeOfDay(period);
         LocalDateTime beginDateTime = LocalDateTime.of(localDate, beginTime);

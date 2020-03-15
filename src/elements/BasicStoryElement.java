@@ -1,5 +1,7 @@
 package elements;
 
+import elements.basic.TimePeriod;
+
 import java.awt.*;
 
 public abstract class BasicStoryElement {
