@@ -1,4 +1,7 @@
-package elements;
+package components;
+
+import elements.BasicStoryElement;
+import elements.TimePeriod;
 
 import java.awt.*;
 import java.util.ArrayList;
