@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="074483a0-f8ff-47ef-b14d-473e4f8891ce" name="Default Changelist" comment="change file directories preparing for more functional ability">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ConstantValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConstantValues.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chapter/Chapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chapter/Chapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/eventCard/EventCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/eventCard/EventCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/storyLine/StoryLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/storyLine/StoryLine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/elements/BasicStoryElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/elements/BasicStoryElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/elements/TimeOfDay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/elements/TimeOfDay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/elements/TimePeriod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/elements/basic/TimePeriod.java" afterDir="false" />
-    </list>
+    <list default="true" id="074483a0-f8ff-47ef-b14d-473e4f8891ce" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -104,7 +95,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584286006612</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="change file directories preparing for more functional ability">
+      <created>1584287225636</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1584287225636</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -233,10 +231,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="585" y="397" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1680.1050@0.0.1680.1050" timestamp="1584287213370" />
-    <state x="440" y="129" key="CommitChangelistDialog2" timestamp="1584287107123">
+    <state x="440" y="129" key="CommitChangelistDialog2" timestamp="1584287225502">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="129" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1584287107123" />
+    <state x="440" y="129" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1584287225502" />
     <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1584286012737">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
