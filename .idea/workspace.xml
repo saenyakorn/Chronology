@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="074483a0-f8ff-47ef-b14d-473e4f8891ce" name="Default Changelist" comment="" />
+    <list default="true" id="074483a0-f8ff-47ef-b14d-473e4f8891ce" name="Default Changelist" comment="change file directories preparing for more functional ability">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,7 +104,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584287225636</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="change file directories preparing for more functional ability">
+      <created>1584287269324</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1584287269324</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -231,14 +240,18 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="585" y="397" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1680.1050@0.0.1680.1050" timestamp="1584287213370" />
-    <state x="440" y="129" key="CommitChangelistDialog2" timestamp="1584287225502">
+    <state x="440" y="129" key="CommitChangelistDialog2" timestamp="1584288297467">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="129" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1584287225502" />
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1584286012737">
+    <state x="440" y="129" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1584288297467" />
+    <state x="100" y="100" width="1480" height="850" key="DiffContextDialog" timestamp="1584288297426">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1584286012737" />
+    <state x="100" y="100" width="1480" height="850" key="DiffContextDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584288297426" />
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1584287276359">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1584287276359" />
     <state x="517" y="357" key="com.intellij.ide.util.TipDialog" timestamp="1584281697799">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -247,18 +260,30 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="498" y="282" width="683" height="486" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1584180478729" />
+    <state x="541" y="323" key="git4idea.merge.GitMergeDialog" timestamp="1584288199371">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="541" y="323" key="git4idea.merge.GitMergeDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584288199371" />
     <state x="520" y="323" key="git4idea.merge.GitPullDialog" timestamp="1583942809187">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="520" y="323" key="git4idea.merge.GitPullDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1583942809187" />
-    <state x="576" y="396" key="git4idea.rebase.GitRebaseDialog" timestamp="1583942833164">
+    <state x="576" y="396" key="git4idea.rebase.GitRebaseDialog" timestamp="1584287451522">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="576" y="396" key="git4idea.rebase.GitRebaseDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1583942833164" />
+    <state x="576" y="396" key="git4idea.rebase.GitRebaseDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584287451522" />
+    <state x="553" y="432" key="git4idea.ui.GitStashDialog" timestamp="1584287753685">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="553" y="432" key="git4idea.ui.GitStashDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584287753685" />
     <state x="553" y="377" key="git4idea.ui.GitTagDialog" timestamp="1583943303535">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="553" y="377" key="git4idea.ui.GitTagDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1583943303535" />
+    <state x="553" y="364" key="git4idea.ui.GitUnstashDialog" timestamp="1584288012752">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="553" y="364" key="git4idea.ui.GitUnstashDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584288012752" />
     <state x="217" y="147" key="new project wizard" timestamp="1584157082338">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
