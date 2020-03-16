@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="074483a0-f8ff-47ef-b14d-473e4f8891ce" name="Default Changelist" comment="fixup! squash! change file directories preparing for more functional ability" />
+    <list default="true" id="074483a0-f8ff-47ef-b14d-473e4f8891ce" name="Default Changelist" comment="add TimePeriod object">
+      <change afterPath="$PROJECT_DIR$/src/elements/TimePeriod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <list id="7a7ea51a-8f1b-40eb-9ba2-f1da8049977b" name="Revert &quot;change file directories preparing for more functional ability&quot;" comment="Revert &quot;change file directories preparing for more functional ability&quot;&#10;&#10;This reverts commit dece7f43" />
     <list id="65a4e5de-b9d2-422d-87ed-4c40ea46560b" name="Revert &quot;change file directories preparing for more functional ability&quot;-2" comment="Revert &quot;change file directories preparing for more functional ability&quot;&#10;&#10;This reverts commit 4adfc844" />
     <list id="583a60e2-ca39-4070-816e-59e58138eff5" name="Revert &quot;change file directories preparing for more functional ability&quot;-3" comment="Revert &quot;change file directories preparing for more functional ability&quot;&#10;&#10;This reverts commit b77f0e07" />
@@ -238,7 +241,8 @@
     <MESSAGE value="change file directories preparing for more functional ability" />
     <MESSAGE value="squash! change file directories preparing for more functional ability" />
     <MESSAGE value="fixup! squash! change file directories preparing for more functional ability" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixup! squash! change file directories preparing for more functional ability" />
+    <MESSAGE value="add TimePeriod object" />
+    <option name="LAST_COMMIT_MESSAGE" value="add TimePeriod object" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -264,6 +268,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="563" y="221" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1583943279721" />
+    <state x="606" y="417" width="467" height="225" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1584359151146">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="606" y="417" width="467" height="225" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1680.1050@0.0.1680.1050" timestamp="1584359151146" />
     <state x="343" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1584282280965">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -272,14 +280,14 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="585" y="397" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1680.1050@0.0.1680.1050" timestamp="1584287213370" />
-    <state x="440" y="129" key="CommitChangelistDialog2" timestamp="1584289097457">
+    <state x="440" y="129" key="CommitChangelistDialog2" timestamp="1584359633943">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="129" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1584289097457" />
-    <state x="100" y="100" width="1480" height="850" key="DiffContextDialog" timestamp="1584290175636">
+    <state x="440" y="129" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1584359633943" />
+    <state x="100" y="100" width="1480" height="850" key="DiffContextDialog" timestamp="1584359591114">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="100" y="100" width="1480" height="850" key="DiffContextDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584290175636" />
+    <state x="100" y="100" width="1480" height="850" key="DiffContextDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584359591114" />
     <state x="100" y="100" width="1480" height="850" key="DiffContextDialog/0.23.1680.947@0.23.1680.947" timestamp="1584289240563" />
     <state x="551" y="248" key="MultipleFileMergeDialog" timestamp="1584289911121">
       <screen x="0" y="0" width="1680" height="1050" />
@@ -325,10 +333,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="576" y="396" key="git4idea.rebase.GitRebaseDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584289150590" />
-    <state x="602" y="261" key="git4idea.rebase.GitRebaseEditor" timestamp="1584290061641">
+    <state x="602" y="261" key="git4idea.rebase.GitRebaseEditor" timestamp="1584359404134">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="602" y="261" key="git4idea.rebase.GitRebaseEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1584290061641" />
+    <state x="602" y="261" key="git4idea.rebase.GitRebaseEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1584359404134" />
     <state x="553" y="426" key="git4idea.ui.GitResetDialog" timestamp="1584289124822">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
