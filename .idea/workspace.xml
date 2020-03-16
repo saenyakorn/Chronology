@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="074483a0-f8ff-47ef-b14d-473e4f8891ce" name="Default Changelist" comment="change file directories preparing for more functional ability">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-    </list>
-    <list id="7a7ea51a-8f1b-40eb-9ba2-f1da8049977b" name="Revert &quot;change file directories preparing for more functional ability&quot;" comment="Revert &quot;change file directories preparing for more functional ability&quot;&#10;&#10;This reverts commit dece7f43">
+    <list default="true" id="074483a0-f8ff-47ef-b14d-473e4f8891ce" name="Default Changelist" comment="fixup! squash! change file directories preparing for more functional ability">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/colors/ColorPickerProvider.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/document/Document.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/elements/Period.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/elements/basic/Description.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/elements/basic/Title.java" beforeDir="false" />
     </list>
+    <list id="7a7ea51a-8f1b-40eb-9ba2-f1da8049977b" name="Revert &quot;change file directories preparing for more functional ability&quot;" comment="Revert &quot;change file directories preparing for more functional ability&quot;&#10;&#10;This reverts commit dece7f43" />
+    <list id="65a4e5de-b9d2-422d-87ed-4c40ea46560b" name="Revert &quot;change file directories preparing for more functional ability&quot;-2" comment="Revert &quot;change file directories preparing for more functional ability&quot;&#10;&#10;This reverts commit 4adfc844" />
+    <list id="583a60e2-ca39-4070-816e-59e58138eff5" name="Revert &quot;change file directories preparing for more functional ability&quot;-3" comment="Revert &quot;change file directories preparing for more functional ability&quot;&#10;&#10;This reverts commit b77f0e07" />
+    <list id="66a47d99-c1ca-4e68-8503-ca0067238f91" name="squash! change file directories preparing for more functional ability" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,6 +50,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="KEEP" />
   </component>
   <component name="IgnoredFileRootStore">
     <option name="generatedRoots">
@@ -74,6 +71,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -86,6 +84,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="074483a0-f8ff-47ef-b14d-473e4f8891ce" name="Default Changelist" comment="" />
+      <changelist id="66a47d99-c1ca-4e68-8503-ca0067238f91" name="squash! change file directories preparing for more functional ability" comment="" />
       <created>1583942510471</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -126,7 +125,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584288441879</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="squash! change file directories preparing for more functional ability">
+      <created>1584288637871</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1584288637871</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -183,7 +189,9 @@
         </entry>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -230,7 +238,9 @@
     <MESSAGE value="Initial commit with IntelliJ" />
     <MESSAGE value="establish skeleton code for README.md" />
     <MESSAGE value="change file directories preparing for more functional ability" />
-    <option name="LAST_COMMIT_MESSAGE" value="change file directories preparing for more functional ability" />
+    <MESSAGE value="squash! change file directories preparing for more functional ability" />
+    <MESSAGE value="fixup! squash! change file directories preparing for more functional ability" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixup! squash! change file directories preparing for more functional ability" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -240,14 +250,18 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="440" y="208" key="#Getter_Template/0.0.1680.1050@0.0.1680.1050" timestamp="1584177442032" />
+    <state x="440" y="190" key="#Notifications" timestamp="1584290051784">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="440" y="190" key="#Notifications/0.0.1680.1050@0.0.1680.1050" timestamp="1584290051784" />
     <state x="304" y="187" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584284797713">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="304" y="187" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584284797713" />
-    <state x="653" y="233" key="#com.intellij.ide.util.MemberChooser" timestamp="1584286752983">
+    <state x="653" y="233" key="#com.intellij.ide.util.MemberChooser" timestamp="1584348812271">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="653" y="233" key="#com.intellij.ide.util.MemberChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1584286752983" />
+    <state x="653" y="233" key="#com.intellij.ide.util.MemberChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1584348812271" />
     <state x="563" y="221" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1583943279721">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -260,22 +274,43 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="585" y="397" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1680.1050@0.0.1680.1050" timestamp="1584287213370" />
-    <state x="440" y="129" key="CommitChangelistDialog2" timestamp="1584288500245">
+    <state x="440" y="129" key="CommitChangelistDialog2" timestamp="1584289097457">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="129" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1584288500245" />
-    <state x="100" y="100" width="1480" height="850" key="DiffContextDialog" timestamp="1584288297426">
+    <state x="440" y="129" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1584289097457" />
+    <state x="100" y="100" width="1480" height="850" key="DiffContextDialog" timestamp="1584290175636">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="100" y="100" width="1480" height="850" key="DiffContextDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584288297426" />
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1584287276359">
+    <state x="100" y="100" width="1480" height="850" key="DiffContextDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584290175636" />
+    <state x="100" y="100" width="1480" height="850" key="DiffContextDialog/0.23.1680.947@0.23.1680.947" timestamp="1584289240563" />
+    <state x="551" y="248" key="MultipleFileMergeDialog" timestamp="1584289911121">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1584287276359" />
-    <state x="517" y="357" key="com.intellij.ide.util.TipDialog" timestamp="1584281697799">
+    <state x="551" y="248" key="MultipleFileMergeDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584289911121" />
+    <state x="579" y="254" key="RollbackChangesDialog" timestamp="1584289314761">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="517" y="357" key="com.intellij.ide.util.TipDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584281697799" />
+    <state x="579" y="254" key="RollbackChangesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584289314761" />
+    <state x="341" y="164" key="SettingsEditor" timestamp="1584349311157">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="341" y="164" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1584349311157" />
+    <state x="690" y="448" key="VCS.ChangelistChooser" timestamp="1584288816738">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="690" y="448" key="VCS.ChangelistChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1584288816738" />
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1584288645955">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1584288645955" />
+    <state x="588" y="266" key="VcsDiffUtil.ChangesDialog" timestamp="1584289229710">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="588" y="266" key="VcsDiffUtil.ChangesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584289229710" />
+    <state x="517" y="357" key="com.intellij.ide.util.TipDialog" timestamp="1584348660003">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="517" y="357" key="com.intellij.ide.util.TipDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584348660003" />
     <state x="498" y="282" width="683" height="486" key="find.popup" timestamp="1584180478729">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -288,10 +323,18 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="520" y="323" key="git4idea.merge.GitPullDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1583942809187" />
-    <state x="576" y="396" key="git4idea.rebase.GitRebaseDialog" timestamp="1584287451522">
+    <state x="576" y="396" key="git4idea.rebase.GitRebaseDialog" timestamp="1584289150590">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="576" y="396" key="git4idea.rebase.GitRebaseDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584287451522" />
+    <state x="576" y="396" key="git4idea.rebase.GitRebaseDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584289150590" />
+    <state x="602" y="261" key="git4idea.rebase.GitRebaseEditor" timestamp="1584290061641">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="602" y="261" key="git4idea.rebase.GitRebaseEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1584290061641" />
+    <state x="553" y="426" key="git4idea.ui.GitResetDialog" timestamp="1584289124822">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="553" y="426" key="git4idea.ui.GitResetDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584289124822" />
     <state x="553" y="432" key="git4idea.ui.GitStashDialog" timestamp="1584287753685">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -300,10 +343,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="553" y="377" key="git4idea.ui.GitTagDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1583943303535" />
-    <state x="553" y="364" key="git4idea.ui.GitUnstashDialog" timestamp="1584288012752">
+    <state x="553" y="364" key="git4idea.ui.GitUnstashDialog" timestamp="1584289134441">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="553" y="364" key="git4idea.ui.GitUnstashDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584288012752" />
+    <state x="553" y="364" key="git4idea.ui.GitUnstashDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584289134441" />
     <state x="217" y="147" key="new project wizard" timestamp="1584157082338">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
