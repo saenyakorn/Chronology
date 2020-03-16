@@ -1,6 +1,6 @@
 package component.base;
 
-import elements.TimePeriod;
+import component.components.timeModifier.TimePeriod;
 
 import java.awt.*;
 

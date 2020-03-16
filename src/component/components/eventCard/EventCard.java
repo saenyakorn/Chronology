@@ -1,7 +1,7 @@
 package component.components.eventCard;
 
 import component.base.BasicStoryComponent;
-import elements.TimePeriod;
+import component.components.timeModifier.TimePeriod;
 
 import java.awt.*;
 

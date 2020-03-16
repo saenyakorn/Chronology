@@ -1,12 +1,12 @@
-package elements;
+package component.components.timeModifier;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class TimeOfDay {
+public class TimePeriodGenerator {
 
-    private LocalTime getBeginTimeOfDay(predefinedTimePeriod predefinedTimePeriod) {
+    private LocalTime getBeginTimeOfDay(PredefinedTimePeriod predefinedTimePeriod) {
         LocalTime time;
         switch (predefinedTimePeriod) {
             case DAWN:
@@ -33,7 +33,7 @@ public class TimeOfDay {
         return time;
     }
 
-    private LocalTime getEndTimeOfDay(predefinedTimePeriod predefinedTimePeriod) {
+    private LocalTime getEndTimeOfDay(PredefinedTimePeriod predefinedTimePeriod) {
         LocalTime time;
         switch (predefinedTimePeriod) {
             case DAWN:
@@ -60,7 +60,7 @@ public class TimeOfDay {
         return time;
     }
 
-    public TimePeriod getTimePeriodFromPeriod(LocalDate localDate, predefinedTimePeriod predefinedTimePeriod) {
+    public TimePeriod getTimePeriodFromPeriod(LocalDate localDate, PredefinedTimePeriod predefinedTimePeriod) {
         LocalTime beginTime = getBeginTimeOfDay(predefinedTimePeriod);
         LocalTime endTime = getEndTimeOfDay(predefinedTimePeriod);
         LocalDateTime beginDateTime = LocalDateTime.of(localDate, beginTime);

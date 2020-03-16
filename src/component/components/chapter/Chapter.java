@@ -2,7 +2,7 @@ package component.components.chapter;
 
 import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
-import elements.TimePeriod;
+import component.components.timeModifier.TimePeriod;
 
 import java.awt.*;
 import java.util.ArrayList;

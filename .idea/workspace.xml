@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="074483a0-f8ff-47ef-b14d-473e4f8891ce" name="Default Changelist" comment="arrange all file and directory">
+    <list default="true" id="074483a0-f8ff-47ef-b14d-473e4f8891ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chapter/Chapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/components/chapter/Chapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/document/Document.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/components/document/Document.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/eventCard/EventCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/components/eventCard/EventCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/eventCard/EventCardList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/components/eventCard/EventCardList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/storyLine/StoryLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/components/storyLine/StoryLine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/elements/BasicStoryElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/base/BasicStoryComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/elements/Period.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/elements/predefinedTimePeriod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/elements/TimeOfDay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/elements/TimeOfDay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/base/BasicStoryComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/base/BasicStoryComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/components/chapter/Chapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/components/chapter/Chapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/components/eventCard/EventCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/components/eventCard/EventCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/components/storyLine/StoryLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/components/storyLine/StoryLine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/elements/TimeOfDay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/components/timeModifier/TimePeriodGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/elements/TimePeriod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/components/timeModifier/TimePeriod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/elements/predefinedTimePeriod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/components/timeModifier/PredefinedTimePeriod.java" afterDir="false" />
     </list>
     <list id="7a7ea51a-8f1b-40eb-9ba2-f1da8049977b" name="Revert &quot;change file directories preparing for more functional ability&quot;" comment="Revert &quot;change file directories preparing for more functional ability&quot;&#10;&#10;This reverts commit dece7f43" />
     <list id="65a4e5de-b9d2-422d-87ed-4c40ea46560b" name="Revert &quot;change file directories preparing for more functional ability&quot;-2" comment="Revert &quot;change file directories preparing for more functional ability&quot;&#10;&#10;This reverts commit 4adfc844" />
@@ -76,6 +75,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -154,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584368927823</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="arrange all file and directory">
+      <created>1584370373597</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1584370373597</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -299,14 +309,14 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="343" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584369980889" />
-    <state x="585" y="397" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1584370230277">
+    <state x="585" y="397" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1584371045898">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="585" y="397" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1680.1050@0.0.1680.1050" timestamp="1584370230277" />
-    <state x="345" y="129" key="CommitChangelistDialog2" timestamp="1584370330396">
+    <state x="585" y="397" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1680.1050@0.0.1680.1050" timestamp="1584371045898" />
+    <state x="345" y="129" key="CommitChangelistDialog2" timestamp="1584370373477">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="345" y="129" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1584370330396" />
+    <state x="345" y="129" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1584370373477" />
     <state x="100" y="100" width="1480" height="850" key="DiffContextDialog" timestamp="1584359591114">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -316,10 +326,14 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="630" y="435" key="GitRewordDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584370083010" />
-    <state x="551" y="248" key="MultipleFileMergeDialog" timestamp="1584289911121">
+    <state x="168" y="94" key="MergeDialog" timestamp="1584370428033">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="551" y="248" key="MultipleFileMergeDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584289911121" />
+    <state x="168" y="94" key="MergeDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584370428033" />
+    <state x="551" y="248" key="MultipleFileMergeDialog" timestamp="1584370435628">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="551" y="248" key="MultipleFileMergeDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584370435628" />
     <state x="579" y="254" key="RollbackChangesDialog" timestamp="1584289314761">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -332,10 +346,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="690" y="448" key="VCS.ChangelistChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1584288816738" />
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1584368930004">
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1584370493207">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1584368930004" />
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1584370493207" />
     <state x="588" y="266" key="VcsDiffUtil.ChangesDialog" timestamp="1584289229710">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -344,6 +358,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="517" y="357" key="com.intellij.ide.util.TipDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1584348660003" />
+    <state x="544" y="426" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1584370968515">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="544" y="426" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1680.1050@0.0.1680.1050" timestamp="1584370968515" />
     <state x="498" y="282" width="683" height="486" key="find.popup" timestamp="1584180478729">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
