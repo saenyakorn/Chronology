@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="074483a0-f8ff-47ef-b14d-473e4f8891ce" name="Default Changelist" comment="fixup! squash! change file directories preparing for more functional ability">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="074483a0-f8ff-47ef-b14d-473e4f8891ce" name="Default Changelist" comment="fixup! squash! change file directories preparing for more functional ability" />
     <list id="7a7ea51a-8f1b-40eb-9ba2-f1da8049977b" name="Revert &quot;change file directories preparing for more functional ability&quot;" comment="Revert &quot;change file directories preparing for more functional ability&quot;&#10;&#10;This reverts commit dece7f43" />
     <list id="65a4e5de-b9d2-422d-87ed-4c40ea46560b" name="Revert &quot;change file directories preparing for more functional ability&quot;-2" comment="Revert &quot;change file directories preparing for more functional ability&quot;&#10;&#10;This reverts commit 4adfc844" />
     <list id="583a60e2-ca39-4070-816e-59e58138eff5" name="Revert &quot;change file directories preparing for more functional ability&quot;-3" comment="Revert &quot;change file directories preparing for more functional ability&quot;&#10;&#10;This reverts commit b77f0e07" />
