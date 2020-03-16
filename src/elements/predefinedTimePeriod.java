@@ -1,5 +1,5 @@
 package elements;
 
-public enum Period {
+public enum predefinedTimePeriod {
     DAWN, MORNING, MIDDAY, AFTERNOON, EVENING, NIGHT
 }

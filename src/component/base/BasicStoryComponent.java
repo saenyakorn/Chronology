@@ -1,14 +1,16 @@
-package elements;
+package component.base;
+
+import elements.TimePeriod;
 
 import java.awt.*;
 
-public abstract class BasicStoryElement {
+public abstract class BasicStoryComponent {
     protected String title;
     protected String description;
     protected Color color;
-    protected TimeOfDay.TimePeriod timePeriod;
+    protected TimePeriod timePeriod;
 
-    public BasicStoryElement(String title, String description, Color color, TimeOfDay.TimePeriod timePeriod) {
+    public BasicStoryComponent(String title, String description, Color color, TimePeriod timePeriod) {
         this.title = title;
         this.description = description;
         this.color = color;
@@ -39,11 +41,11 @@ public abstract class BasicStoryElement {
         this.color = color;
     }
 
-    public TimeOfDay.TimePeriod getTimePeriod() {
+    public TimePeriod getTimePeriod() {
         return timePeriod;
     }
 
-    public void setTimePeriod(TimeOfDay.TimePeriod timePeriod) {
+    public void setTimePeriod(TimePeriod timePeriod) {
         this.timePeriod = timePeriod;
     }
 

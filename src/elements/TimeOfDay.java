@@ -6,9 +6,9 @@ import java.time.LocalTime;
 
 public class TimeOfDay {
 
-    private LocalTime getBeginTimeOfDay(Period period) {
+    private LocalTime getBeginTimeOfDay(predefinedTimePeriod predefinedTimePeriod) {
         LocalTime time;
-        switch (period) {
+        switch (predefinedTimePeriod) {
             case DAWN:
                 time = LocalTime.of(0, 0);
                 break;
@@ -28,14 +28,14 @@ public class TimeOfDay {
                 time = LocalTime.of(20, 0);
                 break;
             default:
-                throw new IllegalStateException("Unexpected value: " + period);
+                throw new IllegalStateException("Unexpected value: " + predefinedTimePeriod);
         }
         return time;
     }
 
-    private LocalTime getEndTimeOfDay(Period period) {
+    private LocalTime getEndTimeOfDay(predefinedTimePeriod predefinedTimePeriod) {
         LocalTime time;
-        switch (period) {
+        switch (predefinedTimePeriod) {
             case DAWN:
                 time = LocalTime.of(6, 0);
                 break;
@@ -55,14 +55,14 @@ public class TimeOfDay {
                 time = LocalTime.of(0, 0);
                 break;
             default:
-                throw new IllegalStateException("Unexpected value: " + period);
+                throw new IllegalStateException("Unexpected value: " + predefinedTimePeriod);
         }
         return time;
     }
 
-    public TimePeriod getTimePeriodFromPeriod(LocalDate localDate, Period period) {
-        LocalTime beginTime = getBeginTimeOfDay(period);
-        LocalTime endTime = getEndTimeOfDay(period);
+    public TimePeriod getTimePeriodFromPeriod(LocalDate localDate, predefinedTimePeriod predefinedTimePeriod) {
+        LocalTime beginTime = getBeginTimeOfDay(predefinedTimePeriod);
+        LocalTime endTime = getEndTimeOfDay(predefinedTimePeriod);
         LocalDateTime beginDateTime = LocalDateTime.of(localDate, beginTime);
         LocalDateTime endDateTime = LocalDateTime.of(localDate, endTime);
         return new TimePeriod(beginDateTime, endDateTime);

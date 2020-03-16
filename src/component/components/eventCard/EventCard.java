@@ -1,15 +1,15 @@
-package components.eventCard;
+package component.components.eventCard;
 
-import elements.BasicStoryElement;
-import elements.TimeOfDay;
+import component.base.BasicStoryComponent;
+import elements.TimePeriod;
 
 import java.awt.*;
 
-public class EventCard extends BasicStoryElement implements Comparable<EventCard> {
+public class EventCard extends BasicStoryComponent implements Comparable<EventCard> {
     private String character;
     private String place;
 
-    public EventCard(String title, String description, Color color, TimeOfDay.TimePeriod timePeriod, String character, String place) {
+    public EventCard(String title, String description, Color color, TimePeriod timePeriod, String character, String place) {
         super(title, description, color, timePeriod);
         this.character = character;
         this.place = place;

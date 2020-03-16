@@ -1,4 +1,4 @@
-package components.eventCard;
+package component.components.eventCard;
 
 import java.util.ArrayList;
 import java.util.Collections;
