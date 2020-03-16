@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="074483a0-f8ff-47ef-b14d-473e4f8891ce" name="Default Changelist" comment="add TimePeriod object">
-      <change afterPath="$PROJECT_DIR$/src/elements/TimePeriod.java" afterDir="false" />
+    <list default="true" id="074483a0-f8ff-47ef-b14d-473e4f8891ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/elements/TimeOfDay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/elements/TimeOfDay.java" afterDir="false" />
     </list>
     <list id="7a7ea51a-8f1b-40eb-9ba2-f1da8049977b" name="Revert &quot;change file directories preparing for more functional ability&quot;" comment="Revert &quot;change file directories preparing for more functional ability&quot;&#10;&#10;This reverts commit dece7f43" />
     <list id="65a4e5de-b9d2-422d-87ed-4c40ea46560b" name="Revert &quot;change file directories preparing for more functional ability&quot;-2" comment="Revert &quot;change file directories preparing for more functional ability&quot;&#10;&#10;This reverts commit 4adfc844" />
@@ -51,7 +51,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="KEEP" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="IgnoredFileRootStore">
     <option name="generatedRoots">
@@ -133,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584288637871</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add TimePeriod object">
+      <created>1584359683850</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1584359683850</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -280,10 +287,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="585" y="397" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1680.1050@0.0.1680.1050" timestamp="1584287213370" />
-    <state x="440" y="129" key="CommitChangelistDialog2" timestamp="1584359633943">
+    <state x="440" y="129" key="CommitChangelistDialog2" timestamp="1584359683623">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="129" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1584359633943" />
+    <state x="440" y="129" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1584359683623" />
     <state x="100" y="100" width="1480" height="850" key="DiffContextDialog" timestamp="1584359591114">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -305,10 +312,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="690" y="448" key="VCS.ChangelistChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1584288816738" />
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1584288645955">
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1584359711741">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1584288645955" />
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1584359711741" />
     <state x="588" y="266" key="VcsDiffUtil.ChangesDialog" timestamp="1584289229710">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
