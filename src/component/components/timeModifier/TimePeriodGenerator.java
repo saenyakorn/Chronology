@@ -13,13 +13,13 @@ public class TimePeriodGenerator {
                 time = LocalTime.of(0, 0);
                 break;
             case MORNING:
-                time = LocalTime.of(6, 0);
+                time = LocalTime.of(4, 0);
                 break;
             case MIDDAY:
-                time = LocalTime.of(10, 0);
+                time = LocalTime.of(8, 0);
                 break;
             case AFTERNOON:
-                time = LocalTime.of(14, 0);
+                time = LocalTime.of(12, 0);
                 break;
             case EVENING:
                 time = LocalTime.of(16, 0);
@@ -37,13 +37,13 @@ public class TimePeriodGenerator {
         LocalTime time;
         switch (predefinedTimePeriod) {
             case DAWN:
-                time = LocalTime.of(6, 0);
+                time = LocalTime.of(4, 0);
                 break;
             case MORNING:
-                time = LocalTime.of(10, 0);
+                time = LocalTime.of(8, 0);
                 break;
             case MIDDAY:
-                time = LocalTime.of(14, 0);
+                time = LocalTime.of(12, 0);
                 break;
             case AFTERNOON:
                 time = LocalTime.of(16, 0);

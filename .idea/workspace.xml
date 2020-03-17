@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="074483a0-f8ff-47ef-b14d-473e4f8891ce" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/component/components/eventCard/EventCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/components/eventCard/EventCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/components/timeModifier/TimePeriodGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/components/timeModifier/TimePeriodGenerator.java" afterDir="false" />
     </list>
     <list id="7a7ea51a-8f1b-40eb-9ba2-f1da8049977b" name="Revert &quot;change file directories preparing for more functional ability&quot;" comment="Revert &quot;change file directories preparing for more functional ability&quot;&#10;&#10;This reverts commit dece7f43" />
     <list id="65a4e5de-b9d2-422d-87ed-4c40ea46560b" name="Revert &quot;change file directories preparing for more functional ability&quot;-2" comment="Revert &quot;change file directories preparing for more functional ability&quot;&#10;&#10;This reverts commit 4adfc844" />
