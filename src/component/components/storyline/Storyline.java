@@ -1,13 +1,13 @@
-package component.components.storyLine;
+package component.components.storyline;
 
 import component.base.BasicStoryComponent;
 import component.components.timeModifier.TimePeriod;
 
 import java.awt.*;
 
-public class StoryLine extends BasicStoryComponent {
+public class Storyline extends BasicStoryComponent {
 
-    public StoryLine(String title, String description, Color color, TimePeriod timePeriod) {
+    public Storyline(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
     }
 
