@@ -6,21 +6,21 @@ import component.components.timeModifier.TimePeriod;
 import java.awt.*;
 
 public class EventCard extends BasicStoryComponent implements Comparable<EventCard> {
-    private String character;
+    private String characters;
     private String place;
 
-    public EventCard(String title, String description, Color color, TimePeriod timePeriod, String character, String place) {
+    public EventCard(String title, String description, Color color, TimePeriod timePeriod, String characters, String place) {
         super(title, description, color, timePeriod);
-        this.character = character;
+        this.characters = characters;
         this.place = place;
     }
 
-    public String getCharacter() {
-        return character;
+    public String getCharacters() {
+        return characters;
     }
 
-    public void setCharacter(String character) {
-        this.character = character;
+    public void setCharacters(String character) {
+        this.characters = character;
     }
 
     public String getPlace() {
