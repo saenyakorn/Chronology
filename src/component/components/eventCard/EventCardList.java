@@ -25,7 +25,7 @@ public class EventCardList {
             return 1;
         }
         else {
-            System.out.println("This event card is not exist");
+            System.out.println("This event card does not exist");
             return 0;
         }
     }
