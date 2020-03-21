@@ -3,7 +3,7 @@ package component.components.storyline;
 import java.util.ArrayList;
 
 public class StorylineList {
-    private ArrayList<Storyline> storylines;
+    private final ArrayList<Storyline> storylines;
 
     public StorylineList() {
         this.storylines = new ArrayList<>();

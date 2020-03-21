@@ -3,7 +3,7 @@ package component.components.chapter;
 import java.util.ArrayList;
 
 public class ChapterList {
-    private ArrayList<Chapter> chapters;
+    private final ArrayList<Chapter> chapters;
 
     public ChapterList() {
         this.chapters = new ArrayList<>();
