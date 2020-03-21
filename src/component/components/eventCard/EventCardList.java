@@ -6,8 +6,8 @@ import java.util.Collections;
 public class EventCardList {
     private final ArrayList<EventCard> eventCards;
 
-    public EventCardList(ArrayList<EventCard> eventCards) {
-        this.eventCards = eventCards;
+    public EventCardList() {
+        this.eventCards = new ArrayList<>();
     }
 
     public ArrayList<EventCard> getEventCards() {

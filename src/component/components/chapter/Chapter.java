@@ -11,9 +11,9 @@ import java.util.Collections;
 public class Chapter extends BasicStoryComponent {
     private final ArrayList<EventCard> eventCards;
 
-    public Chapter(String title, String description, Color color, TimePeriod timePeriod, ArrayList<EventCard> eventCards) {
+    public Chapter(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
-        this.eventCards = eventCards;
+        this.eventCards = new ArrayList<>();
     }
 
     public ArrayList<EventCard> addEventCard(EventCard eventCard) {
