@@ -2,6 +2,7 @@
 
 <!-- TODO : move attributes to CSS -->
 
+<?import java.net.URL?>
 <?import application.SystemConstants?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -9,6 +10,10 @@
 
 <BorderPane xmlns:fx="http://javafx.com/javafx"
             prefWidth="Infinity" prefHeight="Infinity">
+    <stylesheets>
+        <URL value="@mainWindow.css"/>
+    </stylesheets>
+
     <top>
         <AnchorPane>
             <padding>

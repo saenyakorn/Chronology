@@ -1,0 +1,12 @@
+:root {
+    --primary-color: #ffffff;
+}
+
+//CSS2 cant!!
+
+.root {
+    -fx-font-size: 14pt;
+    -fx-background: var(--primary-color);
+}
+
+// Set style as a string and import the string every time you want to use the style
