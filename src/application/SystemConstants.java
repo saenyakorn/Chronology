@@ -1,4 +1,6 @@
-public class ConstantValues {
+package application;
+
+public class SystemConstants {
 
     /* This provide application constant values */
     public static final String APP_NAME = "Chronology";
