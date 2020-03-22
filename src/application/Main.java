@@ -9,12 +9,12 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage mainStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("layout/mainStage.fxml"));
-        mainStage.setTitle(SystemConstants.APP_NAME);
-        mainStage.setMaximized(true);
-        mainStage.setScene(new Scene(root, mainStage.getMaxWidth(), mainStage.getMaxHeight()));
-        mainStage.show();
+    public void start(Stage mainWindow) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("layout/mainWindow.fxml"));
+        mainWindow.setTitle(SystemConstants.APP_NAME);
+        mainWindow.setMaximized(true);
+        mainWindow.setScene(new Scene(root, mainWindow.getMaxWidth(), mainWindow.getMaxHeight()));
+        mainWindow.show();
     }
 
     public static void main(String[] args) {
