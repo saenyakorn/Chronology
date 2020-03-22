@@ -5,73 +5,99 @@
 <?import application.SystemConstants?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 
 <BorderPane xmlns:fx="http://javafx.com/javafx"
             prefWidth="Infinity" prefHeight="Infinity">
     <top>
-        <FlowPane>
-
-        </FlowPane>
+        <AnchorPane>
+            <padding>
+                <Insets top="5" left="10" bottom="5" right="10"/>
+            </padding>
+            <MenuButton text="Menu" AnchorPane.topAnchor="5" AnchorPane.leftAnchor="0">
+                <contextMenu>
+                    <ContextMenu>
+                        <items>
+                            <MenuItem text="New Document"/>
+                            <MenuItem text="Open"/>
+                        </items>
+                    </ContextMenu>
+                </contextMenu>
+            </MenuButton>
+            <Label alignment="CENTER" AnchorPane.topAnchor="5" AnchorPane.leftAnchor="200" AnchorPane.rightAnchor="200">
+                <text> <SystemConstants fx:constant="APP_NAME"/> </text>
+                <padding>
+                    <Insets top="5" left="5" bottom="5" right="5"/>
+                </padding>
+            </Label>
+            <MenuButton text="+" AnchorPane.topAnchor="5" AnchorPane.rightAnchor="0">
+                <contextMenu>
+                    <ContextMenu>
+                        <items>
+                            <MenuItem text="Storyline"/>
+                            <MenuItem text="Event"/>
+                            <MenuItem text="Chapter"/>
+                        </items>
+                    </ContextMenu>
+                </contextMenu>
+            </MenuButton>
+        </AnchorPane>
     </top>
 
     <left>
         <ScrollPane fitToWidth="true">
-            <prefWidth>
-                <SystemConstants fx:constant="SIDEBAR_PREF_WIDTH"/>
-            </prefWidth>
+            <prefWidth> <SystemConstants fx:constant="SIDEBAR_PREF_WIDTH"/> </prefWidth>
             <VBox>
-                <TitledPane>
-                    <text>TitledPane1</text>
-                        <Label>
-                            <text>ONE</text>
+                <TitledPane text="TitledPane1">
+                    <Label text="ONE">
+                        <padding>
+                            <Insets top="50" bottom="100"/>
+                        </padding>
+                    </Label>
+                </TitledPane>
+                <TitledPane text="TitledPane2">
+                    <Label text="TWO">
+                        <padding>
+                            <Insets top="50" bottom="100"/>
+                        </padding>
+                    </Label>
+                </TitledPane>
+                <TitledPane text="TitledPane3">
+                    <Label text="THREE">
+                        <padding>
+                            <Insets top="50" bottom="100"/>
+                        </padding>
+                    </Label>
+                </TitledPane>
+                <TitledPane text="TitledPane with Nested">
+                    <TitledPane text="NestedTitledPane">
+                        <padding>
+                            <Insets left="20"/>
+                        </padding>
+                        <Label text="NESTED">
                             <padding>
                                 <Insets top="50" bottom="100"/>
                             </padding>
                         </Label>
-                </TitledPane>
-                <TitledPane>
-                    <text>TitledPane2</text>
-                        <Label>
-                            <text>TWO</text>
-                            <padding>
-                                <Insets top="50" bottom="100"/>
-                            </padding>
-                        </Label>
-                </TitledPane>
-                <TitledPane>
-                    <text>TitledPane3</text>
-                        <Label>
-                            <text>THREE</text>
-                            <padding>
-                                <Insets top="50" bottom="100"/>
-                            </padding>
-                        </Label>
-                </TitledPane>
-                <TitledPane>
-                    <text>TitledPane with Nested</text>
-                        <TitledPane>
-                            <text>NestedTitledPane</text>
-                                <Label>
-                                    <text>NESTED</text>
-                                    <padding>
-                                        <Insets top="50" bottom="100"/>
-                                    </padding>
-                                </Label>
-                            <padding>
-                                <Insets left="20"/>
-                            </padding>
-                        </TitledPane>
+                    </TitledPane>
                 </TitledPane>
             </VBox>
         </ScrollPane>
     </left>
 
+    <center>
+        <TabPane>
+            <Tab text="Tab1">
+                <Label text="PLACEHOLDER ONE" alignment="CENTER"/>
+            </Tab>
+            <Tab text="Tab2">
+                <Label text="PLACEHOLDER TWO" alignment="CENTER"/>
+            </Tab>
+        </TabPane>
+    </center>
+
     <bottom>
-        <Label BorderPane.alignment="CENTER">
-            <text>Footer</text>
+        <Label text="Footer" BorderPane.alignment="CENTER">
             <padding>
                 <Insets top="5" left="5" bottom="5" right="5"/>
             </padding>
