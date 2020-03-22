@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- TODO : move attributes to CSS -->
+
+<?import application.SystemConstants?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/javafx"
+            prefWidth="Infinity" prefHeight="Infinity">
+    <top>
+        <FlowPane>
+
+        </FlowPane>
+    </top>
+
+    <left>
+        <ScrollPane fitToWidth="true">
+            <prefWidth>
+                <SystemConstants fx:constant="SIDEBAR_PREF_WIDTH"/>
+            </prefWidth>
+            <VBox>
+                <TitledPane>
+                    <text>TitledPane1</text>
+                        <Label>
+                            <text>ONE</text>
+                            <padding>
+                                <Insets top="50" bottom="100"/>
+                            </padding>
+                        </Label>
+                </TitledPane>
+                <TitledPane>
+                    <text>TitledPane2</text>
+                        <Label>
+                            <text>TWO</text>
+                            <padding>
+                                <Insets top="50" bottom="100"/>
+                            </padding>
+                        </Label>
+                </TitledPane>
+                <TitledPane>
+                    <text>TitledPane3</text>
+                        <Label>
+                            <text>THREE</text>
+                            <padding>
+                                <Insets top="50" bottom="100"/>
+                            </padding>
+                        </Label>
+                </TitledPane>
+                <TitledPane>
+                    <text>TitledPane with Nested</text>
+                        <TitledPane>
+                            <text>NestedTitledPane</text>
+                                <Label>
+                                    <text>NESTED</text>
+                                    <padding>
+                                        <Insets top="50" bottom="100"/>
+                                    </padding>
+                                </Label>
+                            <padding>
+                                <Insets left="20"/>
+                            </padding>
+                        </TitledPane>
+                </TitledPane>
+            </VBox>
+        </ScrollPane>
+    </left>
+
+    <bottom>
+        <Label BorderPane.alignment="CENTER">
+            <text>Footer</text>
+            <padding>
+                <Insets top="5" left="5" bottom="5" right="5"/>
+            </padding>
+        </Label>
+    </bottom>
+</BorderPane>
