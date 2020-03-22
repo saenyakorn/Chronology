@@ -14,7 +14,8 @@
             <padding>
                 <Insets top="5" left="10" bottom="5" right="10"/>
             </padding>
-            <MenuButton text="Menu" AnchorPane.topAnchor="5" AnchorPane.leftAnchor="0">
+            <MenuButton text="Menu" popupSide="BOTTOM"
+                        AnchorPane.topAnchor="5" AnchorPane.leftAnchor="0">
                 <contextMenu>
                     <ContextMenu>
                         <items>
@@ -30,17 +31,6 @@
                     <Insets top="5" left="5" bottom="5" right="5"/>
                 </padding>
             </Label>
-            <MenuButton text="+" AnchorPane.topAnchor="5" AnchorPane.rightAnchor="0">
-                <contextMenu>
-                    <ContextMenu>
-                        <items>
-                            <MenuItem text="Storyline"/>
-                            <MenuItem text="Event"/>
-                            <MenuItem text="Chapter"/>
-                        </items>
-                    </ContextMenu>
-                </contextMenu>
-            </MenuButton>
         </AnchorPane>
     </top>
 
@@ -97,10 +87,19 @@
     </center>
 
     <bottom>
-        <Label text="Footer" BorderPane.alignment="CENTER">
-            <padding>
-                <Insets top="5" left="5" bottom="5" right="5"/>
-            </padding>
-        </Label>
+        <MenuButton text="+" popupSide="TOP" BorderPane.alignment="TOP_RIGHT">
+            <BorderPane.margin>
+                <Insets top="5" left="10" bottom="5" right="10"/>
+            </BorderPane.margin>
+            <contextMenu>
+                <ContextMenu>
+                    <items>
+                        <MenuItem text="Storyline"/>
+                        <MenuItem text="Event"/>
+                        <MenuItem text="Chapter"/>
+                    </items>
+                </ContextMenu>
+            </contextMenu>
+        </MenuButton>
     </bottom>
 </BorderPane>
