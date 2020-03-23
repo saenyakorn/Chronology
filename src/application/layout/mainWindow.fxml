@@ -10,9 +10,6 @@
 
 <BorderPane xmlns:fx="http://javafx.com/javafx"
             prefWidth="Infinity" prefHeight="Infinity">
-    <stylesheets>
-        <URL value="@mainWindow.css"/>
-    </stylesheets>
 
     <top>
         <AnchorPane>
