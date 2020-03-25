@@ -13,25 +13,21 @@
 
     <top>
         <AnchorPane>
-            <padding>
-                <Insets top="5" left="10" bottom="5" right="10"/>
-            </padding>
-            <MenuButton text="Menu" popupSide="BOTTOM"
-                        AnchorPane.topAnchor="5" AnchorPane.leftAnchor="0">
-                <contextMenu>
-                    <ContextMenu>
-                        <items>
-                            <MenuItem text="New Document"/>
-                            <MenuItem text="Open"/>
-                        </items>
-                    </ContextMenu>
-                </contextMenu>
-            </MenuButton>
+            <MenuBar AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0">
+                <menus>
+                    <Menu text="File">
+                        <MenuItem text="New Document"/>
+                    </Menu>
+                    <Menu text="Add">
+                        <MenuItem text="Storyline"/>
+                        <MenuItem text="Event Card"/>
+                        <MenuItem text="Chapter"/>
+                        <MenuItem text="Comment"/>
+                    </Menu>
+                </menus>
+            </MenuBar>
             <Label alignment="CENTER" AnchorPane.topAnchor="5" AnchorPane.leftAnchor="200" AnchorPane.rightAnchor="200">
                 <text> <SystemConstants fx:constant="APP_NAME"/> </text>
-                <padding>
-                    <Insets top="5" left="5" bottom="5" right="5"/>
-                </padding>
             </Label>
         </AnchorPane>
     </top>
@@ -89,7 +85,8 @@
     </center>
 
     <bottom>
-        <MenuButton text="+" popupSide="TOP" BorderPane.alignment="TOP_RIGHT">
+        <MenuButton text="+" popupSide="TOP" BorderPane.alignment="TOP_RIGHT"
+                    layoutY="-300">
             <BorderPane.margin>
                 <Insets top="5" left="10" bottom="5" right="10"/>
             </BorderPane.margin>
