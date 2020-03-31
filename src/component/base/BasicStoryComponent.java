@@ -1,10 +1,11 @@
 package component.base;
 
 import component.components.timeModifier.TimePeriod;
+import javafx.scene.layout.Pane;
 
 import java.awt.*;
 
-public abstract class BasicStoryComponent {
+public abstract class BasicStoryComponent extends Pane {
     protected String title;
     protected String description;
     protected Color color;
