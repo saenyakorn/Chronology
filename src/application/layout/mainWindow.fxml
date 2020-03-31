@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- TODO : move attributes to CSS -->
+<!-- TODO : consider TreeView instead of TitledPane for sidebar -->
 
-<?import java.net.URL?>
 <?import application.SystemConstants?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -14,20 +14,18 @@
     <top>
         <AnchorPane>
             <MenuBar AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0">
-                <menus>
-                    <Menu text="File">
-                        <MenuItem text="New Document"/>
-                    </Menu>
-                    <Menu text="Add">
-                        <MenuItem text="Storyline"/>
-                        <MenuItem text="Event Card"/>
-                        <MenuItem text="Chapter"/>
-                        <MenuItem text="Comment"/>
-                    </Menu>
-                </menus>
+                <Menu text="File">
+                    <MenuItem text="New Document"/>
+                </Menu>
+                <Menu text="Add">
+                    <MenuItem text="Storyline"/>
+                    <MenuItem text="Event Card"/>
+                    <MenuItem text="Chapter"/>
+                    <MenuItem text="Comment"/>
+                </Menu>
             </MenuBar>
             <Label alignment="CENTER" AnchorPane.topAnchor="5" AnchorPane.leftAnchor="200" AnchorPane.rightAnchor="200">
-                <text> <SystemConstants fx:constant="APP_NAME"/> </text>
+                <SystemConstants fx:constant="APP_NAME"/>
             </Label>
         </AnchorPane>
     </top>
