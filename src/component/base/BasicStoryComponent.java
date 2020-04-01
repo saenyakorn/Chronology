@@ -2,8 +2,7 @@ package component.base;
 
 import component.components.timeModifier.TimePeriod;
 import javafx.scene.layout.Pane;
-
-import java.awt.*;
+import javafx.scene.paint.Color;
 
 public abstract class BasicStoryComponent extends Pane {
     protected String title;
