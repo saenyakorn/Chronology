@@ -6,7 +6,7 @@ import java.time.LocalTime;
 
 public class TimePeriodGenerator {
 
-    private LocalTime getBeginTimeOfDay(PredefinedTimePeriod predefinedTimePeriod) {
+    private static LocalTime getBeginTimeOfDay(PredefinedTimePeriod predefinedTimePeriod) {
         LocalTime time;
         switch (predefinedTimePeriod) {
             case DAWN:
@@ -33,7 +33,7 @@ public class TimePeriodGenerator {
         return time;
     }
 
-    private LocalTime getEndTimeOfDay(PredefinedTimePeriod predefinedTimePeriod) {
+    private static LocalTime getEndTimeOfDay(PredefinedTimePeriod predefinedTimePeriod) {
         LocalTime time;
         switch (predefinedTimePeriod) {
             case DAWN:
@@ -60,7 +60,7 @@ public class TimePeriodGenerator {
         return time;
     }
 
-    public TimePeriod getTimePeriodFromPeriod(LocalDate localDate, PredefinedTimePeriod predefinedTimePeriod) {
+    public static TimePeriod getTimePeriodFromPeriod(LocalDate localDate, PredefinedTimePeriod predefinedTimePeriod) {
         LocalTime beginTime = getBeginTimeOfDay(predefinedTimePeriod);
         LocalTime endTime = getEndTimeOfDay(predefinedTimePeriod);
         LocalDateTime beginDateTime = LocalDateTime.of(localDate, beginTime);
