@@ -14,7 +14,7 @@
 
     <HBox prefHeight="30.0" spacing="5">
         <padding>
-            <Insets left="15" right="15"/>
+            <Insets bottom="10" left="15" right="15" top="10" />
         </padding>
         <Text text="Date"/>
         <Text text="Time"/>

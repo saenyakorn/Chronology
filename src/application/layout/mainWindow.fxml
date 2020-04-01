@@ -4,6 +4,7 @@
 <!-- TODO : consider TreeView instead of TitledPane for sidebar -->
 
 <?import application.SystemConstants?>
+<?import component.components.eventCard.EventCard?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -75,6 +76,7 @@
         <TabPane>
             <Tab text="Tab1">
                 <Label text="PLACEHOLDER ONE" alignment="CENTER"/>
+                <EventCard/>
             </Tab>
             <Tab text="Tab2">
                 <Label text="PLACEHOLDER TWO" alignment="CENTER"/>
