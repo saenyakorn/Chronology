@@ -4,7 +4,7 @@ import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
 import component.components.timeModifier.TimePeriod;
 
-import java.awt.*;
+import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 
