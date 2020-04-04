@@ -8,13 +8,15 @@ StackPane {
 }
 
 #date {
-    -fx-font-family: 'NotoSans Bold';
+    -fx-font-family: "NotoSans";
+    -fx-font-weight: "bold";
     -fx-font-size: 24px;
     -fx-fill: #FF3E60;
 }
 
 #time {
-    -fx-font-family: 'NotoSans Bold';
+    -fx-font-family: "NotoSans";
+    -fx-font-weight: "bold";
     -fx-font-size: 14px;
     -fx-fill: #FF3E60;
 }
@@ -30,7 +32,8 @@ StackPane {
 }
 
 #title Text {
-    -fx-font-family: 'NotoSans Bold';
+    -fx-font-family: "NotoSans";
+    -fx-font-weight: "bold";
     -fx-font-size: 14px;
     -fx-fill: #FFFFFF;
 }
@@ -41,7 +44,8 @@ StackPane {
 }
 
 #description Text {
-    -fx-font-family: 'NotoSans Regular';
+    -fx-font-family: "NotoSans";
+    -fx-font-weight: "bold";
     -fx-font-size: 12px;
     -fx-fill: #1C1C1C;
 }
