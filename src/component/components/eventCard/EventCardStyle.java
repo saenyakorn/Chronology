@@ -2,7 +2,7 @@ package component.components.eventCard;
 
 import application.SystemConstants;
 
-package class EventCardStyle {
+class EventCardStyle {
 
     public static final String PADDING = "-fx-padding: 10 15 10 15;";
     public static final String DROP_SHADOW = SystemConstants.DROP_SHADOW;
