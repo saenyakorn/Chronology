@@ -1,0 +1,9 @@
+@font-face {
+    font-family:  NotoSansRegular;
+    src: url('file:res/fonts/NotoSansThai-Regular.ttf');
+}
+
+@font-face {
+    font-family:  NotoSansBold;
+    src: url('file:res/fonts/NotoSansThai-Bold.ttf');
+}

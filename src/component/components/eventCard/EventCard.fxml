@@ -1,27 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--  TODO: Create style class for EventCard and move styles there -->
-<!--  TODO: Add IDs and prepare for controller -->
-<!--  TODO: Add external fonts to app -->
+<!-- TODO: Make external fonts appear -->
+<!-- TODO: Create style class for EventCard and move styles there -->
+<!-- TODO: Add IDs and prepare for controller -->
 
-<?import javafx.geometry.*?>
+<?import application.SystemConstants?>
+<?import java.net.*?>
+<?import component.components.eventCard.EventCardStyle?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Text?>
 
 <fx:root type="Pane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="file:src/application/font.css"/>
+    </stylesheets>
+
+<!--    <style>-->
+<!--        <SystemConstants fx:constant="LOADFONT_REGULAR"/> + <SystemConstants fx:constant="LOADFONT_BOLD"/>-->
+<!--    </style>-->
 
     <VBox prefWidth="200.0" prefHeight="180.0">
         <HBox prefHeight="30.0" spacing="5">
-            <padding>
-                <Insets bottom="10" left="15" right="15" top="10" />
-            </padding>
-            <Text text="Date"/>
-            <Text text="Time"/>
+            <style> <EventCardStyle fx:constant="PADDING"/> </style>
+            <Text text="28 FEB 2020">
+                <style>
+                    <EventCardStyle fx:constant="BEGINDATE_TEXT"/>
+                    <EventCardStyle fx:constant="DEFAULTCOLOR_TEXT"/>
+                </style>
+            </Text>
+            <Text text="Time">
+                <style>
+                    <EventCardStyle fx:constant="BEGINTIME_TEXT"/>
+                    <EventCardStyle fx:constant="DEFAULTCOLOR_TEXT"/>
+                </style>
+            </Text>
         </HBox>
 
-        <VBox style="-fx-background-radius: 20 20 20 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 10);">
+        <VBox>
+            <style>
+                <EventCardStyle fx:constant="DROP_SHADOW"/> + <EventCardStyle fx:constant="ROUND_EDGES"/>
+            </style>
+
             <StackPane prefWidth="200.0" prefHeight="50.0" alignment="CENTER_LEFT"
-                       style="-fx-background-color: FF3E60; -fx-background-radius: 20 20 0 0 ">
+                       style="-fx-background-color: FF3E60;">
                 <padding>
                     <Insets bottom="10" left="15" right="15" top="10" />
                 </padding>
@@ -29,7 +51,7 @@
             </StackPane>
 
             <StackPane prefWidth="200.0" prefHeight="100.0" layoutY="50.0" alignment="TOP_LEFT"
-                       style="-fx-background-color: FFFFFF; -fx-background-radius: 0 0 20 20 ">
+                       style="-fx-background-color: FFFFFF;">
                 <padding>
                     <Insets bottom="10" left="15" right="15" top="10" />
                 </padding>
