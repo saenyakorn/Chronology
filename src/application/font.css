@@ -1,18 +1,18 @@
 @font-face {
-    font-family: 'NotoSans Bold';
+    font-family: 'NotoSans';
     src: url('file:res/fonts/notosansthai-bold-webfont.eot');
     src: url('file:res/fonts/notosansthai-bold-webfont.eot?#iefix') format('embedded-opentype'),
          url('file:res/fonts/notosansthai-bold-webfont.woff2') format('woff2'),
          url('file:res/fonts/notosansthai-bold-webfont.woff') format('woff'),
          url('file:res/fonts/notosansthai-bold-webfont.ttf') format('truetype'),
          url('file:res/fonts/notosansthai-bold-webfont.svg#noto_sans_thaibold') format('svg');
-    font-weight: normal;
+    font-weight: bold;
     font-style: normal;
 
 }
 
 @font-face {
-    font-family: 'NotoSans Regular';
+    font-family: 'NotoSans';
     src: url('file:res/fonts/notosansthai-regular-webfont.eot');
     src: url('file:res/fonts/notosansthai-regular-webfont.eot?#iefix') format('embedded-opentype'),
          url('file:res/fonts/notosansthai-regular-webfont.woff2') format('woff2'),

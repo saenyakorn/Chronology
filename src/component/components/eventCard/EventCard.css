@@ -1,13 +1,3 @@
-@font-face {
-    font-family: 'NotoSans Regular';
-    src: url('file:res/fonts/NotoSansThai-Regular.ttf');
-}
-
-@font-face {
-    font-family: 'NotoSans Bold';
-    src: url('file:res/fonts/NotoSansThai-Bold.ttf');
-}
-
 StackPane {
     -fx-padding: 10 15 10 15;
 }
