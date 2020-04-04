@@ -12,7 +12,7 @@
     </stylesheets>
 
     <VBox prefWidth="200.0" fillWidth="false">
-        <HBox id="date-time" prefHeight="30.0">
+        <HBox id="date-time" prefHeight="30.0" alignment="BASELINE_LEFT">
             <Text id="date" text="28 FEB 2020"/>
             <Text id="time" text="NOON"/>
         </HBox>
