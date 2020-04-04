@@ -51,4 +51,6 @@ public abstract class BasicStoryComponent extends Pane {
 
     @Override
     abstract public String toString();
+
+    protected abstract void loadFXML();
 }

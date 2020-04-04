@@ -1,13 +1,13 @@
 package component.components.eventCard;
 
-import fxmlutils.FXMLUtils;
 import application.SystemConstants;
 import component.base.BasicStoryComponent;
 import component.components.timeModifier.PredefinedTimePeriod;
 import component.components.timeModifier.TimePeriod;
 import component.components.timeModifier.TimePeriodGenerator;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.paint.Color;
-
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class EventCard extends BasicStoryComponent implements Comparable<EventCard> {
@@ -18,14 +18,14 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         super("Title", "description", Color.web(SystemConstants.RED), TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
         this.characters = "";
         this.place = "";
-        FXMLUtils.loadFXML(this);
+        this.loadFXML();
     }
 
     public EventCard(String title, String description, Color color, TimePeriod timePeriod, String characters, String place) {
         super(title, description, color, timePeriod);
         this.characters = characters;
         this.place = place;
-        FXMLUtils.loadFXML(this);
+        this.loadFXML();
     }
 
     public String getCharacters() {
@@ -52,6 +52,18 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     @Override
     public int compareTo(EventCard o) throws IllegalArgumentException {
         return timePeriod.compareTo(o.timePeriod);
+    }
+
+    @Override
+    protected void loadFXML() {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EventCard.fxml"));
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+        try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
     }
 
 }

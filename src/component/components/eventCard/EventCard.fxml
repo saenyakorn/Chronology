@@ -8,34 +8,34 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<fx:root type="VBox" prefWidth="200.0" prefHeight="180.0"
-         xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-         fx:controller="component.components.eventCard.EventCard">
+<fx:root type="Pane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
 
-    <HBox prefHeight="30.0" spacing="5">
-        <padding>
-            <Insets bottom="10" left="15" right="15" top="10" />
-        </padding>
-        <Text text="Date"/>
-        <Text text="Time"/>
-    </HBox>
-
-    <VBox style="-fx-background-radius: 20 20 20 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 10);">
-        <StackPane prefWidth="200.0" prefHeight="50.0" alignment="CENTER_LEFT"
-                   style="-fx-background-color: FF3E60; -fx-background-radius: 20 20 0 0 ">
+    <VBox prefWidth="200.0" prefHeight="180.0">
+        <HBox prefHeight="30.0" spacing="5">
             <padding>
                 <Insets bottom="10" left="15" right="15" top="10" />
             </padding>
-            <Text text="User inputted title" style="-fx-fill: FFFFFF;"/>
-        </StackPane>
+            <Text text="Date"/>
+            <Text text="Time"/>
+        </HBox>
 
-        <StackPane prefWidth="200.0" prefHeight="100.0" layoutY="50.0" alignment="TOP_LEFT"
-                   style="-fx-background-color: FFFFFF; -fx-background-radius: 0 0 20 20 ">
-            <padding>
-                <Insets bottom="10" left="15" right="15" top="10" />
-            </padding>
-            <Text text="User inputted description" />
-        </StackPane>
+        <VBox style="-fx-background-radius: 20 20 20 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 10);">
+            <StackPane prefWidth="200.0" prefHeight="50.0" alignment="CENTER_LEFT"
+                       style="-fx-background-color: FF3E60; -fx-background-radius: 20 20 0 0 ">
+                <padding>
+                    <Insets bottom="10" left="15" right="15" top="10" />
+                </padding>
+                <Text text="User inputted title" style="-fx-fill: FFFFFF;"/>
+            </StackPane>
+
+            <StackPane prefWidth="200.0" prefHeight="100.0" layoutY="50.0" alignment="TOP_LEFT"
+                       style="-fx-background-color: FFFFFF; -fx-background-radius: 0 0 20 20 ">
+                <padding>
+                    <Insets bottom="10" left="15" right="15" top="10" />
+                </padding>
+                <Text text="User inputted description" />
+            </StackPane>
+        </VBox>
     </VBox>
     
 </fx:root>
