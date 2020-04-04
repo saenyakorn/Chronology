@@ -12,8 +12,6 @@ public class SystemConstants {
     public static final String DROP_SHADOW = " -fx-effect: dropshadow(gaussian, rgba(28,28,28,0.2), 10, 0, 0, 10);";
 
     /* Font Constants */
-    public static final String FONT_REGULAR_PATH = "file:res/fonts/NotoSansThai-Regular.ttf";
-    public static final String FONT_BOLD_PATH = "file:res/fonts/NotoSansThai-Bold.ttf";
     public static final int HEADING_WEIGHT = 14;
     public static final int REGULAR_WEIGHT = 12;
 

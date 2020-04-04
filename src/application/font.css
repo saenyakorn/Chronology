@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'noto_sans_thaibold';
+    font-family: 'NotoSans Bold';
     src: url('file:res/fonts/notosansthai-bold-webfont.eot');
     src: url('file:res/fonts/notosansthai-bold-webfont.eot?#iefix') format('embedded-opentype'),
          url('file:res/fonts/notosansthai-bold-webfont.woff2') format('woff2'),
@@ -12,7 +12,7 @@
 }
 
 @font-face {
-    font-family: 'noto_sans_thairegular';
+    font-family: 'NotoSans Regular';
     src: url('file:res/fonts/notosansthai-regular-webfont.eot');
     src: url('file:res/fonts/notosansthai-regular-webfont.eot?#iefix') format('embedded-opentype'),
          url('file:res/fonts/notosansthai-regular-webfont.woff2') format('woff2'),
