@@ -11,8 +11,7 @@ class EventCardStyle {
     public static String COLOR_BACKGROUND = "-fx-background-color: " + "" + ";";
     public static final String WHITE_TEXT = "-fx-fill: " + SystemConstants.WHITE + ";";
     public static final String BLACK_TEXT = "-fx-fill: " + SystemConstants.BLACK + ";";
-    
-    //TODO : Add font weights to SystemConstants
+
     public static String BEGINDATE_TEXT = "-fx-font: 24px Noto Sans Bold;";
     public static String BEGINTIME_TEXT = "-fx-font: 14px Noto Sans Bold";
 

@@ -1,0 +1,57 @@
+@font-face {
+    font-family: 'NotoSans Regular';
+    src: url('file:res/fonts/NotoSansThai-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'NotoSans Bold';
+    src: url('file:res/fonts/NotoSansThai-Bold.ttf');
+}
+
+StackPane {
+    -fx-padding: 10 15 10 15;
+}
+
+#date-time {
+    -fx-padding: 10 15 10 15;
+    -fx-spacing: 5;
+}
+
+#date {
+    -fx-font-family: 'NotoSans Bold';
+    -fx-font-size: 24px;
+    -fx-fill: #FF3E60;
+}
+
+#time {
+    -fx-font-family: 'NotoSans Bold';
+    -fx-font-size: 14px;
+    -fx-fill: #FF3E60;
+}
+
+#card {
+    -fx-background-radius: 20 20 20 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 10);
+}
+
+#title {
+    -fx-background-color: #FF3E60;
+    -fx-background-radius: 20 20 0 0;
+}
+
+#title Text {
+    -fx-font-family: 'NotoSans Bold';
+    -fx-font-size: 14px;
+    -fx-fill: #FFFFFF;
+}
+
+#description {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 0 0 20 20;
+}
+
+#description Text {
+    -fx-font-family: 'NotoSans Regular';
+    -fx-font-size: 12px;
+    -fx-fill: #1C1C1C;
+}

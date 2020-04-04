@@ -1,39 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--  TODO: Create style class for EventCard and move styles there -->
-<!--  TODO: Add IDs and prepare for controller -->
-<!--  TODO: Add external fonts to app -->
+<!-- TODO: Font doesn't seem to load -->
 
-<?import javafx.geometry.*?>
+<?import java.net.URL?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Text?>
 
 <fx:root type="Pane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@EventCard.css"/>
+    </stylesheets>
 
-    <VBox prefWidth="200.0" prefHeight="180.0">
-        <HBox prefHeight="30.0" spacing="5">
-            <padding>
-                <Insets bottom="10" left="15" right="15" top="10" />
-            </padding>
-            <Text text="Date"/>
-            <Text text="Time"/>
+    <VBox prefWidth="200.0" fillWidth="false">
+        <HBox id="date-time" prefHeight="30.0">
+            <Text id="date" text="28 FEB 2020"/>
+            <Text id="time" text="NOON"/>
         </HBox>
 
-        <VBox style="-fx-background-radius: 20 20 20 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 10);">
-            <StackPane prefWidth="200.0" prefHeight="50.0" alignment="CENTER_LEFT"
-                       style="-fx-background-color: FF3E60; -fx-background-radius: 20 20 0 0 ">
-                <padding>
-                    <Insets bottom="10" left="15" right="15" top="10" />
-                </padding>
-                <Text text="User inputted title" style="-fx-fill: FFFFFF;"/>
+        <VBox id="card">
+            <StackPane id="title" prefWidth="200.0" prefHeight="50.0" alignment="CENTER_LEFT">
+                <Text text="Title"/>
             </StackPane>
-
-            <StackPane prefWidth="200.0" prefHeight="100.0" layoutY="50.0" alignment="TOP_LEFT"
-                       style="-fx-background-color: FFFFFF; -fx-background-radius: 0 0 20 20 ">
-                <padding>
-                    <Insets bottom="10" left="15" right="15" top="10" />
-                </padding>
-                <Text text="User inputted description" />
+            <StackPane id="description" prefWidth="200.0" prefHeight="100.0" layoutY="50.0" alignment="TOP_LEFT">
+                <Text text="Description" />
             </StackPane>
         </VBox>
     </VBox>

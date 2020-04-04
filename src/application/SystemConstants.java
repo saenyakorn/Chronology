@@ -17,16 +17,6 @@ public class SystemConstants {
     public static final int HEADING_WEIGHT = 14;
     public static final int REGULAR_WEIGHT = 12;
 
-    public static final String LOADFONT_REGULAR = "@font-face {" +
-            "    font-family: NotoSansRegular;" +
-            "    src: url('" + FONT_REGULAR_PATH + "');" +
-            "}";
-
-    public static final String LOADFONT_BOLD = "@font-face {" +
-            "    font-family: NotoSansBold;" +
-            "    src: url('" + FONT_BOLD_PATH + "');" +
-            "}";
-
     /*Color scheme constants*/
     //Monochrome
     public static final String WHITE = "#FFFFFF";
