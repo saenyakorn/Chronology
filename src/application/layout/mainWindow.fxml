@@ -9,6 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import component.components.storyline.Storyline?>
 <BorderPane xmlns:fx="http://javafx.com/javafx"
             prefWidth="Infinity" prefHeight="Infinity">
 
@@ -75,8 +76,9 @@
     <center>
         <TabPane>
             <Tab text="Tab1">
-                <Label text="PLACEHOLDER ONE" alignment="CENTER"/>
-                <EventCard/>
+                <GridPane alignment="CENTER">
+                    <Storyline GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                </GridPane>
             </Tab>
             <Tab text="Tab2">
                 <Label text="PLACEHOLDER TWO" alignment="CENTER"/>
