@@ -14,6 +14,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     private String characters;
     private String place;
 
+    // TODO : Decide on default values
     public EventCard() {
         super("Title", "description", Color.web(SystemConstants.RED), TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
         this.characters = "";
