@@ -9,7 +9,7 @@ public class SystemConstants {
     /* Styling constants */
     public static final int SPACING = 8;
     public static final int BORDER_RADIUS = 20;
-    public static final String DROP_SHADOW = " -fx-effect: dropshadow(gaussian, rgba(28,28,28,0.2), 10, 0, 0, 10);";
+    public static final String DROP_SHADOW = " -fx-effect: dropshadow(gaussian, rgba(28,28,28,0.1), 20, 0, 0, 10);";
 
     /* Font Constants */
     public static final int HEADING_WEIGHT = 14;
