@@ -1,8 +1,13 @@
 package component.base;
 
+import application.SystemConstants;
+import component.components.timeModifier.PredefinedTimePeriod;
 import component.components.timeModifier.TimePeriod;
+import component.components.timeModifier.TimePeriodGenerator;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+
+import java.time.LocalDate;
 
 public abstract class BasicStoryComponent extends Pane {
     protected String title;
@@ -10,6 +15,12 @@ public abstract class BasicStoryComponent extends Pane {
     protected Color color;
     protected TimePeriod timePeriod;
 
+    public BasicStoryComponent() {
+        this.title = "Title";
+        this.description = "Lorem ipsum dolor set amet, ego bir setaso de.";
+        this.color = Color.web(SystemConstants.RED);
+        this.timePeriod = TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY);
+    }
     public BasicStoryComponent(String title, String description, Color color, TimePeriod timePeriod) {
         this.title = title;
         this.description = description;
