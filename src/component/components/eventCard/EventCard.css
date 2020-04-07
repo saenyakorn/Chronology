@@ -1,8 +1,10 @@
+@import url("file:src/application/font.css");
+
 StackPane {
     -fx-padding: 10 15 10 15;
 }
 
-#date-time {
+#dateTime {
     -fx-padding: 10 15 10 15;
     -fx-spacing: 5;
 }
@@ -26,26 +28,30 @@ StackPane {
     -fx-effect: dropshadow(gaussian, rgba(28,28,28,0.1), 20, 0, 0, 10);
 }
 
-#card-title {
+#cardTitleContainer {
     -fx-background-color: #FF3E60;
     -fx-background-radius: 20 20 0 0;
 }
 
-#card-title Text {
+#cardTitle:disabled {
     -fx-font-family: "NotoSans";
+    -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-font-size: 14px;
-    -fx-fill: #FFFFFF;
+    -fx-background-color: transparent;
+    -fx-opacity: 1.0;
 }
 
-#card-description {
+#cardDescriptionContainer {
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 0 0 20 20;
 }
 
-#card-description Text {
+#cardDescription Text {
     -fx-font-family: "NotoSans";
     -fx-font-weight: normal;
     -fx-font-size: 12px;
     -fx-fill: #1C1C1C;
 }
+
+
+
