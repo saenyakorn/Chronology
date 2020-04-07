@@ -1,17 +1,12 @@
 package component.components.storyline;
 
-import application.SystemConstants;
 import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
-import component.components.timeModifier.PredefinedTimePeriod;
 import component.components.timeModifier.TimePeriod;
-
-import component.components.timeModifier.TimePeriodGenerator;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -19,9 +14,8 @@ public class Storyline extends BasicStoryComponent {
 
     public ArrayList<EventCard> eventCards;
 
-    // TODO : Decide on default values
     public Storyline() {
-        super("Title","", Color.web(SystemConstants.RED), TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
+        super();
         eventCards = new ArrayList<>();
         this.loadFXML();
     }
