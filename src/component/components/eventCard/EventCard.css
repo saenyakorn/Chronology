@@ -45,7 +45,7 @@ StackPane {
 
 #card-description Text {
     -fx-font-family: "NotoSans";
-    -fx-font-weight: bold;
+    -fx-font-weight: normal;
     -fx-font-size: 12px;
     -fx-fill: #1C1C1C;
 }
