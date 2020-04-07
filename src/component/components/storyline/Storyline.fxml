@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+<?import component.components.eventCard.EventCard?>
+
+<fx:root prefHeight="200" prefWidth="2000" type="Pane"
+         xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@Storyline.css" />
+    </stylesheets>
+
+    <Line startX="0" endX="1000" layoutY="130"/>
+    <HBox alignment="CENTER_LEFT">
+        <Text id="storyline-title" text="Title"/>
+        <EventCard/>
+        <EventCard/>
+    </HBox>
+
+</fx:root>

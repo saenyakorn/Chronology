@@ -1,0 +1,15 @@
+Line {
+    -fx-stroke: #FF3E60;
+    -fx-stroke-width: 7;
+}
+
+HBox {
+    -fx-spacing: 50;
+}
+
+#storyline-title {
+    -fx-font-family: "NotoSans";
+    -fx-font-weight: bold;
+    -fx-font-size: 24px;
+    -fx-fill: #FF3E60;
+}
