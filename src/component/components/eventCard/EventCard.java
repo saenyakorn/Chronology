@@ -1,22 +1,35 @@
 package component.components.eventCard;
 
-import application.SystemConstants;
 import component.base.BasicStoryComponent;
-import component.components.timeModifier.PredefinedTimePeriod;
 import component.components.timeModifier.TimePeriod;
-import component.components.timeModifier.TimePeriodGenerator;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+
 import java.io.IOException;
-import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class EventCard extends BasicStoryComponent implements Comparable<EventCard> {
     private String characters;
     private String place;
 
-    // TODO : Decide on default values
+    @FXML private Text date;
+    @FXML private Text time;
+    @FXML private TextField cardTitle;
+    @FXML private StackPane cardTitleContainer;
+    @FXML private TextArea cardDescription;
+    @FXML private StackPane cardDescriptionContainer;
+
     public EventCard() {
-        super("Title", "description", Color.web(SystemConstants.RED), TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
+        super();
         this.characters = "";
         this.place = "";
         this.loadFXML();
@@ -27,6 +40,47 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         this.characters = characters;
         this.place = place;
         this.loadFXML();
+    }
+
+    @FXML
+    public void initialize() {
+        this.setTitle(this.getTitle());
+        this.setDescription(this.getDescription());
+        this.setColor(this.getColor());
+        this.setTimePeriod(this.getTimePeriod());
+    }
+
+    @Override
+    public void setTitle(String title) {
+        super.setTitle(title);
+        cardTitle.setText(title);
+        cardTitle.setDisable(true);
+        cardTitleContainer.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> cardTitle.setDisable(false));
+        cardTitleContainer.addEventFilter(MouseEvent.MOUSE_EXITED, event -> cardTitle.setDisable(true));
+    }
+
+    @Override
+    public void setDescription(String description) {
+        super.setDescription(description);
+        cardDescription.setText(description);
+        cardDescription.setDisable(true);
+        cardDescriptionContainer.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> cardDescription.setDisable(false));
+        cardDescriptionContainer.addEventFilter(MouseEvent.MOUSE_EXITED, event -> cardDescription.setDisable(true));
+    }
+
+    @Override
+    public void setColor(Color color) {
+        super.setColor(color);
+        date.setFill(color);
+        time.setFill(color);
+        cardTitleContainer.setBackground(new Background(new BackgroundFill(color,null,null)));
+    }
+
+    @Override
+    public void setTimePeriod(TimePeriod timePeriod) {
+        super.setTimePeriod(timePeriod);
+        date.setText(String.valueOf(timePeriod.getBeginDateTime().toLocalDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))));
+        time.setText(String.valueOf(timePeriod.getBeginDateTime().toLocalTime()));
     }
 
     public String getCharacters() {

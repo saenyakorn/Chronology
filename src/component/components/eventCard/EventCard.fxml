@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
+<?import java.net.URL?>
 
 <fx:root type="Pane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
@@ -11,16 +13,17 @@
 
     <VBox prefWidth="200.0" fillWidth="false">
         <HBox id="date-time" prefHeight="30.0" alignment="BASELINE_LEFT">
-            <Text id="date" text="28 FEB 2020"/>
-            <Text id="time" text="NOON"/>
+            <Text id="date" fx:id="date"/>
+            <Text id="time" fx:id="time"/>
         </HBox>
 
         <VBox id="card">
-            <StackPane id="card-title" prefWidth="200.0" prefHeight="50.0" alignment="CENTER_LEFT">
-                <Text text="Title"/>
+            <StackPane id="cardTitleContainer" fx:id="cardTitleContainer"
+                       prefWidth="200.0" prefHeight="50.0" alignment="CENTER_LEFT">
+                <TextField id="cardTitle" fx:id="cardTitle" prefWidth="170"/>
             </StackPane>
-            <StackPane id="card-description" prefWidth="200.0" prefHeight="100.0" layoutY="50.0" alignment="TOP_LEFT">
-                <Text text="Description" />
+            <StackPane id="cardDescriptionContainer" fx:id="cardDescriptionContainer" prefWidth="200.0" prefHeight="100.0" layoutY="50.0" alignment="TOP_LEFT">
+                <TextArea id="cardDescription" fx:id="cardDescription" prefWidth="170" wrapText="true"/>
             </StackPane>
         </VBox>
     </VBox>
