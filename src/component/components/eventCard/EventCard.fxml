@@ -12,7 +12,7 @@
     </stylesheets>
 
     <VBox prefWidth="200.0" fillWidth="false">
-        <HBox id="date-time" prefHeight="30.0" alignment="BASELINE_LEFT">
+        <HBox id="dateTime" prefHeight="30.0" alignment="BASELINE_LEFT">
             <Text id="date" fx:id="date"/>
             <Text id="time" fx:id="time"/>
         </HBox>
