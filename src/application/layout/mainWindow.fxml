@@ -4,20 +4,22 @@
 <!-- TODO : consider TreeView instead of TitledPane for sidebar -->
 
 <?import application.SystemConstants?>
-<?import component.components.eventCard.EventCard?>
+<?import component.components.storyline.Storyline?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<?import component.components.storyline.Storyline?>
 <BorderPane xmlns:fx="http://javafx.com/javafx"
-            prefWidth="Infinity" prefHeight="Infinity">
+            prefWidth="Infinity" prefHeight="Infinity" fx:controller="application.layout.mainController">
+
+    <!--    <stylesheets>-->
+    <!--        <URL value="@../font.css"/>-->
+    <!--    </stylesheets>-->
 
     <top>
         <AnchorPane>
             <MenuBar AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0">
                 <Menu text="File">
-                    <MenuItem text="New Document"/>
+                    <MenuItem text="New Document" onAction="#handleNewDocumentClick"/>
                 </Menu>
                 <Menu text="Add">
                     <MenuItem text="Storyline"/>
@@ -34,7 +36,9 @@
 
     <left>
         <ScrollPane fitToWidth="true">
-            <prefWidth> <SystemConstants fx:constant="SIDEBAR_PREF_WIDTH"/> </prefWidth>
+            <prefWidth>
+                <SystemConstants fx:constant="SIDEBAR_PREF_WIDTH"/>
+            </prefWidth>
             <VBox>
                 <TitledPane text="TitledPane1">
                     <Label text="ONE">
