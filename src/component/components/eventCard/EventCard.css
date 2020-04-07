@@ -23,27 +23,27 @@ StackPane {
 
 #card {
     -fx-background-radius: 20 20 20 20;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 10);
+    -fx-effect: dropshadow(gaussian, rgba(28,28,28,0.1), 20, 0, 0, 10);
 }
 
-#title {
+#card-title {
     -fx-background-color: #FF3E60;
     -fx-background-radius: 20 20 0 0;
 }
 
-#title Text {
+#card-title Text {
     -fx-font-family: "NotoSans";
     -fx-font-weight: bold;
     -fx-font-size: 14px;
     -fx-fill: #FFFFFF;
 }
 
-#description {
+#card-description {
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 0 0 20 20;
 }
 
-#description Text {
+#card-description Text {
     -fx-font-family: "NotoSans";
     -fx-font-weight: bold;
     -fx-font-size: 12px;
