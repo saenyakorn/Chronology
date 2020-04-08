@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -23,6 +24,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     @FXML private Text date;
     @FXML private Text time;
+    @FXML private HBox dateTimeContainer;
     @FXML private TextField cardTitle;
     @FXML private StackPane cardTitleContainer;
     @FXML private TextArea cardDescription;
@@ -81,6 +83,9 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         super.setTimePeriod(timePeriod);
         date.setText(timePeriod.getBeginDateTime().toLocalDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
         time.setText(String.valueOf(timePeriod.getBeginDateTime().toLocalTime()));
+        //dateTimeContainer.setOnMouseClicked((MouseEvent event) ->
+                // TODO : Set TimePeriod dialog
+                //  );
     }
 
     public String getCharacters() {
