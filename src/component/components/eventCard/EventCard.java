@@ -55,8 +55,8 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         super.setTitle(title);
         cardTitle.setText(title);
         cardTitle.setDisable(true);
-        cardTitleContainer.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> cardTitle.setDisable(false));
-        cardTitleContainer.addEventFilter(MouseEvent.MOUSE_EXITED, event -> cardTitle.setDisable(true));
+        cardTitleContainer.setOnMouseClicked((MouseEvent event) -> cardTitle.setDisable(false));
+        cardTitleContainer.setOnMouseExited((MouseEvent event) -> cardTitle.setDisable(true));
     }
 
     @Override
@@ -64,8 +64,8 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         super.setDescription(description);
         cardDescription.setText(description);
         cardDescription.setDisable(true);
-        cardDescriptionContainer.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> cardDescription.setDisable(false));
-        cardDescriptionContainer.addEventFilter(MouseEvent.MOUSE_EXITED, event -> cardDescription.setDisable(true));
+        cardDescriptionContainer.setOnMouseClicked((MouseEvent event) -> cardDescription.setDisable(false));
+        cardDescriptionContainer.setOnMouseExited((MouseEvent event) -> cardDescription.setDisable(true));
     }
 
     @Override
@@ -79,7 +79,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     @Override
     public void setTimePeriod(TimePeriod timePeriod) {
         super.setTimePeriod(timePeriod);
-        date.setText(String.valueOf(timePeriod.getBeginDateTime().toLocalDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))));
+        date.setText(timePeriod.getBeginDateTime().toLocalDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
         time.setText(String.valueOf(timePeriod.getBeginDateTime().toLocalTime()));
     }
 
