@@ -4,7 +4,7 @@ StackPane {
     -fx-padding: 10 15 10 15;
 }
 
-#dateTime {
+#dateTimeContainer {
     -fx-padding: 10 15 10 15;
     -fx-spacing: 5;
 }
