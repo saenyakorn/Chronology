@@ -1,8 +1,9 @@
 package component.components.chapter;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class ChapterList {
+public class ChapterList implements Iterable<Chapter> {
     private final ArrayList<Chapter> chapters;
 
     public ChapterList() {
@@ -29,5 +30,14 @@ public class ChapterList {
             System.out.println("This event card does not exist");
             return 0;
         }
+    }
+
+    public int size() {
+        return chapters.size();
+    }
+
+    @Override
+    public Iterator<Chapter> iterator() {
+        return chapters.iterator();
     }
 }

@@ -2,44 +2,78 @@ package component.components.storyline;
 
 import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
+import component.components.eventCard.EventCardList;
 import component.components.timeModifier.TimePeriod;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class Storyline extends BasicStoryComponent {
+    private EventCardList eventCards;
 
-    public ArrayList<EventCard> eventCards;
+    @FXML private Line line;
+    @FXML private TextField storylineTitle;
+    @FXML private EventCardList eventCardList;
 
     public Storyline() {
         super();
-        eventCards = new ArrayList<>();
+        eventCards = new EventCardList();
         this.loadFXML();
     }
 
     public Storyline(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
-        eventCards = new ArrayList<>();
+        eventCards = new EventCardList();
         this.loadFXML();
     }
 
-    public ArrayList<EventCard> addEventCard(EventCard eventCard) {
-        eventCards.add(eventCard);
-        Collections.sort(eventCards);
+    @FXML
+    public void initialize() {
+        this.setTitle(this.getTitle());
+        this.setColor(this.getColor());
+        eventCards.addEventCard(new EventCard());
+    }
+
+    @Override
+    public void setTitle(String title) {
+        super.setTitle(title);
+        storylineTitle.setText(title);
+        storylineTitle.setDisable(true);
+        storylineTitle.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> storylineTitle.setDisable(false));
+        storylineTitle.addEventFilter(MouseEvent.MOUSE_EXITED, event -> storylineTitle.setDisable(true));
+    }
+
+    @Override
+    public void setColor(Color color) {
+        super.setColor(color);
+        line.setFill(color);
+        storylineTitle.setStyle("-fx-fill: " + colorToHex(color) + ";");
+    }
+
+    public EventCardList getEventCards() {
         return eventCards;
     }
 
-    public ArrayList<EventCard> addAllEventCards(ArrayList<EventCard> eventCards) {
-        this.eventCards.addAll(eventCards);
-        Collections.sort(eventCards);
+    public EventCardList addEventCard(EventCard eventCard) {
+        eventCards.addEventCard(eventCard);
+        eventCardList.getChildren().add(eventCard);
         return eventCards;
     }
 
-    public ArrayList<EventCard> removeEventCard(EventCard eventCard) {
-        eventCards.remove(eventCard);
+    public EventCardList addAllEventCards(EventCardList eventCards) {
+        this.eventCards.addAllEventCards(eventCards);
+        eventCardList.getChildren().addAll(eventCards);
+        return this.eventCards;
+    }
+
+    public EventCardList removeEventCard(EventCard eventCard) {
+        eventCards.removeEventCard(eventCard);
+        eventCardList.getChildren().remove(eventCard);
         return eventCards;
     }
 
@@ -62,5 +96,12 @@ public class Storyline extends BasicStoryComponent {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+    }
+
+    private String colorToHex(Color color) {
+        return String.format("#%02x%02x%02x",
+                (int) (255 * color.getRed()),
+                (int) (255 * color.getGreen()),
+                (int) (255 * color.getBlue()));
     }
 }

@@ -1,9 +1,11 @@
 package component.components.eventCard;
 
+import javafx.scene.layout.HBox;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
-public class EventCardList {
+public class EventCardList extends HBox implements Iterable<EventCard> {
     private final ArrayList<EventCard> eventCards;
 
     public EventCardList() {
@@ -19,6 +21,12 @@ public class EventCardList {
         Collections.sort(eventCards);
     }
 
+    public void addAllEventCards(EventCardList eventCards) {
+        for(EventCard e : eventCards)
+            this.eventCards.add(e);
+        Collections.sort(this.eventCards);
+    }
+
     public int removeEventCard(EventCard eventCard) {
         if (eventCards.contains(eventCard)) {
             eventCards.remove(eventCard);
@@ -28,13 +36,12 @@ public class EventCardList {
             return 0;
         }
     }
+    public int size() {
+        return eventCards.size();
+    }
 
     @Override
-    public String toString() {
-        if (eventCards.size() > 0) {
-            return eventCards.get(0).getCharacters();
-        } else {
-            return "";
-        }
+    public Iterator<EventCard> iterator() {
+        return eventCards.iterator();
     }
 }
