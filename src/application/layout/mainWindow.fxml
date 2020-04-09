@@ -4,11 +4,10 @@
 <!-- TODO : consider TreeView instead of TitledPane for sidebar -->
 
 <?import application.SystemConstants?>
-<?import component.components.storyline.Storyline?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane xmlns:fx="http://javafx.com/javafx"
+<BorderPane xmlns:fx="http://javafx.com/javafx" fx:id="main"
             prefWidth="Infinity" prefHeight="Infinity" fx:controller="application.layout.mainController">
 
     <!--    <stylesheets>-->
@@ -22,9 +21,9 @@
                     <MenuItem text="New Document" onAction="#handleNewDocumentClick"/>
                 </Menu>
                 <Menu text="Add">
-                    <MenuItem text="Storyline"/>
-                    <MenuItem text="Event Card"/>
-                    <MenuItem text="Chapter"/>
+                    <MenuItem text="Storyline" onAction="#handleNewStoryLineClick"/>
+                    <MenuItem text="Event Card" onAction="#handleNewEventCardClick"/>
+                    <MenuItem text="Chapter" onAction="#handleNewChapterClick"/>
                     <MenuItem text="Comment"/>
                 </Menu>
             </MenuBar>
@@ -78,16 +77,6 @@
     </left>
 
     <center>
-        <TabPane>
-            <Tab text="Tab1">
-                <GridPane alignment="CENTER">
-                    <Storyline GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                </GridPane>
-            </Tab>
-            <Tab text="Tab2">
-                <Label text="PLACEHOLDER TWO" alignment="CENTER"/>
-            </Tab>
-        </TabPane>
     </center>
 
     <bottom>
