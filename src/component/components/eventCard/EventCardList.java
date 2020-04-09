@@ -1,10 +1,11 @@
 package component.components.eventCard;
 
+import javafx.scene.layout.HBox;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
-public class EventCardList implements Iterable<EventCard> {
+public class EventCardList extends HBox implements Iterable<EventCard> {
     private final ArrayList<EventCard> eventCards;
 
     public EventCardList() {

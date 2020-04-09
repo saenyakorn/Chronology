@@ -4,7 +4,7 @@ Line {
 }
 
 HBox {
-    -fx-spacing: 50;
+    -fx-spacing: 100;
 }
 
 #storylineTitle:disabled {
