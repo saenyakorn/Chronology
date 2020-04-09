@@ -7,9 +7,20 @@ HBox {
     -fx-spacing: 50;
 }
 
-#storyline-title {
+#storylineTitle:disabled {
     -fx-font-family: "NotoSans";
     -fx-font-weight: bold;
     -fx-font-size: 24px;
-    -fx-fill: #FF3E60;
+    -fx-text-fill: #FF3E60;
+    -fx-background-color: transparent;
+    -fx-opacity: 1.0;
+}
+
+#storylineTitle {
+    -fx-font-family: "NotoSans";
+    -fx-font-weight: normal;
+    -fx-font-size: 24px;
+    -fx-text-fill: #FF3E60;
+    -fx-background-color: transparent;
+    -fx-opacity: 0.8;
 }

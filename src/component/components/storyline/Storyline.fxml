@@ -3,7 +3,7 @@
 <?import java.net.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.TextField?>
 <?import component.components.eventCard.EventCard?>
 
 <fx:root prefHeight="200" prefWidth="2000" type="Pane"
@@ -12,9 +12,9 @@
         <URL value="@Storyline.css" />
     </stylesheets>
 
-    <Line startX="0" endX="1000" layoutY="130"/>
+    <Line fx:id="line" startX="0" endX="1000" layoutY="130"/>
     <HBox alignment="CENTER_LEFT">
-        <Text id="storyline-title" text="Title"/>
+        <TextField id="storylineTitle" fx:id="storylineTitle"/>
         <EventCard/>
         <EventCard/>
     </HBox>
