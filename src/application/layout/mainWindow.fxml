@@ -4,10 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<VBox xmlns:fx="http://javafx.com/fxml"
-      xmlns="http://javafx.com/javafx"
-      fx:controller="application.layout.mainController"
-      prefHeight="400.0" prefWidth="600.0">
+<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx"
+      fx:controller="application.layout.mainController">
 
     <!-- Navigation Bar (static elements) -->
     <AnchorPane fx:id="navigationBar">
@@ -25,6 +23,6 @@
     </AnchorPane>
 
     <!-- Workspace zone (dynamic elements) -->
-    <Workspace fx:id="workspace"></Workspace>
+    <Workspace fx:id="workspace"/>
 
 </VBox>
