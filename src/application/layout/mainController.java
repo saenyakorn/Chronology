@@ -1,11 +1,11 @@
 package application.layout;
 
 import application.ApplicationResource;
-import component.dialog.NewChapterDialog;
-import component.dialog.NewDocumentDialog;
-import component.dialog.NewEventCardDialog;
-import component.dialog.NewStoryLineDialog;
-import component.layouts.workspace.Workspace;
+import component.components.dialog.NewChapterDialog;
+import component.components.dialog.NewDocumentDialog;
+import component.components.dialog.NewEventCardDialog;
+import component.components.dialog.NewStoryLineDialog;
+import component.components.workspace.Workspace;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
