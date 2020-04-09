@@ -16,13 +16,14 @@ import java.io.IOException;
 public class NewDocumentDialog extends Dialog {
     @FXML private TextField textField;
     @FXML private Button createButton;
+    @FXML private Button cancelButton;
 
     public NewDocumentDialog() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("NewDocumentDialog.fxml"));
         fxmlLoader.setController(this);
         try {
             Parent root = fxmlLoader.load();
-            stage.setTitle("Create a new document");
+            stage.setTitle("Create New Document");
             stage.setScene(new Scene(root, SystemConstants.DIALOG_PREF_HEIGHT, SystemConstants.DIALOG_PREF_WIDTH));
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,6 +40,7 @@ public class NewDocumentDialog extends Dialog {
     @FXML
     public void initialize() {
         createButton.setOnAction((ActionEvent e) -> AddNewDocument(textField.getText()));
+        cancelButton.setOnAction((ActionEvent e) -> stage.close());
     }
 
 }
