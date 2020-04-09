@@ -13,8 +13,12 @@ public class DocumentList {
         documents.add(document);
     }
 
-    public void deleteDocument(Document document) {
+    public void removeDocument(Document document) {
         documents.remove(document);
+    }
+
+    public void removeDocument(int index) {
+        documents.remove(index);
     }
 
     public void swap(Document document1, Document document2) {
@@ -24,5 +28,9 @@ public class DocumentList {
             documents.set(index1, document2);
             documents.set(index2, document1);
         }
+    }
+
+    public int getSize() {
+        return documents.size();
     }
 }

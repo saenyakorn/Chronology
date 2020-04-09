@@ -22,19 +22,31 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     private String characters;
     private String place;
 
-    @FXML private Text date;
-    @FXML private Text time;
-    @FXML private HBox dateTimeContainer;
-    @FXML private TextField cardTitle;
-    @FXML private StackPane cardTitleContainer;
-    @FXML private TextArea cardDescription;
-    @FXML private StackPane cardDescriptionContainer;
+    @FXML
+    private Text date;
+    @FXML
+    private Text time;
+    @FXML
+    private HBox dateTimeContainer;
+    @FXML
+    private TextField cardTitle;
+    @FXML
+    private StackPane cardTitleContainer;
+    @FXML
+    private TextArea cardDescription;
+    @FXML
+    private StackPane cardDescriptionContainer;
 
     public EventCard() {
         super();
         this.characters = "";
         this.place = "";
         this.loadFXML();
+    }
+
+    public EventCard(String name) {
+        super();
+        this.characters = name;
     }
 
     public EventCard(String title, String description, Color color, TimePeriod timePeriod, String characters, String place) {
@@ -106,7 +118,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     @Override
     public String toString() {
-        return "";
+        return characters;
     }
 
     @Override

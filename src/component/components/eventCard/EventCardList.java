@@ -20,13 +20,21 @@ public class EventCardList {
     }
 
     public int removeEventCard(EventCard eventCard) {
-        if(eventCards.contains(eventCard)) {
+        if (eventCards.contains(eventCard)) {
             eventCards.remove(eventCard);
             return 1;
-        }
-        else {
+        } else {
             System.out.println("This event card does not exist");
             return 0;
+        }
+    }
+
+    @Override
+    public String toString() {
+        if (eventCards.size() > 0) {
+            return eventCards.get(0).getCharacters();
+        } else {
+            return "";
         }
     }
 }

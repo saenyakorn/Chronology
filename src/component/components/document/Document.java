@@ -12,15 +12,10 @@ public class Document extends Tab {
     private StorylineList storylines;
 
     public Document(String name) {
-        this.setName(name);
-        this.name = name;
+        this.setText(name);
         eventCards = new EventCardList();
         chapters = new ChapterList();
         storylines = new StorylineList();
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {
@@ -49,5 +44,10 @@ public class Document extends Tab {
 
     public void setStorylines(StorylineList storylines) {
         this.storylines = storylines;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

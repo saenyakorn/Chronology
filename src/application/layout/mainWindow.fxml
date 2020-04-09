@@ -1,99 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- TODO : move attributes to CSS -->
-<!-- TODO : consider TreeView instead of TitledPane for sidebar -->
-
-<?import application.SystemConstants?>
-<?import javafx.geometry.*?>
+<?import component.components.workspace.Workspace?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<BorderPane xmlns:fx="http://javafx.com/javafx" fx:id="main"
-            prefWidth="Infinity" prefHeight="Infinity" fx:controller="application.layout.mainController">
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      xmlns="http://javafx.com/javafx"
+      fx:controller="application.layout.mainController"
+      prefHeight="400.0" prefWidth="600.0">
 
-    <!--    <stylesheets>-->
-    <!--        <URL value="@../font.css"/>-->
-    <!--    </stylesheets>-->
+    <!-- Navigation Bar (static elements) -->
+    <AnchorPane fx:id="navigationBar">
+        <MenuBar AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0">
+            <Menu text="File">
+                <MenuItem text="New Document" onAction="#handleNewDocumentClick"/>
+            </Menu>
+            <Menu text="Add">
+                <MenuItem text="Storyline" onAction="#handleNewStoryLineClick"/>
+                <MenuItem text="Event Card" onAction="#handleNewEventCardClick"/>
+                <MenuItem text="Chapter" onAction="#handleNewChapterClick"/>
+                <MenuItem text="Comment"/>
+            </Menu>
+        </MenuBar>
+    </AnchorPane>
 
-    <top>
-        <AnchorPane>
-            <MenuBar AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0">
-                <Menu text="File">
-                    <MenuItem text="New Document" onAction="#handleNewDocumentClick"/>
-                </Menu>
-                <Menu text="Add">
-                    <MenuItem text="Storyline" onAction="#handleNewStoryLineClick"/>
-                    <MenuItem text="Event Card" onAction="#handleNewEventCardClick"/>
-                    <MenuItem text="Chapter" onAction="#handleNewChapterClick"/>
-                    <MenuItem text="Comment"/>
-                </Menu>
-            </MenuBar>
-            <Label alignment="CENTER" AnchorPane.topAnchor="5" AnchorPane.leftAnchor="200" AnchorPane.rightAnchor="200">
-                <SystemConstants fx:constant="APP_NAME"/>
-            </Label>
-        </AnchorPane>
-    </top>
+    <!-- Workspace zone (dynamic elements) -->
+    <Workspace fx:id="workspace"></Workspace>
 
-    <left>
-        <ScrollPane fitToWidth="true">
-            <prefWidth>
-                <SystemConstants fx:constant="SIDEBAR_PREF_WIDTH"/>
-            </prefWidth>
-            <VBox>
-                <TitledPane text="TitledPane1">
-                    <Label text="ONE">
-                        <padding>
-                            <Insets top="50" bottom="100"/>
-                        </padding>
-                    </Label>
-                </TitledPane>
-                <TitledPane text="TitledPane2">
-                    <Label text="TWO">
-                        <padding>
-                            <Insets top="50" bottom="100"/>
-                        </padding>
-                    </Label>
-                </TitledPane>
-                <TitledPane text="TitledPane3">
-                    <Label text="THREE">
-                        <padding>
-                            <Insets top="50" bottom="100"/>
-                        </padding>
-                    </Label>
-                </TitledPane>
-                <TitledPane text="TitledPane with Nested">
-                    <TitledPane text="NestedTitledPane">
-                        <padding>
-                            <Insets left="20"/>
-                        </padding>
-                        <Label text="NESTED">
-                            <padding>
-                                <Insets top="50" bottom="100"/>
-                            </padding>
-                        </Label>
-                    </TitledPane>
-                </TitledPane>
-            </VBox>
-        </ScrollPane>
-    </left>
-
-    <center>
-    </center>
-
-    <bottom>
-        <MenuButton text="+" popupSide="TOP" BorderPane.alignment="TOP_RIGHT"
-                    layoutY="-300">
-            <BorderPane.margin>
-                <Insets top="5" left="10" bottom="5" right="10"/>
-            </BorderPane.margin>
-            <contextMenu>
-                <ContextMenu>
-                    <items>
-                        <MenuItem text="Storyline"/>
-                        <MenuItem text="Event"/>
-                        <MenuItem text="Chapter"/>
-                    </items>
-                </ContextMenu>
-            </contextMenu>
-        </MenuButton>
-    </bottom>
-</BorderPane>
+</VBox>

@@ -5,19 +5,18 @@ import component.components.dialog.NewChapterDialog;
 import component.components.dialog.NewDocumentDialog;
 import component.components.dialog.NewEventCardDialog;
 import component.components.dialog.NewStoryLineDialog;
+import component.components.workspace.Workspace;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.layout.BorderPane;
 
 public class mainController {
 
     @FXML
-    private BorderPane main;
+    private Workspace workspace;
 
     @FXML
     public void initialize() {
-        ApplicationResource.initialize();
-        main.setCenter(ApplicationResource.getCurrentWorkspace());
+        ApplicationResource.setCurrentWorkspace(workspace);
     }
 
     @FXML
