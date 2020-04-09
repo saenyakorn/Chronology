@@ -1,29 +1,32 @@
 package component.components.dialog;
 
 import application.ApplicationResource;
+import application.SystemConstants;
 import component.components.document.Document;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+
+import java.io.IOException;
 
 public class NewDocumentDialog extends Dialog {
+    @FXML private TextField textField;
+    @FXML private Button createButton;
 
     public NewDocumentDialog() {
-        stage.setTitle("Create a new document");
-        Button button = new Button("Create a new document");
-        TextField textField = new TextField();
-        VBox vBox = new VBox();
-
-        button.setOnAction((ActionEvent e) -> {
-            String input = textField.getText();
-            AddNewDocument(input);
-        });
-
-        vBox.getChildren().add(textField);
-        vBox.getChildren().add(button);
-        stage.setScene(new Scene(vBox, 300, 400));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("NewDocumentDialog.fxml"));
+        fxmlLoader.setController(this);
+        try {
+            Parent root = fxmlLoader.load();
+            stage.setTitle("Create a new document");
+            stage.setScene(new Scene(root, SystemConstants.DIALOG_PREF_HEIGHT, SystemConstants.DIALOG_PREF_WIDTH));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void AddNewDocument(String name) {
@@ -32,4 +35,10 @@ public class NewDocumentDialog extends Dialog {
         System.out.println("Done");
         this.close();
     }
+
+    @FXML
+    public void initialize() {
+        createButton.setOnAction((ActionEvent e) -> AddNewDocument(textField.getText()));
+    }
+
 }
