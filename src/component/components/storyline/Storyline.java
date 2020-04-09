@@ -36,6 +36,7 @@ public class Storyline extends BasicStoryComponent {
     public void initialize() {
         this.setTitle(this.getTitle());
         this.setColor(this.getColor());
+        eventCards.addEventCard(new EventCard());
     }
 
     @Override
@@ -98,10 +99,9 @@ public class Storyline extends BasicStoryComponent {
     }
 
     private String colorToHex(Color color) {
-        String hex = String.format("#%02x%02x%02x",
+        return String.format("#%02x%02x%02x",
                 (int) (255 * color.getRed()),
                 (int) (255 * color.getGreen()),
                 (int) (255 * color.getBlue()));
-        return hex;
     }
 }
