@@ -1,8 +1,9 @@
 package component.components.storyline;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class StorylineList {
+public class StorylineList implements Iterable<Storyline> {
     private final ArrayList<Storyline> storylines;
 
     public StorylineList() {
@@ -29,5 +30,14 @@ public class StorylineList {
             System.out.println("This storyline does not exist");
             return 0;
         }
+    }
+
+    public int size() {
+        return storylines.size();
+    }
+
+    @Override
+    public Iterator<Storyline> iterator() {
+        return storylines.iterator();
     }
 }
