@@ -1,6 +1,6 @@
 package application;
 
-import component.components.workspace.Workspace;
+import component.layouts.workspace.Workspace;
 
 public class ApplicationResource {
 
