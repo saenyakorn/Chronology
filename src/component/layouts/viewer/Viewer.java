@@ -1,4 +1,4 @@
-package component.components.viewer;
+package component.layouts.viewer;
 
 import component.components.document.Document;
 import javafx.scene.control.TabPane;

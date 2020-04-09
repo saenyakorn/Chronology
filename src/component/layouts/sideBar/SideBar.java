@@ -1,4 +1,4 @@
-package component.components.sideBar;
+package component.layouts.sideBar;
 
 import application.SystemConstants;
 import javafx.scene.control.TreeView;

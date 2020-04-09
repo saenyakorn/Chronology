@@ -1,7 +1,7 @@
-package component.components.dialog;
+package component.dialog;
 
 import application.ApplicationResource;
-import component.components.workspace.Workspace;
+import component.layouts.workspace.Workspace;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

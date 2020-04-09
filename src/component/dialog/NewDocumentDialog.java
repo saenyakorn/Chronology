@@ -1,4 +1,4 @@
-package component.components.dialog;
+package component.dialog;
 
 import application.ApplicationResource;
 import application.SystemConstants;

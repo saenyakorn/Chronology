@@ -1,4 +1,4 @@
-package component.components.dialog;
+package component.dialog;
 
 public class NewEventCardDialog extends Dialog {
 }

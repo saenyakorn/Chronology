@@ -1,9 +1,9 @@
-package component.components.workspace;
+package component.layouts.workspace;
 
 import component.components.document.Document;
 import component.components.document.DocumentList;
-import component.components.sideBar.SideBar;
-import component.components.viewer.Viewer;
+import component.layouts.sideBar.SideBar;
+import component.layouts.viewer.Viewer;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 

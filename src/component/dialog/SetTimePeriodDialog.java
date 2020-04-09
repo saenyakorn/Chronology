@@ -1,4 +1,4 @@
-package component.components.dialog;
+package component.dialog;
 
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
