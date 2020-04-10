@@ -20,7 +20,6 @@ public class Workspace extends HBox {
         this.sideBar = new SideBar();
 
         HBox.setHgrow(viewer, Priority.ALWAYS);
-        //this.setPrefHeight(USE_COMPUTED_SIZE);
 
         // Added initial example document
         this.addDocument(new Document("New Document"));

@@ -9,6 +9,8 @@ import component.layouts.workspace.Workspace;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 
 public class mainController {
 
@@ -18,6 +20,7 @@ public class mainController {
     @FXML
     public void initialize() {
         ApplicationResource.setCurrentWorkspace(workspace);
+        VBox.setVgrow(workspace, Priority.ALWAYS);
     }
 
     @FXML

@@ -7,20 +7,21 @@ import component.components.chapter.ChapterList;
 import component.components.document.Document;
 import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.VBox;
 
-import java.util.ArrayList;
-
-public class SideBar extends VBox {
+public class SideBar extends ScrollPane {
 
     private TreeView<BasicStoryComponent> treeView;
 
     public SideBar() {
         this.treeView = new TreeView<>();
         this.setPrefWidth(SystemConstants.SIDEBAR_PREF_WIDTH);
-        this.getChildren().add(treeView);
+        VBox vbox = new VBox();
+        vbox.getChildren().add(treeView);
+        this.getChildren().add(vbox);
     }
 
     public void setTreeView(TreeView<BasicStoryComponent> treeView) {
@@ -34,7 +35,7 @@ public class SideBar extends VBox {
             TreeItem<BasicStoryComponent> item = createTreeItem(chapter);
             rootItem.getChildren().add(item);
         }
-        TreeView<BasicStoryComponent> treeView = new TreeView<BasicStoryComponent>(rootItem);
+        TreeView<BasicStoryComponent> treeView = new TreeView<>(rootItem);
         treeView.setShowRoot(false);
         this.setTreeView(treeView);
     }
