@@ -2,37 +2,38 @@ package component.components.chapter;
 
 import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
+import component.components.eventCard.EventCardList;
 import component.components.timeModifier.TimePeriod;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class Chapter extends BasicStoryComponent {
-    private final ArrayList<EventCard> eventCards;
+    private final EventCardList eventCards;
 
     public Chapter(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
-        this.eventCards = new ArrayList<>();
+        this.eventCards = new EventCardList();
     }
 
-    public ArrayList<EventCard> addEventCard(EventCard eventCard) {
-        eventCards.add(eventCard);
-        Collections.sort(eventCards);
+    public EventCardList getEventCards() {
         return eventCards;
     }
 
-    public ArrayList<EventCard> addAllEventCards(ArrayList<EventCard> eventCards) {
-        this.eventCards.addAll(eventCards);
-        Collections.sort(eventCards);
+    public EventCardList addEventCard(EventCard eventCard) {
+        eventCards.addEventCard(eventCard);
         return eventCards;
     }
 
-    public ArrayList<EventCard> removeEventCard(EventCard eventCard) {
-        eventCards.remove(eventCard);
+    public EventCardList addAllEventCards(EventCardList eventCards) {
+        this.eventCards.addAllEventCards(eventCards);
+        return eventCards;
+    }
+
+    public EventCardList removeEventCard(EventCard eventCard) {
+        eventCards.removeEventCard(eventCard);
         return eventCards;
     }
 
