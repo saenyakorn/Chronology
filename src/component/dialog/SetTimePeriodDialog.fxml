@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import jfxtras.scene.control.LocalDateTimeTextField?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets topRightBottomLeft="30" />
+    </padding>
+
+    <HBox spacing="95">
+        <Text style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Set Event Date &amp; Time" />
+        <CheckBox fx:id="customModeToggle" text="Custom date &amp; time" style="-fx-font-weight: bold;" />
+    </HBox>
+
+    <HBox>
+        <VBox fx:id="predefinedMode" spacing="20">
+            <padding>
+                <Insets right="30" />
+            </padding>
+            <VBox spacing="10">
+                <Label text="Date: " />
+                <DatePicker fx:id="predefinedModeDatePicker"/>
+            </VBox>
+            <HBox spacing="20">
+                <Label text="Time: " />
+                <VBox spacing="8">
+                    <RadioButton fx:id="dawnChoice" text="Dawn / 0.00 - 4.00" />
+                    <RadioButton fx:id="morningChoice" text="Morning / 4.00 - 8.00" />
+                    <RadioButton fx:id="middayChoice" text="Midday / 8.00 - 12.00" />
+                    <RadioButton fx:id="afternoonChoice" text="Afternoon / 12.00 - 16.00" />
+                    <RadioButton fx:id="eveningChoice" text="Evening / 16.00 - 20.00" />
+                    <RadioButton fx:id="nightChoice" text="Night / 20.00 - 0.00" />
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <Line endY="230" startY="10" stroke="#4f4f4f" style="-fx-opacity: 0.3;" />
+
+        <VBox fx:id="customMode" spacing="20">
+            <padding>
+                <Insets left="30" />
+            </padding>
+            <VBox spacing="10">
+                <Label text="Begin Date &amp; Time: " />
+                <LocalDateTimeTextField fx:id="customModeBeginDatePicker"/>
+            </VBox>
+            <VBox spacing="10">
+                <Label text="End Date &amp; Time: " />
+                <LocalDateTimeTextField fx:id="customModeEndDatePicker"/>
+            </VBox>
+        </VBox>
+    </HBox>
+
+    <HBox alignment="BOTTOM_RIGHT" spacing="20">
+        <Button fx:id="cancelButton" text="Cancel" />
+        <Button fx:id="setButton" text="Set" />
+    </HBox>
+
+</VBox>
