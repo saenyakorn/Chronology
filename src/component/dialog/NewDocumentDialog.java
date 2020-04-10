@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 
@@ -39,7 +40,19 @@ public class NewDocumentDialog extends Dialog {
 
     @FXML
     public void initialize() {
-        createButton.setOnAction((ActionEvent e) -> AddNewDocument(textField.getText()));
+        createButton.setDisable(true);
+        textField.setOnKeyReleased((KeyEvent e) -> {
+            String input = textField.getText();
+            if((input.isEmpty()) || (input.trim().isEmpty()))
+                createButton.setDisable(true);
+            else
+                createButton.setDisable(false);
+        });
+        createButton.setOnAction((ActionEvent e) -> {
+            String input = textField.getText();
+            if( !( (input.isEmpty()) || (input.trim().isEmpty()) ) )
+                AddNewDocument(textField.getText());
+        });
         cancelButton.setOnAction((ActionEvent e) -> stage.close());
     }
 
