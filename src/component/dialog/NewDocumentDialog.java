@@ -31,7 +31,7 @@ public class NewDocumentDialog extends Dialog {
         }
     }
 
-    public void AddNewDocument(String name) {
+    private void AddNewDocument(String name) {
         System.out.println("Creating a new document");
         ApplicationResource.getCurrentWorkspace().addDocument(new Document(name));
         System.out.println("Done");

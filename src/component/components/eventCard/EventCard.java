@@ -45,21 +45,10 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         this.loadFXML();
     }
 
-    public EventCard(Storyline storyline) {
-        selfStoryLine = storyline;
+    public EventCard(String title, String description) {
+        super(title, description);
         selfChapter = null;
-        this.loadFXML();
-    }
-
-    public EventCard(Storyline storyline, Chapter chapter) {
-        selfStoryLine = storyline;
-        selfChapter = chapter;
-        this.loadFXML();
-    }
-
-    public EventCard(String title, String description, Color color, TimePeriod timePeriod, String characters, String place) {
-        super(title, description, color, timePeriod);
-        this.loadFXML();
+        selfStoryLine = null;
     }
 
     public Storyline getStoryLine() {
@@ -77,6 +66,12 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     public void setChapter(Chapter selfChapter) {
         this.selfChapter = selfChapter;
     }
+
+    public EventCard(String title, String description, Color color, TimePeriod timePeriod, String characters, String place) {
+        super(title, description, color, timePeriod);
+        this.loadFXML();
+    }
+
 
     @FXML
     public void initialize() {
@@ -124,7 +119,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     @Override
     public String toString() {
-        return name;
+        return title;
     }
 
     @Override

@@ -28,7 +28,7 @@ public final class TextFieldTreeCell extends TreeCell<BasicStoryComponent> {
     @Override
     public void cancelEdit() {
         super.cancelEdit();
-        setText(getItem().getName());
+        setText(getItem().getTitle());
         setGraphic(getTreeItem().getGraphic());
     }
 
@@ -40,7 +40,7 @@ public final class TextFieldTreeCell extends TreeCell<BasicStoryComponent> {
             setText(null);
             setGraphic(null);
         } else {
-            System.out.println("updateItem: " + item.getName());
+            System.out.println("updateItem: " + item.getTitle());
             if (isEditing()) {
                 if (textField != null) {
                     textField.setText(getString());
@@ -60,7 +60,7 @@ public final class TextFieldTreeCell extends TreeCell<BasicStoryComponent> {
             System.out.println("On KeyPress");
             if (event.getCode() == KeyCode.ENTER) {
                 BasicStoryComponent currentItem = getItem();
-                currentItem.setName(textField.getText());
+                currentItem.setTitle(textField.getText());
                 commitEdit(currentItem);
             } else if (event.getCode() == KeyCode.ESCAPE) {
                 cancelEdit();
@@ -69,6 +69,6 @@ public final class TextFieldTreeCell extends TreeCell<BasicStoryComponent> {
     }
 
     private String getString() {
-        return getItem() == null ? "" : getItem().getName();
+        return getItem() == null ? "" : getItem().getTitle();
     }
 }

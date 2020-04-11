@@ -30,7 +30,7 @@ public class SideBar extends ScrollPane {
     }
 
     private BasicStoryComponent createBasicStoryComponentFromDocument(Document document) {
-        return new BasicStoryComponent(document.getText()) {
+        return new BasicStoryComponent(document.getText(), document.getText()) {
             @Override
             public String toString() {
                 return title;
