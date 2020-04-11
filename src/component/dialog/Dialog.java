@@ -1,5 +1,7 @@
 package component.dialog;
 
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -19,6 +21,22 @@ public abstract class Dialog {
 
     public void close() {
         stage.close();
+    }
+
+    public boolean isSomeEmpty(TextField... args) {
+        boolean isSomeEmpty = false;
+        for (TextField textField : args) {
+            isSomeEmpty |= textField.getText().trim().isEmpty();
+        }
+        return isSomeEmpty;
+    }
+
+    public void disableButtonWhenSomeTextFieldEmptyEmpty(Button button, TextField... args) {
+        if (isSomeEmpty(args)) {
+            button.setDisable(true);
+        } else {
+            button.setDisable(false);
+        }
     }
 
 }
