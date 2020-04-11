@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.control.TextField?>
-
 <?import component.components.eventCard.EventCardList?>
 <?import javafx.geometry.Insets?>
-<fx:root prefHeight="200" prefWidth="2000" type="Pane"
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import java.net.URL?>
+<fx:root fx:id="root" prefHeight="200" type="Pane"
          xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@Storyline.css" />

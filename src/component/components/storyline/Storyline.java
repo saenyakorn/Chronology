@@ -5,11 +5,16 @@ import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
 import component.components.timeModifier.TimePeriod;
+import component.dialog.SetColorDialog;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
@@ -18,6 +23,8 @@ import java.io.IOException;
 public class Storyline extends BasicStoryComponent {
     private EventCardList eventCards;
 
+    @FXML
+    private Pane root;
     @FXML
     private Line line;
     @FXML
@@ -48,9 +55,16 @@ public class Storyline extends BasicStoryComponent {
         this.setTitle(this.getTitle());
         storylineTitle.setDisable(true);
         storylineTitleContainer.setOnMouseClicked((MouseEvent event) -> storylineTitle.setDisable(false));
-        storylineTitleContainer.setOnMouseExited((MouseEvent event) -> storylineTitle.setDisable(true));
+        storylineTitleContainer.setOnMouseExited((MouseEvent event) -> {
+            if(!title.equals(storylineTitle.getText())){
+                this.setTitle(storylineTitle.getText());
+                System.out.println("Storyline title set to " + title);
+            }
+            storylineTitle.setDisable(true);
+        });
 
         this.setColor(this.getColor());
+        initializeContextMenu();
     }
 
     @Override
@@ -64,6 +78,9 @@ public class Storyline extends BasicStoryComponent {
         super.setColor(color);
         line.setFill(color);
         storylineTitle.setStyle("-fx-fill: " + colorToHex(color) + ";");
+        for(EventCard eventCard : eventCards){
+            eventCard.setColor(color);
+        }
     }
 
     public EventCardList getEventCards() {
@@ -115,5 +132,20 @@ public class Storyline extends BasicStoryComponent {
                 (int) (255 * color.getRed()),
                 (int) (255 * color.getGreen()),
                 (int) (255 * color.getBlue()));
+    }
+
+    private void initializeContextMenu() {
+        final ContextMenu contextMenu = new ContextMenu();
+        MenuItem setColorMenu = new MenuItem("Set storyline color");
+        contextMenu.getItems().add(setColorMenu);
+        setColorMenu.setOnAction((ActionEvent event) ->{
+            SetColorDialog dialog = new SetColorDialog(this);
+            dialog.show();
+        });
+        root.setOnMousePressed((MouseEvent event) ->{
+            if (event.isSecondaryButtonDown()) {
+                contextMenu.show(root, event.getScreenX(), event.getScreenY());
+            }
+        });
     }
 }
