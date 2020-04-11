@@ -13,6 +13,7 @@ public class Document extends Tab {
     private ChapterList chapters;
     private StorylineList storylines;
 
+
     public Document(String name) {
         this.setText(name);
         eventCards = new EventCardList();

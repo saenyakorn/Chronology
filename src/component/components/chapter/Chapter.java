@@ -44,7 +44,7 @@ public class Chapter extends BasicStoryComponent {
 
     @Override
     public String toString() {
-        return title;
+        return name;
     }
 
     @Override

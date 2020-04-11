@@ -17,8 +17,12 @@ public class SideBar extends ScrollPane {
     private TreeView<BasicStoryComponent> treeView;
 
     public SideBar() {
+        // TreeView setting
         treeView = new TreeView<>();
         treeView.setShowRoot(false);
+        treeView.setEditable(true);
+        treeView.setCellFactory(params -> new TextFieldTreeCell());
+        this.setFitToWidth(true);
         this.setPrefWidth(SystemConstants.SIDEBAR_PREF_WIDTH);
         VBox vBox = new VBox();
         vBox.getChildren().add(treeView);
@@ -47,7 +51,6 @@ public class SideBar extends ScrollPane {
         createTreeItemFromNonChapterEventCard(rootItem, eventCardList);
         createTreeItemFromChapterList(rootItem, chapterList);
         treeView.setRoot(rootItem);
-        treeView.setCellFactory(params -> new TextFieldTreeCellForBasicStoryComponent());
     }
 
     private void createTreeItemFromNonChapterEventCard(TreeItem<BasicStoryComponent> rootItem, EventCardList eventCardList) {
