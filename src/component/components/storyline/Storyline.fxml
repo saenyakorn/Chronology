@@ -14,7 +14,9 @@
 
     <Line fx:id="line" startX="0" endX="1000" layoutY="130"/>
     <HBox alignment="CENTER_LEFT">
-        <TextField id="storylineTitle" fx:id="storylineTitle"/>
+        <HBox fx:id="storylineTitleContainer">
+            <TextField id="storylineTitle" fx:id="storylineTitle"/>
+        </HBox>
         <EventCardList fx:id="eventCardList"/>
     </HBox>
 
