@@ -11,9 +11,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
-public class NewStoryLineDialog extends Dialog {
+public class NewStorylineDialog extends Dialog {
 
-    public NewStoryLineDialog() {
+    public NewStorylineDialog() {
         stage.setTitle("Create a new story line");
         Button button = new Button("Create a new story line");
         TextField titleTextField = new TextField();
@@ -23,7 +23,7 @@ public class NewStoryLineDialog extends Dialog {
         button.setOnAction((ActionEvent e) -> {
             String title = titleTextField.getText();
             String description = descriptionTextField.getText();
-            AddNewStoryLine(title, description);
+            AddNewStoryline(title, description);
         });
 
         vBox.getChildren().add(new Label("Title"));
@@ -34,14 +34,14 @@ public class NewStoryLineDialog extends Dialog {
         stage.setScene(new Scene(vBox, 300, 400));
     }
 
-    private void AddNewStoryLine(String title, String description) {
+    private void AddNewStoryline(String title, String description) {
         System.out.println("Creating a new story line");
         Document currentDocument = ApplicationResource.getCurrentWorkspace().getCurrentDocument();
 
-        Storyline newStoryLine = new Storyline(title, description);
-        newStoryLine.addEventCard(new EventCard("Untitled", "description"));
+        Storyline newStoryline = new Storyline(title, description);
+        newStoryline.addEventCard(new EventCard("Untitled", "description"));
 
-        currentDocument.addStoryLine(newStoryLine);
+        currentDocument.addStoryLine(newStoryline);
         System.out.println("Done");
         this.close();
     }
