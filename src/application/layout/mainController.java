@@ -8,7 +8,7 @@ import component.dialog.NewStoryLineDialog;
 import component.layouts.workspace.Workspace;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.MenuBar;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
@@ -17,7 +17,7 @@ public class mainController {
     @FXML
     private Workspace workspace;
     @FXML
-    private AnchorPane navigationBar;
+    private MenuBar menuBar;
 
     @FXML
     public void initialize() {

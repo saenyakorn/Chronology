@@ -10,5 +10,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="KotlinJavaRuntime" level="project" />
     <orderEntry type="library" exported="" name="javaFX14" level="project" />
+    <orderEntry type="library" name="jfxtras-controls-10.0-r2-20181228.192636-1" level="project" />
   </component>
 </module>
