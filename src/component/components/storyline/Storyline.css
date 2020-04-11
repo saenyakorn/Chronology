@@ -3,14 +3,10 @@ Line {
     -fx-stroke-width: 7;
 }
 
-HBox {
-    -fx-spacing: 100;
-}
-
 #storylineTitle:disabled {
     -fx-font-family: "NotoSans";
     -fx-font-weight: bold;
-    -fx-font-size: 24px;
+    -fx-font-size: 18px;
     -fx-text-fill: #FF3E60;
     -fx-background-color: transparent;
     -fx-opacity: 1.0;
@@ -19,7 +15,7 @@ HBox {
 #storylineTitle {
     -fx-font-family: "NotoSans";
     -fx-font-weight: normal;
-    -fx-font-size: 24px;
+    -fx-font-size: 18px;
     -fx-text-fill: #FF3E60;
     -fx-background-color: transparent;
     -fx-opacity: 0.8;

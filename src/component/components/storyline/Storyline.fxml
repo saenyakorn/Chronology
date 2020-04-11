@@ -6,18 +6,22 @@
 <?import javafx.scene.control.TextField?>
 
 <?import component.components.eventCard.EventCardList?>
+<?import javafx.geometry.Insets?>
 <fx:root prefHeight="200" prefWidth="2000" type="Pane"
          xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@Storyline.css" />
     </stylesheets>
 
-    <Line fx:id="line" startX="0" endX="1000" layoutY="130"/>
-    <HBox alignment="CENTER_LEFT">
+    <Line fx:id="line" endX="190" layoutY="130"/>
+    <HBox spacing="30">
         <HBox fx:id="storylineTitleContainer">
-            <TextField id="storylineTitle" fx:id="storylineTitle"/>
+            <padding>
+                <Insets top="85"/>
+            </padding>
+            <TextField id="storylineTitle" fx:id="storylineTitle" prefWidth="200"/>
         </HBox>
-        <EventCardList fx:id="eventCardList"/>
+        <EventCardList fx:id="eventCardList" spacing="30"/>
     </HBox>
 
 </fx:root>

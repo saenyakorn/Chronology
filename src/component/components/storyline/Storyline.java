@@ -1,5 +1,6 @@
 package component.components.storyline;
 
+import application.SystemConstants;
 import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
@@ -28,18 +29,17 @@ public class Storyline extends BasicStoryComponent {
 
     public Storyline() {
         eventCards = new EventCardList();
-        eventCards.addEventCard(new EventCard());
         this.loadFXML();
     }
 
     public Storyline(String title, String description) {
         super(title, description);
+        eventCards = new EventCardList();
     }
 
     public Storyline(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
         eventCards = new EventCardList();
-        eventCards.addEventCard(new EventCard());
         this.loadFXML();
     }
 
@@ -73,6 +73,7 @@ public class Storyline extends BasicStoryComponent {
         eventCards.addEventCard(eventCard);
         eventCard.setStoryLine(this);
         eventCardList.getChildren().add(eventCard);
+        line.setEndX(line.getEndX() + SystemConstants.EVENTCARD_PREF_WIDTH + 30);
     }
 
     public void addAllEventCards(EventCard... args) {
@@ -81,6 +82,8 @@ public class Storyline extends BasicStoryComponent {
             eventCard.setStoryLine(this);
             eventCardList.getChildren().add(eventCard);
         }
+        int increasedLineLength = args.length * (SystemConstants.EVENTCARD_PREF_WIDTH + 30);
+        line.setEndX(line.getEndX() + increasedLineLength);
     }
 
     public EventCardList removeEventCard(EventCard eventCard) {
