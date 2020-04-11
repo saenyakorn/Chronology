@@ -46,6 +46,10 @@ public class Storyline extends BasicStoryComponent {
     @FXML
     public void initialize() {
         this.setTitle(this.getTitle());
+        storylineTitle.setDisable(true);
+        storylineTitleContainer.setOnMouseClicked((MouseEvent event) -> storylineTitle.setDisable(false));
+        storylineTitleContainer.setOnMouseExited((MouseEvent event) -> storylineTitle.setDisable(true));
+
         this.setColor(this.getColor());
     }
 
@@ -53,9 +57,6 @@ public class Storyline extends BasicStoryComponent {
     public void setTitle(String title) {
         super.setTitle(title);
         storylineTitle.setText(title);
-        storylineTitle.setDisable(true);
-        storylineTitleContainer.setOnMouseClicked((MouseEvent event) -> storylineTitle.setDisable(false));
-        storylineTitleContainer.setOnMouseExited((MouseEvent event) -> storylineTitle.setDisable(true));
     }
 
     @Override
