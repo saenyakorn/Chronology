@@ -77,12 +77,24 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         this.setTitle(this.getTitle());
         cardTitle.setDisable(true);
         cardTitleContainer.setOnMouseClicked((MouseEvent event) -> cardTitle.setDisable(false));
-        cardTitleContainer.setOnMouseExited((MouseEvent event) -> cardTitle.setDisable(true));
+        cardTitleContainer.setOnMouseExited((MouseEvent event) -> {
+            if(!title.equals(cardTitle.getText())){
+                this.setTitle(cardTitle.getText());
+                System.out.println("Card title set to " + title);
+            }
+            cardTitle.setDisable(true);
+        });
 
         this.setDescription(this.getDescription());
         cardDescription.setDisable(true);
         cardDescriptionContainer.setOnMouseClicked((MouseEvent event) -> cardDescription.setDisable(false));
-        cardDescriptionContainer.setOnMouseExited((MouseEvent event) -> cardDescription.setDisable(true));
+        cardDescriptionContainer.setOnMouseExited((MouseEvent event) -> {
+            if(!description.equals(cardDescription.getText())){
+                this.setDescription(cardDescription.getText());
+                System.out.println("Card description set to " + description);
+            }
+            cardDescription.setDisable(true);
+        });
 
         this.setColor(this.getColor());
         this.setTimePeriod(this.getTimePeriod());
