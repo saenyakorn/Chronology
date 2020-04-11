@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
@@ -21,10 +22,13 @@ public class Storyline extends BasicStoryComponent {
     @FXML
     private TextField storylineTitle;
     @FXML
+    private HBox storylineTitleContainer;
+    @FXML
     private EventCardList eventCardList;
 
     public Storyline() {
         eventCards = new EventCardList();
+        eventCards.addEventCard(new EventCard());
         this.loadFXML();
     }
 
@@ -35,6 +39,7 @@ public class Storyline extends BasicStoryComponent {
     public Storyline(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
         eventCards = new EventCardList();
+        eventCards.addEventCard(new EventCard());
         this.loadFXML();
     }
 
@@ -49,8 +54,8 @@ public class Storyline extends BasicStoryComponent {
         super.setTitle(title);
         storylineTitle.setText(title);
         storylineTitle.setDisable(true);
-        storylineTitle.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> storylineTitle.setDisable(false));
-        storylineTitle.addEventFilter(MouseEvent.MOUSE_EXITED, event -> storylineTitle.setDisable(true));
+        storylineTitleContainer.setOnMouseClicked((MouseEvent event) -> storylineTitle.setDisable(false));
+        storylineTitleContainer.setOnMouseExited((MouseEvent event) -> storylineTitle.setDisable(true));
     }
 
     @Override
