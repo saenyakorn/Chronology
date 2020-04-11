@@ -28,18 +28,18 @@ public class Storyline extends BasicStoryComponent {
 
     public Storyline() {
         eventCards = new EventCardList();
-        eventCards.addEventCard(new EventCard());
         this.loadFXML();
     }
 
     public Storyline(String title, String description) {
         super(title, description);
+        eventCards = new EventCardList();
+        this.loadFXML();
     }
 
     public Storyline(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
         eventCards = new EventCardList();
-        eventCards.addEventCard(new EventCard());
         this.loadFXML();
     }
 
