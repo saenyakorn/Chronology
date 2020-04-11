@@ -75,27 +75,32 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     @FXML
     public void initialize() {
         this.setTitle(this.getTitle());
+        cardTitle.setDisable(true);
+        cardTitleContainer.setOnMouseClicked((MouseEvent event) -> cardTitle.setDisable(false));
+        cardTitleContainer.setOnMouseExited((MouseEvent event) -> cardTitle.setDisable(true));
+
         this.setDescription(this.getDescription());
+        cardDescription.setDisable(true);
+        cardDescriptionContainer.setOnMouseClicked((MouseEvent event) -> cardDescription.setDisable(false));
+        cardDescriptionContainer.setOnMouseExited((MouseEvent event) -> cardDescription.setDisable(true));
+
         this.setColor(this.getColor());
         this.setTimePeriod(this.getTimePeriod());
+        //dateTimeContainer.setOnMouseClicked((MouseEvent event) ->
+        // TODO : Set TimePeriod dialog
+        //  );
     }
 
     @Override
     public void setTitle(String title) {
         super.setTitle(title);
         cardTitle.setText(title);
-        cardTitle.setDisable(true);
-        cardTitleContainer.setOnMouseClicked((MouseEvent event) -> cardTitle.setDisable(false));
-        cardTitleContainer.setOnMouseExited((MouseEvent event) -> cardTitle.setDisable(true));
     }
 
     @Override
     public void setDescription(String description) {
         super.setDescription(description);
         cardDescription.setText(description);
-        cardDescription.setDisable(true);
-        cardDescriptionContainer.setOnMouseClicked((MouseEvent event) -> cardDescription.setDisable(false));
-        cardDescriptionContainer.setOnMouseExited((MouseEvent event) -> cardDescription.setDisable(true));
     }
 
     @Override
@@ -111,9 +116,6 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         super.setTimePeriod(timePeriod);
         date.setText(timePeriod.getBeginDateTime().toLocalDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
         time.setText(String.valueOf(timePeriod.getBeginDateTime().toLocalTime()));
-        //dateTimeContainer.setOnMouseClicked((MouseEvent event) ->
-        // TODO : Set TimePeriod dialog
-        //  );
     }
 
     @Override
