@@ -15,9 +15,12 @@ import javafx.scene.input.KeyEvent;
 import java.io.IOException;
 
 public class NewDocumentDialog extends Dialog {
-    @FXML private TextField textField;
-    @FXML private Button createButton;
-    @FXML private Button cancelButton;
+    @FXML
+    private TextField docNameTextField;
+    @FXML
+    private Button createButton;
+    @FXML
+    private Button cancelButton;
 
     public NewDocumentDialog() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("NewDocumentDialog.fxml"));
@@ -39,19 +42,13 @@ public class NewDocumentDialog extends Dialog {
     }
 
     @FXML
-    public void initialize() {
+    protected void initialize() {
         createButton.setDisable(true);
-        textField.setOnKeyReleased((KeyEvent e) -> {
-            String input = textField.getText();
-            if((input.isEmpty()) || (input.trim().isEmpty()))
-                createButton.setDisable(true);
-            else
-                createButton.setDisable(false);
-        });
+        docNameTextField.setOnKeyReleased((KeyEvent e) -> disableButtonWhenSomeTextFieldEmptyEmpty(createButton, docNameTextField));
         createButton.setOnAction((ActionEvent e) -> {
-            String input = textField.getText();
-            if( !( (input.isEmpty()) || (input.trim().isEmpty()) ) )
-                AddNewDocument(textField.getText());
+            if (!isSomeEmpty(docNameTextField)) {
+                AddNewDocument(docNameTextField.getText());
+            }
         });
         cancelButton.setOnAction((ActionEvent e) -> stage.close());
     }
