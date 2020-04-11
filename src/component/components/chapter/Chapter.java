@@ -16,6 +16,11 @@ public class Chapter extends BasicStoryComponent {
         eventCards = new EventCardList();
     }
 
+    public Chapter(String title, String description) {
+        super(title, description);
+        eventCards = new EventCardList();
+    }
+
     public Chapter(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
         this.eventCards = new EventCardList();
@@ -25,16 +30,16 @@ public class Chapter extends BasicStoryComponent {
         return eventCards;
     }
 
-    public EventCardList addEventCard(EventCard eventCard) {
+    public void addEventCard(EventCard eventCard) {
         eventCards.addEventCard(eventCard);
-        return eventCards;
+        eventCard.setChapter(this);
     }
 
-    public EventCardList addAllEventCards(EventCard... args) {
+    public void addAllEventCards(EventCard... args) {
         for (EventCard eventCard : args) {
             eventCards.addEventCard(eventCard);
+            eventCard.setChapter(this);
         }
-        return eventCards;
     }
 
     public EventCardList removeEventCard(EventCard eventCard) {
@@ -44,7 +49,7 @@ public class Chapter extends BasicStoryComponent {
 
     @Override
     public String toString() {
-        return name;
+        return title;
     }
 
     @Override
