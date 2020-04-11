@@ -82,11 +82,7 @@ public class Storyline extends BasicStoryComponent {
 
     @Override
     public String toString() {
-        return "Chapter [" + title + "]\n"
-                + "\tdescription: " + description + "\n"
-                + "\tcolor: " + color + "\n"
-                + "\ttime period: " + timePeriod + "\n"
-                + "\tevent card: " + eventCards.size() + "\n";
+        return name;
     }
 
     @Override
