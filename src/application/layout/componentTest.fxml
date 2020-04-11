@@ -2,12 +2,15 @@
 
 <?import component.components.storyline.Storyline?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.geometry.Insets?>
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<?import javafx.scene.control.Button?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="application.layout.componentTestController">
     <padding>
         <Insets topRightBottomLeft="20"/>
     </padding>
-    <Storyline/>
+    <Button fx:id="addEventCardButton" text="Add an event card" onAction="#handleAddEventCard"/>
+    <Storyline fx:id="storyline"/>
 </VBox>
 
