@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx" spacing="20">
+    <padding>
+        <Insets topRightBottomLeft="50"/>
+    </padding>
+
+    <Text text="Create New Storyline" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+    <Label text="Storyline Title: "/>
+    <TextField fx:id="titleTextField"/>
+    <Label text="Storyline Description: "/>
+    <TextField fx:id="descriptionTextField"/>
+    <HBox alignment="BOTTOM_RIGHT" spacing="20">
+        <Button fx:id="cancelButton" text="Cancel"/>
+        <Button fx:id="createButton" text="Create"/>
+    </HBox>
+
+</VBox>
