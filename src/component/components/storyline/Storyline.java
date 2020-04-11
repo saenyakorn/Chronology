@@ -89,7 +89,7 @@ public class Storyline extends BasicStoryComponent {
 
     public void addEventCard(EventCard eventCard) {
         eventCards.addEventCard(eventCard);
-        eventCard.setStoryLine(this);
+        eventCard.setStoryline(this);
         eventCardList.getChildren().add(eventCard);
         line.setEndX(line.getEndX() + (SystemConstants.EVENTCARD_PREF_WIDTH + 30));
     }
@@ -97,7 +97,7 @@ public class Storyline extends BasicStoryComponent {
     public void addAllEventCards(EventCard... args) {
         for (EventCard eventCard : args) {
             eventCards.addEventCard(eventCard);
-            eventCard.setStoryLine(this);
+            eventCard.setStoryline(this);
             eventCardList.getChildren().add(eventCard);
         }
         int increasedLineLength = args.length * (SystemConstants.EVENTCARD_PREF_WIDTH + 30);

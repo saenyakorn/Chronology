@@ -24,7 +24,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
 public class EventCard extends BasicStoryComponent implements Comparable<EventCard> {
-    private Storyline selfStoryLine;
+    private Storyline selfStoryline;
     private Chapter selfChapter;
 
     @FXML
@@ -46,14 +46,14 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     public EventCard() {
         selfChapter = null;
-        selfStoryLine = null;
+        selfStoryline = null;
         this.loadFXML();
     }
 
     public EventCard(String title, String description) {
         super(title, description);
         selfChapter = null;
-        selfStoryLine = null;
+        selfStoryline = null;
     }
 
     public EventCard(String title, String description, Color color, TimePeriod timePeriod) {
@@ -61,12 +61,12 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         this.loadFXML();
     }
 
-    public Storyline getStoryLine() {
-        return selfStoryLine;
+    public Storyline getStoryline() {
+        return selfStoryline;
     }
 
-    public void setStoryLine(Storyline selfStoryLine) {
-        this.selfStoryLine = selfStoryLine;
+    public void setStoryline(Storyline selfStoryLine) {
+        this.selfStoryline = selfStoryLine;
         this.setColor(selfStoryLine.getColor());
     }
 

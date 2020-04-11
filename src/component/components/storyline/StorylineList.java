@@ -25,7 +25,7 @@ public class StorylineList implements Iterable<Storyline> {
     }
 
     public void addEventCard(EventCard eventCard) {
-        int index = storylines.indexOf(eventCard.getStoryLine());
+        int index = storylines.indexOf(eventCard.getStoryline());
         Storyline selectedStoryLine = storylines.get(index);
         selectedStoryLine.addEventCard(eventCard);
         storylines.set(index, selectedStoryLine);
