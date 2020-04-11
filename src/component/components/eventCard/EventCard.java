@@ -1,5 +1,6 @@
 package component.components.eventCard;
 
+import application.SystemConstants;
 import component.base.BasicStoryComponent;
 import component.components.chapter.Chapter;
 import component.components.storyline.Storyline;
@@ -36,6 +37,8 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     private TextArea cardDescription;
     @FXML
     private StackPane cardDescriptionContainer;
+    @FXML
+    private StackPane chapterMarker;
 
     public EventCard() {
         selfChapter = null;
@@ -49,7 +52,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         selfStoryLine = null;
     }
 
-    public EventCard(String title, String description, Color color, TimePeriod timePeriod, String characters, String place) {
+    public EventCard(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
         this.loadFXML();
     }
@@ -60,6 +63,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     public void setStoryLine(Storyline selfStoryLine) {
         this.selfStoryLine = selfStoryLine;
+        this.setColor(selfStoryLine.getColor());
     }
 
     public Chapter getChapter() {
@@ -68,6 +72,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     public void setChapter(Chapter selfChapter) {
         this.selfChapter = selfChapter;
+        chapterMarker.setStyle("-fx-background-color: " + colorToHex(selfChapter.getColor()) + ";");
     }
 
     @FXML
@@ -96,9 +101,13 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
         this.setColor(this.getColor());
         this.setTimePeriod(this.getTimePeriod());
-        //dateTimeContainer.setOnMouseClicked((MouseEvent event) ->
-        // TODO : Set TimePeriod dialog
-        //  );
+
+        if(selfChapter == null){
+            chapterMarker.setStyle("-fx-background-color: " + SystemConstants.WHITE + ";");
+        }
+        else {
+            setChapter(this.getChapter());
+        }
     }
 
     @Override

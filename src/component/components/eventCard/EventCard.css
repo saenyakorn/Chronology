@@ -3,14 +3,14 @@ StackPane {
 }
 
 #dateTimeContainer {
-    -fx-padding: 10 15 10 15;
-    -fx-spacing: 5;
+    -fx-padding: 5 15 5 15;
+    -fx-spacing: 50;
 }
 
 #date {
     -fx-font-family: "NotoSans";
     -fx-font-weight: bold;
-    -fx-font-size: 24px;
+    -fx-font-size: 14px;
 }
 
 #time {
@@ -22,6 +22,10 @@ StackPane {
 #card {
     -fx-background-radius: 20 20 20 20;
     -fx-effect: dropshadow(gaussian, rgba(28,28,28,0.1), 20, 0, 0, 10);
+}
+
+#card:hover {
+     -fx-effect: dropshadow(gaussian, rgba(28,28,28,0.3), 20, 0, 0, 10);
 }
 
 #cardTitleContainer {
@@ -49,7 +53,6 @@ StackPane {
 
 #cardDescriptionContainer {
     -fx-background-color: #FFFFFF;
-    -fx-background-radius: 0 0 20 20;
 }
 
 #cardDescription:disabled {
@@ -70,6 +73,10 @@ StackPane {
 
 #cardDescription .content {
     -fx-background-color: transparent, white, transparent, white;
+}
+
+#chapterMarker {
+    -fx-background-radius: 0 0 20 20;
 }
 
 
