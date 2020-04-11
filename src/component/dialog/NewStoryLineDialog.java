@@ -2,6 +2,7 @@ package component.dialog;
 
 import application.ApplicationResource;
 import component.components.document.Document;
+import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
@@ -33,10 +34,14 @@ public class NewStoryLineDialog extends Dialog {
         stage.setScene(new Scene(vBox, 300, 400));
     }
 
-    private void AddNewStoryLine(String name, String description) {
+    private void AddNewStoryLine(String title, String description) {
         System.out.println("Creating a new story line");
         Document currentDocument = ApplicationResource.getCurrentWorkspace().getCurrentDocument();
-        currentDocument.addStoryLine(new Storyline(name, description));
+
+        Storyline newStoryLine = new Storyline(title, description);
+        newStoryLine.addEventCard(new EventCard("Untitled", "description"));
+
+        currentDocument.addStoryLine(newStoryLine);
         System.out.println("Done");
         this.close();
     }
