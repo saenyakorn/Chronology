@@ -30,14 +30,14 @@ public class Workspace extends HBox {
         // Add initial example document
         Document doc1 = new Document("New Document");
         Storyline storyline_ex1 = new Storyline();
-        EventCard eventCard_ex1 = new EventCard(storyline_ex1);
-        EventCard eventCard_ex2 = new EventCard(storyline_ex1);
-        EventCard eventCard_ex3 = new EventCard(storyline_ex1);
-        Chapter chapter_ex1 = new Chapter();
-        EventCard eventCard_ex4 = new EventCard(storyline_ex1, chapter_ex1);
-        EventCard eventCard_ex5 = new EventCard(storyline_ex1, chapter_ex1);
-        chapter_ex1.addAllEventCards(eventCard_ex4, eventCard_ex5);
-        storyline_ex1.addAllEventCards(eventCard_ex1, eventCard_ex2);
+        EventCard eventCard_ex1 = new EventCard("Event 1", "Desc 1");
+        EventCard eventCard_ex2 = new EventCard("Event 2", "Desc 2");
+        EventCard eventCard_ex3 = new EventCard("Event 3", "Desc 3");
+        Chapter chapter_ex1 = new Chapter("Chapter 1", "description for chapter 1");
+        EventCard eventCard_ex4 = new EventCard("Event 4", "Desc 4");
+        EventCard eventCard_ex5 = new EventCard("Event 5", "Desc 5");
+        chapter_ex1.addAllEventCards(eventCard_ex3, eventCard_ex4, eventCard_ex5);
+        storyline_ex1.addAllEventCards(eventCard_ex1, eventCard_ex2, eventCard_ex3, eventCard_ex4, eventCard_ex5);
         doc1.addStoryLine(storyline_ex1);
         doc1.addChapter(chapter_ex1);
         doc1.addAllEventCard(eventCard_ex1, eventCard_ex2);
@@ -49,7 +49,6 @@ public class Workspace extends HBox {
         this.viewer.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>() {
             @Override
             public void changed(ObservableValue<? extends Tab> observableValue, Tab tab, Tab t1) {
-                System.out.println("This Tab was CLICKED: " + t1);
                 Document selectedDocument = (Document) t1;
                 sideBar.setActiveDocument(selectedDocument);
             }
@@ -59,11 +58,19 @@ public class Workspace extends HBox {
         this.getChildren().addAll(sideBar, viewer);
     }
 
+    public DocumentList getDocumentList() {
+        return documents;
+    }
+
+    public Document getCurrentDocument() {
+        return documents.get(viewer.getSelectionModel().getSelectedIndex());
+    }
+
     public void addDocument(Document document) {
         System.out.println(document.getText());
         documents.addDocument(document);
         viewer.addDocument(document);
-        Document currentDocument = documents.get(viewer.getSelectionModel().getSelectedIndex());
+        Document currentDocument = this.getCurrentDocument();
         sideBar.setActiveDocument(currentDocument);
     }
 
@@ -72,7 +79,7 @@ public class Workspace extends HBox {
             documents.addDocument(document);
             viewer.addDocument(document);
         }
-        Document currentDocument = documents.get(viewer.getSelectionModel().getSelectedIndex());
+        Document currentDocument = this.getCurrentDocument();
         sideBar.setActiveDocument(currentDocument);
     }
 
