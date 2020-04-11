@@ -18,8 +18,10 @@ public class ChapterList implements Iterable<Chapter> {
         chapters.add(chapter);
     }
 
-    public void addAllChapter(ArrayList<Chapter> chapters) {
-        this.chapters.addAll(chapters);
+    public void addAllChapter(Chapter... args) {
+        for (Chapter chapter : args) {
+            chapters.add(chapter);
+        }
     }
 
     public int removeChapter(Chapter chapter) {
@@ -39,5 +41,14 @@ public class ChapterList implements Iterable<Chapter> {
     @Override
     public Iterator<Chapter> iterator() {
         return chapters.iterator();
+    }
+
+    @Override
+    public String toString() {
+        String content = "";
+        for (Chapter chapter : chapters) {
+            content += chapter + " ";
+        }
+        return content;
     }
 }

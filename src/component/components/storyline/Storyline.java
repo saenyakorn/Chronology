@@ -16,12 +16,14 @@ import java.io.IOException;
 public class Storyline extends BasicStoryComponent {
     private EventCardList eventCards;
 
-    @FXML private Line line;
-    @FXML private TextField storylineTitle;
-    @FXML private EventCardList eventCardList;
+    @FXML
+    private Line line;
+    @FXML
+    private TextField storylineTitle;
+    @FXML
+    private EventCardList eventCardList;
 
     public Storyline() {
-        super();
         eventCards = new EventCardList();
         this.loadFXML();
     }
@@ -36,7 +38,6 @@ public class Storyline extends BasicStoryComponent {
     public void initialize() {
         this.setTitle(this.getTitle());
         this.setColor(this.getColor());
-        eventCards.addEventCard(new EventCard());
     }
 
     @Override
@@ -65,10 +66,12 @@ public class Storyline extends BasicStoryComponent {
         return eventCards;
     }
 
-    public EventCardList addAllEventCards(EventCardList eventCards) {
-        this.eventCards.addAllEventCards(eventCards);
-        eventCardList.getChildren().addAll(eventCards);
-        return this.eventCards;
+    public EventCardList addAllEventCards(EventCard... args) {
+        for (EventCard eventCard : args) {
+            eventCards.addEventCard(eventCard);
+            eventCardList.getChildren().add(eventCard);
+        }
+        return eventCards;
     }
 
     public EventCardList removeEventCard(EventCard eventCard) {

@@ -2,9 +2,7 @@
 
 <?import component.layouts.workspace.Workspace?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
 <VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx"
       fx:controller="application.layout.mainController">
@@ -15,7 +13,7 @@
             <Menu text="File">
                 <MenuItem text="New Document" onAction="#handleNewDocumentClick"/>
             </Menu>
-            <Menu text="Add">
+            <Menu text="Object">
                 <MenuItem text="Storyline" onAction="#handleNewStoryLineClick"/>
                 <MenuItem text="Event Card" onAction="#handleNewEventCardClick"/>
                 <MenuItem text="Chapter" onAction="#handleNewChapterClick"/>

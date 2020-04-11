@@ -10,7 +10,6 @@ public class Viewer extends TabPane {
     }
 
     public void addDocument(Document document) {
-        System.out.println("Viewer: " + document.getText());
         this.getTabs().add(document);
     }
 

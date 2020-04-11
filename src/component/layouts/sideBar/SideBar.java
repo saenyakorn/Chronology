@@ -17,32 +17,58 @@ public class SideBar extends ScrollPane {
     private TreeView<BasicStoryComponent> treeView;
 
     public SideBar() {
-        this.treeView = new TreeView<>();
+        treeView = new TreeView<>();
+        treeView.setShowRoot(false);
         this.setPrefWidth(SystemConstants.SIDEBAR_PREF_WIDTH);
-        VBox vbox = new VBox();
-        vbox.getChildren().add(treeView);
-        this.getChildren().add(vbox);
+        VBox vBox = new VBox();
+        vBox.getChildren().add(treeView);
+        this.setContent(treeView);
     }
 
-    public void setTreeView(TreeView<BasicStoryComponent> treeView) {
-        this.treeView = treeView;
+    private BasicStoryComponent createBasicStoryComponentFromDocument(Document document) {
+        return new BasicStoryComponent(document.getText()) {
+            @Override
+            public String toString() {
+                return title;
+            }
+
+            @Override
+            protected void loadFXML() {
+            }
+        };
     }
 
     public void setActiveDocument(Document document) {
-        ChapterList chapters = document.getChapters();
-        TreeItem<BasicStoryComponent> rootItem = new TreeItem<>();
-        for (Chapter chapter : chapters) {
-            TreeItem<BasicStoryComponent> item = createTreeItem(chapter);
-            rootItem.getChildren().add(item);
-        }
-        TreeView<BasicStoryComponent> treeView = new TreeView<>(rootItem);
-        treeView.setShowRoot(false);
-        this.setTreeView(treeView);
+        System.out.println("SETTING ACTIVE DOCUMENT");
+        EventCardList eventCardList = document.getEventCardList();
+        ChapterList chapterList = document.getChapterList();
+        BasicStoryComponent documentData = createBasicStoryComponentFromDocument(document);
+        TreeItem<BasicStoryComponent> rootItem = new TreeItem<>(documentData);
+        createTreeItemFromNonChapterEventCard(rootItem, eventCardList);
+        createTreeItemFromChapterList(rootItem, chapterList);
+        treeView.setRoot(rootItem);
+        treeView.setCellFactory(params -> new TextFieldTreeCellForBasicStoryComponent());
     }
 
-    private TreeItem<BasicStoryComponent> createTreeItem(Chapter chapter) {
+    private void createTreeItemFromNonChapterEventCard(TreeItem<BasicStoryComponent> rootItem, EventCardList eventCardList) {
+        for (EventCard eventCard : eventCardList) {
+            Chapter currentChapter = eventCard.getChapter();
+            if (currentChapter == null) {
+                TreeItem<BasicStoryComponent> treeItem = new TreeItem<>(eventCard);
+                rootItem.getChildren().add(treeItem);
+            }
+        }
+    }
+
+    private void createTreeItemFromChapterList(TreeItem<BasicStoryComponent> rootItem, ChapterList chapterList) {
+        for (Chapter chapter : chapterList) {
+            rootItem.getChildren().add(createTreeItemFromChapter(chapter));
+        }
+    }
+
+    private TreeItem<BasicStoryComponent> createTreeItemFromChapter(Chapter chapter) {
         EventCardList eventCards = chapter.getEventCards();
-        TreeItem<BasicStoryComponent> rootItem = new TreeItem<>();
+        TreeItem<BasicStoryComponent> rootItem = new TreeItem<>(chapter);
         for (EventCard eventCard : eventCards) {
             TreeItem<BasicStoryComponent> item = new TreeItem<>(eventCard);
             rootItem.getChildren().add(item);

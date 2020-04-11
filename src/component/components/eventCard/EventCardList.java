@@ -1,6 +1,7 @@
 package component.components.eventCard;
 
 import javafx.scene.layout.HBox;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -36,6 +37,7 @@ public class EventCardList extends HBox implements Iterable<EventCard> {
             return 0;
         }
     }
+
     public int size() {
         return eventCards.size();
     }
@@ -43,5 +45,14 @@ public class EventCardList extends HBox implements Iterable<EventCard> {
     @Override
     public Iterator<EventCard> iterator() {
         return eventCards.iterator();
+    }
+
+    @Override
+    public String toString() {
+        String content = "";
+        for (EventCard eventCard : eventCards) {
+            content += eventCard + " ";
+        }
+        return content;
     }
 }

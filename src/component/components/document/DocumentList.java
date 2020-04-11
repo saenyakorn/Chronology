@@ -9,6 +9,14 @@ public class DocumentList {
         this.documents = new ArrayList<>();
     }
 
+    public int indexOf(Document document) {
+        return documents.indexOf(document);
+    }
+
+    public Document get(int index) {
+        return (0 <= index && index < documents.size()) ? documents.get(index) : null;
+    }
+
     public void addDocument(Document document) {
         documents.add(document);
     }

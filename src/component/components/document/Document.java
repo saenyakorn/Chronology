@@ -1,12 +1,14 @@
 package component.components.document;
 
+import component.components.chapter.Chapter;
 import component.components.chapter.ChapterList;
+import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
+import component.components.storyline.Storyline;
 import component.components.storyline.StorylineList;
 import javafx.scene.control.Tab;
 
 public class Document extends Tab {
-    private String name;
     private EventCardList eventCards;
     private ChapterList chapters;
     private StorylineList storylines;
@@ -18,36 +20,56 @@ public class Document extends Tab {
         storylines = new StorylineList();
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public EventCardList getEventCards() {
+    public EventCardList getEventCardList() {
         return eventCards;
     }
 
-    public void setEventCards(EventCardList eventCards) {
-        this.eventCards = eventCards;
-    }
-
-    public ChapterList getChapters() {
+    public ChapterList getChapterList() {
         return chapters;
     }
 
-    public void setChapters(ChapterList chapters) {
-        this.chapters = chapters;
-    }
-
-    public StorylineList getStorylines() {
+    public StorylineList getStorylineList() {
         return storylines;
     }
 
-    public void setStorylines(StorylineList storylines) {
-        this.storylines = storylines;
+    public EventCardList addEventCard(EventCard eventCard) {
+        eventCards.addEventCard(eventCard);
+        return eventCards;
+    }
+
+    public EventCardList addAllEventCard(EventCard... args) {
+        for (EventCard eventCard : args) {
+            eventCards.addEventCard(eventCard);
+        }
+        return eventCards;
+    }
+
+    public StorylineList addStoryLine(Storyline storyline) {
+        storylines.addStoryline(storyline);
+        return storylines;
+    }
+
+    public StorylineList addAllStoryLine(Storyline... args) {
+        for (Storyline storyline : args) {
+            storylines.addStoryline(storyline);
+        }
+        return storylines;
+    }
+
+    public ChapterList addChapter(Chapter chapter) {
+        chapters.addChapter(chapter);
+        return chapters;
+    }
+
+    public ChapterList addAllChapter(Chapter... args) {
+        for (Chapter chapter : args) {
+            chapters.addChapter(chapter);
+        }
+        return chapters;
     }
 
     @Override
     public String toString() {
-        return name;
+        return this.getText();
     }
 }

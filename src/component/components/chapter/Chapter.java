@@ -4,7 +4,6 @@ import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
 import component.components.timeModifier.TimePeriod;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.paint.Color;
 
@@ -12,6 +11,10 @@ import java.io.IOException;
 
 public class Chapter extends BasicStoryComponent {
     private final EventCardList eventCards;
+
+    public Chapter() {
+        eventCards = new EventCardList();
+    }
 
     public Chapter(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
@@ -27,8 +30,10 @@ public class Chapter extends BasicStoryComponent {
         return eventCards;
     }
 
-    public EventCardList addAllEventCards(EventCardList eventCards) {
-        this.eventCards.addAllEventCards(eventCards);
+    public EventCardList addAllEventCards(EventCard... args) {
+        for (EventCard eventCard : args) {
+            eventCards.addEventCard(eventCard);
+        }
         return eventCards;
     }
 
@@ -39,11 +44,7 @@ public class Chapter extends BasicStoryComponent {
 
     @Override
     public String toString() {
-        return "Chapter [" + title + "]\n"
-                + "\tdescription: " + description + "\n"
-                + "\tcolor: " + color + "\n"
-                + "\ttime period: " + timePeriod + "\n"
-                + "\tevent card: " + eventCards.size() + "\n";
+        return title;
     }
 
     @Override

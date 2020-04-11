@@ -21,6 +21,11 @@ public abstract class BasicStoryComponent extends Pane {
         this.color = Color.web(SystemConstants.RED);
         this.timePeriod = TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY);
     }
+
+    public BasicStoryComponent(String title) {
+        this.title = title;
+    }
+
     public BasicStoryComponent(String title, String description, Color color, TimePeriod timePeriod) {
         this.title = title;
         this.description = description;

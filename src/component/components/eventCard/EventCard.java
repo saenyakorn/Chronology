@@ -1,6 +1,8 @@
 package component.components.eventCard;
 
 import component.base.BasicStoryComponent;
+import component.components.chapter.Chapter;
+import component.components.storyline.Storyline;
 import component.components.timeModifier.TimePeriod;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +21,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
 public class EventCard extends BasicStoryComponent implements Comparable<EventCard> {
-    private String characters;
-    private String place;
+    private Storyline selfStoryLine;
+    private Chapter selfChapter;
 
     @FXML
     private Text date;
@@ -38,23 +40,44 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     private StackPane cardDescriptionContainer;
 
     public EventCard() {
-        super();
-        this.characters = "";
-        this.place = "";
-        this.loadFXML();
+        selfChapter = new Chapter();
+        selfStoryLine = new Storyline();
+        //this.loadFXML();
     }
 
-    public EventCard(String name) {
-        super();
-        this.characters = name;
+    public EventCard(Storyline storyline) {
+        selfStoryLine = storyline;
+        selfChapter = null;
+        //this.loadFXML();
+    }
+
+    public EventCard(Storyline storyline, Chapter chapter) {
+        selfStoryLine = storyline;
+        selfChapter = chapter;
+        //this.loadFXML();
+    }
+
+    public Storyline getStoryLine() {
+        return selfStoryLine;
+    }
+
+    public void setStoryLine(Storyline selfStoryLine) {
+        this.selfStoryLine = selfStoryLine;
+    }
+
+    public Chapter getChapter() {
+        return selfChapter;
+    }
+
+    public void setChapter(Chapter selfChapter) {
+        this.selfChapter = selfChapter;
     }
 
     public EventCard(String title, String description, Color color, TimePeriod timePeriod, String characters, String place) {
         super(title, description, color, timePeriod);
-        this.characters = characters;
-        this.place = place;
         this.loadFXML();
     }
+
 
     @FXML
     public void initialize() {
@@ -87,7 +110,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         super.setColor(color);
         date.setFill(color);
         time.setFill(color);
-        cardTitleContainer.setBackground(new Background(new BackgroundFill(color,null,null)));
+        cardTitleContainer.setBackground(new Background(new BackgroundFill(color, null, null)));
     }
 
     @Override
@@ -96,29 +119,13 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         date.setText(timePeriod.getBeginDateTime().toLocalDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
         time.setText(String.valueOf(timePeriod.getBeginDateTime().toLocalTime()));
         //dateTimeContainer.setOnMouseClicked((MouseEvent event) ->
-                // TODO : Set TimePeriod dialog
-                //  );
-    }
-
-    public String getCharacters() {
-        return characters;
-    }
-
-    public void setCharacters(String character) {
-        this.characters = character;
-    }
-
-    public String getPlace() {
-        return place;
-    }
-
-    public void setPlace(String place) {
-        this.place = place;
+        // TODO : Set TimePeriod dialog
+        //  );
     }
 
     @Override
     public String toString() {
-        return characters;
+        return title;
     }
 
     @Override

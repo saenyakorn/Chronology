@@ -14,8 +14,10 @@ import javafx.scene.layout.VBox;
 
 public class mainController {
 
-    @FXML private Workspace workspace;
-    @FXML private AnchorPane navigationBar;
+    @FXML
+    private Workspace workspace;
+    @FXML
+    private AnchorPane navigationBar;
 
     @FXML
     public void initialize() {

@@ -1,5 +1,7 @@
 package component.components.storyline;
 
+import component.components.eventCard.EventCard;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -20,6 +22,13 @@ public class StorylineList implements Iterable<Storyline> {
 
     public void addAllStoryline(ArrayList<Storyline> storylines) {
         this.storylines.addAll(storylines);
+    }
+
+    public void addEventCard(EventCard eventCard) {
+        int index = storylines.indexOf(eventCard.getStoryLine());
+        Storyline selectedStoryLine = storylines.get(index);
+        selectedStoryLine.addEventCard(eventCard);
+        storylines.set(index, selectedStoryLine);
     }
 
     public int removeStoryline(Storyline storyline) {
