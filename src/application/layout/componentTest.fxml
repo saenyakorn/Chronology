@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import component.components.storyline.Storyline?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="application.layout.componentTestController">
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<ScrollPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="application.layout.componentTestController">
     <padding>
         <Insets topRightBottomLeft="20"/>
     </padding>
-    <Button fx:id="addEventCardButton" text="Add an event card" onAction="#handleAddEventCard"/>
-    <Storyline fx:id="storyline"/>
-</VBox>
+    <VBox>
+        <Button fx:id="addEventCardButton" text="Add an event card" onAction="#handleAddEventCard"/>
+        <Storyline fx:id="storyline"/>
+    </VBox>
+</ScrollPane>
 
