@@ -1,44 +1,80 @@
 package component.dialog;
 
+import application.SystemConstants;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
+import jfxtras.scene.control.LocalDateTextField;
+
+import java.io.IOException;
 
 public class SetTimePeriodDialog extends Dialog {
 
+    @FXML private VBox predefinedMode;
+    @FXML private DatePicker predefinedModeDatePicker;
+    @FXML private RadioButton dawnChoice;
+    @FXML private RadioButton morningChoice;
+    @FXML private RadioButton middayChoice;
+    @FXML private RadioButton afternoonChoice;
+    @FXML private RadioButton eveningChoice;
+    @FXML private RadioButton nightChoice;
+
+    @FXML private CheckBox customModeToggle;
+    @FXML private VBox customMode;
+    @FXML private LocalDateTextField customModeBeginDatePicker;
+    @FXML private LocalDateTextField customModeEndDatePicker;
+
+    @FXML private Button setButton;
+    @FXML private Button cancelButton;
+
     public SetTimePeriodDialog() {
-        VBox root = new VBox();
-
-        HBox hbox = new HBox();
-        hbox.setSpacing(5);
-
-        ToggleGroup modeSelector = new ToggleGroup();
-        RadioButton predefined = new RadioButton("Use Predefined Times");
-        RadioButton custom = new RadioButton("Customize Times");
-        predefined.setToggleGroup(modeSelector);
-        custom.setToggleGroup(modeSelector);
-        predefined.setSelected(true);
-
-        hbox.getChildren().addAll(predefined,custom);
-
-        stage.setScene(new Scene(root,300,400));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SetTimePeriodDialog.fxml"));
+        fxmlLoader.setController(this);
+        try {
+            Parent root = fxmlLoader.load();
+            stage.setTitle("Set Event Date & Time");
+            stage.setScene(new Scene(root, SystemConstants.DIALOG_PREF_HEIGHT, SystemConstants.DIALOG_PREF_WIDTH * 2));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void predefinedMode() {
-
+    private void setToggleGroup() {
+        ToggleGroup predefinedTimePeriods = new ToggleGroup();
+        dawnChoice.setToggleGroup(predefinedTimePeriods);
+        morningChoice.setToggleGroup(predefinedTimePeriods);
+        middayChoice.setToggleGroup(predefinedTimePeriods);
+        afternoonChoice.setToggleGroup(predefinedTimePeriods);
+        eveningChoice.setToggleGroup(predefinedTimePeriods);
+        nightChoice.setToggleGroup(predefinedTimePeriods);
     }
 
-    private void customMode() {
-        Text setBeginDatePrompt = new Text("Begin Date:");
-        Text setBeginTimePrompt = new Text("Begin Time:");
-        Text setEndDatePrompt = new Text("End Date:");
-        Text setEndTimePrompt = new Text("End Time:");
+    @FXML
+    public void initialize() {
+        setToggleGroup();
 
-        DatePicker beginDatePicker = new DatePicker();
-        DatePicker endDatePicker = new DatePicker();
+        boolean isCustomMode = false;
+        customMode.setDisable(true);
+
+        /*Move this to a method*/
+        customModeToggle.setOnAction((ActionEvent e) -> {
+            if(customModeToggle.isSelected()){
+                predefinedMode.setDisable(true);
+                customMode.setDisable(false);
+            }
+            else {
+                predefinedMode.setDisable(false);
+                customMode.setDisable(true);
+            }
+        });
+
+        setButton.setOnAction((ActionEvent e) -> {
+
+        });
+        cancelButton.setOnAction((ActionEvent e) -> stage.close());
     }
 }
