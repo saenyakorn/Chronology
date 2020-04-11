@@ -5,8 +5,12 @@ import component.base.BasicStoryComponent;
 import component.components.chapter.Chapter;
 import component.components.storyline.Storyline;
 import component.components.timeModifier.TimePeriod;
+import component.dialog.SetTimePeriodDialog;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -101,6 +105,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
         this.setColor(this.getColor());
         this.setTimePeriod(this.getTimePeriod());
+        initializeContextMenu();
 
         if(selfChapter == null){
             chapterMarker.setStyle("-fx-background-color: " + SystemConstants.WHITE + ";");
@@ -159,4 +164,18 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         }
     }
 
+    private void initializeContextMenu() {
+        final ContextMenu contextMenu = new ContextMenu();
+        MenuItem setTimePeriodMenu = new MenuItem("Set event date/time");
+        contextMenu.getItems().add(setTimePeriodMenu);
+        setTimePeriodMenu.setOnAction((ActionEvent event) ->{
+            SetTimePeriodDialog dialog = new SetTimePeriodDialog();
+            dialog.show();
+        });
+        dateTimeContainer.setOnMousePressed((MouseEvent event) ->{
+            if (event.isSecondaryButtonDown()) {
+                contextMenu.show(dateTimeContainer, event.getScreenX(), event.getScreenY());
+            }
+        });
+    }
 }
