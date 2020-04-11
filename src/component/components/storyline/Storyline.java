@@ -76,8 +76,8 @@ public class Storyline extends BasicStoryComponent {
     @Override
     public void setColor(Color color) {
         super.setColor(color);
-        line.setFill(color);
-        storylineTitle.setStyle("-fx-fill: " + colorToHex(color) + ";");
+        line.setStroke(color);
+        storylineTitle.setStyle("-fx-text-fill: " + colorToHex(color) + ";");
         for(EventCard eventCard : eventCards){
             eventCard.setColor(color);
         }
@@ -125,13 +125,6 @@ public class Storyline extends BasicStoryComponent {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-    }
-
-    private String colorToHex(Color color) {
-        return String.format("#%02x%02x%02x",
-                (int) (255 * color.getRed()),
-                (int) (255 * color.getGreen()),
-                (int) (255 * color.getBlue()));
     }
 
     private void initializeContextMenu() {

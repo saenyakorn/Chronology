@@ -11,14 +11,12 @@ StackPane {
     -fx-font-family: "NotoSans";
     -fx-font-weight: bold;
     -fx-font-size: 24px;
-    -fx-fill: #FF3E60;
 }
 
 #time {
     -fx-font-family: "NotoSans";
     -fx-font-weight: bold;
     -fx-font-size: 14px;
-    -fx-fill: #FF3E60;
 }
 
 #card {
@@ -45,7 +43,7 @@ StackPane {
     -fx-font-weight: normal;
     -fx-font-size: 14px;
     -fx-text-fill: #FFFFFF;
-    -fx-background-color: #FF3E60;
+    -fx-background-color: transparent;
     -fx-opacity: 0.8;
 }
 
