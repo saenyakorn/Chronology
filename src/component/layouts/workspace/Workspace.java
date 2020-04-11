@@ -7,7 +7,6 @@ import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
 import component.layouts.sideBar.SideBar;
 import component.layouts.viewer.Viewer;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.HBox;
@@ -29,7 +28,7 @@ public class Workspace extends HBox {
 
         // Add initial example document
         Document doc1 = new Document("New Document");
-        Storyline storyline_ex1 = new Storyline();
+        Storyline storyline_ex1 = new Storyline("StoryLine 1", "description for storyline 1");
         EventCard eventCard_ex1 = new EventCard("Event 1", "Desc 1");
         EventCard eventCard_ex2 = new EventCard("Event 2", "Desc 2");
         EventCard eventCard_ex3 = new EventCard("Event 3", "Desc 3");
@@ -45,11 +44,10 @@ public class Workspace extends HBox {
         Document doc3 = new Document("New Document 3");
         this.addAllDocument(doc1, doc2, doc3);
 
-        // Changing tab event
-        this.viewer.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>() {
-            @Override
-            public void changed(ObservableValue<? extends Tab> observableValue, Tab tab, Tab t1) {
-                Document selectedDocument = (Document) t1;
+        // Changing Tab event
+        viewer.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Tab> observableValue, Tab previousTab, Tab currentTab) -> {
+            if (currentTab instanceof Document) {
+                Document selectedDocument = (Document) currentTab;
                 sideBar.setActiveDocument(selectedDocument);
             }
         });
@@ -66,12 +64,16 @@ public class Workspace extends HBox {
         return documents.get(viewer.getSelectionModel().getSelectedIndex());
     }
 
+    public void setActiveDocument(Document document) {
+        sideBar.setActiveDocument(document);
+    }
+
     public void addDocument(Document document) {
         System.out.println(document.getText());
         documents.addDocument(document);
         viewer.addDocument(document);
         Document currentDocument = this.getCurrentDocument();
-        sideBar.setActiveDocument(currentDocument);
+        setActiveDocument(currentDocument);
     }
 
     public void addAllDocument(Document... args) {
@@ -80,7 +82,7 @@ public class Workspace extends HBox {
             viewer.addDocument(document);
         }
         Document currentDocument = this.getCurrentDocument();
-        sideBar.setActiveDocument(currentDocument);
+        setActiveDocument(currentDocument);
     }
 
     public void removeDocument(Document document) {

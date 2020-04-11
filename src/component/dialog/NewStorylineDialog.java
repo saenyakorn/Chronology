@@ -1,48 +1,65 @@
 package component.dialog;
 
 import application.ApplicationResource;
+import application.SystemConstants;
 import component.components.document.Document;
-import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
+import component.layouts.workspace.Workspace;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+import javafx.scene.input.KeyEvent;
+
+import java.io.IOException;
 
 public class NewStorylineDialog extends Dialog {
 
+    @FXML
+    TextField titleTextField;
+    @FXML
+    TextField descriptionTextField;
+    @FXML
+    Button createButton;
+    @FXML
+    Button cancelButton;
+
     public NewStorylineDialog() {
-        stage.setTitle("Create a new story line");
-        Button button = new Button("Create a new story line");
-        TextField titleTextField = new TextField();
-        TextField descriptionTextField = new TextField();
-        VBox vBox = new VBox();
-
-        button.setOnAction((ActionEvent e) -> {
-            String title = titleTextField.getText();
-            String description = descriptionTextField.getText();
-            AddNewStoryline(title, description);
-        });
-
-        vBox.getChildren().add(new Label("Title"));
-        vBox.getChildren().add(titleTextField);
-        vBox.getChildren().add(new Label("dexcription"));
-        vBox.getChildren().add(descriptionTextField);
-        vBox.getChildren().add(button);
-        stage.setScene(new Scene(vBox, 300, 400));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("NewStorylineDialog.fxml"));
+        fxmlLoader.setController(this);
+        try {
+            Parent root = fxmlLoader.load();
+            stage.setTitle("Create New Storyline");
+            stage.setScene(new Scene(root, SystemConstants.DIALOG_PREF_HEIGHT, SystemConstants.DIALOG_PREF_WIDTH));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void AddNewStoryline(String title, String description) {
-        System.out.println("Creating a new story line");
-        Document currentDocument = ApplicationResource.getCurrentWorkspace().getCurrentDocument();
-
+        System.out.println("Creating a new Storyline");
+        Workspace currentWorkspace = ApplicationResource.getCurrentWorkspace();
+        Document currentDocument = currentWorkspace.getCurrentDocument();
         Storyline newStoryline = new Storyline(title, description);
-        newStoryline.addEventCard(new EventCard("Untitled", "description"));
-
         currentDocument.addStoryLine(newStoryline);
+        currentWorkspace.setActiveDocument(currentDocument);
         System.out.println("Done");
         this.close();
+    }
+
+    @FXML
+    protected void initialize() {
+        createButton.setDisable(true);
+        titleTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenSomeTextFieldEmptyEmpty(createButton, titleTextField, descriptionTextField));
+        descriptionTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenSomeTextFieldEmptyEmpty(createButton, titleTextField, descriptionTextField));
+        createButton.setOnAction((ActionEvent e) -> {
+            if (!isSomeEmpty(titleTextField, descriptionTextField)) {
+                AddNewStoryline(titleTextField.getText(), descriptionTextField.getText());
+            }
+        });
+        cancelButton.setOnAction((ActionEvent e) -> stage.close());
     }
 }

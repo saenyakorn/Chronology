@@ -40,7 +40,6 @@ public final class TextFieldTreeCell extends TreeCell<BasicStoryComponent> {
             setText(null);
             setGraphic(null);
         } else {
-            System.out.println("updateItem: " + item.getTitle());
             if (isEditing()) {
                 if (textField != null) {
                     textField.setText(getString());

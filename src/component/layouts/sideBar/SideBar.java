@@ -7,6 +7,8 @@ import component.components.chapter.ChapterList;
 import component.components.document.Document;
 import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
+import component.components.storyline.Storyline;
+import component.components.storyline.StorylineList;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
@@ -46,10 +48,12 @@ public class SideBar extends ScrollPane {
         System.out.println("SETTING ACTIVE DOCUMENT");
         EventCardList eventCardList = document.getEventCardList();
         ChapterList chapterList = document.getChapterList();
+        StorylineList storylineList = document.getStorylineList();
         BasicStoryComponent documentData = createBasicStoryComponentFromDocument(document);
         TreeItem<BasicStoryComponent> rootItem = new TreeItem<>(documentData);
         createTreeItemFromNonChapterEventCard(rootItem, eventCardList);
         createTreeItemFromChapterList(rootItem, chapterList);
+        createtreeItemFromStoryListList(rootItem, storylineList);
         treeView.setRoot(rootItem);
     }
 
@@ -78,4 +82,22 @@ public class SideBar extends ScrollPane {
         }
         return rootItem;
     }
+
+    private void createtreeItemFromStoryListList(TreeItem<BasicStoryComponent> rootItem, StorylineList storylineList) {
+        for (Storyline storyline : storylineList) {
+            rootItem.getChildren().add(createTreeItemFromStoryLine(storyline));
+        }
+    }
+
+    private TreeItem<BasicStoryComponent> createTreeItemFromStoryLine(Storyline storyline) {
+        EventCardList eventCards = storyline.getEventCards();
+        TreeItem<BasicStoryComponent> rootItem = new TreeItem<>(storyline);
+        for (EventCard eventCard : eventCards) {
+            TreeItem<BasicStoryComponent> item = new TreeItem<>(eventCard);
+            rootItem.getChildren().add(item);
+        }
+        return rootItem;
+    }
+
+
 }
