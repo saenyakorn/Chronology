@@ -40,21 +40,15 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     private StackPane cardDescriptionContainer;
 
     public EventCard() {
-        selfChapter = new Chapter();
-        selfStoryLine = new Storyline();
-        this.loadFXML();
-    }
-
-    public EventCard(Storyline storyline) {
-        selfStoryLine = storyline;
         selfChapter = null;
+        selfStoryLine = null;
         this.loadFXML();
     }
 
-    public EventCard(Storyline storyline, Chapter chapter) {
-        selfStoryLine = storyline;
-        selfChapter = chapter;
-        this.loadFXML();
+    public EventCard(String title, String description) {
+        super(title, description);
+        selfChapter = null;
+        selfStoryLine = null;
     }
 
     public Storyline getStoryLine() {
@@ -125,7 +119,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     @Override
     public String toString() {
-        return name;
+        return title;
     }
 
     @Override
