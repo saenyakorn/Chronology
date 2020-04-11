@@ -28,6 +28,10 @@ public class Storyline extends BasicStoryComponent {
         this.loadFXML();
     }
 
+    public Storyline(String title, String description) {
+        super(title, description);
+    }
+
     public Storyline(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
         eventCards = new EventCardList();
@@ -60,18 +64,18 @@ public class Storyline extends BasicStoryComponent {
         return eventCards;
     }
 
-    public EventCardList addEventCard(EventCard eventCard) {
+    public void addEventCard(EventCard eventCard) {
         eventCards.addEventCard(eventCard);
+        eventCard.setStoryLine(this);
         eventCardList.getChildren().add(eventCard);
-        return eventCards;
     }
 
-    public EventCardList addAllEventCards(EventCard... args) {
+    public void addAllEventCards(EventCard... args) {
         for (EventCard eventCard : args) {
             eventCards.addEventCard(eventCard);
+            eventCard.setStoryLine(this);
             eventCardList.getChildren().add(eventCard);
         }
-        return eventCards;
     }
 
     public EventCardList removeEventCard(EventCard eventCard) {
@@ -82,7 +86,7 @@ public class Storyline extends BasicStoryComponent {
 
     @Override
     public String toString() {
-        return name;
+        return title;
     }
 
     @Override
