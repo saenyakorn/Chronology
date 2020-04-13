@@ -44,7 +44,7 @@ public class NewEventCardDialog extends Dialog {
         try {
             Parent root = fxmlLoader.load();
             stage.setTitle("Create New Event");
-            stage.setScene(new Scene(root, SystemConstants.DIALOG_PREF_HEIGHT, SystemConstants.DIALOG_PREF_WIDTH));
+            stage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
         }
