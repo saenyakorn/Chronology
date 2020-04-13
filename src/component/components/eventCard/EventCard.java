@@ -167,8 +167,8 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     private void initializeContextMenu() {
         final ContextMenu contextMenu = new ContextMenu();
-        MenuItem setTimePeriodMenu = new MenuItem("Set event date/time");
-        MenuItem setColorMenu = new MenuItem("Set storyline color");
+        MenuItem setTimePeriodMenu = new MenuItem("Edit event date/time");
+        MenuItem setColorMenu = new MenuItem("Edit storyline color");
         contextMenu.getItems().addAll(setTimePeriodMenu,setColorMenu);
         setTimePeriodMenu.setOnAction((ActionEvent event) -> {
             SetTimePeriodDialog dialog = new SetTimePeriodDialog(this);

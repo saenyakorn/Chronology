@@ -129,7 +129,7 @@ public class Storyline extends BasicStoryComponent {
 
     private void initializeContextMenu() {
         final ContextMenu contextMenu = new ContextMenu();
-        MenuItem setColorMenu = new MenuItem("Set storyline color");
+        MenuItem setColorMenu = new MenuItem("Edit storyline color");
         contextMenu.getItems().add(setColorMenu);
         setColorMenu.setOnAction((ActionEvent event) ->{
             SetColorDialog dialog = new SetColorDialog(this);
