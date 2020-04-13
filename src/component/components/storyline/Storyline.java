@@ -137,7 +137,6 @@ public class Storyline extends BasicStoryComponent {
         });
 
         root.setOnMousePressed((MouseEvent event) -> {
-            //System.out.println("Clicked in event card: " + clickInEventCard(event));
             if (event.isSecondaryButtonDown() && !clickInEventCard(event)) {
                 contextMenu.show(root, event.getScreenX(), event.getScreenY());
             }
