@@ -135,10 +135,23 @@ public class Storyline extends BasicStoryComponent {
             SetColorDialog dialog = new SetColorDialog(this);
             dialog.show();
         });
-        root.setOnMousePressed((MouseEvent event) ->{
-            if (event.isSecondaryButtonDown()) {
+
+        root.setOnMousePressed((MouseEvent event) -> {
+            //System.out.println("Clicked in event card: " + clickInEventCard(event));
+            if (event.isSecondaryButtonDown() && !clickInEventCard(event)) {
                 contextMenu.show(root, event.getScreenX(), event.getScreenY());
             }
         });
+    }
+
+    private boolean clickInEventCard(MouseEvent event) {
+        if(this.eventCardList.contains(eventCardList.screenToLocal(event.getScreenX(), event.getScreenY()))) {
+            for(EventCard eventCard : eventCards) {
+                if(eventCard.clickInEventCard(event))
+                    return true;
+            }
+            return false;
+        }
+        return false;
     }
 }

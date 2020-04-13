@@ -5,6 +5,7 @@ import component.base.BasicStoryComponent;
 import component.components.chapter.Chapter;
 import component.components.storyline.Storyline;
 import component.components.timeModifier.TimePeriod;
+import component.dialog.SetColorDialog;
 import component.dialog.SetTimePeriodDialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -167,15 +168,26 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     private void initializeContextMenu() {
         final ContextMenu contextMenu = new ContextMenu();
         MenuItem setTimePeriodMenu = new MenuItem("Set event date/time");
-        contextMenu.getItems().add(setTimePeriodMenu);
-        setTimePeriodMenu.setOnAction((ActionEvent event) ->{
+        MenuItem setColorMenu = new MenuItem("Set storyline color");
+        contextMenu.getItems().addAll(setTimePeriodMenu,setColorMenu);
+        setTimePeriodMenu.setOnAction((ActionEvent event) -> {
             SetTimePeriodDialog dialog = new SetTimePeriodDialog();
             dialog.show();
         });
-        dateTimeContainer.setOnMousePressed((MouseEvent event) ->{
+        setColorMenu.setOnAction((ActionEvent event) ->{
+            SetColorDialog dialog = new SetColorDialog(this.selfStoryline);
+            dialog.show();
+        });
+
+        dateTimeContainer.setOnMousePressed((MouseEvent event) -> {
             if (event.isSecondaryButtonDown()) {
                 contextMenu.show(dateTimeContainer, event.getScreenX(), event.getScreenY());
             }
         });
     }
+
+    public boolean clickInEventCard(MouseEvent event) {
+        return this.contains(this.screenToLocal(event.getScreenX(), event.getScreenY()));
+    }
+
 }
