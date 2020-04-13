@@ -11,6 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import jfxtras.scene.control.LocalDateTimeTextField;
 
@@ -25,6 +27,7 @@ public class SetTimePeriodDialog extends Dialog {
 
     @FXML private VBox predefinedMode;
     @FXML private DatePicker predefinedModeDatePicker;
+    @FXML private HBox predefinedModeToggleGroup;
     @FXML private RadioButton dawnChoice;
     @FXML private RadioButton morningChoice;
     @FXML private RadioButton middayChoice;
@@ -40,7 +43,8 @@ public class SetTimePeriodDialog extends Dialog {
     @FXML private Button setButton;
     @FXML private Button cancelButton;
 
-    public SetTimePeriodDialog() {
+    public SetTimePeriodDialog(BasicStoryComponent component) {
+        this.component = component;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SetTimePeriodDialog.fxml"));
         fxmlLoader.setController(this);
         try {
@@ -98,21 +102,49 @@ public class SetTimePeriodDialog extends Dialog {
         setToggleGroup();
         customMode.setDisable(true);
         isCustomMode = false;
-
         customModeToggle.setOnAction((ActionEvent e) -> toggleCustomMode());
 
+        setButton.setDisable(true);
+        predefinedMode.setOnMouseExited((MouseEvent e) -> disableButtonWhenFieldEmpty(setButton));
+        customMode.setOnMouseExited((MouseEvent e) -> disableButtonWhenFieldEmpty(setButton));
+
+        System.out.println("Setting TimePeriod of " + component.toString());
+
         setButton.setOnAction((ActionEvent e) -> {
-            if(isCustomMode){
-                LocalDateTime beginDateTime = customModeBeginDatePicker.getLocalDateTime();
-                LocalDateTime endDateTime = customModeEndDatePicker.getLocalDateTime();
-                component.setTimePeriod(new TimePeriod(beginDateTime, endDateTime));
+            if(!isSomeEmpty()){
+                if(isCustomMode){
+                    LocalDateTime beginDateTime = customModeBeginDatePicker.getLocalDateTime();
+                    LocalDateTime endDateTime = customModeEndDatePicker.getLocalDateTime();
+                    component.setTimePeriod(new TimePeriod(beginDateTime, endDateTime));
+                    System.out.println("Custom date time set");
+                }
+                else {
+                    LocalDate date = predefinedModeDatePicker.getValue();
+                    component.setTimePeriod(TimePeriodGenerator.getTimePeriodFromPeriod(date, getSelectedPredefinedTimePeriod()));
+                    System.out.println("Predefined date time set");
+                }
+                stage.close();
             }
-            else {
-                LocalDate date = predefinedModeDatePicker.getValue();
-                component.setTimePeriod(TimePeriodGenerator.getTimePeriodFromPeriod(date, getSelectedPredefinedTimePeriod()));
-            }
-            stage.close();
         });
         cancelButton.setOnAction((ActionEvent e) -> stage.close());
+    }
+
+    private boolean isSomeEmpty() {
+        boolean isSomeEmpty;
+        if(isCustomMode) {
+            isSomeEmpty = customModeBeginDatePicker.getLocalDateTime() == null || customModeEndDatePicker.getLocalDateTime() == null;
+        }
+        else {
+            isSomeEmpty = predefinedModeDatePicker.getValue() == null || getSelectedPredefinedTimePeriod() == null;
+        }
+        return isSomeEmpty;
+    }
+
+    private void disableButtonWhenFieldEmpty(Button button) {
+        if (isSomeEmpty()) {
+            button.setDisable(true);
+        } else {
+            button.setDisable(false);
+        }
     }
 }

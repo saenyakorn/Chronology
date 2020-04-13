@@ -140,7 +140,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     public void setTimePeriod(TimePeriod timePeriod) {
         super.setTimePeriod(timePeriod);
         date.setText(timePeriod.getBeginDateTime().toLocalDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
-        time.setText(String.valueOf(timePeriod.getBeginDateTime().toLocalTime()));
+        time.setText(timePeriod.getBeginDateTime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
     }
 
     @Override
@@ -171,7 +171,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         MenuItem setColorMenu = new MenuItem("Set storyline color");
         contextMenu.getItems().addAll(setTimePeriodMenu,setColorMenu);
         setTimePeriodMenu.setOnAction((ActionEvent event) -> {
-            SetTimePeriodDialog dialog = new SetTimePeriodDialog();
+            SetTimePeriodDialog dialog = new SetTimePeriodDialog(this);
             dialog.show();
         });
         setColorMenu.setOnAction((ActionEvent event) ->{

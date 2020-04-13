@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
 <?import jfxtras.scene.control.LocalDateTimeTextField?>
-
 <VBox spacing="20" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <padding>
         <Insets topRightBottomLeft="30" />
@@ -26,7 +25,7 @@
                 <Label text="Date: " />
                 <DatePicker fx:id="predefinedModeDatePicker"/>
             </VBox>
-            <HBox spacing="20">
+            <HBox fx:id="predefinedModeToggleGroup" spacing="20">
                 <Label text="Time: " />
                 <VBox spacing="8">
                     <RadioButton fx:id="dawnChoice" text="Dawn / 0.00 - 4.00" />
