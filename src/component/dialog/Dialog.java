@@ -13,6 +13,7 @@ public abstract class Dialog {
         stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initStyle(StageStyle.UTILITY);
+        stage.setAlwaysOnTop(true);
     }
 
     public void show() {
