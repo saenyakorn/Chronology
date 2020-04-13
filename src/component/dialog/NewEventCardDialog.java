@@ -50,7 +50,7 @@ public class NewEventCardDialog extends Dialog {
         }
     }
 
-    public void AddeNewEventCard(String title, String description) {
+    public void addeNewEventCard(String title, String description) {
         System.out.println("Creating a new EventCard");
         Workspace currentWorkspace = ApplicationResource.getCurrentWorkspace();
         Document currentDocument = currentWorkspace.getCurrentDocument();
@@ -68,35 +68,51 @@ public class NewEventCardDialog extends Dialog {
         descriptionTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenSomeTextFieldEmptyEmpty(createButton, titleTextField, descriptionTextField));
         createButton.setOnAction((ActionEvent e) -> {
             if (!isSomeEmpty(titleTextField, descriptionTextField)) {
-                AddeNewEventCard(titleTextField.getText(), descriptionTextField.getText());
+                addeNewEventCard(titleTextField.getText(), descriptionTextField.getText());
             }
         });
         cancelButton.setOnAction((ActionEvent e) -> stage.close());
-        CreateChapterComboBox();
-        CreateaStorylineComboBox();
+        createChapterComboBox();
+        createaStorylineComboBox();
     }
 
-    private void CreateChapterComboBox() {
+    private void createChapterComboBox() {
         ComboBox<BasicStoryComponent> chapterCombo = new ComboBox<>();
         Document document = ApplicationResource.getCurrentWorkspace().getCurrentDocument();
         ChapterList chapters = document.getChapterList();
+        chapterCombo.getItems().add(createEmptyBasicStoryComponent());
         for (Chapter chapter : chapters) {
             chapterCombo.getItems().add(chapter);
         }
         chapterCombo.setCellFactory(params -> new ComboBoxListCell());
         chapterCombo.setButtonCell(new ComboBoxButtonCell());
+        chapterCombo.getSelectionModel().selectFirst();
         comboContainer.getChildren().add(chapterCombo);
     }
 
-    private void CreateaStorylineComboBox() {
+    private void createaStorylineComboBox() {
         ComboBox<BasicStoryComponent> storylineCombo = new ComboBox<>();
         Document document = ApplicationResource.getCurrentWorkspace().getCurrentDocument();
         StorylineList storylines = document.getStorylineList();
+        storylineCombo.getItems().add(createEmptyBasicStoryComponent());
         for (Storyline storyline : storylines) {
             storylineCombo.getItems().add(storyline);
         }
         storylineCombo.setCellFactory(params -> new ComboBoxListCell());
         storylineCombo.setButtonCell(new ComboBoxButtonCell());
+        storylineCombo.getSelectionModel().selectFirst();
         comboContainer.getChildren().add(storylineCombo);
+    }
+
+    private BasicStoryComponent createEmptyBasicStoryComponent() {
+        return new BasicStoryComponent("None", "None") {
+            @Override
+            public String toString() {
+                return "None";
+            }
+
+            @Override
+            protected void loadFXML() { }
+        };
     }
 }
