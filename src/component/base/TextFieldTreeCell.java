@@ -1,6 +1,5 @@
-package component.layouts.sideBar;
+package component.base;
 
-import component.base.BasicStoryComponent;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeCell;
 import javafx.scene.input.KeyCode;
