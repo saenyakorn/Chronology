@@ -2,6 +2,7 @@ package component.layouts.sideBar;
 
 import application.SystemConstants;
 import component.base.BasicStoryComponent;
+import component.base.TextFieldTreeCell;
 import component.components.chapter.Chapter;
 import component.components.chapter.ChapterList;
 import component.components.document.Document;
