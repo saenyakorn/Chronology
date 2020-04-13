@@ -5,7 +5,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx" spacing="20">
+<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx" spacing="20" maxWidth="Infinity"
+      maxHeight="Infinity">
     <padding>
         <Insets topRightBottomLeft="50"/>
     </padding>
@@ -15,9 +16,9 @@
     <TextField fx:id="titleTextField"/>
     <Label text="Event Description: "/>
     <TextField fx:id="descriptionTextField"/>
+    <HBox fx:id="comboContainer"/>
     <HBox alignment="BOTTOM_RIGHT" spacing="20">
         <Button fx:id="cancelButton" text="Cancel"/>
         <Button fx:id="createButton" text="Create"/>
     </HBox>
-
 </VBox>
