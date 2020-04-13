@@ -14,12 +14,12 @@ public class componentTest extends Application {
     }
 
     @Override
-    public void start(Stage mainWindow) throws Exception {
+    public void start(Stage mainWindow) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("layout/componentTest.fxml"));
             mainWindow.setTitle(SystemConstants.APP_NAME);
-            mainWindow.setMaximized(true);
-            mainWindow.setScene(new Scene(root, mainWindow.getMaxWidth(), mainWindow.getMaxHeight()));
+            //mainWindow.setMaximized(true);
+            mainWindow.setScene(new Scene(root, 800, 600));
             mainWindow.show();
         } catch (Exception e) {
             e.printStackTrace();
