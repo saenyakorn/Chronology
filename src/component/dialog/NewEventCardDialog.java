@@ -50,7 +50,7 @@ public class NewEventCardDialog extends Dialog {
         }
     }
 
-    public void addeNewEventCard(String title, String description) {
+    public void addNewEventCard(String title, String description) {
         System.out.println("Creating a new EventCard");
         Workspace currentWorkspace = ApplicationResource.getCurrentWorkspace();
         Document currentDocument = currentWorkspace.getCurrentDocument();
@@ -68,12 +68,12 @@ public class NewEventCardDialog extends Dialog {
         descriptionTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField, descriptionTextField));
         createButton.setOnAction((ActionEvent e) -> {
             if (!isSomeEmpty(titleTextField, descriptionTextField)) {
-                addeNewEventCard(titleTextField.getText(), descriptionTextField.getText());
+                addNewEventCard(titleTextField.getText(), descriptionTextField.getText());
             }
         });
         cancelButton.setOnAction((ActionEvent e) -> stage.close());
         createChapterComboBox();
-        createaStorylineComboBox();
+        createStorylineComboBox();
     }
 
     private void createChapterComboBox() {
@@ -90,7 +90,7 @@ public class NewEventCardDialog extends Dialog {
         comboContainer.getChildren().add(chapterCombo);
     }
 
-    private void createaStorylineComboBox() {
+    private void createStorylineComboBox() {
         ComboBox<BasicStoryComponent> storylineCombo = new ComboBox<>();
         Document document = ApplicationResource.getCurrentWorkspace().getCurrentDocument();
         StorylineList storylines = document.getStorylineList();

@@ -78,7 +78,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     public void setChapter(Chapter selfChapter) {
         this.selfChapter = selfChapter;
-        chapterMarker.setStyle("-fx-background-color: " + colorToHex(selfChapter.getColor()) + ";");
+        //chapterMarker.setStyle("-fx-background-color: " + colorToHex(selfChapter.getColor()) + ";");
     }
 
     @FXML
