@@ -55,6 +55,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         super(title, description);
         selfChapter = null;
         selfStoryline = null;
+        this.loadFXML();
     }
 
     public EventCard(String title, String description, Color color, TimePeriod timePeriod) {

@@ -4,14 +4,15 @@ import component.base.BasicStoryComponent;
 import component.layouts.workspace.Workspace;
 
 import java.util.HashMap;
+import java.util.Hashtable;
 
 public class ApplicationResource {
 
     private static Workspace currentWorkspace;
-    private static HashMap<String, BasicStoryComponent> hashMapBasicStoryComponents;
+    private static Hashtable<String, BasicStoryComponent> hashtableBasicStoryComponents;
 
     public static void initialize() {
-        hashMapBasicStoryComponents = new HashMap<>();
+        hashtableBasicStoryComponents = new Hashtable<>();
     }
 
     public static Workspace getCurrentWorkspace() {
@@ -22,7 +23,7 @@ public class ApplicationResource {
         ApplicationResource.currentWorkspace = currentWorkspace;
     }
 
-    public static HashMap<String, BasicStoryComponent> getHashMapBasicStoryComponents() {
-        return hashMapBasicStoryComponents;
+    public static Hashtable<String, BasicStoryComponent> getHashtableBasicStoryComponents() {
+        return hashtableBasicStoryComponents;
     }
 }

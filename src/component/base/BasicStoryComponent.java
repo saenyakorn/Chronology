@@ -20,7 +20,7 @@ public abstract class BasicStoryComponent extends Pane {
 
     public BasicStoryComponent() {
         this.componentId = Integer.toString(Objects.hashCode(this));
-        ApplicationResource.getHashMapBasicStoryComponents().put(componentId, this);
+        ApplicationResource.getHashtableBasicStoryComponents().put(componentId, this);
         this.title = "Title";
         this.description = "Lorem ipsum dolor set amet, ego bir setaso de.";
         this.color = Color.web(SystemConstants.RED);
@@ -29,7 +29,7 @@ public abstract class BasicStoryComponent extends Pane {
 
     public BasicStoryComponent(String title, String description) {
         this.componentId = Integer.toString(Objects.hashCode(this));
-        ApplicationResource.getHashMapBasicStoryComponents().put(componentId, this);
+        ApplicationResource.getHashtableBasicStoryComponents().put(componentId, this);
         this.title = title;
         this.description = description;
         this.color = Color.web(SystemConstants.RED);
@@ -38,7 +38,7 @@ public abstract class BasicStoryComponent extends Pane {
 
     public BasicStoryComponent(String title, String description, Color color, TimePeriod timePeriod) {
         this.componentId = Integer.toString(Objects.hashCode(this));
-        ApplicationResource.getHashMapBasicStoryComponents().put(componentId, this);
+        ApplicationResource.getHashtableBasicStoryComponents().put(componentId, this);
         this.title = title;
         this.description = description;
         this.color = color;
