@@ -42,6 +42,7 @@ public class Storyline extends BasicStoryComponent {
     public Storyline(String title, String description) {
         super(title, description);
         eventCards = new EventCardList();
+        this.loadFXML();
     }
 
     public Storyline(String title, String description, Color color, TimePeriod timePeriod) {
