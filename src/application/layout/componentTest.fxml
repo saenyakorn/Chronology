@@ -11,7 +11,8 @@
         <Insets topRightBottomLeft="20"/>
     </padding>
     <VBox>
-        <Button fx:id="addEventCardButton" text="Add an event card" onAction="#handleAddEventCard"/>
+        <Button fx:id="addDefaultEventCardButton" text="Add a default event card" onAction="#handleAddDefaultEventCard"/>
+        <Button fx:id="addEventCardButton" text="Add a customized event card" onAction="#handleAddEventCard"/>
         <Storyline fx:id="storyline"/>
     </VBox>
 </ScrollPane>
