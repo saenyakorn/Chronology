@@ -21,7 +21,7 @@ import javafx.scene.shape.Line;
 import java.io.IOException;
 
 public class Storyline extends BasicStoryComponent {
-    private EventCardList eventCards;
+    private final EventCardList eventCards;
 
     @FXML
     private Pane root;
@@ -42,6 +42,7 @@ public class Storyline extends BasicStoryComponent {
     public Storyline(String title, String description) {
         super(title, description);
         eventCards = new EventCardList();
+        this.loadFXML();
     }
 
     public Storyline(String title, String description, Color color, TimePeriod timePeriod) {
