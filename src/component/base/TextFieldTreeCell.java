@@ -64,6 +64,9 @@ public final class TextFieldTreeCell extends TreeCell<BasicStoryComponent> {
                 cancelEdit();
             }
         });
+        textField.setOnMouseClicked((MouseEvent event) -> {
+
+        });
     }
 
     private void addEventListenerToThisNode() {
