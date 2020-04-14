@@ -2,6 +2,7 @@ package component.layouts.sideBar;
 
 import application.SystemConstants;
 import component.base.BasicStoryComponent;
+import component.base.OnlyBodyBasicStoryComponents;
 import component.base.TextFieldTreeCell;
 import component.components.chapter.Chapter;
 import component.components.chapter.ChapterList;
@@ -17,7 +18,7 @@ import javafx.scene.layout.VBox;
 
 public class SideBar extends ScrollPane {
 
-    private TreeView<BasicStoryComponent> treeView;
+    private final TreeView<BasicStoryComponent> treeView;
 
     public SideBar() {
         // TreeView setting
@@ -32,25 +33,12 @@ public class SideBar extends ScrollPane {
         this.setContent(treeView);
     }
 
-    private BasicStoryComponent createBasicStoryComponentFromDocument(Document document) {
-        return new BasicStoryComponent(document.getText(), document.getText()) {
-            @Override
-            public String toString() {
-                return title;
-            }
-
-            @Override
-            protected void loadFXML() {
-            }
-        };
-    }
-
     public void setActiveDocument(Document document) {
         System.out.println("SETTING ACTIVE DOCUMENT");
         EventCardList eventCardList = document.getEventCardList();
         ChapterList chapterList = document.getChapterList();
         StorylineList storylineList = document.getStorylineList();
-        BasicStoryComponent documentData = createBasicStoryComponentFromDocument(document);
+        BasicStoryComponent documentData = new OnlyBodyBasicStoryComponents(document.getText(), "none");
         TreeItem<BasicStoryComponent> rootItem = new TreeItem<>(documentData);
         createTreeItemFromNonChapterEventCard(rootItem, eventCardList);
         createTreeItemFromChapterList(rootItem, chapterList);

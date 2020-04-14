@@ -1,10 +1,10 @@
 package component.dialog;
 
 import application.ApplicationResource;
-import application.SystemConstants;
 import component.base.BasicStoryComponent;
 import component.base.ComboBoxButtonCell;
 import component.base.ComboBoxListCell;
+import component.base.OnlyBodyBasicStoryComponents;
 import component.components.chapter.Chapter;
 import component.components.chapter.ChapterList;
 import component.components.document.Document;
@@ -80,7 +80,7 @@ public class NewEventCardDialog extends Dialog {
         ComboBox<BasicStoryComponent> chapterCombo = new ComboBox<>();
         Document document = ApplicationResource.getCurrentWorkspace().getCurrentDocument();
         ChapterList chapters = document.getChapterList();
-        chapterCombo.getItems().add(createEmptyBasicStoryComponent());
+        chapterCombo.getItems().add(new OnlyBodyBasicStoryComponents("None", "None"));
         for (Chapter chapter : chapters) {
             chapterCombo.getItems().add(chapter);
         }
@@ -94,7 +94,7 @@ public class NewEventCardDialog extends Dialog {
         ComboBox<BasicStoryComponent> storylineCombo = new ComboBox<>();
         Document document = ApplicationResource.getCurrentWorkspace().getCurrentDocument();
         StorylineList storylines = document.getStorylineList();
-        storylineCombo.getItems().add(createEmptyBasicStoryComponent());
+        storylineCombo.getItems().add(new OnlyBodyBasicStoryComponents("None", "None"));
         for (Storyline storyline : storylines) {
             storylineCombo.getItems().add(storyline);
         }
@@ -102,17 +102,5 @@ public class NewEventCardDialog extends Dialog {
         storylineCombo.setButtonCell(new ComboBoxButtonCell());
         storylineCombo.getSelectionModel().selectFirst();
         comboContainer.getChildren().add(storylineCombo);
-    }
-
-    private BasicStoryComponent createEmptyBasicStoryComponent() {
-        return new BasicStoryComponent("None", "None") {
-            @Override
-            public String toString() {
-                return "None";
-            }
-
-            @Override
-            protected void loadFXML() { }
-        };
     }
 }
