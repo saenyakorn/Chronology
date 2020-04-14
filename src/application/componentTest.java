@@ -15,6 +15,7 @@ public class componentTest extends Application {
 
     @Override
     public void start(Stage mainWindow) {
+        ApplicationResource.initialize();
         try {
             Parent root = FXMLLoader.load(getClass().getResource("layout/componentTest.fxml"));
             mainWindow.setTitle(SystemConstants.APP_NAME);
