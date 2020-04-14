@@ -3,9 +3,9 @@ package component.base;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 
-public class ComboBoxListCell extends ListCell<BasicStoryComponent> {
+public final class ComboBoxListCell extends ListCell<BasicStoryComponent> {
 
-    private Label label;
+    private final Label label;
 
     public ComboBoxListCell() {
         super();
