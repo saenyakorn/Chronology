@@ -85,4 +85,11 @@ public abstract class BasicStoryComponent extends Pane {
     abstract public String toString();
 
     protected abstract void loadFXML();
+
+    protected String colorToHex(Color color) {
+        return String.format("#%02x%02x%02x",
+                (int) (255 * color.getRed()),
+                (int) (255 * color.getGreen()),
+                (int) (255 * color.getBlue()));
+    }
 }

@@ -32,7 +32,7 @@ public abstract class Dialog {
         return isSomeEmpty;
     }
 
-    public void disableButtonWhenSomeTextFieldEmptyEmpty(Button button, TextField... args) {
+    public void disableButtonWhenTextFieldEmpty(Button button, TextField... args) {
         if (isSomeEmpty(args)) {
             button.setDisable(true);
         } else {

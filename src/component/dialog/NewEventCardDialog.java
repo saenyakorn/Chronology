@@ -64,8 +64,8 @@ public class NewEventCardDialog extends Dialog {
     @FXML
     protected void initialize() {
         createButton.setDisable(true);
-        titleTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenSomeTextFieldEmptyEmpty(createButton, titleTextField, descriptionTextField));
-        descriptionTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenSomeTextFieldEmptyEmpty(createButton, titleTextField, descriptionTextField));
+        titleTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField, descriptionTextField));
+        descriptionTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField, descriptionTextField));
         createButton.setOnAction((ActionEvent e) -> {
             if (!isSomeEmpty(titleTextField, descriptionTextField)) {
                 addeNewEventCard(titleTextField.getText(), descriptionTextField.getText());

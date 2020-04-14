@@ -1,31 +1,31 @@
-@import url("file:src/application/font.css");
-
 StackPane {
     -fx-padding: 10 15 10 15;
 }
 
 #dateTimeContainer {
-    -fx-padding: 10 15 10 15;
-    -fx-spacing: 5;
+    -fx-padding: 5 15 5 15;
+    -fx-spacing: 50;
 }
 
 #date {
     -fx-font-family: "NotoSans";
     -fx-font-weight: bold;
-    -fx-font-size: 24px;
-    -fx-fill: #FF3E60;
+    -fx-font-size: 14px;
 }
 
 #time {
     -fx-font-family: "NotoSans";
     -fx-font-weight: bold;
     -fx-font-size: 14px;
-    -fx-fill: #FF3E60;
 }
 
 #card {
     -fx-background-radius: 20 20 20 20;
     -fx-effect: dropshadow(gaussian, rgba(28,28,28,0.1), 20, 0, 0, 10);
+}
+
+#card:hover {
+     -fx-effect: dropshadow(gaussian, rgba(28,28,28,0.3), 20, 0, 0, 10);
 }
 
 #cardTitleContainer {
@@ -47,13 +47,12 @@ StackPane {
     -fx-font-weight: normal;
     -fx-font-size: 14px;
     -fx-text-fill: #FFFFFF;
-    -fx-background-color: #FF3E60;
+    -fx-background-color: transparent;
     -fx-opacity: 0.8;
 }
 
 #cardDescriptionContainer {
     -fx-background-color: #FFFFFF;
-    -fx-background-radius: 0 0 20 20;
 }
 
 #cardDescription:disabled {
@@ -74,6 +73,10 @@ StackPane {
 
 #cardDescription .content {
     -fx-background-color: transparent, white, transparent, white;
+}
+
+#chapterMarker {
+    -fx-background-radius: 0 0 20 20;
 }
 
 
