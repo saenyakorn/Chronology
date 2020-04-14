@@ -21,7 +21,7 @@ import javafx.scene.shape.Line;
 import java.io.IOException;
 
 public class Storyline extends BasicStoryComponent {
-    private EventCardList eventCards;
+    private final EventCardList eventCards;
 
     @FXML
     private Pane root;

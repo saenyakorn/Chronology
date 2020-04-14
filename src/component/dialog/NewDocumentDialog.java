@@ -34,7 +34,7 @@ public class NewDocumentDialog extends Dialog {
         }
     }
 
-    private void AddNewDocument(String name) {
+    private void addNewDocument(String name) {
         System.out.println("Creating a new document");
         ApplicationResource.getCurrentWorkspace().addDocument(new Document(name));
         System.out.println("Done");
@@ -47,7 +47,7 @@ public class NewDocumentDialog extends Dialog {
         docNameTextField.setOnKeyReleased((KeyEvent e) -> disableButtonWhenTextFieldEmpty(createButton, docNameTextField));
         createButton.setOnAction((ActionEvent e) -> {
             if (!isSomeEmpty(docNameTextField)) {
-                AddNewDocument(docNameTextField.getText());
+                addNewDocument(docNameTextField.getText());
             }
         });
         cancelButton.setOnAction((ActionEvent e) -> stage.close());

@@ -34,7 +34,6 @@ public class SideBar extends ScrollPane {
     }
 
     public void setActiveDocument(Document document) {
-        System.out.println("SETTING ACTIVE DOCUMENT");
         EventCardList eventCardList = document.getEventCardList();
         ChapterList chapterList = document.getChapterList();
         StorylineList storylineList = document.getStorylineList();

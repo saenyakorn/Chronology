@@ -1,28 +1,30 @@
 package application;
 
 import component.base.BasicStoryComponent;
+import component.components.document.Document;
 import component.layouts.workspace.Workspace;
-
-import java.util.HashMap;
 
 public class ApplicationResource {
 
     private static Workspace currentWorkspace;
-    private static HashMap<String, BasicStoryComponent> hashMapBasicStoryComponents;
 
     public static void initialize() {
-        hashMapBasicStoryComponents = new HashMap<>();
+        ApplicationResource.currentWorkspace.addDocument(new Document("New Document"));
     }
 
     public static Workspace getCurrentWorkspace() {
-        return currentWorkspace;
+        return ApplicationResource.currentWorkspace;
     }
 
     public static void setCurrentWorkspace(Workspace currentWorkspace) {
         ApplicationResource.currentWorkspace = currentWorkspace;
     }
 
-    public static HashMap<String, BasicStoryComponent> getHashMapBasicStoryComponents() {
-        return hashMapBasicStoryComponents;
+    public static void putItemToCurrentWorkspaceHashMap(String key, BasicStoryComponent value) {
+        ApplicationResource.currentWorkspace.getHashMapBasicStoryComponents().put(key, value);
+    }
+
+    public static BasicStoryComponent getValueFromCurrentWorkspaceHashMap(String key) {
+        return ApplicationResource.currentWorkspace.getHashMapBasicStoryComponents().get(key);
     }
 }
