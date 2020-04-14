@@ -14,7 +14,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage mainWindow) throws Exception {
-        ApplicationResource.initialize();
         try {
             Parent root = FXMLLoader.load(getClass().getResource("layout/mainWindow.fxml"));
             mainWindow.setTitle(SystemConstants.APP_NAME);
