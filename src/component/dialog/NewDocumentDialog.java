@@ -44,7 +44,7 @@ public class NewDocumentDialog extends Dialog {
     @FXML
     protected void initialize() {
         createButton.setDisable(true);
-        docNameTextField.setOnKeyReleased((KeyEvent e) -> disableButtonWhenSomeTextFieldEmptyEmpty(createButton, docNameTextField));
+        docNameTextField.setOnKeyReleased((KeyEvent e) -> disableButtonWhenTextFieldEmpty(createButton, docNameTextField));
         createButton.setOnAction((ActionEvent e) -> {
             if (!isSomeEmpty(docNameTextField)) {
                 AddNewDocument(docNameTextField.getText());

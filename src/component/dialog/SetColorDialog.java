@@ -1,6 +1,7 @@
 package component.dialog;
 
 import application.SystemConstants;
+import component.base.BasicStoryComponent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,16 +9,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
-import javafx.scene.paint.Color;
 
 import java.io.IOException;
 
 public class SetColorDialog extends Dialog {
+    private BasicStoryComponent component;
+
     @FXML private ColorPicker colorPicker;
     @FXML private Button setButton;
     @FXML private Button cancelButton;
 
-    public SetColorDialog() {
+    public SetColorDialog(BasicStoryComponent component) {
+        this.component = component;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SetColorDialog.fxml"));
         fxmlLoader.setController(this);
         try {
@@ -29,13 +32,17 @@ public class SetColorDialog extends Dialog {
         }
     }
 
-    public Color getColorFromColorPicker(Color color) {
-        return color;
-    }
-
     @FXML
     public void initialize() {
-        setButton.setOnAction((ActionEvent e) -> getColorFromColorPicker(colorPicker.getValue()));
+        colorPicker.setValue(component.getColor());
+        System.out.println("Setting color of " + component.toString());
+
+        setButton.setOnAction((ActionEvent e) -> {
+            component.setColor(colorPicker.getValue());
+            System.out.println("Color picked is " + colorPicker.getValue().toString());
+            System.out.println("Color set to " + component.getColor().toString());
+            stage.close();
+        });
         cancelButton.setOnAction((ActionEvent e) -> stage.close());
     }
 }
