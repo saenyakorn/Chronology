@@ -22,6 +22,9 @@ public class mainController {
     @FXML
     public void initialize() {
         ApplicationResource.setCurrentWorkspace(workspace);
+        Workspace workspace = ApplicationResource.getCurrentWorkspace();
+        System.out.println(workspace);
+        ApplicationResource.initialize();
         VBox.setVgrow(workspace, Priority.ALWAYS);
     }
 
