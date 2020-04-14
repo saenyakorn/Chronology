@@ -105,8 +105,8 @@ public class SetTimePeriodDialog extends Dialog {
         customModeToggle.setOnAction((ActionEvent e) -> toggleCustomMode());
 
         setButton.setDisable(true);
-        predefinedMode.setOnMouseExited((MouseEvent e) -> disableButtonWhenFieldEmpty(setButton));
-        customMode.setOnMouseExited((MouseEvent e) -> disableButtonWhenFieldEmpty(setButton));
+        predefinedMode.setOnMouseExited((MouseEvent e) -> disableButton(setButton));
+        customMode.setOnMouseExited((MouseEvent e) -> disableButton(setButton));
 
         System.out.println("Setting TimePeriod of " + component.toString());
 
@@ -140,11 +140,20 @@ public class SetTimePeriodDialog extends Dialog {
         return isSomeEmpty;
     }
 
-    private void disableButtonWhenFieldEmpty(Button button) {
+    private void disableButton(Button button) {
         if (isSomeEmpty()) {
             button.setDisable(true);
+        } else if(isCustomMode) {
+            LocalDateTime beginDateTime = customModeBeginDatePicker.getLocalDateTime();
+            LocalDateTime endDateTime = customModeEndDatePicker.getLocalDateTime();
+            if(endDateTime.isBefore(beginDateTime)){
+                setButton.setDisable(true);
+            } else {
+                setButton.setDisable(false);
+            }
         } else {
-            button.setDisable(false);
+            setButton.setDisable(false);
         }
     }
+
 }
