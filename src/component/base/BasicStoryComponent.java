@@ -1,5 +1,6 @@
 package component.base;
 
+import application.ApplicationResource;
 import application.SystemConstants;
 import component.components.timeModifier.PredefinedTimePeriod;
 import component.components.timeModifier.TimePeriod;
@@ -8,14 +9,18 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public abstract class BasicStoryComponent extends Pane {
+    protected final String componentId;
     protected String title;
     protected String description;
     protected Color color;
     protected TimePeriod timePeriod;
 
     public BasicStoryComponent() {
+        this.componentId = Integer.toString(Objects.hashCode(this));
+        ApplicationResource.getHashMapBasicStoryComponents().put(componentId, this);
         this.title = "Title";
         this.description = "Lorem ipsum dolor set amet, ego bir setaso de.";
         this.color = Color.web(SystemConstants.RED);
@@ -23,6 +28,8 @@ public abstract class BasicStoryComponent extends Pane {
     }
 
     public BasicStoryComponent(String title, String description) {
+        this.componentId = Integer.toString(Objects.hashCode(this));
+        ApplicationResource.getHashMapBasicStoryComponents().put(componentId, this);
         this.title = title;
         this.description = description;
         this.color = Color.web(SystemConstants.RED);
@@ -30,10 +37,16 @@ public abstract class BasicStoryComponent extends Pane {
     }
 
     public BasicStoryComponent(String title, String description, Color color, TimePeriod timePeriod) {
+        this.componentId = Integer.toString(Objects.hashCode(this));
+        ApplicationResource.getHashMapBasicStoryComponents().put(componentId, this);
         this.title = title;
         this.description = description;
         this.color = color;
         this.timePeriod = timePeriod;
+    }
+
+    public String getComponentId() {
+        return componentId;
     }
 
     public String getTitle() {
