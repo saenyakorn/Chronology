@@ -10,29 +10,7 @@ public final class TextFieldTreeCell extends TreeCell<BasicStoryComponent> {
 
     public TextFieldTreeCell() {
         super();
-        this.setOnDragDone((DragEvent event) -> {
-            System.out.println("Drag Done");
-        });
-        this.setOnDragDetected((MouseEvent event) -> {
-            System.out.println("Drag Detected");
-            Dragboard dragboard = this.startDragAndDrop(TransferMode.ANY);
-            ClipboardContent clipboardContent = new ClipboardContent();
-            clipboardContent.putString(getItem().getComponentId());
-            dragboard.setContent(clipboardContent);
-            event.consume();
-        });
-        this.setOnDragEntered((DragEvent event) -> {
-            System.out.println("Drag Enter");
-            event.consume();
-        });
-        this.setOnDragExited((DragEvent event) -> {
-            System.out.println("Drag Exited");
-            event.consume();
-        });
-        this.setOnDragOver((DragEvent event) -> {
-            System.out.println("Drag Over");
-            event.consume();
-        });
+        addEventListenerToThisNode();
     }
 
     @Override
@@ -85,6 +63,32 @@ public final class TextFieldTreeCell extends TreeCell<BasicStoryComponent> {
             } else if (event.getCode() == KeyCode.ESCAPE) {
                 cancelEdit();
             }
+        });
+    }
+
+    private void addEventListenerToThisNode() {
+        this.setOnDragDone((DragEvent event) -> {
+            System.out.println("Drag Done");
+        });
+        this.setOnDragDetected((MouseEvent event) -> {
+            System.out.println("Drag Detected");
+            Dragboard dragboard = this.startDragAndDrop(TransferMode.ANY);
+            ClipboardContent clipboardContent = new ClipboardContent();
+            clipboardContent.putString(getItem().getComponentId());
+            dragboard.setContent(clipboardContent);
+            event.consume();
+        });
+        this.setOnDragEntered((DragEvent event) -> {
+            System.out.println("Drag Enter");
+            event.consume();
+        });
+        this.setOnDragExited((DragEvent event) -> {
+            System.out.println("Drag Exited");
+            event.consume();
+        });
+        this.setOnDragOver((DragEvent event) -> {
+            System.out.println("Drag Over");
+            event.consume();
         });
     }
 
