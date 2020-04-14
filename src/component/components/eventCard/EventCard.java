@@ -150,6 +150,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
         date.setText(timePeriod.getBeginDateTime().toLocalDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
         time.setText(timePeriod.getBeginDateTime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
+        //selfStoryline.getEventCards().sortEventCards();
         //selfStoryline.renderEventCards();
     }
 
