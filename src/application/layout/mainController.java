@@ -1,11 +1,11 @@
 package application.layout;
 
 import application.ApplicationResource;
+import component.components.document.Document;
 import component.dialog.NewChapterDialog;
 import component.dialog.NewDocumentDialog;
 import component.dialog.NewEventCardDialog;
 import component.dialog.NewStorylineDialog;
-import component.layouts.workspace.Workspace;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuBar;
@@ -15,17 +15,16 @@ import javafx.scene.layout.VBox;
 public class mainController {
 
     @FXML
-    private Workspace workspace;
+    private VBox vBox;
     @FXML
     private MenuBar menuBar;
 
     @FXML
     public void initialize() {
-        ApplicationResource.setCurrentWorkspace(workspace);
-        Workspace workspace = ApplicationResource.getCurrentWorkspace();
-        System.out.println(workspace);
         ApplicationResource.initialize();
-        VBox.setVgrow(workspace, Priority.ALWAYS);
+        ApplicationResource.getCurrentWorkspace().addDocument(new Document("New Document"));
+        vBox.getChildren().add(1, ApplicationResource.getCurrentWorkspace());
+        VBox.setVgrow(vBox.getChildren().get(1), Priority.ALWAYS);
     }
 
     @FXML
@@ -52,4 +51,18 @@ public class mainController {
         dialog.show();
     }
 
+    @FXML
+    protected void handleSaveClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    protected void handleSaveAsClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    protected void handleOpenClick(ActionEvent event) {
+
+    }
 }
