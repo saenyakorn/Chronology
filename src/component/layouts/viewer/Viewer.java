@@ -21,6 +21,10 @@ public class Viewer extends TabPane {
         addEventListenderToNode();
     }
 
+    public void reRenderViewer(Document document) {
+
+    }
+
     public void addDocument(Document document) {
         this.getTabs().add(document);
     }
