@@ -4,16 +4,26 @@ import component.base.BasicStoryComponent;
 import component.components.document.Document;
 import component.layouts.workspace.Workspace;
 
+import java.io.File;
+
 public class ApplicationResource {
 
+    private static File savedFile;
     private static Workspace currentWorkspace;
 
     public static void initialize() {
-        ApplicationResource.currentWorkspace.addDocument(new Document("New Document"));
+        savedFile = null;
+        Workspace workspace = new Workspace();
+        setCurrentWorkspace(workspace);
     }
 
     public static Workspace getCurrentWorkspace() {
         return ApplicationResource.currentWorkspace;
+    }
+
+    public static void update() {
+        Document currentDocument = ApplicationResource.getCurrentWorkspace().getCurrentDocument();
+        ApplicationResource.getCurrentWorkspace().setActiveDocument(currentDocument);
     }
 
     public static void setCurrentWorkspace(Workspace currentWorkspace) {
