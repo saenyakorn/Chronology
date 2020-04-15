@@ -32,7 +32,7 @@ public class Workspace extends HBox {
         viewer.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Tab> observableValue, Tab previousTab, Tab currentTab) -> {
             if (currentTab instanceof Document) {
                 Document selectedDocument = (Document) currentTab;
-                sideBar.setActiveDocument(selectedDocument);
+                sideBar.reRenderSideBar(selectedDocument);
             }
         });
 
@@ -53,7 +53,8 @@ public class Workspace extends HBox {
     }
 
     public void setActiveDocument(Document document) {
-        sideBar.setActiveDocument(document);
+        sideBar.reRenderSideBar(document);
+        viewer.reRenderViewer(document);
     }
 
     public void addDocument(Document document) {
