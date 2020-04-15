@@ -21,6 +21,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
@@ -63,24 +64,6 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         this.loadFXML();
     }
 
-    public Storyline getStoryline() {
-        return selfStoryline;
-    }
-
-    public void setStoryline(Storyline selfStoryLine) {
-        this.selfStoryline = selfStoryLine;
-        this.setColor(selfStoryLine.getColor());
-    }
-
-    public Chapter getChapter() {
-        return selfChapter;
-    }
-
-    public void setChapter(Chapter selfChapter) {
-        this.selfChapter = selfChapter;
-        chapterMarker.setStyle("-fx-background-color: " + colorToHex(selfChapter.getColor()) + ";");
-    }
-
     @FXML
     public void initialize() {
         this.setTitle(this.getTitle());
@@ -117,6 +100,26 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         }
     }
 
+    public Storyline getStoryline() {
+        return selfStoryline;
+    }
+
+    public void setStoryline(Storyline selfStoryLine) {
+        this.selfStoryline = selfStoryLine;
+        this.setColor(selfStoryLine.getColor());
+        setSelfComponentTimePeriod(timePeriod, selfStoryLine); //no null case
+    }
+
+    public Chapter getChapter() {
+        return selfChapter;
+    }
+
+    public void setChapter(Chapter selfChapter) {
+        this.selfChapter = selfChapter;
+        //chapterMarker.setStyle("-fx-background-color: " + colorToHex(selfChapter.getColor()) + ";");
+        setSelfComponentTimePeriod(timePeriod, selfChapter); //no null case
+    }
+
     @Override
     public void setTitle(String title) {
         super.setTitle(title);
@@ -140,8 +143,30 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     @Override
     public void setTimePeriod(TimePeriod timePeriod) {
         super.setTimePeriod(timePeriod);
+        if(selfStoryline != null)
+            setSelfComponentTimePeriod(timePeriod, selfStoryline);
+        if(selfChapter != null)
+            setSelfComponentTimePeriod(timePeriod, selfChapter);
+
         date.setText(timePeriod.getBeginDateTime().toLocalDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
         time.setText(timePeriod.getBeginDateTime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
+        //selfStoryline.getEventCards().sortEventCards();
+        //selfStoryline.renderEventCards();
+    }
+
+    public void setSelfComponentTimePeriod (TimePeriod timePeriod, BasicStoryComponent component) {
+        LocalDateTime newBeginDateTime = timePeriod.getBeginDateTime();
+        LocalDateTime newEndDateTime = timePeriod.getEndDateTime();
+
+        if(newBeginDateTime.isBefore(component.getTimePeriod().getBeginDateTime())) {
+            component.getTimePeriod().setBeginDateTime(newBeginDateTime);
+            System.out.println("Storyline BeginDateTime set to " + component.getTimePeriod().getBeginDateTime());
+
+        }
+        if(newEndDateTime.isAfter(component.getTimePeriod().getEndDateTime())) {
+            component.getTimePeriod().setEndDateTime(newEndDateTime);
+            System.out.println("Storyline EndDateTime set to " + component.getTimePeriod().getEndDateTime());
+        }
     }
 
     @Override

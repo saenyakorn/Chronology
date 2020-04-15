@@ -38,6 +38,10 @@ public class EventCardList extends HBox implements Iterable<EventCard> {
         }
     }
 
+    public void sortEventCards() {
+        Collections.sort(this.eventCards);
+    }
+
     public int size() {
         return eventCards.size();
     }
