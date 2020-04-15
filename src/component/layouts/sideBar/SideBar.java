@@ -2,8 +2,8 @@ package component.layouts.sideBar;
 
 import application.SystemConstants;
 import component.base.BasicStoryComponent;
+import component.base.BasicStoryComponentTreeCell;
 import component.base.OnlyBodyBasicStoryComponents;
-import component.base.TextFieldTreeCell;
 import component.components.chapter.Chapter;
 import component.components.chapter.ChapterList;
 import component.components.document.Document;
@@ -25,7 +25,7 @@ public class SideBar extends ScrollPane {
         treeView = new TreeView<>();
         treeView.setShowRoot(false);
         treeView.setEditable(true);
-        treeView.setCellFactory(params -> new TextFieldTreeCell());
+        treeView.setCellFactory(params -> new BasicStoryComponentTreeCell());
         this.setFitToWidth(true);
         this.setPrefWidth(SystemConstants.SIDEBAR_PREF_WIDTH);
         VBox vBox = new VBox();
@@ -33,7 +33,7 @@ public class SideBar extends ScrollPane {
         this.setContent(treeView);
     }
 
-    public void setActiveDocument(Document document) {
+    public void reRenderSideBar(Document document) {
         EventCardList eventCardList = document.getEventCardList();
         ChapterList chapterList = document.getChapterList();
         StorylineList storylineList = document.getStorylineList();
