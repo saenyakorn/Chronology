@@ -39,7 +39,7 @@ public class TimePeriod implements Comparable<TimePeriod> {
     public boolean isAfter(Object o) {
         if (o instanceof TimePeriod) {
             TimePeriod other = (TimePeriod) o;
-            return other.endDateTime.isAfter(this.endDateTime);
+            return other.beginDateTime.isAfter(this.beginDateTime);
         } else {
             throw new IllegalArgumentException("Type cannot be compared");
         }
