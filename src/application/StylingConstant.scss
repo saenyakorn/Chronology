@@ -1,0 +1,24 @@
+/* Styling constants */
+$spacing: 8px;
+$border-radius: 20px;
+$transition-delay: 0.2s;
+$drop-shadow: dropshadow(gaussian, rgba(28, 28, 28, 0.1), 20, 0, 0, 10); /* use with -fx-effect */
+
+/* Font Constants */
+$heading-size: 14px;
+$regular-size: 12px;
+
+/* Monochrome */
+$white: #ffffff;
+$light-gray: #f6f6f6;
+$medium-grey: #4f4f4f;
+$dark-grey: #6b6b6b;
+$black: #1c1c1c;
+
+/* Default palette */
+$pink: #ff76b8;
+$red: #ff3e60;
+$orange: #ffa63e;
+$lime: #94ee6a;
+$sky-blue: #3ec5ff;
+$lavender: #a587fb;
