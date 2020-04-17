@@ -1,0 +1,7 @@
+.tree-cell {
+    -fx-background-color: #fff
+}
+
+.tree-cell:hover {
+    -fx-background-color: #94ee6a
+}

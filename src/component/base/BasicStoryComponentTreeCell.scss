@@ -1,0 +1,10 @@
+@import "../../application/StylingConstant";
+
+.tree-cell {
+  -fx-background-color: $white;
+}
+
+.tree-cell:hover {
+  -fx-background-color: $lime;
+}
+
