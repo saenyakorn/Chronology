@@ -1,11 +1,11 @@
 .side-bar {
-    -fx-background-color: #fff
+    -fx-background: #fff
 }
 
 .v-box {
-    -fx-background-color: #ffa63e
+    -fx-background: #fff
 }
 
 .tree-view {
-    -fx-background-color: #fff
+    -fx-background: #fff
 }
