@@ -1,4 +1,4 @@
-@import url('file:src/application/font.css');
+@import url('../../../application/font.css');
 
 StackPane {
     -fx-padding: 10 15 10 15;
@@ -10,14 +10,12 @@ StackPane {
 }
 
 #date {
-    -fx-font-family: "Sarabun";
-    -fx-font-weight: 800;
+    -fx-font-family: "Sarabun ExtraBold";
     -fx-font-size: 16px;
 }
 
 #time {
-    -fx-font-family: "Sarabun";
-    -fx-font-weight: 800;
+    -fx-font-family: "Sarabun ExtraBold";
     -fx-font-size: 16px;
 }
 
@@ -36,9 +34,8 @@ StackPane {
 }
 
 #cardTitle:disabled {
-    -fx-font-family: "Sarabun";
-    -fx-font-weight: 800;
-    -fx-font-size: 1ุ6px;
+    -fx-font-family: "Sarabun ExtraBold";
+    -fx-font-size: 16px;
     -fx-text-fill: #FFFFFF;
     -fx-background-color: transparent;
     -fx-opacity: 1.0;
@@ -46,7 +43,6 @@ StackPane {
 
 #cardTitle {
     -fx-font-family: "Sarabun";
-    -fx-font-weight: 400;
     -fx-font-size: 16px;
     -fx-text-fill: #FFFFFF;
     -fx-background-color: transparent;
