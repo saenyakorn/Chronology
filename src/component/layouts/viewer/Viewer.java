@@ -18,10 +18,10 @@ public class Viewer extends TabPane {
     public Viewer() {
         scrollPane = new ScrollPane();
         vBox = new VBox();
-        addEventListenderToNode();
+        addEventListenerToNode();
     }
 
-    public void reRenderViewer(Document document) {
+    public void renderViewer(Document document) {
 
     }
 
@@ -33,7 +33,7 @@ public class Viewer extends TabPane {
         this.getTabs().remove(document);
     }
 
-    private void addEventListenderToNode() {
+    private void addEventListenerToNode() {
         this.setOnDragOver((DragEvent event) -> {
             if (event.getDragboard().hasString()) {
                 event.acceptTransferModes(TransferMode.ANY);

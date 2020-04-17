@@ -143,15 +143,16 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     @Override
     public void setTimePeriod(TimePeriod timePeriod) {
         super.setTimePeriod(timePeriod);
-        if(selfStoryline != null)
+        if(selfStoryline != null){
             setSelfComponentTimePeriod(timePeriod, selfStoryline);
+            selfStoryline.getEventCards().sortEventCards();
+            selfStoryline.renderEventCards();
+        }
         if(selfChapter != null)
             setSelfComponentTimePeriod(timePeriod, selfChapter);
 
         date.setText(timePeriod.getBeginDateTime().toLocalDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
         time.setText(timePeriod.getBeginDateTime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
-        //selfStoryline.getEventCards().sortEventCards();
-        //selfStoryline.renderEventCards();
     }
 
     public void setSelfComponentTimePeriod (TimePeriod timePeriod, BasicStoryComponent component) {

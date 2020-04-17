@@ -1,3 +1,5 @@
+@import url('file:src/application/font.css');
+
 StackPane {
     -fx-padding: 10 15 10 15;
 }
@@ -8,15 +10,15 @@ StackPane {
 }
 
 #date {
-    -fx-font-family: "NotoSans";
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
+    -fx-font-family: "Sarabun";
+    -fx-font-weight: 800;
+    -fx-font-size: 16px;
 }
 
 #time {
-    -fx-font-family: "NotoSans";
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
+    -fx-font-family: "Sarabun";
+    -fx-font-weight: 800;
+    -fx-font-size: 16px;
 }
 
 #card {
@@ -34,18 +36,18 @@ StackPane {
 }
 
 #cardTitle:disabled {
-    -fx-font-family: "NotoSans";
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
+    -fx-font-family: "Sarabun";
+    -fx-font-weight: 800;
+    -fx-font-size: 1ุ6px;
     -fx-text-fill: #FFFFFF;
     -fx-background-color: transparent;
     -fx-opacity: 1.0;
 }
 
 #cardTitle {
-    -fx-font-family: "NotoSans";
-    -fx-font-weight: normal;
-    -fx-font-size: 14px;
+    -fx-font-family: "Sarabun";
+    -fx-font-weight: 400;
+    -fx-font-size: 16px;
     -fx-text-fill: #FFFFFF;
     -fx-background-color: transparent;
     -fx-opacity: 0.8;
@@ -56,18 +58,18 @@ StackPane {
 }
 
 #cardDescription:disabled {
-    -fx-font-family: "NotoSans";
-    -fx-font-weight: normal;
-    -fx-font-size: 12px;
+    -fx-font-family: "Sarabun";
+    -fx-font-weight: 400;
+    -fx-font-size: 14px;
     -fx-text-fill: #1C1C1C;
     -fx-background-color: transparent;
     -fx-opacity: 1.0;
 }
 
 #cardDescription {
-    -fx-font-family: "NotoSans";
-    -fx-font-weight: normal;
-    -fx-font-size: 12px;
+    -fx-font-family: "Sarabun";
+    -fx-font-weight: 400;
+    -fx-font-size: 14px;
     -fx-text-fill: #1C1C1C;
 }
 

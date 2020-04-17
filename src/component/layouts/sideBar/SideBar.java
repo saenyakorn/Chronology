@@ -44,7 +44,7 @@ public class SideBar extends ScrollPane {
         this.setContent(treeView);
     }
 
-    public void reRenderSideBar(Document document) {
+    public void renderSideBar(Document document) {
         EventCardList eventCardList = document.getEventCardList();
         ChapterList chapterList = document.getChapterList();
         StorylineList storylineList = document.getStorylineList();
@@ -52,7 +52,7 @@ public class SideBar extends ScrollPane {
         TreeItem<BasicStoryComponent> rootItem = new TreeItem<>(documentData);
         createTreeItemFromNonChapterEventCard(rootItem, eventCardList);
         createTreeItemFromChapterList(rootItem, chapterList);
-        createtreeItemFromStoryListList(rootItem, storylineList);
+        createTreeItemFromStorylineList(rootItem, storylineList);
         treeView.setRoot(rootItem);
     }
 
@@ -82,13 +82,13 @@ public class SideBar extends ScrollPane {
         return rootItem;
     }
 
-    private void createtreeItemFromStoryListList(TreeItem<BasicStoryComponent> rootItem, StorylineList storylineList) {
+    private void createTreeItemFromStorylineList(TreeItem<BasicStoryComponent> rootItem, StorylineList storylineList) {
         for (Storyline storyline : storylineList) {
-            rootItem.getChildren().add(createTreeItemFromStoryLine(storyline));
+            rootItem.getChildren().add(createTreeItemFromStoryline(storyline));
         }
     }
 
-    private TreeItem<BasicStoryComponent> createTreeItemFromStoryLine(Storyline storyline) {
+    private TreeItem<BasicStoryComponent> createTreeItemFromStoryline(Storyline storyline) {
         EventCardList eventCards = storyline.getEventCards();
         TreeItem<BasicStoryComponent> rootItem = new TreeItem<>(storyline);
         for (EventCard eventCard : eventCards) {
