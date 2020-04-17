@@ -14,7 +14,8 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
 
     public BasicStoryComponentTreeCell() {
         super();
-        getStylesheets().add(this.getClass().getResource("BasicStoryComponentTreeCell.css").toExternalForm());
+        getStylesheets().add(getClass().getResource("BasicStoryComponentTreeCell.css").toExternalForm());
+        getStyleClass().add("tree-cell");
         addEventListenerToThisNode();
     }
 
@@ -88,15 +89,17 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
             System.out.println("Drag Done");
         });
         this.setOnDragDetected((MouseEvent event) -> {
-            System.out.println("Drag Detected");
-            Dragboard dragboard = this.startDragAndDrop(TransferMode.ANY);
-            ClipboardContent clipboardContent = new ClipboardContent();
-            clipboardContent.putString(getItem().getComponentId());
-            dragboard.setContent(clipboardContent);
-            event.consume();
+            if (getItem() != null) {
+                System.out.println("Drag Detected");
+                Dragboard dragboard = this.startDragAndDrop(TransferMode.ANY);
+                ClipboardContent clipboardContent = new ClipboardContent();
+                clipboardContent.putString(getItem().getComponentId());
+                dragboard.setContent(clipboardContent);
+                event.consume();
+            }
         });
         this.setOnDragOver((DragEvent event) -> {
-            getStyleClass().add("treecell-hover");
+
             if (event.getDragboard().hasString()) {
                 event.acceptTransferModes(TransferMode.ANY);
             }
@@ -104,7 +107,6 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
         });
         this.setOnDragExited((DragEvent event) -> {
             System.out.println("Drag Exit");
-            getStyleClass().remove("treecell-hover");
             event.consume();
         });
         this.setOnDragDropped((DragEvent event) -> {

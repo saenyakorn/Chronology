@@ -21,15 +21,26 @@ public class SideBar extends ScrollPane {
     private final TreeView<BasicStoryComponent> treeView;
 
     public SideBar() {
+        // load css file
+        getStylesheets().add(getClass().getResource("SideBar.css").toExternalForm());
+
         // TreeView setting
         treeView = new TreeView<>();
         treeView.setShowRoot(false);
         treeView.setEditable(true);
+        treeView.getStyleClass().add("tree-view");
         treeView.setCellFactory(params -> new BasicStoryComponentTreeCell());
+
+        // VBox container setting
+        VBox vBox = new VBox();
+        vBox.setMaxHeight(Double.POSITIVE_INFINITY);
+        vBox.getStyleClass().add("v-box");
+        vBox.getChildren().add(treeView);
+
+        // scroll pane setting
+        this.getStyleClass().add("side-bar");
         this.setFitToWidth(true);
         this.setPrefWidth(SystemConstants.SIDEBAR_PREF_WIDTH);
-        VBox vBox = new VBox();
-        vBox.getChildren().add(treeView);
         this.setContent(treeView);
     }
 
