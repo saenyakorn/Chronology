@@ -13,7 +13,10 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -198,6 +201,16 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
             if (event.isSecondaryButtonDown()) {
                 contextMenu.show(dateTimeContainer, event.getScreenX(), event.getScreenY());
             }
+        });
+    }
+
+    private void initializeEventHandler() {
+        this.setOnDragDetected((MouseEvent event) -> {
+            Dragboard dragboard = startDragAndDrop(TransferMode.MOVE);
+            ClipboardContent clipboardContent = new ClipboardContent();
+            clipboardContent.putString(getComponentId());
+            dragboard.setContent(clipboardContent);
+            event.consume();
         });
     }
 

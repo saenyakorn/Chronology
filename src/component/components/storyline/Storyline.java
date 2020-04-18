@@ -119,7 +119,7 @@ public class Storyline extends BasicStoryComponent {
     public void initializedEventHandler() {
         this.setOnDragOver((DragEvent event) -> {
             if (event.getDragboard().hasString()) {
-                event.acceptTransferModes(TransferMode.ANY);
+                event.acceptTransferModes(TransferMode.MOVE);
             }
             event.consume();
         });
@@ -128,7 +128,7 @@ public class Storyline extends BasicStoryComponent {
             BasicStoryComponent item = ApplicationResource.getValueFromCurrentWorkspaceHashMap(itemId);
             if (item instanceof EventCard) {
                 EventCard eventCard = (EventCard) item;
-                this.addEventCard(eventCard);
+                addEventCard(eventCard);
                 ApplicationResource.update();
             }
         });
