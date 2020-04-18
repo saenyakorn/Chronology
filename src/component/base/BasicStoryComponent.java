@@ -5,9 +5,11 @@ import application.SystemConstants;
 import component.components.timeModifier.PredefinedTimePeriod;
 import component.components.timeModifier.TimePeriod;
 import component.components.timeModifier.TimePeriodGenerator;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -84,7 +86,16 @@ public abstract class BasicStoryComponent extends Pane {
     @Override
     abstract public String toString();
 
-    protected abstract void loadFXML();
+    protected void loadFXML(String link) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(link));
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+        try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
 
     protected String colorToHex(Color color) {
         return String.format("#%02x%02x%02x",
