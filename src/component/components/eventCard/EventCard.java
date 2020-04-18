@@ -51,6 +51,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         selfChapter = null;
         selfStoryline = null;
         loadFXML("EventCard.fxml");
+        initializeEventHandler();
     }
 
     public EventCard(String title, String description) {
@@ -58,6 +59,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         selfChapter = null;
         selfStoryline = null;
         loadFXML("EventCard.fxml");
+        initializeEventHandler();
     }
 
     public EventCard(String title, String description, Color color, TimePeriod timePeriod) {
@@ -65,6 +67,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         selfChapter = null;
         selfStoryline = null;
         loadFXML("EventCard.fxml");
+        initializeEventHandler();
     }
 
     @FXML
