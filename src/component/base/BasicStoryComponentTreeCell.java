@@ -101,26 +101,17 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
             }
             event.consume();
         });
-        this.setOnDragExited((DragEvent event) -> {
-            System.out.println("Drag Exit");
-            event.consume();
-        });
         this.setOnDragDropped((DragEvent event) -> {
             String itemId = event.getDragboard().getString();
             BasicStoryComponent item = ApplicationResource.getValueFromCurrentWorkspaceHashMap(itemId);
-            if (item instanceof EventCard) {
+            if (item instanceof EventCard && getItem() instanceof Chapter) {
                 EventCard eventCard = (EventCard) item;
-                if (getItem() instanceof Chapter) {
-                    Chapter target = (Chapter) getItem();
-                    target.addEventCard(eventCard);
-                }
+                Chapter target = (Chapter) getItem();
+                ApplicationResource.getCurrentWorkspace().getCurrentDocument().removeEventCard(eventCard);
+                target.addEventCard(eventCard);
+                ApplicationResource.update();
             }
-            ApplicationResource.update();
             event.consume();
-        });
-        this.setOnDragDone((DragEvent event) -> {
-            String itemId = event.getDragboard().getString();
-            BasicStoryComponent item = ApplicationResource.getValueFromCurrentWorkspaceHashMap(itemId);
         });
     }
 
