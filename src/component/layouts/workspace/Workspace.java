@@ -44,7 +44,7 @@ public class Workspace extends HBox {
         return hashMapBasicStoryComponents;
     }
 
-    public DocumentList getDocuments() {
+    public DocumentList getDocumentList() {
         return documents;
     }
 
