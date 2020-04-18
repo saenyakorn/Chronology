@@ -9,7 +9,6 @@ import component.dialog.SetColorDialog;
 import component.dialog.SetTimePeriodDialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
@@ -20,7 +19,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -49,19 +47,21 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     public EventCard() {
         selfChapter = null;
         selfStoryline = null;
-        this.loadFXML();
+        loadFXML("EventCard.fxml");
     }
 
     public EventCard(String title, String description) {
         super(title, description);
         selfChapter = null;
         selfStoryline = null;
-        this.loadFXML();
+        loadFXML("EventCard.fxml");
     }
 
     public EventCard(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
-        this.loadFXML();
+        selfChapter = null;
+        selfStoryline = null;
+        loadFXML("EventCard.fxml");
     }
 
     @FXML
@@ -178,18 +178,6 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     @Override
     public int compareTo(EventCard o) throws IllegalArgumentException {
         return timePeriod.compareTo(o.timePeriod);
-    }
-
-    @Override
-    protected void loadFXML() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EventCard.fxml"));
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setController(this);
-        try {
-            fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
     }
 
     private void initializeContextMenu() {

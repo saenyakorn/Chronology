@@ -4,10 +4,7 @@ import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
 import component.components.timeModifier.TimePeriod;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.paint.Color;
-
-import java.io.IOException;
 
 public class Chapter extends BasicStoryComponent {
     private final EventCardList eventCards;
@@ -50,17 +47,5 @@ public class Chapter extends BasicStoryComponent {
     @Override
     public String toString() {
         return title;
-    }
-
-    @Override
-    protected void loadFXML() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Chapter.fxml"));
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setController(this);
-        try {
-            fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
     }
 }
