@@ -37,21 +37,21 @@ public class Storyline extends BasicStoryComponent {
     public Storyline() {
         eventCards = new EventCardList();
         loadFXML("Storyline.fxml");
-        initializedEventHandler();
+        initializeEventHandler();
     }
 
     public Storyline(String title, String description) {
         super(title, description);
         eventCards = new EventCardList();
         loadFXML("Storyline.fxml");
-        initializedEventHandler();
+        initializeEventHandler();
     }
 
     public Storyline(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
         eventCards = new EventCardList();
         loadFXML("Storyline.fxml");
-        initializedEventHandler();
+        initializeEventHandler();
     }
 
     @FXML
@@ -105,10 +105,11 @@ public class Storyline extends BasicStoryComponent {
         }
     }
 
-    public void removeEventCard(EventCard eventCard) {
+    public EventCard removeEventCard(EventCard eventCard) {
         eventCards.removeEventCard(eventCard);
         eventCardList.getChildren().remove(eventCard);
         line.setEndX(line.getEndX() - (SystemConstants.EVENTCARD_PREF_WIDTH + 30));
+        return eventCard;
     }
 
     @Override
@@ -116,21 +117,23 @@ public class Storyline extends BasicStoryComponent {
         return title;
     }
 
-    public void initializedEventHandler() {
-        this.setOnDragOver((DragEvent event) -> {
+    public void initializeEventHandler() {
+        setOnDragOver((DragEvent event) -> {
             if (event.getDragboard().hasString()) {
                 event.acceptTransferModes(TransferMode.MOVE);
             }
             event.consume();
         });
-        this.setOnDragDropped((DragEvent event) -> {
+        setOnDragDropped((DragEvent event) -> {
             String itemId = event.getDragboard().getString();
             BasicStoryComponent item = ApplicationResource.getValueFromCurrentWorkspaceHashMap(itemId);
             if (item instanceof EventCard) {
                 EventCard eventCard = (EventCard) item;
+                ApplicationResource.getCurrentWorkspace().getCurrentDocument().removeEventCard(eventCard);
                 addEventCard(eventCard);
                 ApplicationResource.update();
             }
+            event.consume();
         });
     }
 
@@ -151,7 +154,7 @@ public class Storyline extends BasicStoryComponent {
     }
 
     private boolean clickInEventCard(MouseEvent event) {
-        if (this.eventCardList.contains(eventCardList.screenToLocal(event.getScreenX(), event.getScreenY()))) {
+        if (eventCardList.contains(eventCardList.screenToLocal(event.getScreenX(), event.getScreenY()))) {
             for (EventCard eventCard : eventCards) {
                 if (eventCard.clickInEventCard(event))
                     return true;
