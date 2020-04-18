@@ -22,13 +22,13 @@ public class EventCardList extends HBox implements Iterable<EventCard> {
         sortEventCards();
     }
 
-    public int removeEventCard(EventCard eventCard) {
+    public EventCard removeEventCard(EventCard eventCard) {
         if (eventCards.contains(eventCard)) {
             eventCards.remove(eventCard);
-            return 1;
+            return eventCard;
         } else {
             System.out.println("This event card does not exist");
-            return 0;
+            return null;
         }
     }
 
