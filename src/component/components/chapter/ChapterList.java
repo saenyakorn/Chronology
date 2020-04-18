@@ -18,19 +18,13 @@ public class ChapterList implements Iterable<Chapter> {
         chapters.add(chapter);
     }
 
-    public void addAllChapter(Chapter... args) {
-        for (Chapter chapter : args) {
-            chapters.add(chapter);
-        }
-    }
-
-    public int removeChapter(Chapter chapter) {
+    public Chapter removeChapter(Chapter chapter) {
         if (chapters.contains(chapter)) {
             chapters.remove(chapter);
-            return 1;
+            return chapter;
         } else {
             System.out.println("This event card does not exist");
-            return 0;
+            return null;
         }
     }
 
