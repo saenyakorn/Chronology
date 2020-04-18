@@ -14,8 +14,4 @@ public class OnlyBodyBasicStoryComponents extends BasicStoryComponent {
     public String toString() {
         return title;
     }
-
-    @Override
-    protected void loadFXML() {
-    }
 }
