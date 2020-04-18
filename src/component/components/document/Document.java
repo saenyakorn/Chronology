@@ -36,19 +36,39 @@ public class Document extends Tab {
         return storylines;
     }
 
-    public EventCardList addEventCard(EventCard eventCard) {
+    public void addEventCard(EventCard eventCard) {
         eventCards.addEventCard(eventCard);
-        return eventCards;
     }
 
-    public StorylineList addStoryLine(Storyline storyline) {
+    public void addStoryLine(Storyline storyline) {
         storylines.addStoryline(storyline);
-        return storylines;
     }
 
-    public ChapterList addChapter(Chapter chapter) {
+    public void addChapter(Chapter chapter) {
         chapters.addChapter(chapter);
-        return chapters;
+    }
+
+    public EventCard removeEventCard(EventCard eventCard) {
+        if (eventCard.getChapter() == null && eventCard.getStoryline() == null) {
+            return eventCards.removeEventCard(eventCard);
+        }
+        if (eventCard.getChapter() != null) {
+            return eventCard.getChapter().removeEventCard(eventCard);
+        }
+        if (eventCard.getStoryline() != null) {
+            return eventCard.getStoryline().removeEventCard(eventCard);
+        } else {
+            System.out.println(eventCard + " -> This event card is not exist");
+            return null;
+        }
+    }
+
+    public Storyline removeStoryline(Storyline storyline) {
+        return storylines.removeStoryline(storyline);
+    }
+
+    public Chapter removeChapter(Chapter chapter) {
+        return chapters.removeChapter(chapter);
     }
 
     @Override
