@@ -1,0 +1,7 @@
+* {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-color: none;
+    -fx-background-insets: 0
+}
