@@ -19,13 +19,7 @@ public class EventCardList extends HBox implements Iterable<EventCard> {
 
     public void addEventCard(EventCard eventCard) {
         eventCards.add(eventCard);
-        Collections.sort(eventCards);
-    }
-
-    public void addAllEventCards(EventCardList eventCards) {
-        for(EventCard e : eventCards)
-            this.eventCards.add(e);
-        Collections.sort(this.eventCards);
+        sortEventCards();
     }
 
     public int removeEventCard(EventCard eventCard) {
@@ -39,7 +33,7 @@ public class EventCardList extends HBox implements Iterable<EventCard> {
     }
 
     public void sortEventCards() {
-        Collections.sort(this.eventCards);
+        Collections.sort(eventCards);
     }
 
     public int size() {
