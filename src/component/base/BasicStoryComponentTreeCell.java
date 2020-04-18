@@ -16,7 +16,7 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
         super();
         getStylesheets().add(getClass().getResource("BasicStoryComponentTreeCell.css").toExternalForm());
         getStyleClass().add("tree-cell");
-        addEventListenerToThisNode();
+        initializeEventHandler();
     }
 
     @Override
@@ -84,7 +84,7 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
         });
     }
 
-    private void addEventListenerToThisNode() {
+    private void initializeEventHandler() {
         this.setOnDragDone((DragEvent event) -> {
             System.out.println("Drag Done");
         });
