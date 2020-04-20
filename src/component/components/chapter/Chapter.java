@@ -32,9 +32,8 @@ public class Chapter extends BasicStoryComponent {
         eventCard.setChapter(this);
     }
 
-    public EventCard removeEventCard(EventCard eventCard) {
+    public void removeEventCard(EventCard eventCard) {
         eventCards.removeEventCard(eventCard);
-        return eventCard;
     }
 
     @Override

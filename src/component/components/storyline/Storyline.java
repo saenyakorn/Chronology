@@ -105,11 +105,10 @@ public class Storyline extends BasicStoryComponent {
         }
     }
 
-    public EventCard removeEventCard(EventCard eventCard) {
+    public void removeEventCard(EventCard eventCard) {
         eventCards.removeEventCard(eventCard);
         eventCardList.getChildren().remove(eventCard);
         line.setEndX(line.getEndX() - (SystemConstants.EVENTCARD_PREF_WIDTH + 30));
-        return eventCard;
     }
 
     @Override

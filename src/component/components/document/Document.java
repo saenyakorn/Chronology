@@ -48,18 +48,17 @@ public class Document extends Tab {
         chapters.addChapter(chapter);
     }
 
-    public EventCard removeEventCard(EventCard eventCard) {
+    public void removeEventCard(EventCard eventCard) {
         if (eventCard.getChapter() == null && eventCard.getStoryline() == null) {
-            return eventCards.removeEventCard(eventCard);
+            eventCards.removeEventCard(eventCard);
         }
         if (eventCard.getChapter() != null) {
-            return eventCard.getChapter().removeEventCard(eventCard);
+            eventCard.getChapter().removeEventCard(eventCard);
         }
         if (eventCard.getStoryline() != null) {
-            return eventCard.getStoryline().removeEventCard(eventCard);
+            eventCard.getStoryline().removeEventCard(eventCard);
         } else {
             System.out.println(eventCard + " -> This event card is not exist");
-            return null;
         }
     }
 
