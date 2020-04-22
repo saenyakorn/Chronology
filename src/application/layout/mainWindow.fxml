@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
 <VBox xmlns:fx="http://javafx.com/fxml" fx:id="vBox" xmlns="http://javafx.com/javafx"
       fx:controller="application.layout.mainController">
 
@@ -24,10 +22,4 @@
     </MenuBar>
 
     <!-- Workspace zone (dynamic elements) -->
-
-    <!-- Footer (for save status etc.) -->
-    <HBox alignment="CENTER">
-        <Text text="Footer"/>
-    </HBox>
-
 </VBox>
