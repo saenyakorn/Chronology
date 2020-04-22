@@ -1,20 +1,14 @@
 package component.dialog;
 
 import application.ApplicationResource;
-import application.SystemConstants;
 import component.components.chapter.Chapter;
 import component.components.document.Document;
 import component.layouts.workspace.Workspace;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-
-import java.io.IOException;
 
 public class NewChapterDialog extends Dialog {
 
@@ -28,15 +22,7 @@ public class NewChapterDialog extends Dialog {
     Button cancelButton;
 
     public NewChapterDialog() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("NewChapterDialog.fxml"));
-        fxmlLoader.setController(this);
-        try {
-            Parent root = fxmlLoader.load();
-            stage.setTitle("Create New Storyline");
-            stage.setScene(new Scene(root, SystemConstants.DIALOG_PREF_HEIGHT, SystemConstants.DIALOG_PREF_WIDTH));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        loadFXML("Create New Storyline", "NewChapterDialog.fxml");
     }
 
     private void AddNewChapter(String title, String description) {
