@@ -9,19 +9,27 @@ $heading-size: 14px;
 $regular-size: 12px;
 
 /* Monochrome */
-$white: #ffffff;
-$light-gray: #f6f6f6;
-$medium-grey: #4f4f4f;
-$dark-grey: #6b6b6b;
-$black: #1c1c1c;
+$white: rgb(255, 255, 255);
+$light-gray: rgb(246, 246, 246);
+$medium-grey: rgb(79, 79, 79);
+$dark-grey: rgb(107, 107, 107);
+$black: rgb(28, 28, 28);
 
 /* Default palette */
-$pink: #ff76b8;
-$red: #ff3e60;
-$orange: #ffa63e;
-$lime: #94ee6a;
-$sky-blue: #3ec5ff;
-$lavender: #a587fb;
+$pink: rgb(255, 118, 184);
+$red: rgb(255, 62, 96);
+$orange: rgb(255, 166, 62);
+$lime: rgb(148, 238, 106);
+$sky-blue: rgb(62, 197, 255);
+$lavender: rgb(165, 135, 251);
+
+/* Default palette 20% opacity */
+$pink_20: rgba(255, 118, 184, 0.2);
+$red_20: rgba(255, 62, 96, 0.2);
+$orange_20: rgba(255, 166, 62, 0.2);
+$lime_20: rgba(148, 238, 106, 0.2);
+$sky-blue_20: rgba(62, 197, 255, 0.2);
+$lavender_20: rgba(165, 135, 251, 0.2);
 
 * {
   -fx-focus-color: transparent;
