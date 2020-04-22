@@ -8,12 +8,15 @@
     <!-- Navigation Bar (static elements) -->
     <MenuBar fx:id="menuBar">
         <Menu text="File">
-            <MenuItem text="New Document" onAction="#handleNewDocumentClick"/>
+            <MenuItem text="New Project" onAction="#handleNewProjectClick"/>
+            <SeparatorMenuItem/>
             <MenuItem text="Open" onAction="#handleOpenClick"/>
+            <SeparatorMenuItem/>
             <MenuItem text="Save" onAction="#handleSaveClick"/>
             <MenuItem text="Save as..." onAction="#handleSaveAsClick"/>
         </Menu>
         <Menu text="Object">
+            <MenuItem text="Document" onAction="#handleNewDocumentClick"/>
             <MenuItem text="Storyline" onAction="#handleNewStoryLineClick"/>
             <MenuItem text="Event Card" onAction="#handleNewEventCardClick"/>
             <MenuItem text="Chapter" onAction="#handleNewChapterClick"/>
