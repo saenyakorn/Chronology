@@ -1,11 +1,1 @@
-.side-bar {
-    -fx-background-color: #fff
-}
-
-.v-box {
-    -fx-background-color: #ffa63e
-}
-
-.tree-view {
-    -fx-background-color: #fff
-}
+.side-bar{-fx-background-color:#fff}.v-box{-fx-background-color:#ffa63e}.tree-view{-fx-background-color:#fff}
