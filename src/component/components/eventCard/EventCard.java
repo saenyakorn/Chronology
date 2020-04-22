@@ -9,18 +9,19 @@ import component.dialog.SetColorDialog;
 import component.dialog.SetTimePeriodDialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -49,19 +50,24 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     public EventCard() {
         selfChapter = null;
         selfStoryline = null;
-        this.loadFXML();
+        loadFXML("EventCard.fxml");
+        initializeEventHandler();
     }
 
     public EventCard(String title, String description) {
         super(title, description);
         selfChapter = null;
         selfStoryline = null;
-        this.loadFXML();
+        loadFXML("EventCard.fxml");
+        initializeEventHandler();
     }
 
     public EventCard(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
-        this.loadFXML();
+        selfChapter = null;
+        selfStoryline = null;
+        loadFXML("EventCard.fxml");
+        initializeEventHandler();
     }
 
     @FXML
@@ -180,18 +186,6 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         return timePeriod.compareTo(o.timePeriod);
     }
 
-    @Override
-    protected void loadFXML() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EventCard.fxml"));
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setController(this);
-        try {
-            fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
-    }
-
     private void initializeContextMenu() {
         final ContextMenu contextMenu = new ContextMenu();
         MenuItem setTimePeriodMenu = new MenuItem("Edit event date/time");
@@ -210,6 +204,16 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
             if (event.isSecondaryButtonDown()) {
                 contextMenu.show(dateTimeContainer, event.getScreenX(), event.getScreenY());
             }
+        });
+    }
+
+    private void initializeEventHandler() {
+        this.setOnDragDetected((MouseEvent event) -> {
+            Dragboard dragboard = startDragAndDrop(TransferMode.MOVE);
+            ClipboardContent clipboardContent = new ClipboardContent();
+            clipboardContent.putString(getComponentId());
+            dragboard.setContent(clipboardContent);
+            event.consume();
         });
     }
 

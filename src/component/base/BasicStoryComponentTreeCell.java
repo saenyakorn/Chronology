@@ -16,7 +16,7 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
         super();
         getStylesheets().add(getClass().getResource("BasicStoryComponentTreeCell.css").toExternalForm());
         getStyleClass().add("tree-cell");
-        addEventListenerToThisNode();
+        initializeEventHandler();
     }
 
     @Override
@@ -84,14 +84,11 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
         });
     }
 
-    private void addEventListenerToThisNode() {
-        this.setOnDragDone((DragEvent event) -> {
-            System.out.println("Drag Done");
-        });
+    private void initializeEventHandler() {
         this.setOnDragDetected((MouseEvent event) -> {
             if (getItem() != null) {
                 System.out.println("Drag Detected");
-                Dragboard dragboard = this.startDragAndDrop(TransferMode.ANY);
+                Dragboard dragboard = startDragAndDrop(TransferMode.MOVE);
                 ClipboardContent clipboardContent = new ClipboardContent();
                 clipboardContent.putString(getItem().getComponentId());
                 dragboard.setContent(clipboardContent);
@@ -99,32 +96,22 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
             }
         });
         this.setOnDragOver((DragEvent event) -> {
-
             if (event.getDragboard().hasString()) {
-                event.acceptTransferModes(TransferMode.ANY);
+                event.acceptTransferModes(TransferMode.MOVE);
             }
-            event.consume();
-        });
-        this.setOnDragExited((DragEvent event) -> {
-            System.out.println("Drag Exit");
             event.consume();
         });
         this.setOnDragDropped((DragEvent event) -> {
             String itemId = event.getDragboard().getString();
             BasicStoryComponent item = ApplicationResource.getValueFromCurrentWorkspaceHashMap(itemId);
-            if (item instanceof EventCard) {
+            if (item instanceof EventCard && getItem() instanceof Chapter) {
                 EventCard eventCard = (EventCard) item;
-                if (getItem() instanceof Chapter) {
-                    Chapter target = (Chapter) getItem();
-                    target.addEventCard(eventCard);
-                }
+                Chapter target = (Chapter) getItem();
+                ApplicationResource.getCurrentWorkspace().getCurrentDocument().removeEventCard(eventCard);
+                target.addEventCard(eventCard);
+                ApplicationResource.update();
             }
-            ApplicationResource.update();
             event.consume();
-        });
-        this.setOnDragDone((DragEvent event) -> {
-            String itemId = event.getDragboard().getString();
-            BasicStoryComponent item = ApplicationResource.getValueFromCurrentWorkspaceHashMap(itemId);
         });
     }
 

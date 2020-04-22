@@ -31,13 +31,13 @@ public class StorylineList implements Iterable<Storyline> {
         storylines.set(index, selectedStoryLine);
     }
 
-    public int removeStoryline(Storyline storyline) {
+    public Storyline removeStoryline(Storyline storyline) {
         if (storylines.contains(storyline)) {
             storylines.remove(storyline);
-            return 1;
+            return storyline;
         } else {
             System.out.println("This storyline does not exist");
-            return 0;
+            return null;
         }
     }
 

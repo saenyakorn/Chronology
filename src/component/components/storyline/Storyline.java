@@ -9,7 +9,6 @@ import component.components.timeModifier.TimePeriod;
 import component.dialog.SetColorDialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
@@ -20,8 +19,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-
-import java.io.IOException;
 
 public class Storyline extends BasicStoryComponent {
     private final EventCardList eventCards;
@@ -39,20 +36,22 @@ public class Storyline extends BasicStoryComponent {
 
     public Storyline() {
         eventCards = new EventCardList();
-        this.loadFXML();
-        addEventListenderToNode();
+        loadFXML("Storyline.fxml");
+        initializeEventHandler();
     }
 
     public Storyline(String title, String description) {
         super(title, description);
         eventCards = new EventCardList();
-        this.loadFXML();
+        loadFXML("Storyline.fxml");
+        initializeEventHandler();
     }
 
     public Storyline(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
         eventCards = new EventCardList();
-        this.loadFXML();
+        loadFXML("Storyline.fxml");
+        initializeEventHandler();
     }
 
     @FXML
@@ -99,16 +98,6 @@ public class Storyline extends BasicStoryComponent {
         line.setEndX(line.getEndX() + (SystemConstants.EVENTCARD_PREF_WIDTH + 30));
     }
 
-    public void addAllEventCards(EventCard... args) {
-        for (EventCard eventCard : args) {
-            eventCards.addEventCard(eventCard);
-            eventCard.setStoryline(this);
-        }
-        renderEventCards();
-        int increasedLineLength = args.length * (SystemConstants.EVENTCARD_PREF_WIDTH + 30);
-        line.setEndX(line.getEndX() + increasedLineLength);
-    }
-
     public void renderEventCards() {
         eventCardList.getChildren().clear();
         for (EventCard eventCard : eventCards) {
@@ -127,32 +116,23 @@ public class Storyline extends BasicStoryComponent {
         return title;
     }
 
-    @Override
-    protected void loadFXML() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Storyline.fxml"));
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setController(this);
-        try {
-            fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
-    }
-
-    public void addEventListenderToNode() {
-        this.setOnDragOver((DragEvent event) -> {
+    public void initializeEventHandler() {
+        setOnDragOver((DragEvent event) -> {
             if (event.getDragboard().hasString()) {
-                event.acceptTransferModes(TransferMode.ANY);
+                event.acceptTransferModes(TransferMode.MOVE);
             }
             event.consume();
         });
-        this.setOnDragDropped((DragEvent event) -> {
+        setOnDragDropped((DragEvent event) -> {
             String itemId = event.getDragboard().getString();
             BasicStoryComponent item = ApplicationResource.getValueFromCurrentWorkspaceHashMap(itemId);
             if (item instanceof EventCard) {
                 EventCard eventCard = (EventCard) item;
-                this.addEventCard(eventCard);
+                ApplicationResource.getCurrentWorkspace().getCurrentDocument().removeEventCard(eventCard);
+                addEventCard(eventCard);
+                ApplicationResource.update();
             }
+            event.consume();
         });
     }
 
@@ -173,7 +153,7 @@ public class Storyline extends BasicStoryComponent {
     }
 
     private boolean clickInEventCard(MouseEvent event) {
-        if (this.eventCardList.contains(eventCardList.screenToLocal(event.getScreenX(), event.getScreenY()))) {
+        if (eventCardList.contains(eventCardList.screenToLocal(event.getScreenX(), event.getScreenY()))) {
             for (EventCard eventCard : eventCards) {
                 if (eventCard.clickInEventCard(event))
                     return true;

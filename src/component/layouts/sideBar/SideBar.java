@@ -41,7 +41,7 @@ public class SideBar extends ScrollPane {
         this.getStyleClass().add("side-bar");
         this.setFitToWidth(true);
         this.setPrefWidth(SystemConstants.SIDEBAR_PREF_WIDTH);
-        this.setContent(treeView);
+        this.setContent(vBox);
     }
 
     public void renderSideBar(Document document) {

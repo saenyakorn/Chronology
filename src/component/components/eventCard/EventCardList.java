@@ -19,27 +19,19 @@ public class EventCardList extends HBox implements Iterable<EventCard> {
 
     public void addEventCard(EventCard eventCard) {
         eventCards.add(eventCard);
-        Collections.sort(eventCards);
+        sortEventCards();
     }
 
-    public void addAllEventCards(EventCardList eventCards) {
-        for(EventCard e : eventCards)
-            this.eventCards.add(e);
-        Collections.sort(this.eventCards);
-    }
-
-    public int removeEventCard(EventCard eventCard) {
+    public void removeEventCard(EventCard eventCard) {
         if (eventCards.contains(eventCard)) {
             eventCards.remove(eventCard);
-            return 1;
         } else {
             System.out.println("This event card does not exist");
-            return 0;
         }
     }
 
     public void sortEventCards() {
-        Collections.sort(this.eventCards);
+        Collections.sort(eventCards);
     }
 
     public int size() {

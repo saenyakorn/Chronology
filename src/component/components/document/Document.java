@@ -1,5 +1,6 @@
 package component.components.document;
 
+import application.ApplicationResource;
 import component.components.chapter.Chapter;
 import component.components.chapter.ChapterList;
 import component.components.eventCard.EventCard;
@@ -9,9 +10,9 @@ import component.components.storyline.StorylineList;
 import javafx.scene.control.Tab;
 
 public class Document extends Tab {
-    private EventCardList eventCards;
-    private ChapterList chapters;
-    private StorylineList storylines;
+    private final EventCardList eventCards;
+    private final ChapterList chapters;
+    private final StorylineList storylines;
 
 
     public Document(String name) {
@@ -19,6 +20,8 @@ public class Document extends Tab {
         eventCards = new EventCardList();
         chapters = new ChapterList();
         storylines = new StorylineList();
+
+        this.setOnCloseRequest(event -> ApplicationResource.getCurrentWorkspace().removeDocument(this));
     }
 
     public EventCardList getEventCardList() {
@@ -33,40 +36,38 @@ public class Document extends Tab {
         return storylines;
     }
 
-    public EventCardList addEventCard(EventCard eventCard) {
+    public void addEventCard(EventCard eventCard) {
         eventCards.addEventCard(eventCard);
-        return eventCards;
     }
 
-    public EventCardList addAllEventCard(EventCard... args) {
-        for (EventCard eventCard : args) {
-            eventCards.addEventCard(eventCard);
-        }
-        return eventCards;
-    }
-
-    public StorylineList addStoryLine(Storyline storyline) {
+    public void addStoryLine(Storyline storyline) {
         storylines.addStoryline(storyline);
-        return storylines;
     }
 
-    public StorylineList addAllStoryLine(Storyline... args) {
-        for (Storyline storyline : args) {
-            storylines.addStoryline(storyline);
-        }
-        return storylines;
-    }
-
-    public ChapterList addChapter(Chapter chapter) {
+    public void addChapter(Chapter chapter) {
         chapters.addChapter(chapter);
-        return chapters;
     }
 
-    public ChapterList addAllChapter(Chapter... args) {
-        for (Chapter chapter : args) {
-            chapters.addChapter(chapter);
+    public void removeEventCard(EventCard eventCard) {
+        if (eventCard.getChapter() == null && eventCard.getStoryline() == null) {
+            eventCards.removeEventCard(eventCard);
         }
-        return chapters;
+        if (eventCard.getChapter() != null) {
+            eventCard.getChapter().removeEventCard(eventCard);
+        }
+        if (eventCard.getStoryline() != null) {
+            eventCard.getStoryline().removeEventCard(eventCard);
+        } else {
+            System.out.println(eventCard + " -> This event card is not exist");
+        }
+    }
+
+    public Storyline removeStoryline(Storyline storyline) {
+        return storylines.removeStoryline(storyline);
+    }
+
+    public Chapter removeChapter(Chapter chapter) {
+        return chapters.removeChapter(chapter);
     }
 
     @Override

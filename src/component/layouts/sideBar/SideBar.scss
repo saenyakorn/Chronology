@@ -1,11 +1,7 @@
-@import "../../../application/StylingConstant";
+@import "../../../application/StylingConstant.scss";
 
 @mixin white-background {
-  -fx-background-color: $white;
-}
-
-@mixin orange-bakcground {
-  -fx-background-color: $orange;
+  -fx-background: $white;
 }
 
 .side-bar {
@@ -13,7 +9,7 @@
 }
 
 .v-box {
-  @include orange-bakcground;
+  @include white-background;
 }
 
 .tree-view {
