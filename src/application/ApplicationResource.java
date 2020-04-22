@@ -22,7 +22,7 @@ public class ApplicationResource {
     }
 
     public static void update() {
-        Document currentDocument = ApplicationResource.getCurrentWorkspace().getCurrentDocument();
+        Document currentDocument = ApplicationResource.getCurrentWorkspace().getActiveDocument();
         ApplicationResource.getCurrentWorkspace().setActiveDocument(currentDocument);
     }
 
@@ -36,5 +36,13 @@ public class ApplicationResource {
 
     public static BasicStoryComponent getValueFromCurrentWorkspaceHashMap(String key) {
         return ApplicationResource.currentWorkspace.getHashMapBasicStoryComponents().get(key);
+    }
+
+    public static void newProject() {
+        // initialized appication
+        ApplicationResource.initialize();
+
+        // add template structure
+        ApplicationResource.getCurrentWorkspace().addDocument(new Document("New Document"));
     }
 }
