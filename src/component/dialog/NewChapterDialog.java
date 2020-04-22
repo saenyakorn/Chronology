@@ -2,8 +2,6 @@ package component.dialog;
 
 import application.ApplicationResource;
 import component.components.chapter.Chapter;
-import component.components.document.Document;
-import component.layouts.workspace.Workspace;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -27,11 +25,9 @@ public class NewChapterDialog extends Dialog {
 
     private void AddNewChapter(String title, String description) {
         System.out.println("Creating a new Chapter");
-        Workspace currentWorkspace = ApplicationResource.getCurrentWorkspace();
-        Document currentDocument = currentWorkspace.getCurrentDocument();
         Chapter newChapter = new Chapter(title, description);
-        currentDocument.addChapter(newChapter);
-        currentWorkspace.setActiveDocument(currentDocument);
+        ApplicationResource.getCurrentWorkspace().getActiveDocument().addChapter(newChapter);
+        ApplicationResource.update();
         System.out.println("Done");
         this.close();
     }
