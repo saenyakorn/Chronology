@@ -10,12 +10,14 @@ import component.components.storyline.StorylineList;
 import javafx.scene.control.Tab;
 
 public class Document extends Tab {
+    private String name;
     private final EventCardList eventCards;
     private final ChapterList chapters;
     private final StorylineList storylines;
 
 
     public Document(String name) {
+        this.name = name;
         this.setText(name);
         eventCards = new EventCardList();
         chapters = new ChapterList();
@@ -34,6 +36,15 @@ public class Document extends Tab {
 
     public StorylineList getStorylineList() {
         return storylines;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+        this.setText(name);
     }
 
     public void addEventCard(EventCard eventCard) {
