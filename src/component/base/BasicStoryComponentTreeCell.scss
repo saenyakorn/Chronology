@@ -6,5 +6,10 @@
   &:hover {
     -fx-background-color: $sky-blue_20;
   }
+
+  &:selected {
+    -fx-text-fill: $medium-grey;
+    -fx-background-color: $lavender_20;
+  }
 }
 
