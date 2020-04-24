@@ -107,7 +107,7 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
             if (item instanceof EventCard && getItem() instanceof Chapter) {
                 EventCard eventCard = (EventCard) item;
                 Chapter target = (Chapter) getItem();
-                ApplicationResource.getCurrentWorkspace().getCurrentDocument().removeEventCard(eventCard);
+                ApplicationResource.getCurrentWorkspace().getActiveDocument().removeEventCard(eventCard);
                 target.addEventCard(eventCard);
                 ApplicationResource.update();
             }

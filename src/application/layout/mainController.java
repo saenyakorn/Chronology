@@ -1,11 +1,8 @@
 package application.layout;
 
 import application.ApplicationResource;
-import component.components.document.Document;
-import component.dialog.NewChapterDialog;
-import component.dialog.NewDocumentDialog;
-import component.dialog.NewEventCardDialog;
-import component.dialog.NewStorylineDialog;
+import component.dialog.*;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuBar;
@@ -19,12 +16,27 @@ public class mainController {
     @FXML
     private MenuBar menuBar;
 
+    private final String os = System.getProperty("os.name");
+
     @FXML
     public void initialize() {
-        ApplicationResource.initialize();
-        ApplicationResource.getCurrentWorkspace().addDocument(new Document("New Document"));
+        // new project
+        ApplicationResource.newProject();
+
+        // vBox contain workspace
         vBox.getChildren().add(1, ApplicationResource.getCurrentWorkspace());
         VBox.setVgrow(vBox.getChildren().get(1), Priority.ALWAYS);
+
+        // menu bar property
+        if (os != null && os.startsWith("Mac"))
+            menuBar.useSystemMenuBarProperty().set(true);
+        Platform.runLater(() -> menuBar.setUseSystemMenuBar(true));
+    }
+
+    @FXML
+    protected void handleNewProjectClick(ActionEvent event) {
+        NewProjectDialog dialog = new NewProjectDialog();
+        dialog.show();
     }
 
     @FXML

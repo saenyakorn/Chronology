@@ -128,7 +128,7 @@ public class Storyline extends BasicStoryComponent {
             BasicStoryComponent item = ApplicationResource.getValueFromCurrentWorkspaceHashMap(itemId);
             if (item instanceof EventCard) {
                 EventCard eventCard = (EventCard) item;
-                ApplicationResource.getCurrentWorkspace().getCurrentDocument().removeEventCard(eventCard);
+                ApplicationResource.getCurrentWorkspace().getActiveDocument().removeEventCard(eventCard);
                 addEventCard(eventCard);
                 ApplicationResource.update();
             }

@@ -1,10 +1,10 @@
-@import "../../application/StylingConstant";
+@import "../../application/StylingConstant.scss";
 
 .tree-cell {
   -fx-background-color: $white;
-}
 
-.tree-cell:hover {
-  -fx-background-color: $lime;
+  &:hover {
+    -fx-background-color: $sky-blue_20;
+  }
 }
 

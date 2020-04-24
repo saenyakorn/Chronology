@@ -1,0 +1,15 @@
+@import "../../application/StylingConstant.scss";
+
+.dialog_body {
+  -fx-background-color: $white;
+
+  .dialog_title {
+    -fx-font-size: 1.2em;
+  }
+
+  .dialog_button {
+    -fx-background-color: $orange;
+    -fx-padding: 10px 20px;
+  }
+}
+

@@ -11,19 +11,13 @@ import component.components.document.Document;
 import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
 import component.components.storyline.StorylineList;
-import component.layouts.workspace.Workspace;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
-
-import java.io.IOException;
 
 public class NewEventCardDialog extends Dialog {
 
@@ -39,24 +33,14 @@ public class NewEventCardDialog extends Dialog {
     HBox comboContainer;
 
     public NewEventCardDialog() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("NewEventCardDialog.fxml"));
-        fxmlLoader.setController(this);
-        try {
-            Parent root = fxmlLoader.load();
-            stage.setTitle("Create New Event");
-            stage.setScene(new Scene(root));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        loadFXML("Create New Event", "NewEventCardDialog.fxml");
     }
 
     public void addNewEventCard(String title, String description) {
         System.out.println("Creating a new EventCard");
-        Workspace currentWorkspace = ApplicationResource.getCurrentWorkspace();
-        Document currentDocument = currentWorkspace.getCurrentDocument();
         EventCard newEventCard = new EventCard(title, description);
-        currentDocument.addEventCard(newEventCard);
-        currentWorkspace.setActiveDocument(currentDocument);
+        ApplicationResource.getCurrentWorkspace().getActiveDocument().addEventCard(newEventCard);
+        ApplicationResource.update();
         System.out.println("Done");
         this.close();
     }
@@ -78,7 +62,7 @@ public class NewEventCardDialog extends Dialog {
 
     private void createChapterComboBox() {
         ComboBox<BasicStoryComponent> chapterCombo = new ComboBox<>();
-        Document document = ApplicationResource.getCurrentWorkspace().getCurrentDocument();
+        Document document = ApplicationResource.getCurrentWorkspace().getActiveDocument();
         ChapterList chapters = document.getChapterList();
         chapterCombo.getItems().add(new OnlyBodyBasicStoryComponents("None", "None"));
         for (Chapter chapter : chapters) {
@@ -92,7 +76,7 @@ public class NewEventCardDialog extends Dialog {
 
     private void createStorylineComboBox() {
         ComboBox<BasicStoryComponent> storylineCombo = new ComboBox<>();
-        Document document = ApplicationResource.getCurrentWorkspace().getCurrentDocument();
+        Document document = ApplicationResource.getCurrentWorkspace().getActiveDocument();
         StorylineList storylines = document.getStorylineList();
         storylineCombo.getItems().add(new OnlyBodyBasicStoryComponents("None", "None"));
         for (Storyline storyline : storylines) {

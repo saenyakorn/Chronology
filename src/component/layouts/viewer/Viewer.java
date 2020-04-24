@@ -3,10 +3,12 @@ package component.layouts.viewer;
 import application.ApplicationResource;
 import component.base.BasicStoryComponent;
 import component.components.document.Document;
+import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TabPane;
+import javafx.event.ActionEvent;
+import javafx.scene.control.*;
 import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.VBox;
 
@@ -18,7 +20,7 @@ public class Viewer extends TabPane {
     public Viewer() {
         scrollPane = new ScrollPane();
         vBox = new VBox();
-        addEventListenerToNode();
+        initializeEventHandler();
     }
 
     public void renderViewer(Document document) {
@@ -33,13 +35,25 @@ public class Viewer extends TabPane {
         this.getTabs().remove(document);
     }
 
-    private void addEventListenerToNode() {
-        this.setOnDragOver((DragEvent event) -> {
+    private void createStoryline() {
+        Storyline newStoryline = new Storyline();
+        ApplicationResource.getCurrentWorkspace().getActiveDocument().addStoryLine(newStoryline);
+        ApplicationResource.update();
+    }
+
+    private void createEventCard() {
+        EventCard newEventCard = new EventCard();
+        ApplicationResource.getCurrentWorkspace().getActiveDocument().addEventCard(newEventCard);
+        ApplicationResource.update();
+    }
+
+    private void initializeEventHandler() {
+        setOnDragOver((DragEvent event) -> {
             if (event.getDragboard().hasString()) {
                 event.acceptTransferModes(TransferMode.ANY);
             }
         });
-        this.setOnDragDropped((DragEvent event) -> {
+        setOnDragDropped((DragEvent event) -> {
             String itemId = event.getDragboard().getString();
             BasicStoryComponent item = ApplicationResource.getValueFromCurrentWorkspaceHashMap(itemId);
             if (item instanceof Storyline) {
@@ -47,6 +61,19 @@ public class Viewer extends TabPane {
                 vBox.getChildren().add(storyline);
                 scrollPane.setContent(vBox);
                 this.getSelectionModel().getSelectedItem().setContent(scrollPane);
+            }
+        });
+        setOnMousePressed((MouseEvent event) -> {
+            // right clicked
+            if (event.isSecondaryButtonDown()) {
+                System.out.println("Right Click on Viewer");
+                ContextMenu contextMenu = new ContextMenu();
+                MenuItem item1 = new MenuItem("add storyline");
+                item1.setOnAction((ActionEvent innerEvent) -> createStoryline());
+                MenuItem item2 = new MenuItem("add event card");
+                item2.setOnAction((ActionEvent innerEvent) -> createEventCard());
+                contextMenu.getItems().addAll(item1, new SeparatorMenuItem(), item2);
+                contextMenu.show(this, event.getScreenX(), event.getScreenY());
             }
         });
     }

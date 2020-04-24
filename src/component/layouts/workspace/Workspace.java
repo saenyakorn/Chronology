@@ -48,7 +48,7 @@ public class Workspace extends HBox {
         return documents;
     }
 
-    public Document getCurrentDocument() {
+    public Document getActiveDocument() {
         return documents.get(viewer.getSelectionModel().getSelectedIndex());
     }
 
@@ -58,10 +58,9 @@ public class Workspace extends HBox {
     }
 
     public void addDocument(Document document) {
-        System.out.println(document.getText());
         documents.addDocument(document);
         viewer.addDocument(document);
-        Document currentDocument = this.getCurrentDocument();
+        Document currentDocument = this.getActiveDocument();
         setActiveDocument(currentDocument);
     }
 
@@ -70,7 +69,7 @@ public class Workspace extends HBox {
             documents.addDocument(document);
             viewer.addDocument(document);
         }
-        Document currentDocument = this.getCurrentDocument();
+        Document currentDocument = this.getActiveDocument();
         setActiveDocument(currentDocument);
     }
 
