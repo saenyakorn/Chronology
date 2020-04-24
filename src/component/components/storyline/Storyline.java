@@ -2,6 +2,7 @@ package component.components.storyline;
 
 import application.ApplicationResource;
 import application.SystemConstants;
+import colors.RandomColor;
 import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
@@ -16,15 +17,13 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
 public class Storyline extends BasicStoryComponent {
     private final EventCardList eventCards;
+    private ContextMenu contextMenu;
 
-    @FXML
-    private Pane root;
     @FXML
     private Line line;
     @FXML
@@ -37,38 +36,42 @@ public class Storyline extends BasicStoryComponent {
     public Storyline() {
         eventCards = new EventCardList();
         loadFXML("Storyline.fxml");
+        initializeContextMenu();
         initializeEventHandler();
+        setColor(RandomColor.getColor());
     }
 
     public Storyline(String title, String description) {
         super(title, description);
         eventCards = new EventCardList();
         loadFXML("Storyline.fxml");
+        initializeContextMenu();
         initializeEventHandler();
+        setColor(RandomColor.getColor());
     }
 
     public Storyline(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
         eventCards = new EventCardList();
         loadFXML("Storyline.fxml");
+        initializeContextMenu();
         initializeEventHandler();
+        setColor(RandomColor.getColor());
     }
 
     @FXML
     public void initialize() {
-        this.setTitle(this.getTitle());
+        setTitle(getTitle());
+        setColor(getColor());
         storylineTitle.setDisable(true);
         storylineTitleContainer.setOnMouseClicked((MouseEvent event) -> storylineTitle.setDisable(false));
         storylineTitleContainer.setOnMouseExited((MouseEvent event) -> {
             if (!title.equals(storylineTitle.getText())) {
-                this.setTitle(storylineTitle.getText());
+                setTitle(storylineTitle.getText());
                 System.out.println("Storyline title set to " + title);
             }
             storylineTitle.setDisable(true);
         });
-
-        this.setColor(this.getColor());
-        initializeContextMenu();
     }
 
     @Override
@@ -134,33 +137,26 @@ public class Storyline extends BasicStoryComponent {
             }
             event.consume();
         });
+        setOnMousePressed((MouseEvent event) -> rightClickContextMenu(event));
+    }
+
+    private void rightClickContextMenu(MouseEvent event) {
+        System.out.println("Storyline: " + event.getTarget());
+        if (contextMenu.isShowing()) {
+            contextMenu.hide();
+        }
+        if (event.isSecondaryButtonDown()) {
+            contextMenu.show(this, event.getScreenX(), event.getScreenY());
+        } else {
+            contextMenu.hide();
+        }
+        event.consume();
     }
 
     private void initializeContextMenu() {
-        final ContextMenu contextMenu = new ContextMenu();
-        MenuItem setColorMenu = new MenuItem("Edit storyline color");
-        contextMenu.getItems().add(setColorMenu);
-        setColorMenu.setOnAction((ActionEvent event) -> {
-            SetColorDialog dialog = new SetColorDialog(this);
-            dialog.show();
-        });
-
-        root.setOnMousePressed((MouseEvent event) -> {
-            if (event.isSecondaryButtonDown() && !clickInEventCard(event)) {
-                contextMenu.show(root, event.getScreenX(), event.getScreenY());
-            }
-        });
+        contextMenu = new ContextMenu();
+        MenuItem colorMenuItem = new MenuItem("Edit storyline color");
+        colorMenuItem.setOnAction((ActionEvent event) -> new SetColorDialog(this).show());
+        contextMenu.getItems().add(colorMenuItem);
     }
-
-    private boolean clickInEventCard(MouseEvent event) {
-        if (eventCardList.contains(eventCardList.screenToLocal(event.getScreenX(), event.getScreenY()))) {
-            for (EventCard eventCard : eventCards) {
-                if (eventCard.clickInEventCard(event))
-                    return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
 }
