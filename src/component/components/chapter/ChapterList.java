@@ -1,9 +1,11 @@
 package component.components.chapter;
 
+import component.Savable;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class ChapterList implements Iterable<Chapter> {
+public class ChapterList implements Iterable<Chapter>, Savable {
     private final ArrayList<Chapter> chapters;
 
     public ChapterList() {
@@ -44,5 +46,10 @@ public class ChapterList implements Iterable<Chapter> {
             content += chapter + " ";
         }
         return content;
+    }
+
+    @Override
+    public void getJSON() {
+
     }
 }

@@ -3,6 +3,7 @@ package component.components.storyline;
 import application.ApplicationResource;
 import application.SystemConstants;
 import colors.RandomColor;
+import component.Savable;
 import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
@@ -20,7 +21,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
-public class Storyline extends BasicStoryComponent {
+public class Storyline extends BasicStoryComponent implements Savable {
     private final EventCardList eventCards;
     private ContextMenu contextMenu;
 
@@ -158,5 +159,10 @@ public class Storyline extends BasicStoryComponent {
         MenuItem colorMenuItem = new MenuItem("Edit storyline color");
         colorMenuItem.setOnAction((ActionEvent event) -> new SetColorDialog(this).show());
         contextMenu.getItems().add(colorMenuItem);
+    }
+
+    @Override
+    public void getJSON() {
+
     }
 }

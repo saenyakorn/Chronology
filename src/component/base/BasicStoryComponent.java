@@ -3,6 +3,7 @@ package component.base;
 import application.ApplicationResource;
 import application.SystemConstants;
 import colors.RandomColor;
+import component.Savable;
 import component.components.timeModifier.PredefinedTimePeriod;
 import component.components.timeModifier.TimePeriod;
 import component.components.timeModifier.TimePeriodGenerator;
@@ -14,7 +15,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public abstract class BasicStoryComponent extends Pane {
+public abstract class BasicStoryComponent extends Pane implements Savable {
     protected final String componentId;
     protected String title;
     protected String description;

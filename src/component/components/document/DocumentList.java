@@ -1,8 +1,10 @@
 package component.components.document;
 
+import component.Savable;
+
 import java.util.ArrayList;
 
-public class DocumentList {
+public class DocumentList implements Savable {
     private final ArrayList<Document> documents;
 
     public DocumentList() {
@@ -27,5 +29,10 @@ public class DocumentList {
 
     public int getSize() {
         return documents.size();
+    }
+
+    @Override
+    public void getJSON() {
+
     }
 }

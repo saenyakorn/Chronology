@@ -1,11 +1,12 @@
 package component.components.storyline;
 
+import component.Savable;
 import component.components.eventCard.EventCard;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class StorylineList implements Iterable<Storyline> {
+public class StorylineList implements Iterable<Storyline>, Savable {
     private final ArrayList<Storyline> storylines;
 
     public StorylineList() {
@@ -48,5 +49,10 @@ public class StorylineList implements Iterable<Storyline> {
     @Override
     public Iterator<Storyline> iterator() {
         return storylines.iterator();
+    }
+
+    @Override
+    public void getJSON() {
+
     }
 }

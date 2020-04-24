@@ -1,6 +1,7 @@
 package component.components.document;
 
 import application.ApplicationResource;
+import component.Savable;
 import component.components.chapter.Chapter;
 import component.components.chapter.ChapterList;
 import component.components.eventCard.EventCard;
@@ -9,7 +10,7 @@ import component.components.storyline.Storyline;
 import component.components.storyline.StorylineList;
 import javafx.scene.control.Tab;
 
-public class Document extends Tab {
+public class Document extends Tab implements Savable {
     private String name;
     private final EventCardList eventCards;
     private final ChapterList chapters;
@@ -87,5 +88,10 @@ public class Document extends Tab {
     @Override
     public String toString() {
         return this.getText();
+    }
+
+    @Override
+    public void getJSON() {
+
     }
 }

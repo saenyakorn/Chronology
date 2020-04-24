@@ -215,4 +215,9 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
             event.consume();
         });
     }
+
+    @Override
+    public void getJSON() {
+
+    }
 }

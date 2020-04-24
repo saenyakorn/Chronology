@@ -1,5 +1,6 @@
 package component.layouts.workspace;
 
+import component.Savable;
 import component.base.BasicStoryComponent;
 import component.components.document.Document;
 import component.components.document.DocumentList;
@@ -12,7 +13,7 @@ import javafx.scene.layout.Priority;
 
 import java.util.HashMap;
 
-public class Workspace extends HBox {
+public class Workspace extends HBox implements Savable {
     private final DocumentList documents;
     private final Viewer viewer;
     private final SideBar sideBar;
@@ -85,5 +86,10 @@ public class Workspace extends HBox {
     @Override
     public String toString() {
         return "Workspace: " + getId();
+    }
+
+    @Override
+    public void getJSON() {
+
     }
 }

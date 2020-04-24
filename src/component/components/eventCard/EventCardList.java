@@ -1,12 +1,13 @@
 package component.components.eventCard;
 
+import component.Savable;
 import javafx.scene.layout.HBox;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
-public class EventCardList extends HBox implements Iterable<EventCard> {
+public class EventCardList extends HBox implements Iterable<EventCard>, Savable {
     private final ArrayList<EventCard> eventCards;
 
     public EventCardList() {
@@ -50,5 +51,10 @@ public class EventCardList extends HBox implements Iterable<EventCard> {
             content += eventCard + " ";
         }
         return content;
+    }
+
+    @Override
+    public void getJSON() {
+
     }
 }
