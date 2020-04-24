@@ -86,8 +86,6 @@ public abstract class BasicStoryComponent extends Pane {
     @Override
     abstract public String toString();
 
-    abstract public void toJSON();
-
     protected void loadFXML(String link) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(link));
         fxmlLoader.setRoot(this);

@@ -40,11 +40,4 @@ public class Chapter extends BasicStoryComponent {
     public String toString() {
         return title;
     }
-
-    @Override
-    public void toJSON() {
-
-    }
-
-
 }

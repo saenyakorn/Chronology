@@ -116,11 +116,6 @@ public class Storyline extends BasicStoryComponent {
         return title;
     }
 
-    @Override
-    public void toJSON() {
-
-    }
-
     public void initializeEventHandler() {
         setOnDragOver((DragEvent event) -> {
             if (event.getDragboard().hasString()) {
