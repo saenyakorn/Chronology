@@ -78,6 +78,10 @@ public class Workspace extends HBox {
         viewer.removeDocument(document);
     }
 
+    public Viewer getViewer() {
+        return viewer;
+    }
+
     @Override
     public String toString() {
         return "Workspace: " + getId();
