@@ -1,6 +1,5 @@
 package component.components.eventCard;
 
-import application.SystemConstants;
 import component.base.BasicStoryComponent;
 import component.components.chapter.Chapter;
 import component.components.storyline.Storyline;
@@ -28,7 +27,8 @@ import java.time.format.FormatStyle;
 
 public class EventCard extends BasicStoryComponent implements Comparable<EventCard> {
     private Storyline selfStoryline;
-    private Chapter selfChapter;
+    private final Chapter selfChapter;
+    private ContextMenu contextMenu;
 
     @FXML
     private Text date;
@@ -52,6 +52,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         selfStoryline = null;
         loadFXML("EventCard.fxml");
         initializeEventHandler();
+        initializeContextMenu();
     }
 
     public EventCard(String title, String description) {
@@ -72,37 +73,34 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     @FXML
     public void initialize() {
-        this.setTitle(this.getTitle());
+        setTitle(getTitle());
+        setColor(getColor());
+        setTimePeriod(getTimePeriod());
+        setDescription(getDescription());
         cardTitle.setDisable(true);
         cardTitleContainer.setOnMouseClicked((MouseEvent event) -> cardTitle.setDisable(false));
         cardTitleContainer.setOnMouseExited((MouseEvent event) -> {
-            if(!title.equals(cardTitle.getText())){
+            if (!title.equals(cardTitle.getText())) {
                 this.setTitle(cardTitle.getText());
                 System.out.println("Card title set to " + title);
             }
             cardTitle.setDisable(true);
         });
-
-        this.setDescription(this.getDescription());
         cardDescription.setDisable(true);
         cardDescriptionContainer.setOnMouseClicked((MouseEvent event) -> cardDescription.setDisable(false));
         cardDescriptionContainer.setOnMouseExited((MouseEvent event) -> {
-            if(!description.equals(cardDescription.getText())){
+            if (!description.equals(cardDescription.getText())) {
                 this.setDescription(cardDescription.getText());
                 System.out.println("Card description set to " + description);
             }
             cardDescription.setDisable(true);
         });
+        dateTimeContainer.setOnMousePressed((MouseEvent event) -> rightClickContextMenu(event));
 
-        this.setColor(this.getColor());
-        this.setTimePeriod(this.getTimePeriod());
-        initializeContextMenu();
-
-        if(selfChapter == null){
-            chapterMarker.setStyle("-fx-background-color: " + SystemConstants.WHITE + ";");
-        }
-        else {
-            setChapter(this.getChapter());
+        if (selfChapter == null) {
+            chapterMarker.setStyle("-fx-background-color: white ;");
+        } else {
+            setChapter(getChapter());
         }
     }
 
@@ -111,8 +109,8 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     }
 
     public void setStoryline(Storyline selfStoryLine) {
-        this.selfStoryline = selfStoryLine;
-        this.setColor(selfStoryLine.getColor());
+        selfStoryline = selfStoryLine;
+        setColor(selfStoryLine.getColor());
         setSelfComponentTimePeriod(timePeriod, selfStoryLine); //no null case
     }
 
@@ -121,7 +119,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     }
 
     public void setChapter(Chapter selfChapter) {
-        this.selfChapter = selfChapter;
+        selfChapter = selfChapter;
         //chapterMarker.setStyle("-fx-background-color: " + colorToHex(selfChapter.getColor()) + ";");
         setSelfComponentTimePeriod(timePeriod, selfChapter); //no null case
     }
@@ -149,28 +147,28 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     @Override
     public void setTimePeriod(TimePeriod timePeriod) {
         super.setTimePeriod(timePeriod);
-        if(selfStoryline != null){
+        if (selfStoryline != null) {
             setSelfComponentTimePeriod(timePeriod, selfStoryline);
             selfStoryline.getEventCards().sortEventCards();
             selfStoryline.renderEventCards();
         }
-        if(selfChapter != null)
+        if (selfChapter != null)
             setSelfComponentTimePeriod(timePeriod, selfChapter);
 
         date.setText(timePeriod.getBeginDateTime().toLocalDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
         time.setText(timePeriod.getBeginDateTime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
     }
 
-    public void setSelfComponentTimePeriod (TimePeriod timePeriod, BasicStoryComponent component) {
+    public void setSelfComponentTimePeriod(TimePeriod timePeriod, BasicStoryComponent component) {
         LocalDateTime newBeginDateTime = timePeriod.getBeginDateTime();
         LocalDateTime newEndDateTime = timePeriod.getEndDateTime();
 
-        if(newBeginDateTime.isBefore(component.getTimePeriod().getBeginDateTime())) {
+        if (newBeginDateTime.isBefore(component.getTimePeriod().getBeginDateTime())) {
             component.getTimePeriod().setBeginDateTime(newBeginDateTime);
             System.out.println("Storyline BeginDateTime set to " + component.getTimePeriod().getBeginDateTime());
 
         }
-        if(newEndDateTime.isAfter(component.getTimePeriod().getEndDateTime())) {
+        if (newEndDateTime.isAfter(component.getTimePeriod().getEndDateTime())) {
             component.getTimePeriod().setEndDateTime(newEndDateTime);
             System.out.println("Storyline EndDateTime set to " + component.getTimePeriod().getEndDateTime());
         }
@@ -186,29 +184,30 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         return timePeriod.compareTo(o.timePeriod);
     }
 
-    private void initializeContextMenu() {
-        final ContextMenu contextMenu = new ContextMenu();
-        MenuItem setTimePeriodMenu = new MenuItem("Edit event date/time");
-        MenuItem setColorMenu = new MenuItem("Edit storyline color");
-        contextMenu.getItems().addAll(setTimePeriodMenu,setColorMenu);
-        setTimePeriodMenu.setOnAction((ActionEvent event) -> {
-            SetTimePeriodDialog dialog = new SetTimePeriodDialog(this);
-            dialog.show();
-        });
-        setColorMenu.setOnAction((ActionEvent event) ->{
-            SetColorDialog dialog = new SetColorDialog(this.selfStoryline);
-            dialog.show();
-        });
+    private void rightClickContextMenu(MouseEvent event) {
+        System.out.println("EventCard: " + event.getTarget());
+        if (contextMenu.isShowing()) {
+            contextMenu.hide();
+        }
+        if (event.isSecondaryButtonDown()) {
+            contextMenu.show(dateTimeContainer, event.getScreenX(), event.getScreenY());
+        } else {
+            contextMenu.hide();
+        }
+        event.consume();
+    }
 
-        dateTimeContainer.setOnMousePressed((MouseEvent event) -> {
-            if (event.isSecondaryButtonDown()) {
-                contextMenu.show(dateTimeContainer, event.getScreenX(), event.getScreenY());
-            }
-        });
+    private void initializeContextMenu() {
+        contextMenu = new ContextMenu();
+        MenuItem timePeriodMenuItem = new MenuItem("Edit event date/time");
+        MenuItem colorMenuItem = new MenuItem("Edit storyline color");
+        timePeriodMenuItem.setOnAction((ActionEvent event) -> new SetTimePeriodDialog(this).show());
+        colorMenuItem.setOnAction((ActionEvent event) -> new SetColorDialog(selfStoryline).show());
+        contextMenu.getItems().addAll(timePeriodMenuItem, colorMenuItem);
     }
 
     private void initializeEventHandler() {
-        this.setOnDragDetected((MouseEvent event) -> {
+        setOnDragDetected((MouseEvent event) -> {
             Dragboard dragboard = startDragAndDrop(TransferMode.MOVE);
             ClipboardContent clipboardContent = new ClipboardContent();
             clipboardContent.putString(getComponentId());
@@ -216,9 +215,4 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
             event.consume();
         });
     }
-
-    public boolean clickInEventCard(MouseEvent event) {
-        return this.contains(this.screenToLocal(event.getScreenX(), event.getScreenY()));
-    }
-
 }

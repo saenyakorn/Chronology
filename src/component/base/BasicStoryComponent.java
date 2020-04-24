@@ -2,6 +2,7 @@ package component.base;
 
 import application.ApplicationResource;
 import application.SystemConstants;
+import colors.RandomColor;
 import component.components.timeModifier.PredefinedTimePeriod;
 import component.components.timeModifier.TimePeriod;
 import component.components.timeModifier.TimePeriodGenerator;
@@ -25,7 +26,7 @@ public abstract class BasicStoryComponent extends Pane {
         ApplicationResource.putItemToCurrentWorkspaceHashMap(componentId, this);
         this.title = "Title";
         this.description = "Lorem ipsum dolor set amet, ego bir setaso de.";
-        this.color = Color.web(SystemConstants.RED);
+        this.color = SystemConstants.DEFAULT_COLOR;
         this.timePeriod = TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY);
     }
 
@@ -34,7 +35,7 @@ public abstract class BasicStoryComponent extends Pane {
         ApplicationResource.putItemToCurrentWorkspaceHashMap(componentId, this);
         this.title = title;
         this.description = description;
-        this.color = Color.web(SystemConstants.RED);
+        this.color = SystemConstants.DEFAULT_COLOR;
         this.timePeriod = TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY);
     }
 
@@ -72,7 +73,9 @@ public abstract class BasicStoryComponent extends Pane {
     }
 
     public void setColor(Color color) {
+        RandomColor.removeUsedColor(this.color);
         this.color = color;
+        RandomColor.addUsedColor(color);
     }
 
     public TimePeriod getTimePeriod() {
