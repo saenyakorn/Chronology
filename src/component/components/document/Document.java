@@ -14,7 +14,6 @@ public class Document extends Tab {
     private final ChapterList chapters;
     private final StorylineList storylines;
 
-
     public Document(String name) {
         this.setText(name);
         eventCards = new EventCardList();
@@ -42,6 +41,7 @@ public class Document extends Tab {
 
     public void addStoryLine(Storyline storyline) {
         storylines.addStoryline(storyline);
+        ApplicationResource.getCurrentWorkspace().getViewer().addStoryline(storyline);
     }
 
     public void addChapter(Chapter chapter) {
@@ -51,14 +51,17 @@ public class Document extends Tab {
     public void removeEventCard(EventCard eventCard) {
         if (eventCard.getChapter() == null && eventCard.getStoryline() == null) {
             eventCards.removeEventCard(eventCard);
-        }
-        if (eventCard.getChapter() != null) {
-            eventCard.getChapter().removeEventCard(eventCard);
-        }
-        if (eventCard.getStoryline() != null) {
-            eventCard.getStoryline().removeEventCard(eventCard);
         } else {
-            System.out.println(eventCard + " -> This event card is not exist");
+            if (eventCard.getChapter() != null) {
+                eventCard.getChapter().removeEventCard(eventCard);
+            }
+            if (eventCard.getStoryline() != null) {
+                eventCard.getStoryline().removeEventCard(eventCard);
+            } else {
+                System.out.println("E-Chapter: " + eventCard.getChapter());
+                System.out.println("E-Storyline: " + eventCard.getStoryline());
+                System.out.println(eventCard + " -> This event card is not exist");
+            }
         }
     }
 
