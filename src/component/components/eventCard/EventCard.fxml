@@ -16,12 +16,13 @@
             <Text id="time" fx:id="time"/>
         </HBox>
 
-        <VBox id="card">
+        <VBox id="card" styleClass="eventCard">
             <StackPane id="cardTitleContainer" fx:id="cardTitleContainer"
                        prefWidth="200.0" prefHeight="50.0" alignment="CENTER_LEFT">
                 <TextField id="cardTitle" fx:id="cardTitle" prefWidth="170"/>
             </StackPane>
-            <StackPane id="cardDescriptionContainer" fx:id="cardDescriptionContainer" prefWidth="200.0" prefHeight="85.0" layoutY="50.0" alignment="TOP_LEFT">
+            <StackPane id="cardDescriptionContainer" fx:id="cardDescriptionContainer" prefWidth="200.0"
+                       prefHeight="85.0" layoutY="50.0" alignment="TOP_LEFT">
                 <TextArea id="cardDescription" fx:id="cardDescription" prefWidth="170" wrapText="true"/>
             </StackPane>
             <StackPane id="chapterMarker" fx:id="chapterMarker" prefWidth="200.0" prefHeight="15.0"/>
