@@ -182,6 +182,11 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     }
 
     @Override
+    public void toJSON() {
+
+    }
+
+    @Override
     public int compareTo(EventCard o) throws IllegalArgumentException {
         return timePeriod.compareTo(o.timePeriod);
     }
