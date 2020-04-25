@@ -9,6 +9,9 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class mainController {
 
     @FXML
@@ -65,7 +68,13 @@ public class mainController {
 
     @FXML
     protected void handleSaveClick(ActionEvent event) {
-
+        try {
+            FileWriter file = new FileWriter(ApplicationResource.getSavedFile()); //savedFile is currently null!
+            file.write(ApplicationResource.getCurrentWorkspace().getJSONString());
+            file.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

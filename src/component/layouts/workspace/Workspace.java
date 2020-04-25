@@ -89,7 +89,7 @@ public class Workspace extends HBox implements Savable {
     }
 
     @Override
-    public void getJSON() {
-
+    public String getJSONString() {
+        return documents.getJSONArray().toJSONString();
     }
 }
