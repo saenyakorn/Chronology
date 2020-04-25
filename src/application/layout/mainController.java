@@ -69,7 +69,8 @@ public class mainController {
     @FXML
     protected void handleSaveClick(ActionEvent event) {
         try {
-            FileWriter file = new FileWriter(ApplicationResource.getSavedFile()); //savedFile is currently null!
+            //FileWriter file = new FileWriter(ApplicationResource.getSavedFile()); //savedFile is currently null!
+            FileWriter file = new FileWriter("output.json");
             file.write(ApplicationResource.getCurrentWorkspace().getJSONString());
             file.flush();
         } catch (IOException e) {

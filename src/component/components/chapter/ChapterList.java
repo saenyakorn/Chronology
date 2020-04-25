@@ -54,8 +54,12 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray {
         return this.getJSONArray().toJSONString();
     }
 
-    @Override
+    @Override @SuppressWarnings("unchecked")
     public JSONArray getJSONArray() {
-        return null;
+        JSONArray chapterList = new JSONArray();
+        for(Chapter chapter : chapters) {
+            chapterList.add(chapter.getJSONObject());
+        }
+        return chapterList;
     }
 }

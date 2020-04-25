@@ -10,6 +10,7 @@ import component.components.timeModifier.TimePeriodGenerator;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import org.json.simple.JSONObject;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -95,6 +96,16 @@ public abstract class BasicStoryComponent extends Pane implements SavableAsJSONO
         return this.getJSONObject().toJSONString();
     }
 
+    @Override @SuppressWarnings("unchecked")
+    public JSONObject getJSONObject() {
+        JSONObject component = new JSONObject();
+        component.put("title", title);
+        component.put("description", description);
+        component.put("Color", colorToHex(color));
+        component.put("TimePeriod", timePeriod.toString());
+        return component;
+    }
+
     protected void loadFXML(String link) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(link));
         fxmlLoader.setRoot(this);
@@ -106,7 +117,7 @@ public abstract class BasicStoryComponent extends Pane implements SavableAsJSONO
         }
     }
 
-    protected String colorToHex(Color color) {
+    protected static String colorToHex(Color color) {
         return String.format("#%02x%02x%02x",
                 (int) (255 * color.getRed()),
                 (int) (255 * color.getGreen()),

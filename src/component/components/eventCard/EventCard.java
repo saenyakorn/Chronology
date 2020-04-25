@@ -25,6 +25,7 @@ import org.json.simple.JSONObject;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.Objects;
 
 public class EventCard extends BasicStoryComponent implements Comparable<EventCard> {
     private Storyline selfStoryline;
@@ -185,6 +186,14 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         return timePeriod.compareTo(o.timePeriod);
     }
 
+    @Override @SuppressWarnings("unchecked")
+    public JSONObject getJSONObject() {
+        JSONObject eventCard = super.getJSONObject();
+        eventCard.put("selfChapter", Objects.toString(selfChapter));
+        eventCard.put("selfStoryline", Objects.toString(selfChapter));
+        return eventCard;
+    }
+
     private void rightClickContextMenu(MouseEvent event) {
         System.out.println("EventCard: " + event.getTarget());
         if (contextMenu.isShowing()) {
@@ -217,8 +226,4 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         });
     }
 
-    @Override
-    public JSONObject getJSONObject() {
-        return null;
-    }
 }

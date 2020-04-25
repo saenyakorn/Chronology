@@ -37,8 +37,12 @@ public class DocumentList implements SavableAsJSONArray {
         return this.getJSONArray().toJSONString();
     }
 
-    @Override
+    @Override @SuppressWarnings("unchecked")
     public JSONArray getJSONArray() {
-        return null;
+        JSONArray documentList = new JSONArray();
+        for(Document document : documents) {
+            documentList.add(document.getJSONObject());
+        }
+        return documentList;
     }
 }

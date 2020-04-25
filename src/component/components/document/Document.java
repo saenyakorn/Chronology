@@ -98,6 +98,11 @@ public class Document extends Tab implements SavableAsJSONObject {
 
     @Override
     public JSONObject getJSONObject() {
-        return null;
+        JSONObject document = new JSONObject();
+        document.put("name", name);
+        document.put("eventCardList", eventCards.getJSONArray());
+        document.put("chapterList", chapters.getJSONArray());
+        document.put("storylineList", storylines.getJSONArray());
+        return document;
     }
 }

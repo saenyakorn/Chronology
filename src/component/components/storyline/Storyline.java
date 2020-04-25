@@ -120,6 +120,13 @@ public class Storyline extends BasicStoryComponent {
         return title;
     }
 
+    @Override @SuppressWarnings("unchecked")
+    public JSONObject getJSONObject() {
+        JSONObject storyline = super.getJSONObject();
+        storyline.put("eventCardList", eventCards.getJSONArray());
+        return storyline;
+    }
+
     public void initializeEventHandler() {
         setOnDragOver((DragEvent event) -> {
             if (event.getDragboard().hasString()) {
@@ -161,8 +168,4 @@ public class Storyline extends BasicStoryComponent {
         contextMenu.getItems().add(colorMenuItem);
     }
 
-    @Override
-    public JSONObject getJSONObject() {
-        return null;
-    }
 }

@@ -42,8 +42,10 @@ public class Chapter extends BasicStoryComponent {
         return title;
     }
 
-    @Override
+    @Override @SuppressWarnings("unchecked")
     public JSONObject getJSONObject() {
-        return null;
+        JSONObject chapter = super.getJSONObject();
+        chapter.put("eventCardList", eventCards.getJSONArray());
+        return chapter;
     }
 }
