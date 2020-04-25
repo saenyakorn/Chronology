@@ -21,6 +21,14 @@ public class ApplicationResource {
         return ApplicationResource.currentWorkspace;
     }
 
+    public static File getSavedFile() {
+        return savedFile;
+    }
+
+    public static void setSavedFile(File savedFile) {
+        ApplicationResource.savedFile = savedFile;
+    }
+
     public static void update() {
         Document currentDocument = ApplicationResource.getCurrentWorkspace().getActiveDocument();
         ApplicationResource.getCurrentWorkspace().setActiveDocument(currentDocument);
@@ -39,7 +47,7 @@ public class ApplicationResource {
     }
 
     public static void newProject() {
-        // initialized appication
+        // initialized application
         ApplicationResource.initialize();
 
         // add template structure
