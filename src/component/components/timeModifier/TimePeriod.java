@@ -1,8 +1,10 @@
 package component.components.timeModifier;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class TimePeriod implements Comparable<TimePeriod> {
+    static DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
     LocalDateTime beginDateTime;
     LocalDateTime endDateTime;
 
@@ -63,5 +65,16 @@ public class TimePeriod implements Comparable<TimePeriod> {
         } else {
             return 0;
         }
+    }
+
+    public String toString() {
+        return beginDateTime.format(formatter) + " " + endDateTime.format(formatter);
+    }
+
+    public static TimePeriod stringToTimePeriod(String timePeriodString) {
+        String[] splitString = timePeriodString.split(" ");
+        LocalDateTime beginDateTime = LocalDateTime.parse(splitString[0], formatter);
+        LocalDateTime endDateTime = LocalDateTime.parse(splitString[1], formatter);
+        return new TimePeriod(beginDateTime, endDateTime);
     }
 }
