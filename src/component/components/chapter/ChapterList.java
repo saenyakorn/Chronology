@@ -1,11 +1,12 @@
 package component.components.chapter;
 
-import component.Savable;
+import component.SavableAsJSONArray;
+import org.json.simple.JSONArray;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class ChapterList implements Iterable<Chapter>, Savable {
+public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray {
     private final ArrayList<Chapter> chapters;
 
     public ChapterList() {
@@ -49,7 +50,12 @@ public class ChapterList implements Iterable<Chapter>, Savable {
     }
 
     @Override
-    public void getJSON() {
+    public String getJSONString() {
+        return this.getJSONArray().toJSONString();
+    }
 
+    @Override
+    public JSONArray getJSONArray() {
+        return null;
     }
 }

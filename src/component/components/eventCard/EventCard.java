@@ -20,6 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import org.json.simple.JSONObject;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -27,7 +28,7 @@ import java.time.format.FormatStyle;
 
 public class EventCard extends BasicStoryComponent implements Comparable<EventCard> {
     private Storyline selfStoryline;
-    private final Chapter selfChapter;
+    private Chapter selfChapter;
     private ContextMenu contextMenu;
 
     @FXML
@@ -119,7 +120,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     }
 
     public void setChapter(Chapter selfChapter) {
-        selfChapter = selfChapter;
+        this.selfChapter = selfChapter;
         //chapterMarker.setStyle("-fx-background-color: " + colorToHex(selfChapter.getColor()) + ";");
         setSelfComponentTimePeriod(timePeriod, selfChapter); //no null case
     }
@@ -217,7 +218,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     }
 
     @Override
-    public void getJSON() {
-
+    public JSONObject getJSONObject() {
+        return null;
     }
 }

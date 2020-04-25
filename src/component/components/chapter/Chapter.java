@@ -5,6 +5,7 @@ import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
 import component.components.timeModifier.TimePeriod;
 import javafx.scene.paint.Color;
+import org.json.simple.JSONObject;
 
 public class Chapter extends BasicStoryComponent {
     private final EventCardList eventCards;
@@ -42,7 +43,7 @@ public class Chapter extends BasicStoryComponent {
     }
 
     @Override
-    public void getJSON() {
-
+    public JSONObject getJSONObject() {
+        return null;
     }
 }

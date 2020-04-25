@@ -1,10 +1,11 @@
 package component.components.document;
 
-import component.Savable;
+import component.SavableAsJSONArray;
+import org.json.simple.JSONArray;
 
 import java.util.ArrayList;
 
-public class DocumentList implements Savable {
+public class DocumentList implements SavableAsJSONArray {
     private final ArrayList<Document> documents;
 
     public DocumentList() {
@@ -32,7 +33,12 @@ public class DocumentList implements Savable {
     }
 
     @Override
-    public void getJSON() {
+    public String getJSONString() {
+        return this.getJSONArray().toJSONString();
+    }
 
+    @Override
+    public JSONArray getJSONArray() {
+        return null;
     }
 }

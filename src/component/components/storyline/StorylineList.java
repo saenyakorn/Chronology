@@ -1,12 +1,13 @@
 package component.components.storyline;
 
-import component.Savable;
+import component.SavableAsJSONArray;
 import component.components.eventCard.EventCard;
+import org.json.simple.JSONArray;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class StorylineList implements Iterable<Storyline>, Savable {
+public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray {
     private final ArrayList<Storyline> storylines;
 
     public StorylineList() {
@@ -52,7 +53,12 @@ public class StorylineList implements Iterable<Storyline>, Savable {
     }
 
     @Override
-    public void getJSON() {
+    public String getJSONString() {
+        return this.getJSONArray().toJSONString();
+    }
 
+    @Override
+    public JSONArray getJSONArray() {
+        return null;
     }
 }

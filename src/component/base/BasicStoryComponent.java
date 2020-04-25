@@ -3,7 +3,7 @@ package component.base;
 import application.ApplicationResource;
 import application.SystemConstants;
 import colors.RandomColor;
-import component.Savable;
+import component.SavableAsJSONObject;
 import component.components.timeModifier.PredefinedTimePeriod;
 import component.components.timeModifier.TimePeriod;
 import component.components.timeModifier.TimePeriodGenerator;
@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public abstract class BasicStoryComponent extends Pane implements Savable {
+public abstract class BasicStoryComponent extends Pane implements SavableAsJSONObject {
     protected final String componentId;
     protected String title;
     protected String description;
@@ -89,6 +89,11 @@ public abstract class BasicStoryComponent extends Pane implements Savable {
 
     @Override
     abstract public String toString();
+
+    @Override
+    public String getJSONString() {
+        return this.getJSONObject().toJSONString();
+    }
 
     protected void loadFXML(String link) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(link));

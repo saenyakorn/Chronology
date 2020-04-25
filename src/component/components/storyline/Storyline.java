@@ -3,7 +3,6 @@ package component.components.storyline;
 import application.ApplicationResource;
 import application.SystemConstants;
 import colors.RandomColor;
-import component.Savable;
 import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
@@ -20,8 +19,9 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import org.json.simple.JSONObject;
 
-public class Storyline extends BasicStoryComponent implements Savable {
+public class Storyline extends BasicStoryComponent {
     private final EventCardList eventCards;
     private ContextMenu contextMenu;
 
@@ -162,7 +162,7 @@ public class Storyline extends BasicStoryComponent implements Savable {
     }
 
     @Override
-    public void getJSON() {
-
+    public JSONObject getJSONObject() {
+        return null;
     }
 }

@@ -1,13 +1,14 @@
 package component.components.eventCard;
 
-import component.Savable;
+import component.SavableAsJSONArray;
 import javafx.scene.layout.HBox;
+import org.json.simple.JSONArray;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
-public class EventCardList extends HBox implements Iterable<EventCard>, Savable {
+public class EventCardList extends HBox implements Iterable<EventCard>, SavableAsJSONArray {
     private final ArrayList<EventCard> eventCards;
 
     public EventCardList() {
@@ -54,7 +55,12 @@ public class EventCardList extends HBox implements Iterable<EventCard>, Savable 
     }
 
     @Override
-    public void getJSON() {
+    public String getJSONString() {
+        return this.getJSONArray().toJSONString();
+    }
 
+    @Override
+    public JSONArray getJSONArray() {
+        return null;
     }
 }
