@@ -48,4 +48,16 @@ public class Chapter extends BasicStoryComponent {
         chapter.put("eventCardList", eventCards.getJSONArray());
         return chapter;
     }
+
+    public static Chapter parseJSONObject(JSONObject chapterObject) {
+        String name = (String) chapterObject.get("name");
+        String description = (String) chapterObject.get("description");
+        Color color = Color.web((String) chapterObject.get("Color"));
+        TimePeriod timePeriod = TimePeriod.stringToTimePeriod((String) chapterObject.get("TimePeriod"));
+
+        Chapter chapter = new Chapter(name, description, color, timePeriod);
+        //TODO : add EventCardList - new constructor? like Document.java
+
+        return chapter;
+    }
 }

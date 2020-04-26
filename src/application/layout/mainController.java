@@ -1,14 +1,22 @@
 package application.layout;
 
 import application.ApplicationResource;
+import component.components.document.Document;
 import component.dialog.*;
+import component.layouts.workspace.Workspace;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -85,6 +93,26 @@ public class mainController {
 
     @FXML
     protected void handleOpenClick(ActionEvent event) {
+        ApplicationResource.setCurrentWorkspace(new Workspace());
 
+        JSONParser parser = new JSONParser();
+        try (FileReader file = new FileReader("JSONoutput/output_saved.json")) {
+            Object obj = parser.parse(file);
+            parseJSONFile((JSONArray) obj);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private void parseJSONFile(JSONArray documentArray) {
+        for(Object documentObject : documentArray) {
+            Document document = Document.parseJSONObject((JSONObject) documentObject);
+            ApplicationResource.getCurrentWorkspace().getDocumentList().addDocument(document);
+        }
     }
 }

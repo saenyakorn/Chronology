@@ -3,6 +3,7 @@ package component.components.storyline;
 import component.SavableAsJSONArray;
 import component.components.eventCard.EventCard;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -65,4 +66,15 @@ public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray {
         }
         return storylineList;
     }
+
+    @SuppressWarnings("unchecked")
+    public static StorylineList parseJSONArray(JSONArray storylineArray) {
+        StorylineList storylines = new StorylineList();
+        for(Object storylineObject : storylineArray) {
+            Storyline storyline = Storyline.parseJSONObject((JSONObject) storylineObject);
+            storylines.addStoryline(storyline);
+        }
+        return storylines;
+    }
+
 }

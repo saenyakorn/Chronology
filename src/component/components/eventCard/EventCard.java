@@ -194,6 +194,19 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         return eventCard;
     }
 
+    public static EventCard parseJSONObject(JSONObject eventCardObject) {
+        String name = (String) eventCardObject.get("name");
+        String description = (String) eventCardObject.get("description");
+        Color color = Color.web((String) eventCardObject.get("Color"));
+        TimePeriod timePeriod = TimePeriod.stringToTimePeriod((String) eventCardObject.get("TimePeriod"));
+
+        EventCard eventCard = new EventCard(name, description, color, timePeriod);
+        //eventCard.setChapter();
+        //eventCard.setStoryline(); //TODO : needs chapter string -> storyline
+
+        return eventCard;
+    }
+
     private void rightClickContextMenu(MouseEvent event) {
         System.out.println("EventCard: " + event.getTarget());
         if (contextMenu.isShowing()) {

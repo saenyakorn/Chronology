@@ -9,6 +9,7 @@ import component.components.eventCard.EventCardList;
 import component.components.storyline.Storyline;
 import component.components.storyline.StorylineList;
 import javafx.scene.control.Tab;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class Document extends Tab implements SavableAsJSONObject {
@@ -23,6 +24,16 @@ public class Document extends Tab implements SavableAsJSONObject {
         eventCards = new EventCardList();
         chapters = new ChapterList();
         storylines = new StorylineList();
+
+        this.setOnCloseRequest(event -> ApplicationResource.getCurrentWorkspace().removeDocument(this));
+    }
+
+    public Document(String name, EventCardList eventCards, ChapterList chapters, StorylineList storylines) {
+        this.name = name;
+        this.setText(name);
+        this.eventCards = eventCards;
+        this.chapters = chapters;
+        this.storylines = storylines;
 
         this.setOnCloseRequest(event -> ApplicationResource.getCurrentWorkspace().removeDocument(this));
     }
@@ -104,5 +115,19 @@ public class Document extends Tab implements SavableAsJSONObject {
         document.put("chapterList", chapters.getJSONArray());
         document.put("storylineList", storylines.getJSONArray());
         return document;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static Document parseJSONObject(JSONObject documentObject) {
+        String name = (String) documentObject.get("name");
+        JSONArray eventCardArray = (JSONArray) documentObject.get("eventCardList");
+        JSONArray chapterArray = (JSONArray) documentObject.get("chapterList");
+        JSONArray storylineArray = (JSONArray) documentObject.get("storylineList");
+
+        EventCardList eventCards = EventCardList.parseJSONArray(eventCardArray);
+        ChapterList chapters = ChapterList.parseJSONArray(chapterArray);
+        StorylineList storylines = StorylineList.parseJSONArray(storylineArray);
+
+        return new Document(name, eventCards, chapters, storylines);
     }
 }

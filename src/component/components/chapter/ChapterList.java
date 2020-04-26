@@ -2,6 +2,7 @@ package component.components.chapter;
 
 import component.SavableAsJSONArray;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -62,4 +63,15 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray {
         }
         return chapterList;
     }
+
+    @SuppressWarnings("unchecked")
+    public static ChapterList parseJSONArray(JSONArray chapterArray) {
+        ChapterList chapters = new ChapterList();
+        for(Object chapterObject : chapterArray) {
+            Chapter chapter = Chapter.parseJSONObject((JSONObject) chapterObject);
+            chapters.addChapter(chapter);
+        }
+        return chapters;
+    }
+
 }

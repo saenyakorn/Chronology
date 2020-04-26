@@ -127,6 +127,19 @@ public class Storyline extends BasicStoryComponent {
         return storyline;
     }
 
+    @SuppressWarnings("unchecked")
+    public static Storyline parseJSONObject(JSONObject storylineObject) {
+        String name = (String) storylineObject.get("name");
+        String description = (String) storylineObject.get("description");
+        Color color = Color.web((String) storylineObject.get("Color"));
+        TimePeriod timePeriod = TimePeriod.stringToTimePeriod((String) storylineObject.get("TimePeriod"));
+
+        Storyline storyline = new Storyline(name, description, color, timePeriod);
+        //TODO : add EventCardList - new constructor? like Document.java
+
+        return storyline;
+    }
+
     public void initializeEventHandler() {
         setOnDragOver((DragEvent event) -> {
             if (event.getDragboard().hasString()) {

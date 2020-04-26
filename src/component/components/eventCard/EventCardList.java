@@ -3,6 +3,7 @@ package component.components.eventCard;
 import component.SavableAsJSONArray;
 import javafx.scene.layout.HBox;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -67,4 +68,15 @@ public class EventCardList extends HBox implements Iterable<EventCard>, SavableA
         }
         return eventCardList;
     }
+
+    @SuppressWarnings("unchecked")
+    public static EventCardList parseJSONArray(JSONArray eventCardArray) {
+        EventCardList eventCards = new EventCardList();
+        for(Object eventCardObject : eventCardArray) {
+            EventCard eventCard = EventCard.parseJSONObject((JSONObject) eventCardObject);
+            eventCards.addEventCard(eventCard);
+        }
+        return eventCards;
+    }
+
 }
