@@ -1,7 +1,7 @@
 package component.components.document;
 
+import ablity.SavableAsJSONObject;
 import application.ApplicationResource;
-import component.SavableAsJSONObject;
 import component.components.chapter.Chapter;
 import component.components.chapter.ChapterList;
 import component.components.eventCard.EventCard;
@@ -20,22 +20,22 @@ public class Document extends Tab implements SavableAsJSONObject {
 
     public Document(String name) {
         this.name = name;
-        this.setText(name);
+        setText(name);
         eventCards = new EventCardList();
         chapters = new ChapterList();
         storylines = new StorylineList();
 
-        this.setOnCloseRequest(event -> ApplicationResource.getCurrentWorkspace().removeDocument(this));
+        setOnCloseRequest(event -> ApplicationResource.getCurrentWorkspace().removeDocument(this));
     }
 
     public Document(String name, EventCardList eventCards, ChapterList chapters, StorylineList storylines) {
         this.name = name;
-        this.setText(name);
+        setText(name);
         this.eventCards = eventCards;
         this.chapters = chapters;
         this.storylines = storylines;
 
-        this.setOnCloseRequest(event -> ApplicationResource.getCurrentWorkspace().removeDocument(this));
+        setOnCloseRequest(event -> ApplicationResource.getCurrentWorkspace().removeDocument(this));
     }
 
     public EventCardList getEventCardList() {
@@ -56,7 +56,7 @@ public class Document extends Tab implements SavableAsJSONObject {
 
     public void setName(String name) {
         this.name = name;
-        this.setText(name);
+        setText(name);
     }
 
     public void addEventCard(EventCard eventCard) {
@@ -89,22 +89,22 @@ public class Document extends Tab implements SavableAsJSONObject {
         }
     }
 
-    public Storyline removeStoryline(Storyline storyline) {
-        return storylines.removeStoryline(storyline);
+    public void removeStoryline(Storyline storyline) {
+        storylines.removeStoryline(storyline);
     }
 
-    public Chapter removeChapter(Chapter chapter) {
-        return chapters.removeChapter(chapter);
+    public void removeChapter(Chapter chapter) {
+        chapters.removeChapter(chapter);
     }
 
     @Override
     public String toString() {
-        return this.getText();
+        return getText();
     }
 
     @Override
     public String getJSONString() {
-        return this.getJSONObject().toJSONString();
+        return getJSONObject().toJSONString();
     }
 
     @Override

@@ -1,9 +1,9 @@
 package component.base;
 
+import ablity.SavableAsJSONObject;
 import application.ApplicationResource;
 import application.SystemConstants;
 import colors.RandomColor;
-import component.SavableAsJSONObject;
 import component.components.timeModifier.PredefinedTimePeriod;
 import component.components.timeModifier.TimePeriod;
 import component.components.timeModifier.TimePeriodGenerator;
