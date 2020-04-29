@@ -1,6 +1,6 @@
 package component.layouts.workspace;
 
-import component.Savable;
+import ablity.Savable;
 import component.base.BasicStoryComponent;
 import component.components.document.Document;
 import component.components.document.DocumentList;
