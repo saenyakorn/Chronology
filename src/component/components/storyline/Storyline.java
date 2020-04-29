@@ -169,11 +169,11 @@ public class Storyline extends BasicStoryComponent {
     }
 
     private void rightClickContextMenu(MouseEvent event) {
-        System.out.println("Storyline: " + event.getTarget());
         if (contextMenu.isShowing()) {
             contextMenu.hide();
         }
         if (event.isSecondaryButtonDown()) {
+            System.out.println("Storyline: " + event.getTarget());
             contextMenu.show(this, event.getScreenX(), event.getScreenY());
         } else {
             contextMenu.hide();

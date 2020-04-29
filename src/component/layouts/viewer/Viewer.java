@@ -57,11 +57,11 @@ public class Viewer extends TabPane {
     }
 
     private void rightClickContextMenu(MouseEvent event) {
-        System.out.println("Viewer: " + event.getTarget());
         if (contextMenu.isShowing()) {
             contextMenu.hide();
         }
         if (event.isSecondaryButtonDown()) {
+            System.out.println("Viewer: " + event.getTarget());
             contextMenu.show(this, event.getScreenX(), event.getScreenY());
         } else {
             contextMenu.hide();

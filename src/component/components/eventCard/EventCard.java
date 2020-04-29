@@ -151,7 +151,6 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         super.setTimePeriod(timePeriod);
         if (selfStoryline != null) {
             setSelfComponentTimePeriod(timePeriod, selfStoryline);
-            selfStoryline.getEventCards().sortEventCards();
             selfStoryline.renderEventCards();
         }
         if (selfChapter != null)
@@ -208,11 +207,11 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     }
 
     private void rightClickContextMenu(MouseEvent event) {
-        System.out.println("EventCard: " + event.getTarget());
         if (contextMenu.isShowing()) {
             contextMenu.hide();
         }
         if (event.isSecondaryButtonDown()) {
+            System.out.println("EventCard: " + event.getTarget());
             contextMenu.show(dateTimeContainer, event.getScreenX(), event.getScreenY());
         } else {
             contextMenu.hide();
