@@ -1,15 +1,25 @@
 package component.components.document;
 
-import component.SavableAsJSONArray;
+import ablity.SavableAsJSONArray;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import org.json.simple.JSONArray;
 
-import java.util.ArrayList;
-
 public class DocumentList implements SavableAsJSONArray {
-    private final ArrayList<Document> documents;
+    private final ObservableList<Document> documents;
 
     public DocumentList() {
-        this.documents = new ArrayList<>();
+        documents = FXCollections.observableArrayList();
+        documents.addListener((ListChangeListener.Change<? extends Document> change) -> {
+            System.out.println("Change on documentList");
+            while (change.next()) {
+                System.out.println("Document -> " + change);
+                if (change.wasUpdated()) {
+                    System.out.println("Update detected");
+                }
+            }
+        });
     }
 
     public int indexOf(Document document) {

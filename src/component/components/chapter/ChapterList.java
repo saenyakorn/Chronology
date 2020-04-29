@@ -1,20 +1,37 @@
 package component.components.chapter;
 
-import component.SavableAsJSONArray;
+import ablity.SavableAsJSONArray;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray {
-    private final ArrayList<Chapter> chapters;
+    private final ObservableList<Chapter> chapters;
 
     public ChapterList() {
-        this.chapters = new ArrayList<>();
+        chapters = FXCollections.observableArrayList();
+        chapters.addListener((ListChangeListener.Change<? extends Chapter> change) -> {
+            System.out.println("Change on chapterList");
+            while (change.next()) {
+                System.out.println("Chapter -> " + change);
+                if (change.wasUpdated()) {
+                    System.out.println("Update detected");
+                }
+            }
+        });
     }
 
-    public ArrayList<Chapter> getChapters() {
+    @SuppressWarnings("unchecked")
+    public static ChapterList parseJSONArray(JSONArray chapterArray) {
+        ChapterList chapters = new ChapterList();
+        for (Object chapterObject : chapterArray) {
+            Chapter chapter = Chapter.parseJSONObject((JSONObject) chapterObject);
+            chapters.addChapter(chapter);
+        }
         return chapters;
     }
 
@@ -22,14 +39,8 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray {
         chapters.add(chapter);
     }
 
-    public Chapter removeChapter(Chapter chapter) {
-        if (chapters.contains(chapter)) {
-            chapters.remove(chapter);
-            return chapter;
-        } else {
-            System.out.println("This event card does not exist");
-            return null;
-        }
+    public ObservableList<Chapter> getChapters() {
+        return chapters;
     }
 
     public int size() {
@@ -55,23 +66,22 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray {
         return this.getJSONArray().toJSONString();
     }
 
-    @Override @SuppressWarnings("unchecked")
+    public void removeChapter(Chapter chapter) {
+        if (chapters.contains(chapter)) {
+            chapters.remove(chapter);
+        } else {
+            System.out.println("This event card does not exist");
+        }
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
     public JSONArray getJSONArray() {
         JSONArray chapterArray = new JSONArray();
-        for(Chapter chapter : chapters) {
+        for (Chapter chapter : chapters) {
             chapterArray.add(chapter.getJSONObject());
         }
         return chapterArray;
-    }
-
-    @SuppressWarnings("unchecked")
-    public static ChapterList parseJSONArray(JSONArray chapterArray) {
-        ChapterList chapters = new ChapterList();
-        for(Object chapterObject : chapterArray) {
-            Chapter chapter = Chapter.parseJSONObject((JSONObject) chapterObject);
-            chapters.addChapter(chapter);
-        }
-        return chapters;
     }
 
 }

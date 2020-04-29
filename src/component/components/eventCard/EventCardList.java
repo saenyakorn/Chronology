@@ -1,28 +1,50 @@
 package component.components.eventCard;
 
-import component.SavableAsJSONArray;
+import ablity.SavableAsJSONArray;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.scene.layout.HBox;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 
 public class EventCardList extends HBox implements Iterable<EventCard>, SavableAsJSONArray {
-    private final ArrayList<EventCard> eventCards;
+    private final ObservableList<EventCard> eventCards;
+    private final SortedList<EventCard> sortedEventCards;
 
     public EventCardList() {
-        this.eventCards = new ArrayList<>();
+        eventCards = FXCollections.observableArrayList();
+        eventCards.addListener((ListChangeListener.Change<? extends EventCard> change) -> {
+            System.out.println("Change on eventCardList");
+            while (change.next()) {
+                System.out.println("EventCard -> " + change);
+                if (change.wasUpdated()) {
+                    System.out.println("Update detected");
+                }
+            }
+        });
+        sortedEventCards = new SortedList<>(eventCards, (item1, item2) -> sortByEventCardDate(item1, item2));
     }
 
-    public ArrayList<EventCard> getEventCards() {
+    @SuppressWarnings("unchecked")
+    public static EventCardList parseJSONArray(JSONArray eventCardArray) {
+        EventCardList eventCards = new EventCardList();
+        for (Object eventCardObject : eventCardArray) {
+            EventCard eventCard = EventCard.parseJSONObject((JSONObject) eventCardObject);
+            eventCards.addEventCard(eventCard);
+        }
+        return eventCards;
+    }
+
+    public ObservableList<EventCard> getEventCards() {
         return eventCards;
     }
 
     public void addEventCard(EventCard eventCard) {
         eventCards.add(eventCard);
-        sortEventCards();
     }
 
     public void removeEventCard(EventCard eventCard) {
@@ -33,12 +55,16 @@ public class EventCardList extends HBox implements Iterable<EventCard>, SavableA
         }
     }
 
-    public void sortEventCards() {
-        Collections.sort(eventCards);
-    }
-
     public int size() {
         return eventCards.size();
+    }
+
+    public SortedList<EventCard> getSortedEventCards() {
+        return sortedEventCards;
+    }
+
+    private int sortByEventCardDate(EventCard item1, EventCard item2) {
+        return item1.compareTo(item2);
     }
 
     @Override
@@ -60,23 +86,18 @@ public class EventCardList extends HBox implements Iterable<EventCard>, SavableA
         return this.getJSONArray().toJSONString();
     }
 
-    @Override @SuppressWarnings("unchecked")
+    private int sortByUserSelection(EventCard item1, EventCard item2) {
+        return 0; // TODO: implement how to sort
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
     public JSONArray getJSONArray() {
         JSONArray eventCardArray = new JSONArray();
-        for(EventCard eventCard : eventCards) {
+        for (EventCard eventCard : eventCards) {
             eventCardArray.add(eventCard.getJSONObject());
         }
         return eventCardArray;
-    }
-
-    @SuppressWarnings("unchecked")
-    public static EventCardList parseJSONArray(JSONArray eventCardArray) {
-        EventCardList eventCards = new EventCardList();
-        for(Object eventCardObject : eventCardArray) {
-            EventCard eventCard = EventCard.parseJSONObject((JSONObject) eventCardObject);
-            eventCards.addEventCard(eventCard);
-        }
-        return eventCards;
     }
 
 }
