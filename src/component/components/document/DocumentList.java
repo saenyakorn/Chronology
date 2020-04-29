@@ -39,10 +39,10 @@ public class DocumentList implements SavableAsJSONArray {
 
     @Override @SuppressWarnings("unchecked")
     public JSONArray getJSONArray() {
-        JSONArray documentList = new JSONArray();
+        JSONArray documentArray = new JSONArray();
         for(Document document : documents) {
-            documentList.add(document.getJSONObject());
+            documentArray.add(document.getJSONObject());
         }
-        return documentList;
+        return documentArray;
     }
 }

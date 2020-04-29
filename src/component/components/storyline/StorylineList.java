@@ -60,11 +60,11 @@ public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray {
 
     @Override @SuppressWarnings("unchecked")
     public JSONArray getJSONArray() {
-        JSONArray storylineList = new JSONArray();
+        JSONArray storylineArray = new JSONArray();
         for(Storyline storyline : storylines) {
-            storylineList.add(storyline.getJSONObject());
+            storylineArray.add(storyline.getJSONObject());
         }
-        return storylineList;
+        return storylineArray;
     }
 
     @SuppressWarnings("unchecked")
