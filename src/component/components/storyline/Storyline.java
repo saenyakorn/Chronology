@@ -19,6 +19,7 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class Storyline extends BasicStoryComponent {
@@ -54,6 +55,15 @@ public class Storyline extends BasicStoryComponent {
     public Storyline(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
         eventCards = new EventCardList();
+        loadFXML("Storyline.fxml");
+        initializeContextMenu();
+        initializeEventHandler();
+        setColor(RandomColor.getColor());
+    }
+
+    public Storyline(String title, String description, Color color, TimePeriod timePeriod, EventCardList eventCards) {
+        super(title, description, color, timePeriod);
+        this.eventCards = eventCards;
         loadFXML("Storyline.fxml");
         initializeContextMenu();
         initializeEventHandler();
@@ -127,17 +137,14 @@ public class Storyline extends BasicStoryComponent {
         return storyline;
     }
 
-    @SuppressWarnings("unchecked")
     public static Storyline parseJSONObject(JSONObject storylineObject) {
         String name = (String) storylineObject.get("name");
         String description = (String) storylineObject.get("description");
         Color color = Color.web((String) storylineObject.get("Color"));
         TimePeriod timePeriod = TimePeriod.stringToTimePeriod((String) storylineObject.get("TimePeriod"));
+        EventCardList eventCards = EventCardList.parseJSONArray((JSONArray) storylineObject.get("eventCardList"));
 
-        Storyline storyline = new Storyline(name, description, color, timePeriod);
-        //TODO : add EventCardList - new constructor? like Document.java
-
-        return storyline;
+        return new Storyline(name, description, color, timePeriod, eventCards);
     }
 
     public void initializeEventHandler() {
