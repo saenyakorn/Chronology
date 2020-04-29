@@ -26,7 +26,6 @@ public class SideBar extends ScrollPane {
 
         // TreeView setting
         treeView = new TreeView<>();
-        treeView.setShowRoot(false);
         treeView.setEditable(true);
         treeView.getStyleClass().add("tree-view");
         treeView.setCellFactory(params -> new BasicStoryComponentTreeCell());
