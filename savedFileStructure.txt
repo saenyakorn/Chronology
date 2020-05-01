@@ -4,29 +4,32 @@ workspace:
          name: String
          [] eventCardList:
             {} eventCard:
-               title: String
-               description: String
-               Color: String
-               TimePeriod: String
-               selfChapter: null || String
-               selfStoryline: null || String
-         [] chapterList:
-            {} chapter:
-            title: String
-            description: String
-            Color: String
-            TimePeriod: String
-            [] eventCardList:
-               {} eventCard:
+                  componentId: String
                   title: String
                   description: String
                   Color: String
                   TimePeriod: String
                   selfChapter: null || String
                   selfStoryline: null || String
+         [] chapterList:
+            {} chapter:
+               componentId: String
+               title: String
+               description: String
+               Color: String
+               TimePeriod: String
+               [] eventCardList:
+                  {} eventCard:
+                     title: String
+                     description: String
+                     Color: String
+                     TimePeriod: String
+                     selfChapter: null || String
+                     selfStoryline: null || String
          [] storyLineList:
             {} storyline:
-            title: String
+               componentId: String
+               title: String
                description: String
                Color: String
                TimePeriod: String
