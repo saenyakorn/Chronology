@@ -1,5 +1,5 @@
 {} workspace:
-   [] hashMap:
+   {} hashMap:
       {} basicStoryComponent: //fields depend on instance
           title: String
           description: String
