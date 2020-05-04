@@ -25,16 +25,6 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray {
         });
     }
 
-    @SuppressWarnings("unchecked")
-    public static ChapterList parseJSONArray(JSONArray chapterArray) {
-        ChapterList chapters = new ChapterList();
-        for (Object chapterObject : chapterArray) {
-            Chapter chapter = Chapter.parseJSONObject((JSONObject) chapterObject);
-            chapters.addChapter(chapter);
-        }
-        return chapters;
-    }
-
     public void addChapter(Chapter chapter) {
         chapters.add(chapter);
     }
@@ -79,9 +69,18 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray {
     public JSONArray getJSONArray() {
         JSONArray chapterArray = new JSONArray();
         for (Chapter chapter : chapters) {
-            chapterArray.add(chapter.getJSONObject());
+            chapterArray.add(chapter.getJSONObjectAsComponentID());
         }
         return chapterArray;
+    }
+
+    public static ChapterList parseJSONArray(JSONArray chapterArray) {
+        ChapterList chapters = new ChapterList();
+        for (Object chapterObject : chapterArray) {
+            Chapter chapter = Chapter.parseJSONObject((JSONObject) chapterObject);
+            chapters.addChapter(chapter);
+        }
+        return chapters;
     }
 
 }

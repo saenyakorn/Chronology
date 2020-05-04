@@ -1,8 +1,12 @@
 package application;
 
 import component.base.BasicStoryComponent;
+import component.components.chapter.Chapter;
 import component.components.document.Document;
+import component.components.eventCard.EventCard;
+import component.components.storyline.Storyline;
 import component.layouts.workspace.Workspace;
+import org.json.simple.JSONObject;
 
 import java.io.File;
 
@@ -38,12 +42,25 @@ public class ApplicationResource {
         ApplicationResource.currentWorkspace = currentWorkspace;
     }
 
-    public static void putItemToCurrentWorkspaceHashMap(String key, BasicStoryComponent value) {
-        ApplicationResource.currentWorkspace.getHashMapBasicStoryComponents().put(key, value);
+    public static void putItemToCurrentHashMap(String key, BasicStoryComponent value) {
+        ApplicationResource.currentWorkspace.getHashMap().put(key, value);
     }
 
-    public static BasicStoryComponent getValueFromCurrentWorkspaceHashMap(String key) {
-        return ApplicationResource.currentWorkspace.getHashMapBasicStoryComponents().get(key);
+    public static BasicStoryComponent getValueFromCurrentHashMap(String key) {
+        return ApplicationResource.currentWorkspace.getHashMap().get(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static JSONObject getCurrentHashMapAsJSONObject() {
+        JSONObject hashMapObject = new JSONObject();
+        ApplicationResource.currentWorkspace.getHashMap().forEach((key, value) -> {
+            if(value instanceof EventCard || value instanceof Storyline || value instanceof Chapter) {
+                System.out.println("HashMap key: " + key + ", value = " + value.toString() + ", type = " + value.getClass().getName());
+                hashMapObject.put(key, value.getJSONObject());
+            }
+        });
+        System.out.println();
+        return hashMapObject;
     }
 
     public static void newProject() {

@@ -132,9 +132,9 @@ public class Storyline extends BasicStoryComponent {
 
     @Override @SuppressWarnings("unchecked")
     public JSONObject getJSONObject() {
-        JSONObject storyline = super.getJSONObject();
-        storyline.put("eventCardList", eventCards.getJSONArray());
-        return storyline;
+        JSONObject storylineObject = super.getJSONObject();
+        storylineObject.put("eventCardList", eventCards.getJSONArray());
+        return storylineObject;
     }
 
     public static Storyline parseJSONObject(JSONObject storylineObject) {
@@ -156,7 +156,7 @@ public class Storyline extends BasicStoryComponent {
         });
         setOnDragDropped((DragEvent event) -> {
             String itemId = event.getDragboard().getString();
-            BasicStoryComponent item = ApplicationResource.getValueFromCurrentWorkspaceHashMap(itemId);
+            BasicStoryComponent item = ApplicationResource.getValueFromCurrentHashMap(itemId);
             if (item instanceof EventCard) {
                 EventCard eventCard = (EventCard) item;
                 ApplicationResource.getCurrentWorkspace().getActiveDocument().removeEventCard(eventCard);

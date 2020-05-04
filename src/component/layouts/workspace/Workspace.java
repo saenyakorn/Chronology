@@ -1,6 +1,7 @@
 package component.layouts.workspace;
 
-import ablity.Savable;
+import ablity.SavableAsJSONObject;
+import application.ApplicationResource;
 import component.base.BasicStoryComponent;
 import component.components.document.Document;
 import component.components.document.DocumentList;
@@ -10,21 +11,22 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import org.json.simple.JSONObject;
 
 import java.util.HashMap;
 
-public class Workspace extends HBox implements Savable {
+public class Workspace extends HBox implements SavableAsJSONObject {
     private final DocumentList documents;
     private final Viewer viewer;
     private final SideBar sideBar;
-    private final HashMap<String, BasicStoryComponent> hashMapBasicStoryComponents;
+    private final HashMap<String, BasicStoryComponent> hashMap; //contains all basic story components
 
     public Workspace() {
         // Construct components
         documents = new DocumentList();
         viewer = new Viewer();
         sideBar = new SideBar();
-        hashMapBasicStoryComponents = new HashMap<>();
+        hashMap = new HashMap<>();
 
         // Set Style
         HBox.setHgrow(viewer, Priority.ALWAYS);
@@ -41,8 +43,8 @@ public class Workspace extends HBox implements Savable {
         this.getChildren().addAll(sideBar, viewer);
     }
 
-    public HashMap<String, BasicStoryComponent> getHashMapBasicStoryComponents() {
-        return hashMapBasicStoryComponents;
+    public HashMap<String, BasicStoryComponent> getHashMap() {
+        return hashMap;
     }
 
     public DocumentList getDocumentList() {
@@ -90,6 +92,15 @@ public class Workspace extends HBox implements Savable {
 
     @Override
     public String getJSONString() {
-        return documents.getJSONArray().toJSONString();
+        return this.getJSONObject().toJSONString();
     }
+
+    @Override @SuppressWarnings("unchecked")
+    public JSONObject getJSONObject() {
+        JSONObject workspaceObject = new JSONObject();
+        workspaceObject.put("hashMap", ApplicationResource.getCurrentHashMapAsJSONObject());
+        workspaceObject.put("documentList",documents.getJSONArray());
+        return workspaceObject;
+    }
+
 }

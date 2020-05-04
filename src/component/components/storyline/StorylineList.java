@@ -64,12 +64,11 @@ public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray {
     public JSONArray getJSONArray() {
         JSONArray storylineArray = new JSONArray();
         for(Storyline storyline : storylines) {
-            storylineArray.add(storyline.getJSONObject());
+            storylineArray.add(storyline.getJSONObjectAsComponentID());
         }
         return storylineArray;
     }
 
-    @SuppressWarnings("unchecked")
     public static StorylineList parseJSONArray(JSONArray storylineArray) {
         StorylineList storylines = new StorylineList();
         for(Object storylineObject : storylineArray) {
