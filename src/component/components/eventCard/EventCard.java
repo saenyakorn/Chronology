@@ -187,10 +187,10 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     @Override @SuppressWarnings("unchecked")
     public JSONObject getJSONObject() {
-        JSONObject eventCard = super.getJSONObject();
-        eventCard.put("selfChapter", Objects.toString(selfChapter));
-        eventCard.put("selfStoryline", Objects.toString(selfChapter));
-        return eventCard;
+        JSONObject eventCardObject = super.getJSONObject();
+        eventCardObject.put("selfChapter", Objects.toString(selfChapter));
+        eventCardObject.put("selfStoryline", Objects.toString(selfChapter));
+        return eventCardObject;
     }
 
     public static EventCard parseJSONObject(JSONObject eventCardObject) {

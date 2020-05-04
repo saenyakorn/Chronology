@@ -25,7 +25,7 @@ public abstract class BasicStoryComponent extends Pane implements SavableAsJSONO
 
     public BasicStoryComponent() {
         this.componentId = Integer.toString(Objects.hashCode(this));
-        ApplicationResource.putItemToCurrentWorkspaceHashMap(componentId, this);
+        ApplicationResource.putItemToCurrentHashMap(componentId, this);
         this.title = "Title";
         this.description = "Lorem ipsum dolor set amet, ego bir setaso de.";
         this.color = SystemConstants.DEFAULT_COLOR;
@@ -34,7 +34,7 @@ public abstract class BasicStoryComponent extends Pane implements SavableAsJSONO
 
     public BasicStoryComponent(String title, String description) {
         this.componentId = Integer.toString(Objects.hashCode(this));
-        ApplicationResource.putItemToCurrentWorkspaceHashMap(componentId, this);
+        ApplicationResource.putItemToCurrentHashMap(componentId, this);
         this.title = title;
         this.description = description;
         this.color = SystemConstants.DEFAULT_COLOR;
@@ -43,7 +43,7 @@ public abstract class BasicStoryComponent extends Pane implements SavableAsJSONO
 
     public BasicStoryComponent(String title, String description, Color color, TimePeriod timePeriod) {
         this.componentId = Integer.toString(Objects.hashCode(this));
-        ApplicationResource.putItemToCurrentWorkspaceHashMap(componentId, this);
+        ApplicationResource.putItemToCurrentHashMap(componentId, this);
         this.title = title;
         this.description = description;
         this.color = color;
@@ -98,12 +98,18 @@ public abstract class BasicStoryComponent extends Pane implements SavableAsJSONO
 
     @Override @SuppressWarnings("unchecked")
     public JSONObject getJSONObject() {
-        JSONObject component = new JSONObject();
-        component.put("title", title);
-        component.put("description", description);
-        component.put("Color", colorToHex(color));
-        component.put("TimePeriod", timePeriod.toString());
-        return component;
+        JSONObject componentObject = new JSONObject();
+        componentObject.put("title", title);
+        componentObject.put("description", description);
+        componentObject.put("Color", colorToHex(color));
+        componentObject.put("TimePeriod", timePeriod.toString());
+        return componentObject;
+    }
+
+    public JSONObject getJSONObjectAsComponentID() {
+        JSONObject componentObject = new JSONObject();
+        componentObject.put("componentID", getComponentId());
+        return componentObject;
     }
 
     protected void loadFXML(String link) {

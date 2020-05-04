@@ -50,9 +50,9 @@ public class Chapter extends BasicStoryComponent {
 
     @Override @SuppressWarnings("unchecked")
     public JSONObject getJSONObject() {
-        JSONObject chapter = super.getJSONObject();
-        chapter.put("eventCardList", eventCards.getJSONArray());
-        return chapter;
+        JSONObject chapterObject = super.getJSONObject();
+        chapterObject.put("eventCardList", eventCards.getJSONArray());
+        return chapterObject;
     }
 
     public static Chapter parseJSONObject(JSONObject chapterObject) {

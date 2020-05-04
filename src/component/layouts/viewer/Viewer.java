@@ -77,7 +77,7 @@ public class Viewer extends TabPane {
         });
         setOnDragDropped((DragEvent event) -> {
             String itemId = event.getDragboard().getString();
-            BasicStoryComponent item = ApplicationResource.getValueFromCurrentWorkspaceHashMap(itemId);
+            BasicStoryComponent item = ApplicationResource.getValueFromCurrentHashMap(itemId);
             if (item instanceof Storyline) {
                 Storyline storyline = (Storyline) item;
                 if (!vBox.getChildren().contains(storyline)) {

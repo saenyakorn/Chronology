@@ -103,7 +103,7 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
         });
         this.setOnDragDropped((DragEvent event) -> {
             String itemId = event.getDragboard().getString();
-            BasicStoryComponent item = ApplicationResource.getValueFromCurrentWorkspaceHashMap(itemId);
+            BasicStoryComponent item = ApplicationResource.getValueFromCurrentHashMap(itemId);
             if (item instanceof EventCard && getItem() instanceof Chapter) {
                 EventCard eventCard = (EventCard) item;
                 Chapter target = (Chapter) getItem();
