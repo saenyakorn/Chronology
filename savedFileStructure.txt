@@ -1,43 +1,24 @@
 workspace:
+   [] hashMap:
+      {} basicStoryComponent: //fields depend on instance
+          title: String
+          description: String
+          Color: String
+          TimePeriod: String
+          selfChapter: null || String
+          selfStoryline: null || String
+          [] eventCardList:
+             {} eventCard:
+                componentID: String
    [] documentList:
       {} document:
          name: String
          [] eventCardList:
             {} eventCard:
-                  componentId: String
-                  title: String
-                  description: String
-                  Color: String
-                  TimePeriod: String
-                  selfChapter: null || String
-                  selfStoryline: null || String
+                componentId: String
          [] chapterList:
             {} chapter:
-               componentId: String
-               title: String
-               description: String
-               Color: String
-               TimePeriod: String
-               [] eventCardList:
-                  {} eventCard:
-                     title: String
-                     description: String
-                     Color: String
-                     TimePeriod: String
-                     selfChapter: null || String
-                     selfStoryline: null || String
+                componentId: String
          [] storyLineList:
             {} storyline:
-               componentId: String
-               title: String
-               description: String
-               Color: String
-               TimePeriod: String
-               [] eventCardList:
-                  {} eventCard:
-                  title: String
-                  description: String
-                  Color: String
-                  TimePeriod: String
-                  selfChapter: null || String
-                  selfStoryline: null || String
+                componentId: String
