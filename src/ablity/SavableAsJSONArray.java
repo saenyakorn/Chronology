@@ -2,8 +2,9 @@ package ablity;
 
 import org.json.simple.JSONArray;
 
-public interface SavableAsJSONArray extends Savable {
+public interface SavableAsJSONArray<T> extends Savable {
 
     JSONArray writeJSONArray();
+    T readJSONArray(JSONArray jsonArray);
 
 }

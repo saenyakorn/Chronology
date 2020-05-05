@@ -9,7 +9,7 @@ import org.json.simple.JSONObject;
 
 import java.util.Iterator;
 
-public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray {
+public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray<ChapterList> {
     private final ObservableList<Chapter> chapters;
 
     public ChapterList() {
@@ -69,12 +69,13 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray {
     public JSONArray writeJSONArray() {
         JSONArray chapterArray = new JSONArray();
         for (Chapter chapter : chapters) {
-            chapterArray.add(chapter.getJSONObjectAsComponentID());
+            chapterArray.add(chapter.writeJSONObjectAsComponentID());
         }
         return chapterArray;
     }
 
-    public static ChapterList readJSONArray(JSONArray chapterArray) {
+    @Override
+    public ChapterList readJSONArray(JSONArray chapterArray) {
         ChapterList chapters = new ChapterList();
         for (Object chapterObject : chapterArray) {
             Chapter chapter = Chapter.readJSONObject((JSONObject) chapterObject);

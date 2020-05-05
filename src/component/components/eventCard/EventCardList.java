@@ -11,7 +11,7 @@ import org.json.simple.JSONObject;
 
 import java.util.Iterator;
 
-public class EventCardList extends HBox implements Iterable<EventCard>, SavableAsJSONArray {
+public class EventCardList extends HBox implements Iterable<EventCard>, SavableAsJSONArray<EventCardList> {
     private final ObservableList<EventCard> eventCards;
     private final SortedList<EventCard> sortedEventCards;
 
@@ -81,12 +81,13 @@ public class EventCardList extends HBox implements Iterable<EventCard>, SavableA
     public JSONArray writeJSONArray() {
         JSONArray eventCardArray = new JSONArray();
         for (EventCard eventCard : eventCards) {
-            eventCardArray.add(eventCard.getJSONObjectAsComponentID());
+            eventCardArray.add(eventCard.writeJSONObjectAsComponentID());
         }
         return eventCardArray;
     }
 
-    public static EventCardList readJSONArray(JSONArray eventCardArray) {
+    @Override
+    public EventCardList readJSONArray(JSONArray eventCardArray) {
         EventCardList eventCards = new EventCardList();
         for (Object eventCardObject : eventCardArray) {
             EventCard eventCard = EventCard.readJSONObject((JSONObject) eventCardObject);

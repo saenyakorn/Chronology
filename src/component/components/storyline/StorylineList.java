@@ -10,7 +10,7 @@ import org.json.simple.JSONObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray {
+public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray<StorylineList> {
     private final ObservableList<Storyline> storylines;
 
     public StorylineList() {
@@ -64,12 +64,13 @@ public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray {
     public JSONArray writeJSONArray() {
         JSONArray storylineArray = new JSONArray();
         for(Storyline storyline : storylines) {
-            storylineArray.add(storyline.getJSONObjectAsComponentID());
+            storylineArray.add(storyline.writeJSONObjectAsComponentID());
         }
         return storylineArray;
     }
 
-    public static StorylineList readJSONArray(JSONArray storylineArray) {
+    @Override
+    public StorylineList readJSONArray(JSONArray storylineArray) {
         StorylineList storylines = new StorylineList();
         for(Object storylineObject : storylineArray) {
             Storyline storyline = Storyline.readJSONObject((JSONObject) storylineObject);

@@ -5,8 +5,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
-public class DocumentList implements SavableAsJSONArray {
+public class DocumentList implements SavableAsJSONArray<DocumentList> {
     private final ObservableList<Document> documents;
 
     public DocumentList() {
@@ -55,4 +56,13 @@ public class DocumentList implements SavableAsJSONArray {
         }
         return documentArray;
     }
+
+    @Override
+    public DocumentList readJSONArray(JSONArray documentArray) {
+        for(Object documentObject : documentArray) {
+            documents.add((new Document()).readJSONObject((JSONObject) documentObject));
+        }
+        return this;
+    }
+
 }

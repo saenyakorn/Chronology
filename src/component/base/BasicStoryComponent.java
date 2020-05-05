@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public abstract class BasicStoryComponent extends Pane implements SavableAsJSONObject {
+public abstract class BasicStoryComponent extends Pane implements SavableAsJSONObject<BasicStoryComponent> {
     protected final String componentId;
     protected String title;
     protected String description;
@@ -107,10 +107,16 @@ public abstract class BasicStoryComponent extends Pane implements SavableAsJSONO
     }
 
     @SuppressWarnings("unchecked")
-    public JSONObject getJSONObjectAsComponentID() {
+    public JSONObject writeJSONObjectAsComponentID() {
         JSONObject componentObject = new JSONObject();
         componentObject.put("componentID", getComponentId());
         return componentObject;
+    }
+
+    @Override
+    public BasicStoryComponent readJSONObject(JSONObject componentObject) {
+        // TODO
+        return null;
     }
 
     protected void loadFXML(String link) {

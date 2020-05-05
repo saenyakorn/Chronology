@@ -11,11 +11,12 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.HashMap;
 
-public class Workspace extends HBox implements SavableAsJSONObject {
+public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
     private final DocumentList documents;
     private final Viewer viewer;
     private final SideBar sideBar;
@@ -99,8 +100,20 @@ public class Workspace extends HBox implements SavableAsJSONObject {
     public JSONObject writeJSONObject() {
         JSONObject workspaceObject = new JSONObject();
         workspaceObject.put("hashMap", ApplicationResource.getCurrentHashMapAsJSONObject());
-        workspaceObject.put("documentList",documents.writeJSONArray());
+        workspaceObject.put("documentList", documents.writeJSONArray());
         return workspaceObject;
+    }
+
+    @Override
+    public Workspace readJSONObject(JSONObject workspaceObject) {
+        JSONObject hashMapObject = (JSONObject) workspaceObject.get("hashMap");
+        JSONArray documentArray = (JSONArray) workspaceObject.get("documentList");
+
+        hashMapObject.forEach((key, value) -> {
+            hashMap.put((String) key, ((BasicStoryComponent) value).readJSONObject((JSONObject) value));
+        });
+        documents.readJSONArray(documentArray);
+        return this;
     }
 
 }

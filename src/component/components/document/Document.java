@@ -9,14 +9,23 @@ import component.components.eventCard.EventCardList;
 import component.components.storyline.Storyline;
 import component.components.storyline.StorylineList;
 import javafx.scene.control.Tab;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class Document extends Tab implements SavableAsJSONObject {
+public class Document extends Tab implements SavableAsJSONObject<Document> {
     private String name;
     private final EventCardList eventCards;
     private final ChapterList chapters;
     private final StorylineList storylines;
+
+    public Document() {
+        this.name = "";
+        setText(name);
+        eventCards = new EventCardList();
+        chapters = new ChapterList();
+        storylines = new StorylineList();
+
+        setOnCloseRequest(event -> ApplicationResource.getCurrentWorkspace().removeDocument(this));
+    }
 
     public Document(String name) {
         this.name = name;
@@ -117,7 +126,8 @@ public class Document extends Tab implements SavableAsJSONObject {
         return documentObject;
     }
 
-    public static Document readJSONObject(JSONObject documentObject) {
+    public Document readJSONObject(JSONObject documentObject) {
+        /* TODO : Fix
         String name = (String) documentObject.get("name");
         JSONArray eventCardArray = (JSONArray) documentObject.get("eventCardList");
         JSONArray chapterArray = (JSONArray) documentObject.get("chapterList");
@@ -127,6 +137,7 @@ public class Document extends Tab implements SavableAsJSONObject {
         ChapterList chapters = ChapterList.readJSONArray(chapterArray);
         StorylineList storylines = StorylineList.readJSONArray(storylineArray);
 
-        return new Document(name, eventCards, chapters, storylines);
+        return new Document(name, eventCards, chapters, storylines);*/
+        return this;
     }
 }
