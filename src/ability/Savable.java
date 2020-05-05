@@ -1,4 +1,4 @@
-package ablity;
+package ability;
 
 public interface Savable {
 

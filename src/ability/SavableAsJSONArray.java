@@ -1,4 +1,4 @@
-package ablity;
+package ability;
 
 import org.json.simple.JSONArray;
 

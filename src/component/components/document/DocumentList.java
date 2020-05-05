@@ -1,6 +1,6 @@
 package component.components.document;
 
-import ablity.SavableAsJSONArray;
+import ability.SavableAsJSONArray;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;

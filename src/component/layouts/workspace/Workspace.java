@@ -1,6 +1,6 @@
 package component.layouts.workspace;
 
-import ablity.SavableAsJSONObject;
+import ability.SavableAsJSONObject;
 import application.ApplicationResource;
 import component.base.BasicStoryComponent;
 import component.components.document.Document;

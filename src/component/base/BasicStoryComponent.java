@@ -1,6 +1,6 @@
 package component.base;
 
-import ablity.SavableAsJSONObject;
+import ability.SavableAsJSONObject;
 import application.ApplicationResource;
 import application.SystemConstants;
 import colors.RandomColor;
