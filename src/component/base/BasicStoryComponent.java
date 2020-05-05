@@ -93,11 +93,11 @@ public abstract class BasicStoryComponent extends Pane implements SavableAsJSONO
 
     @Override
     public String getJSONString() {
-        return this.getJSONObject().toJSONString();
+        return this.writeJSONObject().toJSONString();
     }
 
     @Override @SuppressWarnings("unchecked")
-    public JSONObject getJSONObject() {
+    public JSONObject writeJSONObject() {
         JSONObject componentObject = new JSONObject();
         componentObject.put("title", title);
         componentObject.put("description", description);
@@ -106,6 +106,7 @@ public abstract class BasicStoryComponent extends Pane implements SavableAsJSONO
         return componentObject;
     }
 
+    @SuppressWarnings("unchecked")
     public JSONObject getJSONObjectAsComponentID() {
         JSONObject componentObject = new JSONObject();
         componentObject.put("componentID", getComponentId());

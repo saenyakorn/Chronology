@@ -53,7 +53,7 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray {
 
     @Override
     public String getJSONString() {
-        return this.getJSONArray().toJSONString();
+        return this.writeJSONArray().toJSONString();
     }
 
     public void removeChapter(Chapter chapter) {
@@ -66,7 +66,7 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray {
 
     @Override
     @SuppressWarnings("unchecked")
-    public JSONArray getJSONArray() {
+    public JSONArray writeJSONArray() {
         JSONArray chapterArray = new JSONArray();
         for (Chapter chapter : chapters) {
             chapterArray.add(chapter.getJSONObjectAsComponentID());
@@ -74,10 +74,10 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray {
         return chapterArray;
     }
 
-    public static ChapterList parseJSONArray(JSONArray chapterArray) {
+    public static ChapterList readJSONArray(JSONArray chapterArray) {
         ChapterList chapters = new ChapterList();
         for (Object chapterObject : chapterArray) {
-            Chapter chapter = Chapter.parseJSONObject((JSONObject) chapterObject);
+            Chapter chapter = Chapter.readJSONObject((JSONObject) chapterObject);
             chapters.addChapter(chapter);
         }
         return chapters;

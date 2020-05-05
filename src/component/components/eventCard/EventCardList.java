@@ -73,12 +73,12 @@ public class EventCardList extends HBox implements Iterable<EventCard>, SavableA
 
     @Override
     public String getJSONString() {
-        return this.getJSONArray().toJSONString();
+        return this.writeJSONArray().toJSONString();
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public JSONArray getJSONArray() {
+    public JSONArray writeJSONArray() {
         JSONArray eventCardArray = new JSONArray();
         for (EventCard eventCard : eventCards) {
             eventCardArray.add(eventCard.getJSONObjectAsComponentID());
@@ -86,10 +86,10 @@ public class EventCardList extends HBox implements Iterable<EventCard>, SavableA
         return eventCardArray;
     }
 
-    public static EventCardList parseJSONArray(JSONArray eventCardArray) {
+    public static EventCardList readJSONArray(JSONArray eventCardArray) {
         EventCardList eventCards = new EventCardList();
         for (Object eventCardObject : eventCardArray) {
-            EventCard eventCard = EventCard.parseJSONObject((JSONObject) eventCardObject);
+            EventCard eventCard = EventCard.readJSONObject((JSONObject) eventCardObject);
             eventCards.addEventCard(eventCard);
         }
         return eventCards;

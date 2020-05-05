@@ -57,11 +57,11 @@ public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray {
 
     @Override
     public String getJSONString() {
-        return this.getJSONArray().toJSONString();
+        return this.writeJSONArray().toJSONString();
     }
 
     @Override @SuppressWarnings("unchecked")
-    public JSONArray getJSONArray() {
+    public JSONArray writeJSONArray() {
         JSONArray storylineArray = new JSONArray();
         for(Storyline storyline : storylines) {
             storylineArray.add(storyline.getJSONObjectAsComponentID());
@@ -69,10 +69,10 @@ public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray {
         return storylineArray;
     }
 
-    public static StorylineList parseJSONArray(JSONArray storylineArray) {
+    public static StorylineList readJSONArray(JSONArray storylineArray) {
         StorylineList storylines = new StorylineList();
         for(Object storylineObject : storylineArray) {
-            Storyline storyline = Storyline.parseJSONObject((JSONObject) storylineObject);
+            Storyline storyline = Storyline.readJSONObject((JSONObject) storylineObject);
             storylines.addStoryline(storyline);
         }
         return storylines;

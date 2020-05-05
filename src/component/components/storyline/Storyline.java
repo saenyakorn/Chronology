@@ -131,18 +131,18 @@ public class Storyline extends BasicStoryComponent {
     }
 
     @Override @SuppressWarnings("unchecked")
-    public JSONObject getJSONObject() {
-        JSONObject storylineObject = super.getJSONObject();
-        storylineObject.put("eventCardList", eventCards.getJSONArray());
+    public JSONObject writeJSONObject() {
+        JSONObject storylineObject = super.writeJSONObject();
+        storylineObject.put("eventCardList", eventCards.writeJSONArray());
         return storylineObject;
     }
 
-    public static Storyline parseJSONObject(JSONObject storylineObject) {
+    public static Storyline readJSONObject(JSONObject storylineObject) {
         String name = (String) storylineObject.get("name");
         String description = (String) storylineObject.get("description");
         Color color = Color.web((String) storylineObject.get("Color"));
         TimePeriod timePeriod = TimePeriod.stringToTimePeriod((String) storylineObject.get("TimePeriod"));
-        EventCardList eventCards = EventCardList.parseJSONArray((JSONArray) storylineObject.get("eventCardList"));
+        EventCardList eventCards = EventCardList.readJSONArray((JSONArray) storylineObject.get("eventCardList"));
 
         return new Storyline(name, description, color, timePeriod, eventCards);
     }

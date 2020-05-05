@@ -104,29 +104,28 @@ public class Document extends Tab implements SavableAsJSONObject {
 
     @Override
     public String getJSONString() {
-        return getJSONObject().toJSONString();
+        return writeJSONObject().toJSONString();
     }
 
-    @Override
-    public JSONObject getJSONObject() {
+    @Override @SuppressWarnings("unchecked")
+    public JSONObject writeJSONObject() {
         JSONObject documentObject = new JSONObject();
         documentObject.put("name", name);
-        documentObject.put("eventCardList", eventCards.getJSONArray());
-        documentObject.put("chapterList", chapters.getJSONArray());
-        documentObject.put("storylineList", storylines.getJSONArray());
+        documentObject.put("eventCardList", eventCards.writeJSONArray());
+        documentObject.put("chapterList", chapters.writeJSONArray());
+        documentObject.put("storylineList", storylines.writeJSONArray());
         return documentObject;
     }
 
-    @SuppressWarnings("unchecked")
-    public static Document parseJSONObject(JSONObject documentObject) {
+    public static Document readJSONObject(JSONObject documentObject) {
         String name = (String) documentObject.get("name");
         JSONArray eventCardArray = (JSONArray) documentObject.get("eventCardList");
         JSONArray chapterArray = (JSONArray) documentObject.get("chapterList");
         JSONArray storylineArray = (JSONArray) documentObject.get("storylineList");
 
-        EventCardList eventCards = EventCardList.parseJSONArray(eventCardArray);
-        ChapterList chapters = ChapterList.parseJSONArray(chapterArray);
-        StorylineList storylines = StorylineList.parseJSONArray(storylineArray);
+        EventCardList eventCards = EventCardList.readJSONArray(eventCardArray);
+        ChapterList chapters = ChapterList.readJSONArray(chapterArray);
+        StorylineList storylines = StorylineList.readJSONArray(storylineArray);
 
         return new Document(name, eventCards, chapters, storylines);
     }

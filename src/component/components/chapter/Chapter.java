@@ -49,18 +49,18 @@ public class Chapter extends BasicStoryComponent {
     }
 
     @Override @SuppressWarnings("unchecked")
-    public JSONObject getJSONObject() {
-        JSONObject chapterObject = super.getJSONObject();
-        chapterObject.put("eventCardList", eventCards.getJSONArray());
+    public JSONObject writeJSONObject() {
+        JSONObject chapterObject = super.writeJSONObject();
+        chapterObject.put("eventCardList", eventCards.writeJSONArray());
         return chapterObject;
     }
 
-    public static Chapter parseJSONObject(JSONObject chapterObject) {
+    public static Chapter readJSONObject(JSONObject chapterObject) {
         String name = (String) chapterObject.get("name");
         String description = (String) chapterObject.get("description");
         Color color = Color.web((String) chapterObject.get("Color"));
         TimePeriod timePeriod = TimePeriod.stringToTimePeriod((String) chapterObject.get("TimePeriod"));
-        EventCardList eventCards = EventCardList.parseJSONArray((JSONArray) chapterObject.get("eventCardList"));
+        EventCardList eventCards = EventCardList.readJSONArray((JSONArray) chapterObject.get("eventCardList"));
 
         return new Chapter(name, description, color, timePeriod, eventCards);
     }

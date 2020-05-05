@@ -44,14 +44,14 @@ public class DocumentList implements SavableAsJSONArray {
 
     @Override
     public String getJSONString() {
-        return this.getJSONArray().toJSONString();
+        return this.writeJSONArray().toJSONString();
     }
 
     @Override @SuppressWarnings("unchecked")
-    public JSONArray getJSONArray() {
+    public JSONArray writeJSONArray() {
         JSONArray documentArray = new JSONArray();
         for(Document document : documents) {
-            documentArray.add(document.getJSONObject());
+            documentArray.add(document.writeJSONObject());
         }
         return documentArray;
     }

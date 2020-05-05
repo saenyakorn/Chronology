@@ -92,14 +92,14 @@ public class Workspace extends HBox implements SavableAsJSONObject {
 
     @Override
     public String getJSONString() {
-        return this.getJSONObject().toJSONString();
+        return this.writeJSONObject().toJSONString();
     }
 
     @Override @SuppressWarnings("unchecked")
-    public JSONObject getJSONObject() {
+    public JSONObject writeJSONObject() {
         JSONObject workspaceObject = new JSONObject();
         workspaceObject.put("hashMap", ApplicationResource.getCurrentHashMapAsJSONObject());
-        workspaceObject.put("documentList",documents.getJSONArray());
+        workspaceObject.put("documentList",documents.writeJSONArray());
         return workspaceObject;
     }
 

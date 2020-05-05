@@ -56,7 +56,7 @@ public class ApplicationResource {
         ApplicationResource.currentWorkspace.getHashMap().forEach((key, value) -> {
             if(value instanceof EventCard || value instanceof Storyline || value instanceof Chapter) {
                 System.out.println("HashMap key: " + key + ", value = " + value.toString() + ", type = " + value.getClass().getName());
-                hashMapObject.put(key, value.getJSONObject());
+                hashMapObject.put(key, value.writeJSONObject());
             }
         });
         System.out.println();

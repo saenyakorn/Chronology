@@ -185,8 +185,8 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     }
 
     @Override @SuppressWarnings("unchecked")
-    public JSONObject getJSONObject() {
-        JSONObject eventCardObject = super.getJSONObject();
+    public JSONObject writeJSONObject() {
+        JSONObject eventCardObject = super.writeJSONObject();
         if(selfChapter != null) {
             eventCardObject.put("selfChapter", selfChapter.getComponentId());
         } else {
@@ -202,7 +202,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         return eventCardObject;
     }
 
-    public static EventCard parseJSONObject(JSONObject eventCardObject) {
+    public static EventCard readJSONObject(JSONObject eventCardObject) {
         String name = (String) eventCardObject.get("name");
         String description = (String) eventCardObject.get("description");
         Color color = Color.web((String) eventCardObject.get("Color"));
