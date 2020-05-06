@@ -200,6 +200,8 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
             eventCardObject.put("selfStoryline", null);
         }
 
+        eventCardObject.put("type","EventCard");
+
         return eventCardObject;
     }
 

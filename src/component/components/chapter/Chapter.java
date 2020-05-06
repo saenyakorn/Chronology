@@ -52,6 +52,7 @@ public class Chapter extends BasicStoryComponent {
     public JSONObject writeJSONObject() {
         JSONObject chapterObject = super.writeJSONObject();
         chapterObject.put("eventCardList", eventCards.writeJSONArray());
+        chapterObject.put("type","Chapter");
         return chapterObject;
     }
 

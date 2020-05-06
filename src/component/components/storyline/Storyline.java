@@ -134,6 +134,7 @@ public class Storyline extends BasicStoryComponent {
     public JSONObject writeJSONObject() {
         JSONObject storylineObject = super.writeJSONObject();
         storylineObject.put("eventCardList", eventCards.writeJSONArray());
+        storylineObject.put("type","Storyline");
         return storylineObject;
     }
 
