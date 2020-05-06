@@ -1,5 +1,6 @@
 package component.components.chapter;
 
+import ability.Savable;
 import ability.SavableAsJSONArray;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -76,9 +77,12 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray<Chapte
 
     @Override
     public ChapterList readJSONArray(JSONArray chapterArray) {
+        Savable.printReadingMessage("chapterList");
         for (Object chapterObject : chapterArray) {
+            System.out.println("Populating chapterList");
             chapters.add((new Chapter()).readJSONObject((JSONObject) chapterObject));
         }
+        Savable.printReadingFinishedMessage("chapterList");
         return this;
     }
 

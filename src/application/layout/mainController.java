@@ -107,5 +107,6 @@ public class mainController {
     @SuppressWarnings("unchecked")
     private void readJSONFile(JSONObject workspaceObject) {
         ApplicationResource.setCurrentWorkspace((new Workspace()).readJSONObject(workspaceObject));
+        System.out.println("Open file complete - Current workspace set to loaded workspace");
     }
 }

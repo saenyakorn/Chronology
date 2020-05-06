@@ -1,6 +1,6 @@
 package component.components.eventCard;
 
-import application.ApplicationResource;
+import ability.Savable;
 import component.base.BasicStoryComponent;
 import component.components.chapter.Chapter;
 import component.components.storyline.Storyline;
@@ -57,6 +57,14 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         initializeContextMenu();
     }
 
+    public EventCard(String componentID) {
+        super(componentID);
+        selfChapter = null;
+        selfStoryline = null;
+        loadFXML("EventCard.fxml");
+        initializeEventHandler();
+    }
+
     public EventCard(String title, String description) {
         super(title, description);
         selfChapter = null;
@@ -111,9 +119,11 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     }
 
     public void setStoryline(Storyline selfStoryLine) {
-        selfStoryline = selfStoryLine;
-        setColor(selfStoryLine.getColor());
-        setSelfComponentTimePeriod(timePeriod, selfStoryLine); //no null case
+        this.selfStoryline = selfStoryLine;
+        if(selfStoryLine != null) {
+            setColor(selfStoryLine.getColor());
+            setSelfComponentTimePeriod(timePeriod, selfStoryLine);
+        }
     }
 
     public Chapter getChapter() {
@@ -123,7 +133,9 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     public void setChapter(Chapter selfChapter) {
         this.selfChapter = selfChapter;
         //chapterMarker.setStyle("-fx-background-color: " + colorToHex(selfChapter.getColor()) + ";");
-        setSelfComponentTimePeriod(timePeriod, selfChapter); //no null case
+        if(selfChapter != null) {
+            setSelfComponentTimePeriod(timePeriod, selfChapter);
+        }
     }
 
     @Override
@@ -188,6 +200,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     @Override @SuppressWarnings("unchecked")
     public JSONObject writeJSONObject() {
         JSONObject eventCardObject = super.writeJSONObject();
+
         if(selfChapter != null) {
             eventCardObject.put("selfChapter", selfChapter.getComponentId());
         } else {
@@ -207,13 +220,30 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     @Override
     public EventCard readJSONObject(JSONObject eventCardObject) {
+        Savable.printReadingMessage("eventCard " + title);
+
         super.readJSONObject(eventCardObject);
         String selfChapterID = (String) eventCardObject.get("selfChapter");
         String selfStorylineID = (String) eventCardObject.get("selfStoryline");
 
-        this.setChapter((Chapter) ApplicationResource.getValueFromCurrentHashMap(selfChapterID));
-        this.setStoryline((Storyline) ApplicationResource.getValueFromCurrentHashMap(selfStorylineID));
+        /*if(selfChapterID != null) {
+            this.setChapter((Chapter) ApplicationResource.getValueFromCurrentHashMap(selfChapterID));
+        } else {
+            this.setChapter(null);
+        }
+
+        if(selfStorylineID != null) {
+            this.setStoryline((Storyline) ApplicationResource.getValueFromCurrentHashMap(selfStorylineID));
+        } else {
+            this.setStoryline(null);
+        }*/
         //potential problem - hash map not set as current yet?
+
+        this.setChapter(null);
+        this.setStoryline(null);
+
+        Savable.printReadingFinishedMessage("eventCard " + title);
+
         return this;
     }
 

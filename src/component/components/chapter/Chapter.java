@@ -1,5 +1,6 @@
 package component.components.chapter;
 
+import ability.Savable;
 import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
@@ -12,6 +13,11 @@ public class Chapter extends BasicStoryComponent {
     private final EventCardList eventCards;
 
     public Chapter() {
+        eventCards = new EventCardList();
+    }
+
+    public Chapter(String componentID) {
+        super(componentID);
         eventCards = new EventCardList();
     }
 
@@ -58,9 +64,11 @@ public class Chapter extends BasicStoryComponent {
 
     @Override
     public Chapter readJSONObject(JSONObject chapterObject) {
+        Savable.printReadingMessage("chapter " + title);
         super.readJSONObject(chapterObject);
         JSONArray eventCardArray = (JSONArray) chapterObject.get("eventCardList");
         eventCards.readJSONArray(eventCardArray);
+        Savable.printReadingFinishedMessage("chapter " + title);
         return this;
     }
 }

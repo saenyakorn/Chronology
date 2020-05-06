@@ -1,5 +1,6 @@
 package component.components.storyline;
 
+import ability.Savable;
 import application.ApplicationResource;
 import application.SystemConstants;
 import colors.RandomColor;
@@ -36,6 +37,15 @@ public class Storyline extends BasicStoryComponent {
     private EventCardList eventCardList;
 
     public Storyline() {
+        eventCards = new EventCardList();
+        loadFXML("Storyline.fxml");
+        initializeContextMenu();
+        initializeEventHandler();
+        setColor(RandomColor.getColor());
+    }
+
+    public Storyline(String componentID) {
+        super(componentID);
         eventCards = new EventCardList();
         loadFXML("Storyline.fxml");
         initializeContextMenu();
@@ -140,9 +150,11 @@ public class Storyline extends BasicStoryComponent {
 
     @Override
     public Storyline readJSONObject(JSONObject storylineObject) {
+        Savable.printReadingMessage("storyline " + title);
         super.readJSONObject(storylineObject);
         JSONArray eventCardArray = (JSONArray) storylineObject.get("eventCardList");
         eventCards.readJSONArray(eventCardArray);
+        Savable.printReadingFinishedMessage("storyline " + title);
         return this;
     }
 

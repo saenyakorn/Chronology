@@ -1,5 +1,6 @@
 package component.components.eventCard;
 
+import ability.Savable;
 import ability.SavableAsJSONArray;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -88,9 +89,14 @@ public class EventCardList extends HBox implements Iterable<EventCard>, SavableA
 
     @Override
     public EventCardList readJSONArray(JSONArray eventCardArray) {
+        Savable.printReadingMessage("eventCardList");
         for (Object eventCardObject : eventCardArray) {
+            System.out.println("Populating eventCardList");
             eventCards.add((new EventCard()).readJSONObject((JSONObject) eventCardObject));
+            //null null problem due to here, because eventCard object called from hashmap has only componentID
+            // TODO : Different method when called from hash map (add current event card instead of a new one?)
         }
+        Savable.printReadingFinishedMessage("eventCardList");
         return this;
     }
 
