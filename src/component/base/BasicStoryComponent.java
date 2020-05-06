@@ -4,6 +4,9 @@ import ability.SavableAsJSONObject;
 import application.ApplicationResource;
 import application.SystemConstants;
 import colors.RandomColor;
+import component.components.chapter.Chapter;
+import component.components.eventCard.EventCard;
+import component.components.storyline.Storyline;
 import component.components.timeModifier.PredefinedTimePeriod;
 import component.components.timeModifier.TimePeriod;
 import component.components.timeModifier.TimePeriodGenerator;
@@ -34,7 +37,7 @@ public abstract class BasicStoryComponent extends Pane implements SavableAsJSONO
 
     public BasicStoryComponent(String componentId) {
         this.componentId = componentId;
-        //put item?
+        //no put item because used to load a hashMap from file
         this.title = "Title";
         this.description = "Lorem ipsum dolor set amet, ego bir setaso de.";
         this.color = SystemConstants.DEFAULT_COLOR;
@@ -118,7 +121,7 @@ public abstract class BasicStoryComponent extends Pane implements SavableAsJSONO
     @SuppressWarnings("unchecked")
     public JSONObject writeJSONObjectAsComponentID() {
         JSONObject componentObject = new JSONObject();
-        componentObject.put("componentID", getComponentId());
+        componentObject.put("componentID", componentId);
         return componentObject;
     }
 
@@ -126,14 +129,24 @@ public abstract class BasicStoryComponent extends Pane implements SavableAsJSONO
     public BasicStoryComponent readJSONObject(JSONObject componentObject) {
         this.setTitle((String) componentObject.get("title"));
         this.setDescription((String) componentObject.get("description"));
+        //System.out.println((String) componentObject.get("title") + (String) componentObject.get("Color"));
         this.setColor(Color.web((String) componentObject.get("Color")));
         this.setTimePeriod(TimePeriod.stringToTimePeriod((String) componentObject.get("TimePeriod")));
         return this;
     }
 
-    public static BasicStoryComponent JSONObjectToBasicStoryComponent(JSONObject componentObject) {
-        //save type in hashmap - create new object by instance
-        return null;
+    public static BasicStoryComponent JSONObjectToBasicStoryComponent(String componentID, JSONObject componentObject) {
+        String type = (String) componentObject.get("type");
+        switch(type) {
+            case "EventCard":
+                return new EventCard(componentID);
+            case "Storyline":
+                return new Storyline(componentID);
+            case "Chapter":
+                return new Chapter(componentID);
+            default:
+                return null; //could throw an error
+        }
     }
 
     protected void loadFXML(String link) {
