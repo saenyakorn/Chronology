@@ -76,12 +76,10 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray<Chapte
 
     @Override
     public ChapterList readJSONArray(JSONArray chapterArray) {
-        ChapterList chapters = new ChapterList();
         for (Object chapterObject : chapterArray) {
-            Chapter chapter = Chapter.readJSONObject((JSONObject) chapterObject);
-            chapters.addChapter(chapter);
+            chapters.add((new Chapter()).readJSONObject((JSONObject) chapterObject));
         }
-        return chapters;
+        return this;
     }
 
 }

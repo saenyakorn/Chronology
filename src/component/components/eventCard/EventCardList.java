@@ -88,12 +88,10 @@ public class EventCardList extends HBox implements Iterable<EventCard>, SavableA
 
     @Override
     public EventCardList readJSONArray(JSONArray eventCardArray) {
-        EventCardList eventCards = new EventCardList();
         for (Object eventCardObject : eventCardArray) {
-            EventCard eventCard = EventCard.readJSONObject((JSONObject) eventCardObject);
-            eventCards.addEventCard(eventCard);
+            eventCards.add((new EventCard()).readJSONObject((JSONObject) eventCardObject));
         }
-        return eventCards;
+        return this;
     }
 
     private int sortByUserSelection(EventCard item1, EventCard item2) {

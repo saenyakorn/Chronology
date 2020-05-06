@@ -5,6 +5,7 @@ import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
 import component.components.timeModifier.TimePeriod;
 import javafx.scene.paint.Color;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class Chapter extends BasicStoryComponent {
@@ -56,14 +57,9 @@ public class Chapter extends BasicStoryComponent {
 
     @Override
     public Chapter readJSONObject(JSONObject chapterObject) {
-        /* TODO : Fix
-        String name = (String) chapterObject.get("name");
-        String description = (String) chapterObject.get("description");
-        Color color = Color.web((String) chapterObject.get("Color"));
-        TimePeriod timePeriod = TimePeriod.stringToTimePeriod((String) chapterObject.get("TimePeriod"));
-        EventCardList eventCards = EventCardList.readJSONArray((JSONArray) chapterObject.get("eventCardList"));
-
-        return new Chapter(name, description, color, timePeriod, eventCards);*/
+        super.readJSONObject(chapterObject);
+        JSONArray eventCardArray = (JSONArray) chapterObject.get("eventCardList");
+        eventCards.readJSONArray(eventCardArray);
         return this;
     }
 }

@@ -71,12 +71,10 @@ public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray<St
 
     @Override
     public StorylineList readJSONArray(JSONArray storylineArray) {
-        StorylineList storylines = new StorylineList();
         for(Object storylineObject : storylineArray) {
-            Storyline storyline = Storyline.readJSONObject((JSONObject) storylineObject);
-            storylines.addStoryline(storyline);
+            storylines.add((new Storyline()).readJSONObject((JSONObject) storylineObject));
         }
-        return storylines;
+        return this;
     }
 
 }

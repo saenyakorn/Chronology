@@ -9,6 +9,7 @@ import component.components.eventCard.EventCardList;
 import component.components.storyline.Storyline;
 import component.components.storyline.StorylineList;
 import javafx.scene.control.Tab;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class Document extends Tab implements SavableAsJSONObject<Document> {
@@ -127,17 +128,15 @@ public class Document extends Tab implements SavableAsJSONObject<Document> {
     }
 
     public Document readJSONObject(JSONObject documentObject) {
-        /* TODO : Fix
-        String name = (String) documentObject.get("name");
+        this.setName((String) documentObject.get("name"));
         JSONArray eventCardArray = (JSONArray) documentObject.get("eventCardList");
         JSONArray chapterArray = (JSONArray) documentObject.get("chapterList");
         JSONArray storylineArray = (JSONArray) documentObject.get("storylineList");
 
-        EventCardList eventCards = EventCardList.readJSONArray(eventCardArray);
-        ChapterList chapters = ChapterList.readJSONArray(chapterArray);
-        StorylineList storylines = StorylineList.readJSONArray(storylineArray);
+        eventCards.readJSONArray(eventCardArray);
+        chapters.readJSONArray(chapterArray);
+        storylines.readJSONArray(storylineArray);
 
-        return new Document(name, eventCards, chapters, storylines);*/
         return this;
     }
 }

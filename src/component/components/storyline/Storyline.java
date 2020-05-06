@@ -19,6 +19,7 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class Storyline extends BasicStoryComponent {
@@ -138,14 +139,9 @@ public class Storyline extends BasicStoryComponent {
 
     @Override
     public Storyline readJSONObject(JSONObject storylineObject) {
-        /* TODO : Fix
-        String name = (String) storylineObject.get("name");
-        String description = (String) storylineObject.get("description");
-        Color color = Color.web((String) storylineObject.get("Color"));
-        TimePeriod timePeriod = TimePeriod.stringToTimePeriod((String) storylineObject.get("TimePeriod"));
-        EventCardList eventCards = EventCardList.readJSONArray((JSONArray) storylineObject.get("eventCardList"));
-
-        return new Storyline(name, description, color, timePeriod, eventCards);*/
+        super.readJSONObject(storylineObject);
+        JSONArray eventCardArray = (JSONArray) storylineObject.get("eventCardList");
+        eventCards.readJSONArray(eventCardArray);
         return this;
     }
 

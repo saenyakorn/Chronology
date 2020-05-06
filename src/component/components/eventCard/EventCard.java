@@ -1,5 +1,6 @@
 package component.components.eventCard;
 
+import application.ApplicationResource;
 import component.base.BasicStoryComponent;
 import component.components.chapter.Chapter;
 import component.components.storyline.Storyline;
@@ -204,17 +205,13 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     @Override
     public EventCard readJSONObject(JSONObject eventCardObject) {
-        /* TODO : Fix
-        String name = (String) eventCardObject.get("name");
-        String description = (String) eventCardObject.get("description");
-        Color color = Color.web((String) eventCardObject.get("Color"));
-        TimePeriod timePeriod = TimePeriod.stringToTimePeriod((String) eventCardObject.get("TimePeriod"));
+        super.readJSONObject(eventCardObject);
+        String selfChapterID = (String) eventCardObject.get("selfChapter");
+        String selfStorylineID = (String) eventCardObject.get("selfStoryline");
 
-        EventCard eventCard = new EventCard(name, description, color, timePeriod);
-        //eventCard.setChapter();
-        //eventCard.setStoryline();
-
-        return eventCard;*/
+        this.setChapter((Chapter) ApplicationResource.getValueFromCurrentHashMap(selfChapterID));
+        this.setStoryline((Storyline) ApplicationResource.getValueFromCurrentHashMap(selfStorylineID));
+        //potential problem - hash map not set as current yet?
         return this;
     }
 

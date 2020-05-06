@@ -32,6 +32,15 @@ public abstract class BasicStoryComponent extends Pane implements SavableAsJSONO
         this.timePeriod = TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY);
     }
 
+    public BasicStoryComponent(String componentId) {
+        this.componentId = componentId;
+        //put item?
+        this.title = "Title";
+        this.description = "Lorem ipsum dolor set amet, ego bir setaso de.";
+        this.color = SystemConstants.DEFAULT_COLOR;
+        this.timePeriod = TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY);
+    }
+
     public BasicStoryComponent(String title, String description) {
         this.componentId = Integer.toString(Objects.hashCode(this));
         ApplicationResource.putItemToCurrentHashMap(componentId, this);
@@ -115,7 +124,15 @@ public abstract class BasicStoryComponent extends Pane implements SavableAsJSONO
 
     @Override
     public BasicStoryComponent readJSONObject(JSONObject componentObject) {
-        // TODO
+        this.setTitle((String) componentObject.get("title"));
+        this.setDescription((String) componentObject.get("description"));
+        this.setColor(Color.web((String) componentObject.get("Color")));
+        this.setTimePeriod(TimePeriod.stringToTimePeriod((String) componentObject.get("TimePeriod")));
+        return this;
+    }
+
+    public static BasicStoryComponent JSONObjectToBasicStoryComponent(JSONObject componentObject) {
+        //save type in hashmap - create new object by instance
         return null;
     }
 

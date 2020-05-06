@@ -110,7 +110,10 @@ public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
         JSONArray documentArray = (JSONArray) workspaceObject.get("documentList");
 
         hashMapObject.forEach((key, value) -> {
-            hashMap.put((String) key, ((BasicStoryComponent) value).readJSONObject((JSONObject) value));
+            System.out.println("key type: " + key.getClass().getName());
+            System.out.println("value type: " + value.getClass().getName());
+            BasicStoryComponent component = (BasicStoryComponent) value; //write new method for this
+            hashMap.put((String) key, component.readJSONObject((JSONObject) value));
         });
         documents.readJSONArray(documentArray);
         return this;
