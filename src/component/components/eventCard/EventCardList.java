@@ -1,8 +1,8 @@
 package component.components.eventCard;
 
 import ablity.SavableAsJSONArray;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import javafx.scene.layout.HBox;
@@ -16,16 +16,7 @@ public class EventCardList extends HBox implements Iterable<EventCard>, SavableA
     private final SortedList<EventCard> sortedEventCards;
 
     public EventCardList() {
-        eventCards = FXCollections.observableArrayList();
-        eventCards.addListener((ListChangeListener.Change<? extends EventCard> change) -> {
-            System.out.println("Change on eventCardList");
-            while (change.next()) {
-                System.out.println("EventCard -> " + change);
-                if (change.wasUpdated()) {
-                    System.out.println("Update detected");
-                }
-            }
-        });
+        eventCards = FXCollections.observableArrayList(eventCard -> new Observable[]{eventCard.getTimePeriod()});
         sortedEventCards = new SortedList<>(eventCards, (item1, item2) -> sortByEventCardDate(item1, item2));
     }
 
@@ -43,6 +34,10 @@ public class EventCardList extends HBox implements Iterable<EventCard>, SavableA
         return eventCards;
     }
 
+    public SortedList<EventCard> getSortedEventCards() {
+        return sortedEventCards;
+    }
+
     public void addEventCard(EventCard eventCard) {
         eventCards.add(eventCard);
     }
@@ -57,10 +52,6 @@ public class EventCardList extends HBox implements Iterable<EventCard>, SavableA
 
     public int size() {
         return eventCards.size();
-    }
-
-    public SortedList<EventCard> getSortedEventCards() {
-        return sortedEventCards;
     }
 
     private int sortByEventCardDate(EventCard item1, EventCard item2) {
