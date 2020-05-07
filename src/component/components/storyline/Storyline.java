@@ -13,9 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
+import javafx.scene.input.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -108,15 +106,15 @@ public class Storyline extends BasicStoryComponent {
     public void addEventCard(EventCard eventCard) {
         eventCards.addEventCard(eventCard);
         eventCard.setStoryline(this);
-        renderEventCards();
+//        renderEventCards();
         line.setEndX(line.getEndX() + (SystemConstants.EVENTCARD_PREF_WIDTH + 30));
     }
 
     public void renderEventCards() {
-        eventCardList.getChildren().clear();
-        for (EventCard eventCard : eventCards) {
-            eventCardList.getChildren().add(eventCard);
-        }
+//        eventCardList.getChildren().clear();
+//        for (EventCard eventCard : eventCards) {
+//            eventCardList.getChildren().add(eventCard);
+//        }
     }
 
     public void removeEventCard(EventCard eventCard) {
@@ -130,7 +128,8 @@ public class Storyline extends BasicStoryComponent {
         return title;
     }
 
-    @Override @SuppressWarnings("unchecked")
+    @Override
+    @SuppressWarnings("unchecked")
     public JSONObject getJSONObject() {
         JSONObject storyline = super.getJSONObject();
         storyline.put("eventCardList", eventCards.getJSONArray());
@@ -148,6 +147,15 @@ public class Storyline extends BasicStoryComponent {
     }
 
     public void initializeEventHandler() {
+        setOnDragDetected((MouseEvent event) -> {
+            Dragboard dragboard = startDragAndDrop(TransferMode.MOVE);
+            dragboard.setDragView(snapshot(null, null));
+            ClipboardContent clipboardContent = new ClipboardContent();
+            clipboardContent.putString(componentId);
+            System.out.println(DataFormat.lookupMimeType("Storyline"));
+            dragboard.setContent(clipboardContent);
+            event.consume();
+        });
         setOnDragOver((DragEvent event) -> {
             if (event.getDragboard().hasString()) {
                 event.acceptTransferModes(TransferMode.MOVE);
