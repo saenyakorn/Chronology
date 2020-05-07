@@ -6,6 +6,7 @@ import component.components.storyline.Storyline;
 import component.components.timeModifier.TimePeriod;
 import component.dialog.SetColorDialog;
 import component.dialog.SetTimePeriodDialog;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ContextMenu;
@@ -28,6 +29,7 @@ import java.time.format.FormatStyle;
 import java.util.Objects;
 
 public class EventCard extends BasicStoryComponent implements Comparable<EventCard> {
+    private SimpleIntegerProperty index;
     private Storyline selfStoryline;
     private Chapter selfChapter;
     private ContextMenu contextMenu;
@@ -50,6 +52,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     private StackPane chapterMarker;
 
     public EventCard() {
+        index.set(-1);
         selfChapter = null;
         selfStoryline = null;
         loadFXML("EventCard.fxml");
@@ -59,18 +62,22 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     public EventCard(String title, String description) {
         super(title, description);
+        index.set(-1);
         selfChapter = null;
         selfStoryline = null;
         loadFXML("EventCard.fxml");
         initializeEventHandler();
+        initializeContextMenu();
     }
 
     public EventCard(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
+        index.set(-1);
         selfChapter = null;
         selfStoryline = null;
         loadFXML("EventCard.fxml");
         initializeEventHandler();
+        initializeContextMenu();
     }
 
     @FXML
@@ -104,6 +111,14 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         } else {
             setChapter(getChapter());
         }
+    }
+
+    public int getIndex() {
+        return index.get();
+    }
+
+    public void setIndex(int index) {
+        this.index.set(index);
     }
 
     public Storyline getStoryline() {
@@ -231,6 +246,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     private void initializeEventHandler() {
         setOnDragDetected((MouseEvent event) -> {
             Dragboard dragboard = startDragAndDrop(TransferMode.MOVE);
+            dragboard.setDragView(snapshot(null, null));
             ClipboardContent clipboardContent = new ClipboardContent();
             clipboardContent.putString(getComponentId());
             dragboard.setContent(clipboardContent);
