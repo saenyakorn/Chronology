@@ -2,9 +2,9 @@ package component.dialog;
 
 import application.ApplicationResource;
 import component.base.BasicStoryComponent;
+import component.base.BlankBasicStoryComponent;
 import component.base.ComboBoxButtonCell;
 import component.base.ComboBoxListCell;
-import component.base.OnlyBodyBasicStoryComponents;
 import component.components.chapter.Chapter;
 import component.components.chapter.ChapterList;
 import component.components.document.Document;
@@ -64,7 +64,7 @@ public class NewEventCardDialog extends Dialog {
         ComboBox<BasicStoryComponent> chapterCombo = new ComboBox<>();
         Document document = ApplicationResource.getCurrentWorkspace().getActiveDocument();
         ChapterList chapters = document.getChapterList();
-        chapterCombo.getItems().add(new OnlyBodyBasicStoryComponents("None", "None"));
+        chapterCombo.getItems().add(new BlankBasicStoryComponent("None", "None"));
         for (Chapter chapter : chapters) {
             chapterCombo.getItems().add(chapter);
         }
@@ -78,7 +78,7 @@ public class NewEventCardDialog extends Dialog {
         ComboBox<BasicStoryComponent> storylineCombo = new ComboBox<>();
         Document document = ApplicationResource.getCurrentWorkspace().getActiveDocument();
         StorylineList storylines = document.getStorylineList();
-        storylineCombo.getItems().add(new OnlyBodyBasicStoryComponents("None", "None"));
+        storylineCombo.getItems().add(new BlankBasicStoryComponent("None", "None"));
         for (Storyline storyline : storylines) {
             storylineCombo.getItems().add(storyline);
         }

@@ -3,7 +3,7 @@ package component.layouts.sideBar;
 import application.SystemConstants;
 import component.base.BasicStoryComponent;
 import component.base.BasicStoryComponentTreeCell;
-import component.base.OnlyBodyBasicStoryComponents;
+import component.base.BlankBasicStoryComponent;
 import component.components.chapter.Chapter;
 import component.components.chapter.ChapterList;
 import component.components.document.Document;
@@ -47,7 +47,7 @@ public class SideBar extends ScrollPane {
         EventCardList eventCardList = document.getEventCardList();
         ChapterList chapterList = document.getChapterList();
         StorylineList storylineList = document.getStorylineList();
-        BasicStoryComponent documentData = new OnlyBodyBasicStoryComponents(document.getText(), "none");
+        BasicStoryComponent documentData = new BlankBasicStoryComponent(document.getText(), "none");
         TreeItem<BasicStoryComponent> rootItem = new TreeItem<>(documentData);
         createTreeItemFromNonChapterEventCard(rootItem, eventCardList);
         createTreeItemFromChapterList(rootItem, chapterList);
