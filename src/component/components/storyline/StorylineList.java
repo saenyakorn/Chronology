@@ -1,9 +1,12 @@
 package component.components.storyline;
 
 import ablity.SavableAsJSONArray;
+import component.components.eventCard.EventCard;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -12,18 +15,30 @@ import java.util.Iterator;
 
 public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray {
     private final ObservableList<Storyline> storylines;
+    private final ObservableList<EventCard> allEventCard;
+    private final SortedList<EventCard> allSortedEventCard;
 
     public StorylineList() {
         storylines = FXCollections.observableArrayList();
-        storylines.addListener((ListChangeListener.Change<? extends Storyline> change) -> {
-            System.out.println("Change on storylineList");
-            while (change.next()) {
-                System.out.println("Storyline -> " + change);
-                if (change.wasUpdated()) {
-                    System.out.println("Update detected");
-                }
+        allEventCard = FXCollections.observableArrayList(eventCard -> new Observable[]{eventCard.getTimePeriod()});
+        allSortedEventCard = new SortedList<>(allEventCard, (item1, item2) -> sortByEventCardDate(item1, item2));
+
+        // On change event
+        allSortedEventCard.addListener((ListChangeListener.Change<? extends EventCard> change) -> {
+            for (int i = 0; i < allSortedEventCard.size(); i++) {
+                allSortedEventCard.get(i).setIndex(i);
             }
         });
+    }
+
+    @SuppressWarnings("unchecked")
+    public static StorylineList parseJSONArray(JSONArray storylineArray) {
+        StorylineList storylines = new StorylineList();
+        for (Object storylineObject : storylineArray) {
+            Storyline storyline = Storyline.parseJSONObject((JSONObject) storylineObject);
+            storylines.addStoryline(storyline);
+        }
+        return storylines;
     }
 
     public ObservableList<Storyline> getStorylines() {
@@ -60,23 +75,18 @@ public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray {
         return this.getJSONArray().toJSONString();
     }
 
-    @Override @SuppressWarnings("unchecked")
+    private int sortByEventCardDate(EventCard item1, EventCard item2) {
+        return item1.compareTo(item2);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
     public JSONArray getJSONArray() {
         JSONArray storylineArray = new JSONArray();
-        for(Storyline storyline : storylines) {
+        for (Storyline storyline : storylines) {
             storylineArray.add(storyline.getJSONObject());
         }
         return storylineArray;
-    }
-
-    @SuppressWarnings("unchecked")
-    public static StorylineList parseJSONArray(JSONArray storylineArray) {
-        StorylineList storylines = new StorylineList();
-        for(Object storylineObject : storylineArray) {
-            Storyline storyline = Storyline.parseJSONObject((JSONObject) storylineObject);
-            storylines.addStoryline(storyline);
-        }
-        return storylines;
     }
 
 }
