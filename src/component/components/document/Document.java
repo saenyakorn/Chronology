@@ -65,7 +65,7 @@ public class Document extends Tab implements SavableAsJSONObject {
 
     public void addStoryLine(Storyline storyline) {
         storylines.addStoryline(storyline);
-        ApplicationResource.getCurrentWorkspace().getViewer().addStoryline(storyline);
+        ApplicationResource.getCurrentWorkspace().getViewer().addStorylineToCanvas(storyline);
     }
 
     public void addChapter(Chapter chapter) {
