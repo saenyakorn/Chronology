@@ -85,23 +85,23 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
     }
 
     private void initializeEventHandler() {
-        this.setOnDragDetected((MouseEvent event) -> {
+        setOnDragDetected((MouseEvent event) -> {
             if (getItem() != null) {
-                System.out.println("Drag Detected");
                 Dragboard dragboard = startDragAndDrop(TransferMode.MOVE);
+                dragboard.setDragView(snapshot(null, null));
                 ClipboardContent clipboardContent = new ClipboardContent();
                 clipboardContent.putString(getItem().getComponentId());
                 dragboard.setContent(clipboardContent);
                 event.consume();
             }
         });
-        this.setOnDragOver((DragEvent event) -> {
+        setOnDragOver((DragEvent event) -> {
             if (event.getDragboard().hasString()) {
                 event.acceptTransferModes(TransferMode.MOVE);
             }
             event.consume();
         });
-        this.setOnDragDropped((DragEvent event) -> {
+        setOnDragDropped((DragEvent event) -> {
             String itemId = event.getDragboard().getString();
             BasicStoryComponent item = ApplicationResource.getValueFromCurrentWorkspaceHashMap(itemId);
             if (item instanceof EventCard && getItem() instanceof Chapter) {
