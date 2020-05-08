@@ -9,14 +9,7 @@ import java.util.Random;
 public final class RandomColor {
     private static final Random random = new Random();
     private static final ArrayList<Color> usedColor = new ArrayList<>();
-    private static final Color[] colorConstants = {
-            Color.web("rgb(255, 118, 184)"), // pink
-            Color.web("rgb(255, 62, 96)"), // red
-            Color.web("rgb(255, 166, 62)"), // orange
-            Color.web("rgb(148, 238, 106)"), // lime
-            Color.web("rgb(62, 197, 255)"), // sky blue
-            Color.web("rgb(165, 135, 251)"), // lavender
-    };
+    private static final Color[] colorConstants = GlobalColor.getAllPalette();
 
     public static Color getColor() {
         Color color;
