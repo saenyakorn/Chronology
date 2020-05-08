@@ -1,38 +1,19 @@
 package component.components.chapter;
 
-import ablity.SavableAsJSONArray;
+import ability.Savable;
+import ability.SavableAsJSONArray;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.Iterator;
 
-public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray {
+public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray<ChapterList> {
     private final ObservableList<Chapter> chapters;
 
     public ChapterList() {
         chapters = FXCollections.observableArrayList();
-        chapters.addListener((ListChangeListener.Change<? extends Chapter> change) -> {
-            System.out.println("Change on chapterList");
-            while (change.next()) {
-                System.out.println("Chapter -> " + change);
-                if (change.wasUpdated()) {
-                    System.out.println("Update detected");
-                }
-            }
-        });
-    }
-
-    @SuppressWarnings("unchecked")
-    public static ChapterList parseJSONArray(JSONArray chapterArray) {
-        ChapterList chapters = new ChapterList();
-        for (Object chapterObject : chapterArray) {
-            Chapter chapter = Chapter.parseJSONObject((JSONObject) chapterObject);
-            chapters.addChapter(chapter);
-        }
-        return chapters;
     }
 
     public void addChapter(Chapter chapter) {
@@ -63,7 +44,7 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray {
 
     @Override
     public String getJSONString() {
-        return this.getJSONArray().toJSONString();
+        return this.writeJSONArray().toJSONString();
     }
 
     public void removeChapter(Chapter chapter) {
@@ -76,12 +57,23 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray {
 
     @Override
     @SuppressWarnings("unchecked")
-    public JSONArray getJSONArray() {
+    public JSONArray writeJSONArray() {
         JSONArray chapterArray = new JSONArray();
         for (Chapter chapter : chapters) {
-            chapterArray.add(chapter.getJSONObject());
+            chapterArray.add(chapter.writeJSONObjectAsComponentID());
         }
         return chapterArray;
+    }
+
+    @Override
+    public ChapterList readJSONArray(JSONArray chapterArray) {
+        Savable.printReadingMessage("chapterList");
+        for (Object chapterObject : chapterArray) {
+            System.out.println("Populating chapterList");
+            chapters.add((new Chapter()).readJSONObject((JSONObject) chapterObject));
+        }
+        Savable.printReadingFinishedMessage("chapterList");
+        return this;
     }
 
 }
