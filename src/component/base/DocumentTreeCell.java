@@ -15,7 +15,7 @@ public final class DocumentTreeCell extends TreeCell<Document> {
 
     public DocumentTreeCell() {
         super();
-        getStylesheets().add(getClass().getResource("BasicStoryComponentTreeCell.css").toExternalForm());
+        getStylesheets().add(getClass().getResource("TreeCell.css").toExternalForm());
         getStyleClass().add("tree-cell");
         initializeEventHandler();
     }
