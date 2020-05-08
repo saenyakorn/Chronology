@@ -2,12 +2,9 @@ package component.base;
 
 public class BlankBasicStoryComponent extends BasicStoryComponent {
 
-    public BlankBasicStoryComponent() {
-        super();
-    }
-
     public BlankBasicStoryComponent(String title, String description) {
-        super(title, description);
+        this.title = title;
+        this.description = description;
     }
 
     @Override
