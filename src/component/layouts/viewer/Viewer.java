@@ -20,6 +20,8 @@ public class Viewer extends TabPane {
         contextMenu = new ContextMenu();
         initializeContextMenu();
         initializeEventHandler();
+        getStylesheets().add(getClass().getResource("HiddenTabPane.css").toExternalForm());
+        getStyleClass().add("wizard");
     }
 
     public void addDocument(Document document) {
