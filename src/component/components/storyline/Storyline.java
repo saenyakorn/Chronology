@@ -2,12 +2,15 @@ package component.components.storyline;
 
 import ability.Savable;
 import application.ApplicationResource;
+import application.SystemConstants;
 import colors.RandomColor;
 import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
 import component.components.timeModifier.TimePeriod;
 import component.dialog.SetColorDialog;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ContextMenu;
@@ -16,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -25,6 +29,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class Storyline extends BasicStoryComponent {
+    private int maxIndex;
     private ContextMenu contextMenu;
 
     @FXML
@@ -39,6 +44,7 @@ public class Storyline extends BasicStoryComponent {
     private GridPane eventCardContainer;
 
     public Storyline() {
+        maxIndex = 0;
         loadFXML("Storyline.fxml");
         initializeContextMenu();
         initializeEventHandler();
@@ -47,6 +53,7 @@ public class Storyline extends BasicStoryComponent {
 
     public Storyline(String componentID) {
         super(componentID);
+        maxIndex = 0;
         loadFXML("Storyline.fxml");
         initializeContextMenu();
         initializeEventHandler();
@@ -55,6 +62,7 @@ public class Storyline extends BasicStoryComponent {
 
     public Storyline(String title, String description) {
         super(title, description);
+        maxIndex = 0;
         loadFXML("Storyline.fxml");
         initializeContextMenu();
         initializeEventHandler();
@@ -63,6 +71,7 @@ public class Storyline extends BasicStoryComponent {
 
     public Storyline(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
+        maxIndex = 0;
         loadFXML("Storyline.fxml");
         initializeContextMenu();
         initializeEventHandler();
@@ -71,6 +80,7 @@ public class Storyline extends BasicStoryComponent {
 
     public Storyline(String title, String description, Color color, TimePeriod timePeriod, EventCardList eventCards) {
         super(title, description, color, timePeriod);
+        maxIndex = 0;
         loadFXML("Storyline.fxml");
         initializeContextMenu();
         initializeEventHandler();
@@ -90,6 +100,15 @@ public class Storyline extends BasicStoryComponent {
             }
             storylineTitle.setDisable(true);
         });
+        modifyColumnConstraint();
+    }
+
+    public void modifyColumnConstraint() {
+        ObservableList<ColumnConstraints> columnConstraints = FXCollections.observableArrayList();
+        for (int i = 0; i < maxIndex; i++) {
+            columnConstraints.add(new ColumnConstraints(SystemConstants.EVENT_CARD_PREF_WIDTH + 30));
+        }
+        eventCardContainer.getColumnConstraints().setAll(columnConstraints);
     }
 
     public Pane getDisplay() {
@@ -98,6 +117,10 @@ public class Storyline extends BasicStoryComponent {
 
     public GridPane getContainer() {
         return eventCardContainer;
+    }
+
+    public void setMaxIndex(int maxIndex) {
+        this.maxIndex = maxIndex;
     }
 
     @Override
@@ -150,6 +173,7 @@ public class Storyline extends BasicStoryComponent {
             if (item instanceof EventCard) {
                 EventCard eventCard = (EventCard) item;
                 eventCard.setStoryline(this);
+                ApplicationResource.update();
             }
             event.consume();
         });
