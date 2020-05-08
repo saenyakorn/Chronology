@@ -2,7 +2,7 @@ package component.base;
 
 import ability.SavableAsJSONObject;
 import application.ApplicationResource;
-import application.SystemConstants;
+import colors.GlobalColor;
 import colors.RandomColor;
 import component.components.chapter.Chapter;
 import component.components.eventCard.EventCard;
@@ -30,7 +30,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         ApplicationResource.putItemToCurrentHashMap(componentId, this);
         this.title = "Title";
         this.description = "Lorem ipsum dolor set amet, ego bir setaso de.";
-        this.color = SystemConstants.DEFAULT_COLOR;
+        this.color = GlobalColor.DEFAULT_COLOR;
         this.timePeriod = TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY);
     }
 
@@ -39,7 +39,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         //no put item because used to load a hashMap from file
         this.title = "Title";
         this.description = "Lorem ipsum dolor set amet, ego bir setaso de.";
-        this.color = SystemConstants.DEFAULT_COLOR;
+        this.color = GlobalColor.DEFAULT_COLOR;
         this.timePeriod = TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY);
     }
 
@@ -48,7 +48,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         ApplicationResource.putItemToCurrentHashMap(componentId, this);
         this.title = title;
         this.description = description;
-        this.color = SystemConstants.DEFAULT_COLOR;
+        this.color = GlobalColor.DEFAULT_COLOR;
         this.timePeriod = TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY);
     }
 
