@@ -1,6 +1,6 @@
 package component.components.document;
 
-import ablity.SavableAsJSONObject;
+import ability.SavableAsJSONObject;
 import application.ApplicationResource;
 import component.components.chapter.Chapter;
 import component.components.chapter.ChapterList;
@@ -8,33 +8,53 @@ import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
 import component.components.storyline.Storyline;
 import component.components.storyline.StorylineList;
+import javafx.beans.binding.Bindings;
 import javafx.scene.control.Tab;
+import javafx.scene.layout.VBox;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class Document extends Tab implements SavableAsJSONObject {
+public class Document extends Tab implements SavableAsJSONObject<Document> {
+
     private String name;
+    private final VBox vBox;
     private final EventCardList eventCards;
     private final ChapterList chapters;
     private final StorylineList storylines;
 
-    public Document(String name) {
-        this.name = name;
-        setText(name);
+    public Document() {
+        name = "";
+        vBox = new VBox();
         eventCards = new EventCardList();
         chapters = new ChapterList();
         storylines = new StorylineList();
+        setText(name);
+        Bindings.bindContentBidirectional(storylines.getStorylinePanes(), vBox.getChildren());
+        setContent(vBox);
+        setOnCloseRequest(event -> ApplicationResource.getCurrentWorkspace().removeDocument(this));
+    }
 
+    public Document(String name) {
+        this.name = name;
+        vBox = new VBox();
+        eventCards = new EventCardList();
+        chapters = new ChapterList();
+        storylines = new StorylineList();
+        setText(name);
+        Bindings.bindContentBidirectional(storylines.getStorylinePanes(), vBox.getChildren());
+        setContent(vBox);
         setOnCloseRequest(event -> ApplicationResource.getCurrentWorkspace().removeDocument(this));
     }
 
     public Document(String name, EventCardList eventCards, ChapterList chapters, StorylineList storylines) {
         this.name = name;
-        setText(name);
+        this.vBox = new VBox();
         this.eventCards = eventCards;
         this.chapters = chapters;
         this.storylines = storylines;
-
+        setText(name);
+        Bindings.bindContentBidirectional(storylines.getStorylinePanes(), vBox.getChildren());
+        setContent(vBox);
         setOnCloseRequest(event -> ApplicationResource.getCurrentWorkspace().removeDocument(this));
     }
 
@@ -61,32 +81,21 @@ public class Document extends Tab implements SavableAsJSONObject {
 
     public void addEventCard(EventCard eventCard) {
         eventCards.addEventCard(eventCard);
+        ApplicationResource.getCurrentWorkspace().getSideBar().renderEventCardTreeItem(this);
     }
 
     public void addStoryLine(Storyline storyline) {
         storylines.addStoryline(storyline);
-        ApplicationResource.getCurrentWorkspace().getViewer().addStorylineToCanvas(storyline);
+        ApplicationResource.getCurrentWorkspace().getViewer().setContent(getContent());
+        ApplicationResource.getCurrentWorkspace().getSideBar().renderStorylineTreeItem(this);
     }
 
     public void addChapter(Chapter chapter) {
         chapters.addChapter(chapter);
+        ApplicationResource.getCurrentWorkspace().getSideBar().renderChapterTreeItem(this);
     }
 
     public void removeEventCard(EventCard eventCard) {
-        if (eventCard.getChapter() == null && eventCard.getStoryline() == null) {
-            eventCards.removeEventCard(eventCard);
-        } else {
-            if (eventCard.getChapter() != null) {
-                eventCard.getChapter().removeEventCard(eventCard);
-            }
-            if (eventCard.getStoryline() != null) {
-                eventCard.getStoryline().removeEventCard(eventCard);
-            } else {
-                System.out.println("E-Chapter: " + eventCard.getChapter());
-                System.out.println("E-Storyline: " + eventCard.getStoryline());
-                System.out.println(eventCard + " -> This event card is not exist");
-            }
-        }
     }
 
     public void removeStoryline(Storyline storyline) {
@@ -104,30 +113,30 @@ public class Document extends Tab implements SavableAsJSONObject {
 
     @Override
     public String getJSONString() {
-        return getJSONObject().toJSONString();
+        return writeJSONObject().toJSONString();
     }
 
     @Override
-    public JSONObject getJSONObject() {
-        JSONObject document = new JSONObject();
-        document.put("name", name);
-        document.put("eventCardList", eventCards.getJSONArray());
-        document.put("chapterList", chapters.getJSONArray());
-        document.put("storylineList", storylines.getJSONArray());
-        return document;
+    @SuppressWarnings("unchecked")
+    public JSONObject writeJSONObject() {
+        JSONObject documentObject = new JSONObject();
+        documentObject.put("name", name);
+        documentObject.put("eventCardList", eventCards.writeJSONArray());
+        documentObject.put("chapterList", chapters.writeJSONArray());
+        documentObject.put("storylineList", storylines.writeJSONArray());
+        return documentObject;
     }
 
-    @SuppressWarnings("unchecked")
-    public static Document parseJSONObject(JSONObject documentObject) {
-        String name = (String) documentObject.get("name");
+    public Document readJSONObject(JSONObject documentObject) {
+        this.setName((String) documentObject.get("name"));
         JSONArray eventCardArray = (JSONArray) documentObject.get("eventCardList");
         JSONArray chapterArray = (JSONArray) documentObject.get("chapterList");
         JSONArray storylineArray = (JSONArray) documentObject.get("storylineList");
 
-        EventCardList eventCards = EventCardList.parseJSONArray(eventCardArray);
-        ChapterList chapters = ChapterList.parseJSONArray(chapterArray);
-        StorylineList storylines = StorylineList.parseJSONArray(storylineArray);
+        eventCards.readJSONArray(eventCardArray);
+        chapters.readJSONArray(chapterArray);
+        storylines.readJSONArray(storylineArray);
 
-        return new Document(name, eventCards, chapters, storylines);
+        return this;
     }
 }
