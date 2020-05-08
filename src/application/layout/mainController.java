@@ -3,13 +3,14 @@ package application.layout;
 import application.ApplicationResource;
 import component.dialog.*;
 import component.layouts.workspace.Workspace;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -26,6 +27,15 @@ public class mainController {
     private VBox root;
     @FXML
     private MenuBar menuBar;
+    @FXML
+    private HBox navigationBar;
+    @FXML
+    private Circle closeButton;
+    @FXML
+    private Circle hideButton;
+    @FXML
+    private Circle expandButton;
+
 
     private final String os = System.getProperty("os.name");
 
@@ -39,9 +49,9 @@ public class mainController {
         VBox.setVgrow(root.getChildren().get(root.getChildren().size() - 1), Priority.ALWAYS);
 
         // setup menu bar property
-        if (os != null && os.startsWith("Mac"))
-            menuBar.useSystemMenuBarProperty().set(true);
-        Platform.runLater(() -> menuBar.setUseSystemMenuBar(true));
+        //if (os != null && os.startsWith("Mac"))
+        //    menuBar.useSystemMenuBarProperty().set(true);
+        //Platform.runLater(() -> menuBar.setUseSystemMenuBar(true));
     }
 
     @FXML
