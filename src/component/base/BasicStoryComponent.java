@@ -1,14 +1,16 @@
 package component.base;
 
-import ablity.SavableAsJSONObject;
+import ability.SavableAsJSONObject;
 import application.ApplicationResource;
 import application.SystemConstants;
 import colors.RandomColor;
+import component.components.chapter.Chapter;
+import component.components.eventCard.EventCard;
+import component.components.storyline.Storyline;
 import component.components.timeModifier.PredefinedTimePeriod;
 import component.components.timeModifier.TimePeriod;
 import component.components.timeModifier.TimePeriodGenerator;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import org.json.simple.JSONObject;
 
@@ -16,7 +18,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public abstract class BasicStoryComponent extends Pane implements SavableAsJSONObject {
+public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicStoryComponent> {
     protected final String componentId;
     protected String title;
     protected String description;
@@ -25,7 +27,16 @@ public abstract class BasicStoryComponent extends Pane implements SavableAsJSONO
 
     public BasicStoryComponent() {
         this.componentId = Integer.toString(Objects.hashCode(this));
-        ApplicationResource.putItemToCurrentWorkspaceHashMap(componentId, this);
+        ApplicationResource.putItemToCurrentHashMap(componentId, this);
+        this.title = "Title";
+        this.description = "Lorem ipsum dolor set amet, ego bir setaso de.";
+        this.color = SystemConstants.DEFAULT_COLOR;
+        this.timePeriod = TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY);
+    }
+
+    public BasicStoryComponent(String componentId) {
+        this.componentId = componentId;
+        //no put item because used to load a hashMap from file
         this.title = "Title";
         this.description = "Lorem ipsum dolor set amet, ego bir setaso de.";
         this.color = SystemConstants.DEFAULT_COLOR;
@@ -34,7 +45,7 @@ public abstract class BasicStoryComponent extends Pane implements SavableAsJSONO
 
     public BasicStoryComponent(String title, String description) {
         this.componentId = Integer.toString(Objects.hashCode(this));
-        ApplicationResource.putItemToCurrentWorkspaceHashMap(componentId, this);
+        ApplicationResource.putItemToCurrentHashMap(componentId, this);
         this.title = title;
         this.description = description;
         this.color = SystemConstants.DEFAULT_COLOR;
@@ -43,7 +54,7 @@ public abstract class BasicStoryComponent extends Pane implements SavableAsJSONO
 
     public BasicStoryComponent(String title, String description, Color color, TimePeriod timePeriod) {
         this.componentId = Integer.toString(Objects.hashCode(this));
-        ApplicationResource.putItemToCurrentWorkspaceHashMap(componentId, this);
+        ApplicationResource.putItemToCurrentHashMap(componentId, this);
         this.title = title;
         this.description = description;
         this.color = color;
@@ -91,24 +102,56 @@ public abstract class BasicStoryComponent extends Pane implements SavableAsJSONO
     @Override
     abstract public String toString();
 
-    @Override
-    public String getJSONString() {
-        return this.getJSONObject().toJSONString();
+    public static BasicStoryComponent JSONObjectToBasicStoryComponent(String componentID, JSONObject componentObject) {
+        String type = (String) componentObject.get("type");
+        switch (type) {
+            case "EventCard":
+                return new EventCard(componentID);
+            case "Storyline":
+                return new Storyline(componentID);
+            case "Chapter":
+                return new Chapter(componentID);
+            default:
+                return null; //could throw an error
+        }
     }
 
-    @Override @SuppressWarnings("unchecked")
-    public JSONObject getJSONObject() {
-        JSONObject component = new JSONObject();
-        component.put("title", title);
-        component.put("description", description);
-        component.put("Color", colorToHex(color));
-        component.put("TimePeriod", timePeriod.toString());
-        return component;
+    @Override
+    public String getJSONString() {
+        return this.writeJSONObject().toJSONString();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public JSONObject writeJSONObject() {
+        JSONObject componentObject = new JSONObject();
+        componentObject.put("title", title);
+        componentObject.put("description", description);
+        componentObject.put("Color", colorToHex(color));
+        componentObject.put("TimePeriod", timePeriod.toString());
+        return componentObject;
+    }
+
+    @SuppressWarnings("unchecked")
+    public JSONObject writeJSONObjectAsComponentID() {
+        JSONObject componentObject = new JSONObject();
+        componentObject.put("componentID", componentId);
+        return componentObject;
+    }
+
+    @Override
+    public BasicStoryComponent readJSONObject(JSONObject componentObject) {
+        this.setTitle((String) componentObject.get("title"));
+        this.setDescription((String) componentObject.get("description"));
+        //System.out.println((String) componentObject.get("title") + (String) componentObject.get("Color"));
+        this.setColor(Color.web((String) componentObject.get("Color")));
+        this.setTimePeriod(TimePeriod.stringToTimePeriod((String) componentObject.get("TimePeriod")));
+        return this;
     }
 
     protected void loadFXML(String link) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(link));
-        fxmlLoader.setRoot(this);
+        // fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
         try {
             fxmlLoader.load();
