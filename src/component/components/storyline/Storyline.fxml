@@ -21,7 +21,7 @@
             </padding>
             <TextField id="storylineTitle" fx:id="storylineTitle" prefWidth="200"/>
         </HBox>
-        <GridPane fx:id="eventCardContainer" hgap="30"/>
+        <GridPane fx:id="eventCardContainer"/>
     </HBox>
 
 </Pane>
