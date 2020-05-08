@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import component.components.eventCard.EventCardList?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import java.net.URL?>
-<fx:root fx:id="root" prefHeight="200" type="Pane"
-         xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<Pane xmlns:fx="http://javafx.com/fxml/1" fx:id="root"
+      prefHeight="200" xmlns="http://javafx.com/javafx/10.0.2-internal">
     <stylesheets>
-        <URL value="@Storyline.css" />
+        <URL value="@Storyline.css"/>
     </stylesheets>
 
     <Line fx:id="line" endX="190" layoutY="130"/>
@@ -21,7 +21,7 @@
             </padding>
             <TextField id="storylineTitle" fx:id="storylineTitle" prefWidth="200"/>
         </HBox>
-        <EventCardList fx:id="eventCardList" spacing="30"/>
+        <GridPane fx:id="eventCardContainer" hgap="30"/>
     </HBox>
 
-</fx:root>
+</Pane>
