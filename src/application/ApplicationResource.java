@@ -6,9 +6,19 @@ import component.components.document.Document;
 import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
 import component.layouts.workspace.Workspace;
+import javafx.scene.shape.SVGPath;
 import org.json.simple.JSONObject;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class ApplicationResource {
@@ -74,5 +84,20 @@ public class ApplicationResource {
 
         // render side bar
         ApplicationResource.getCurrentWorkspace().getSideBar().renderSideBar(ApplicationResource.getCurrentWorkspace().getActiveDocument());
+    }
+
+    public static SVGPath getIconSVG(String path) {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        SVGPath svgPath = new SVGPath();
+        try {
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            org.w3c.dom.Document document = builder.parse(path);
+            XPathExpression expression = XPathFactory.newInstance().newXPath().compile("//path/@d");
+            String svgPathString = (String) expression.evaluate(document, XPathConstants.STRING);
+            svgPath.setContent(svgPathString);
+        } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException e) {
+            e.printStackTrace();
+        }
+        return svgPath;
     }
 }
