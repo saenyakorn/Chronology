@@ -27,7 +27,6 @@ public class SideBar extends ScrollPane {
     private final TreeView<BasicStoryComponent> basicStoryComponentTreeView;
 
     // Icon for each item
-
     private final SVGPath eventCardIcon = ApplicationResource.getIconSVG("file:res/icon/event_card_icon_24px.svg");
     private final SVGPath storylineIcon = ApplicationResource.getIconSVG("file:res/icon/storyline_icon_24px.svg");
     private final SVGPath chapterIcon = ApplicationResource.getIconSVG("file:res/icon/chapter_icon_24px.svg");
@@ -67,6 +66,11 @@ public class SideBar extends ScrollPane {
         // initialize TreeView
         initializeBasicStoryComponentTreeView();
         initializeTreeViewDocument();
+
+        eventCardIcon.getStyleClass().add("icon-24px");
+        storylineIcon.getStyleClass().add("icon-24px");
+        chapterIcon.getStyleClass().add("icon-24px");
+        documentIcon.getStyleClass().add("icon-24px");
     }
 
     private void initializeBasicStoryComponentTreeView() {

@@ -3,20 +3,28 @@ package component.base;
 import application.ApplicationResource;
 import component.components.chapter.Chapter;
 import component.components.eventCard.EventCard;
+import component.components.storyline.Storyline;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeCell;
 import javafx.scene.input.*;
+import javafx.scene.shape.SVGPath;
 
 public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryComponent> {
 
     TextField textField;
+    private final SVGPath eventCardIcon = ApplicationResource.getIconSVG("file:res/icon/event_card_icon_24px.svg");
+    private final SVGPath storylineIcon = ApplicationResource.getIconSVG("file:res/icon/storyline_icon_24px.svg");
+    private final SVGPath chapterIcon = ApplicationResource.getIconSVG("file:res/icon/chapter_icon_24px.svg");
 
     public BasicStoryComponentTreeCell() {
         super();
         getStylesheets().add(getClass().getResource("TreeCell.css").toExternalForm());
         getStyleClass().add("tree-cell");
         initializeEventHandler();
+        eventCardIcon.getStyleClass().add("icon-24px");
+        storylineIcon.getStyleClass().add("icon-24px");
+        chapterIcon.getStyleClass().add("icon-24px");
     }
 
     @Override
@@ -53,7 +61,13 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
                 setGraphic(textField);
             } else {
                 setText(getString());
-                setGraphic(getTreeItem().getGraphic());
+                if(item instanceof EventCard) {
+                    setGraphic(eventCardIcon);
+                } else if(item instanceof Storyline) {
+                    setGraphic(storylineIcon);
+                } else if(item instanceof Chapter) {
+                    setGraphic(chapterIcon);
+                }
             }
         }
     }

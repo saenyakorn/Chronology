@@ -8,16 +8,20 @@ import javafx.scene.control.TreeCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.SVGPath;
 
 public final class DocumentTreeCell extends TreeCell<Document> {
 
     TextField textField;
+    private final SVGPath documentIcon = ApplicationResource.getIconSVG("file:res/icon/document_icon_24px.svg");
 
     public DocumentTreeCell() {
         super();
         getStylesheets().add(getClass().getResource("TreeCell.css").toExternalForm());
         getStyleClass().add("tree-cell");
         initializeEventHandler();
+        documentIcon.getStyleClass().add("icon-24px");
+        this.getStyleClass().add("heading");
     }
 
     @Override
@@ -53,7 +57,7 @@ public final class DocumentTreeCell extends TreeCell<Document> {
                 setGraphic(textField);
             } else {
                 setText(getString());
-                setGraphic(getTreeItem().getGraphic());
+                setGraphic(documentIcon);
             }
         }
     }
