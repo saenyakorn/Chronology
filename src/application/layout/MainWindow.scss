@@ -1,0 +1,57 @@
+@import "../StylingConstant.scss";
+
+.navigation-bar {
+  -fx-pref-height: $navigation-bar-size;
+  -fx-alignment: center-left;
+  -fx-background-color: $black;
+  -fx-spacing: $spacing;
+
+  .window-button-group {
+    -fx-padding: 0px $spacing*2;
+    -fx-pref-height: $navigation-bar-size;
+    -fx-alignment: center-left;
+    -fx-background-color: $black;
+    -fx-spacing: $spacing;
+
+    .circle-button {
+      -fx-stroke-width: 1.5px;
+      -fx-stroke: $dark-grey;
+
+      &.close:hover {
+        -fx-fill: $red;
+        -fx-effect: $drop-shadow;
+      }
+
+      &.hide:hover {
+        -fx-fill: $orange;
+        -fx-effect: $drop-shadow;
+      }
+
+      &.expand:hover {
+        -fx-fill: $lime;
+        -fx-effect: $drop-shadow;
+      }
+    }
+  }
+
+  .tab-group {
+    -fx-pref-height: $navigation-bar-size;
+    -fx-alignment: center-left;
+    -fx-background-color: transparent;
+
+    .add-tab-button {
+      -fx-border-radius: 0;
+      -fx-background-radius: 0;
+      -fx-pref-height: $navigation-bar-size;
+      -fx-pref-width: $navigation-bar-size;
+      -fx-background-color: $dark-grey;
+      -fx-fill: $black;
+    }
+
+    .tab {
+
+    }
+  }
+
+}
+
