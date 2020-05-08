@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<VBox xmlns:fx="http://javafx.com/fxml" fx:id="vBox" xmlns="http://javafx.com/javafx"
+<?import javafx.scene.shape.Circle?>
+<?import java.net.URL?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:id="root" xmlns="http://javafx.com/javafx"
       fx:controller="application.layout.mainController">
 
+    <stylesheets>
+        <URL value="@MainWindow.css"/>
+    </stylesheets>
+
+    <!-- Stage Bar (static elements) -->
+    <HBox fx:id="navigationBar" styleClass="navigation-bar">
+        <HBox styleClass="window-button-group">
+            <Circle radius="5.5" fx:id="closeButton" styleClass="circle-button, close"
+                    onMouseClicked="#handleCloseWindow"/>
+            <Circle radius="5.5" fx:id="hideButton" styleClass="circle-button, hide"
+                    onMouseClicked="#handleHideWindow"/>
+            <Circle radius="5.5" fx:id="expandButton" styleClass="circle-button, expand"
+                    onMouseClicked="#handleExpandWindow"/>
+        </HBox>
+        <HBox styleClass="tab-group">
+            <Button styleClass="add-tab-button"/>
+        </HBox>
+    </HBox>
+
     <!-- Navigation Bar (static elements) -->
-    <MenuBar fx:id="menuBar">
+    <MenuBar fx:id="menuBar" useSystemMenuBar="true">
         <Menu text="File">
             <MenuItem text="New Project" onAction="#handleNewProjectClick"/>
             <SeparatorMenuItem/>
