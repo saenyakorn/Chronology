@@ -119,7 +119,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         });
         dateTimeContainer.setOnMousePressed((MouseEvent event) -> rightClickContextMenu(event));
 
-        if (selfChapter == null) {
+        if (selfChapter.getValue() == null) {
             chapterMarker.setStyle("-fx-background-color: white ;");
         } else {
             setChapter(getChapter());
