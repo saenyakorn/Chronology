@@ -1,6 +1,5 @@
 package colors;
 
-import application.SystemConstants;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
@@ -16,21 +15,21 @@ public final class RandomColor {
         if (usedColor.size() < colorConstants.length) {
             do {
                 color = colorConstants[random.nextInt(colorConstants.length)];
-            } while (usedColor.contains(color) || color.equals(SystemConstants.DEFAULT_COLOR));
+            } while (usedColor.contains(color) || color.equals(GlobalColor.DEFAULT_COLOR));
         } else {
             do {
                 int red = random.nextInt(256);
                 int green = random.nextInt(256);
                 int blue = random.nextInt(256);
                 color = Color.rgb(red, green, blue);
-            } while (usedColor.contains(color) || color.equals(SystemConstants.DEFAULT_COLOR));
+            } while (usedColor.contains(color) || color.equals(GlobalColor.DEFAULT_COLOR));
         }
         addUsedColor(color);
         return color;
     }
 
     public static void removeUsedColor(Color color) {
-        if (!color.equals(SystemConstants.DEFAULT_COLOR)) {
+        if (!color.equals(GlobalColor.DEFAULT_COLOR)) {
             usedColor.remove(color);
         }
     }
