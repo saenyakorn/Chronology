@@ -7,8 +7,10 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuBar;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -21,7 +23,7 @@ import java.io.IOException;
 public class mainController {
 
     @FXML
-    private VBox vBox;
+    private VBox root;
     @FXML
     private MenuBar menuBar;
 
@@ -33,8 +35,8 @@ public class mainController {
         ApplicationResource.newProject();
 
         // vBox contain workspace
-        vBox.getChildren().add(1, ApplicationResource.getCurrentWorkspace());
-        VBox.setVgrow(vBox.getChildren().get(1), Priority.ALWAYS);
+        root.getChildren().add(ApplicationResource.getCurrentWorkspace());
+        VBox.setVgrow(root.getChildren().get(root.getChildren().size() - 1), Priority.ALWAYS);
 
         // setup menu bar property
         if (os != null && os.startsWith("Mac"))
@@ -102,6 +104,24 @@ public class mainController {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    protected void handleCloseWindow(MouseEvent event) {
+        Stage mainWindow = (Stage) root.getScene().getWindow();
+        mainWindow.close();
+    }
+
+    @FXML
+    protected void handleHideWindow(MouseEvent event) {
+        Stage mainWindow = (Stage) root.getScene().getWindow();
+    }
+
+    @FXML
+    protected void handleExpandWindow(MouseEvent event) {
+        Stage mainWindow = (Stage) root.getScene().getWindow();
+        mainWindow.setFullScreen(!mainWindow.isFullScreen());
+
     }
 
     @SuppressWarnings("unchecked")

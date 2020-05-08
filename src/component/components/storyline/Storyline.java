@@ -29,7 +29,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class Storyline extends BasicStoryComponent {
-    private int maxIndex;
+    private int minIndex = Integer.MAX_VALUE;
+    private int maxIndex = Integer.MIN_VALUE;
     private ContextMenu contextMenu;
 
     @FXML
@@ -44,7 +45,6 @@ public class Storyline extends BasicStoryComponent {
     private GridPane eventCardContainer;
 
     public Storyline() {
-        maxIndex = 0;
         loadFXML("Storyline.fxml");
         initializeContextMenu();
         initializeEventHandler();
@@ -53,7 +53,6 @@ public class Storyline extends BasicStoryComponent {
 
     public Storyline(String componentID) {
         super(componentID);
-        maxIndex = 0;
         loadFXML("Storyline.fxml");
         initializeContextMenu();
         initializeEventHandler();
@@ -62,7 +61,6 @@ public class Storyline extends BasicStoryComponent {
 
     public Storyline(String title, String description) {
         super(title, description);
-        maxIndex = 0;
         loadFXML("Storyline.fxml");
         initializeContextMenu();
         initializeEventHandler();
@@ -71,7 +69,6 @@ public class Storyline extends BasicStoryComponent {
 
     public Storyline(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
-        maxIndex = 0;
         loadFXML("Storyline.fxml");
         initializeContextMenu();
         initializeEventHandler();
@@ -80,7 +77,6 @@ public class Storyline extends BasicStoryComponent {
 
     public Storyline(String title, String description, Color color, TimePeriod timePeriod, EventCardList eventCards) {
         super(title, description, color, timePeriod);
-        maxIndex = 0;
         loadFXML("Storyline.fxml");
         initializeContextMenu();
         initializeEventHandler();
@@ -100,15 +96,28 @@ public class Storyline extends BasicStoryComponent {
             }
             storylineTitle.setDisable(true);
         });
-        modifyColumnConstraint();
+        modifyStorylineStructure();
     }
 
-    public void modifyColumnConstraint() {
+    public void modifyStorylineStructure() {
+        // setup all column constraint
+        int gapSize = 30;
+        int columnSize = SystemConstants.EVENT_CARD_PREF_WIDTH + gapSize;
         ObservableList<ColumnConstraints> columnConstraints = FXCollections.observableArrayList();
-        for (int i = 0; i < maxIndex; i++) {
-            columnConstraints.add(new ColumnConstraints(SystemConstants.EVENT_CARD_PREF_WIDTH + 30));
+        for (int i = 0; i < getMaxIndex(); i++) {
+            columnConstraints.add(new ColumnConstraints(columnSize));
         }
         eventCardContainer.getColumnConstraints().setAll(columnConstraints);
+
+        // setup line width
+        if (eventCardContainer.getChildren().size() > 0) {
+            // line.setStartX(columnSize * getMinIndex() + columnSize - gapSize);
+            line.setEndX(columnSize * getMaxIndex() + columnSize * 2);
+        } else {
+            line.setStartX(0);
+            line.setEndX(columnSize);
+        }
+
     }
 
     public Pane getDisplay() {
@@ -119,8 +128,25 @@ public class Storyline extends BasicStoryComponent {
         return eventCardContainer;
     }
 
+    public int getMinIndex() {
+        return minIndex == Integer.MAX_VALUE ? 0 : minIndex;
+    }
+
+    public void setMinIndex(int minIndex) {
+        this.minIndex = minIndex < this.minIndex ? minIndex : this.minIndex;
+    }
+
+    public int getMaxIndex() {
+        return maxIndex == Integer.MIN_VALUE ? 0 : maxIndex;
+    }
+
     public void setMaxIndex(int maxIndex) {
-        this.maxIndex = maxIndex;
+        this.maxIndex = maxIndex > this.maxIndex ? maxIndex : this.maxIndex;
+    }
+
+    public void initializedMinMaxIndex() {
+        minIndex = Integer.MAX_VALUE;
+        maxIndex = Integer.MIN_VALUE;
     }
 
     @Override
