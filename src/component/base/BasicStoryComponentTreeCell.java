@@ -14,7 +14,7 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
 
     public BasicStoryComponentTreeCell() {
         super();
-        getStylesheets().add(getClass().getResource("BasicStoryComponentTreeCell.css").toExternalForm());
+        getStylesheets().add(getClass().getResource("TreeCell.css").toExternalForm());
         getStyleClass().add("tree-cell");
         initializeEventHandler();
     }
