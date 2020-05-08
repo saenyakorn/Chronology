@@ -17,22 +17,21 @@ import component.components.storyline.StorylineList;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.SVGPath;
 
 public class SideBar extends ScrollPane {
 
-    // class flied
+    // class files
     private final TreeView<Document> documentTreeView;
     private final TreeView<BasicStoryComponent> basicStoryComponentTreeView;
 
     // Icon for each item
 
-    private final Image eventCardIcon = new Image("file:res/icon/event_card_icon_24px.svg");
-    private final Image storylineIcon = new Image("file:res/icon/storyline_icon_24px.svg");
-    private final Image chapterIcon = new Image("file:res/icon/chapter_icon_24px.svg");
-    private final Image documentIcon = new Image("file:res/icon/document_icon_24px.svg");
+    private final SVGPath eventCardIcon = ApplicationResource.getIconSVG("file:res/icon/event_card_icon_24px.svg");
+    private final SVGPath storylineIcon = ApplicationResource.getIconSVG("file:res/icon/storyline_icon_24px.svg");
+    private final SVGPath chapterIcon = ApplicationResource.getIconSVG("file:res/icon/chapter_icon_24px.svg");
+    private final SVGPath documentIcon = ApplicationResource.getIconSVG("file:res/icon/document_icon_24px.svg");
 
     public SideBar() {
         // load css file
@@ -74,13 +73,13 @@ public class SideBar extends ScrollPane {
         TreeItem<BasicStoryComponent> rootItem = new TreeItem<>();
 
         // Event Card Tree Cell Construct -> index 0
-        TreeItem<BasicStoryComponent> eventCardTreeItemRoot = new TreeItem<>(new BlankBasicStoryComponent("Event Card", "None"), new ImageView(eventCardIcon));
+        TreeItem<BasicStoryComponent> eventCardTreeItemRoot = new TreeItem<>(new BlankBasicStoryComponent("Event Card", "None"), eventCardIcon);
 
         // Storyline Tree Cell Construct -> index 1
-        TreeItem<BasicStoryComponent> storylineTreeItemRoot = new TreeItem<>(new BlankBasicStoryComponent("Storyline", "None"), new ImageView(storylineIcon));
+        TreeItem<BasicStoryComponent> storylineTreeItemRoot = new TreeItem<>(new BlankBasicStoryComponent("Storyline", "None"), storylineIcon);
 
         // Chapter Tree Cell Construct -> index 2
-        TreeItem<BasicStoryComponent> chapterTreeItemRoot = new TreeItem<>(new BlankBasicStoryComponent("Chapter", "None"), new ImageView(chapterIcon));
+        TreeItem<BasicStoryComponent> chapterTreeItemRoot = new TreeItem<>(new BlankBasicStoryComponent("Chapter", "None"), chapterIcon);
 
         rootItem.getChildren().addAll(eventCardTreeItemRoot, storylineTreeItemRoot, chapterTreeItemRoot);
         basicStoryComponentTreeView.setRoot(rootItem);
@@ -97,7 +96,7 @@ public class SideBar extends ScrollPane {
         eventCardTreeItemRoot.getChildren().clear();
         for (EventCard eventCard : eventCardList) {
             if (eventCard.getStoryline() == null && eventCard.getChapter() == null) {
-                TreeItem<BasicStoryComponent> treeItem = new TreeItem<>(eventCard, new ImageView(eventCardIcon));
+                TreeItem<BasicStoryComponent> treeItem = new TreeItem<>(eventCard, eventCardIcon);
                 eventCardTreeItemRoot.getChildren().add(treeItem);
             }
         }
@@ -109,10 +108,10 @@ public class SideBar extends ScrollPane {
         TreeItem<BasicStoryComponent> storylineTreeItemRoot = basicStoryComponentTreeView.getRoot().getChildren().get(1);
         storylineTreeItemRoot.getChildren().clear();
         for (Storyline storyline : storylineList) {
-            TreeItem<BasicStoryComponent> treeItem = new TreeItem<>(storyline, new ImageView(eventCardIcon));
+            TreeItem<BasicStoryComponent> treeItem = new TreeItem<>(storyline, storylineIcon);
             for (EventCard eventCard : eventCardList) {
                 if (eventCard.getStoryline() == storyline) {
-                    TreeItem<BasicStoryComponent> childTreeItem = new TreeItem<>(eventCard, new ImageView(eventCardIcon));
+                    TreeItem<BasicStoryComponent> childTreeItem = new TreeItem<>(eventCard, eventCardIcon);
                     treeItem.getChildren().add(childTreeItem);
                 }
             }
@@ -126,10 +125,10 @@ public class SideBar extends ScrollPane {
         TreeItem<BasicStoryComponent> chapterTreeItemRoot = basicStoryComponentTreeView.getRoot().getChildren().get(2);
         chapterTreeItemRoot.getChildren().clear();
         for (Chapter chapter : chapterList) {
-            TreeItem<BasicStoryComponent> treeItem = new TreeItem<>(chapter, new ImageView(eventCardIcon));
+            TreeItem<BasicStoryComponent> treeItem = new TreeItem<>(chapter, chapterIcon);
             for (EventCard eventCard : eventCardList) {
                 if (eventCard.getChapter() == chapter) {
-                    TreeItem<BasicStoryComponent> childTreeItem = new TreeItem<>(eventCard, new ImageView(eventCardIcon));
+                    TreeItem<BasicStoryComponent> childTreeItem = new TreeItem<>(eventCard, eventCardIcon);
                     treeItem.getChildren().add(childTreeItem);
                 }
             }
@@ -142,7 +141,7 @@ public class SideBar extends ScrollPane {
         rootItem.getChildren().clear();
         DocumentList documentList = ApplicationResource.getCurrentWorkspace().getDocumentList();
         for (Document document : documentList) {
-            TreeItem<Document> treeItem = new TreeItem<>(document, new ImageView(documentIcon));
+            TreeItem<Document> treeItem = new TreeItem<>(document, documentIcon);
             rootItem.getChildren().add(treeItem);
         }
     }
