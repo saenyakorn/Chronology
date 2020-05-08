@@ -31,10 +31,11 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
 public class EventCard extends BasicStoryComponent implements Comparable<EventCard> {
+    private int index;
     private final Property<Storyline> selfStoryline;
     private final Property<Chapter> selfChapter;
-    private int index;
     private ContextMenu contextMenu;
+
     @FXML
     private Pane root;
     @FXML
