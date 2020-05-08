@@ -119,7 +119,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         });
         dateTimeContainer.setOnMousePressed((MouseEvent event) -> rightClickContextMenu(event));
 
-        if (selfChapter == null) {
+        if (getChapter() == null) {
             chapterMarker.setStyle("-fx-background-color: white ;");
         } else {
             setChapter(getChapter());
@@ -146,11 +146,11 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         return selfStoryline.getValue();
     }
 
-    public void setStoryline(Storyline selfStoryLine) {
-        this.selfStoryline.setValue(selfStoryLine);
-        if (selfStoryLine != null) {
-            setColor(selfStoryLine.getColor());
-            setSelfComponentTimePeriod(timePeriod, selfStoryLine);
+    public void setStoryline(Storyline storyline) {
+        this.selfStoryline.setValue(storyline);
+        if (storyline != null) {
+            setColor(storyline.getColor());
+            setSelfComponentTimePeriod(timePeriod, storyline);
         }
     }
 
@@ -158,11 +158,11 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         return selfChapter.getValue();
     }
 
-    public void setChapter(Chapter selfChapter) {
-        this.selfChapter.setValue(selfChapter);
+    public void setChapter(Chapter chapter) {
+        this.selfChapter.setValue(chapter);
         //chapterMarker.setStyle("-fx-background-color: " + colorToHex(selfChapter.getColor()) + ";");
-        if (selfChapter != null) {
-            setSelfComponentTimePeriod(timePeriod, selfChapter);
+        if (chapter != null) {
+            setSelfComponentTimePeriod(timePeriod, chapter);
         }
     }
 
