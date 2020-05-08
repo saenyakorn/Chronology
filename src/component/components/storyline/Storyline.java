@@ -111,7 +111,7 @@ public class Storyline extends BasicStoryComponent {
 
         // setup line width
         if (eventCardContainer.getChildren().size() > 0) {
-            line.setStartX(columnSize * getMinIndex() + columnSize - gapSize);
+            // line.setStartX(columnSize * getMinIndex() + columnSize - gapSize);
             line.setEndX(columnSize * getMaxIndex() + columnSize * 2);
         } else {
             line.setStartX(0);
