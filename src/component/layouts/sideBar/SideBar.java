@@ -28,7 +28,6 @@ public class SideBar extends ScrollPane {
     private final TreeView<BasicStoryComponent> basicStoryComponentTreeView;
 
     // Icon for each item
-
     private final Image eventCardIcon = new Image("file:res/icon/event_card_icon_24px.svg");
     private final Image storylineIcon = new Image("file:res/icon/storyline_icon_24px.svg");
     private final Image chapterIcon = new Image("file:res/icon/chapter_icon_24px.svg");
