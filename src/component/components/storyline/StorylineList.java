@@ -1,44 +1,31 @@
 package component.components.storyline;
 
-import ablity.SavableAsJSONArray;
+import ability.Savable;
+import ability.SavableAsJSONArray;
 import component.components.eventCard.EventCard;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
+import javafx.scene.Node;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
-public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray {
+public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray<StorylineList> {
     private final ObservableList<Storyline> storylines;
-    private final ObservableList<EventCard> allEventCard;
-    private final SortedList<EventCard> allSortedEventCard;
+    private final ObservableList<Node> storylinePanes;
 
     public StorylineList() {
         storylines = FXCollections.observableArrayList();
-        allEventCard = FXCollections.observableArrayList(eventCard -> new Observable[]{eventCard.getTimePeriod()});
-        allSortedEventCard = new SortedList<>(allEventCard, (item1, item2) -> sortByEventCardDate(item1, item2));
-
-        // On change event
-        allSortedEventCard.addListener((ListChangeListener.Change<? extends EventCard> change) -> {
-            for (int i = 0; i < allSortedEventCard.size(); i++) {
-                allSortedEventCard.get(i).setIndex(i);
-            }
-        });
+        storylinePanes = FXCollections.observableArrayList();
     }
 
-    @SuppressWarnings("unchecked")
-    public static StorylineList parseJSONArray(JSONArray storylineArray) {
-        StorylineList storylines = new StorylineList();
-        for (Object storylineObject : storylineArray) {
-            Storyline storyline = Storyline.parseJSONObject((JSONObject) storylineObject);
-            storylines.addStoryline(storyline);
-        }
-        return storylines;
+    private int sortByEventCardDate(EventCard item1, EventCard item2) {
+        return item1.compareTo(item2);
+    }
+
+    public ObservableList<Node> getStorylinePanes() {
+        return storylinePanes;
     }
 
     public ObservableList<Storyline> getStorylines() {
@@ -47,10 +34,7 @@ public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray {
 
     public void addStoryline(Storyline storyline) {
         storylines.add(storyline);
-    }
-
-    public void addAllStoryline(ArrayList<Storyline> storylines) {
-        this.storylines.addAll(storylines);
+        storylinePanes.add(storyline.getDisplay());
     }
 
     public void removeStoryline(Storyline storyline) {
@@ -72,21 +56,28 @@ public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray {
 
     @Override
     public String getJSONString() {
-        return this.getJSONArray().toJSONString();
-    }
-
-    private int sortByEventCardDate(EventCard item1, EventCard item2) {
-        return item1.compareTo(item2);
+        return this.writeJSONArray().toJSONString();
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public JSONArray getJSONArray() {
+    public JSONArray writeJSONArray() {
         JSONArray storylineArray = new JSONArray();
         for (Storyline storyline : storylines) {
-            storylineArray.add(storyline.getJSONObject());
+            storylineArray.add(storyline.writeJSONObjectAsComponentID());
         }
         return storylineArray;
+    }
+
+    @Override
+    public StorylineList readJSONArray(JSONArray storylineArray) {
+        Savable.printReadingMessage("storylineList");
+        for (Object storylineObject : storylineArray) {
+            System.out.println("Populating storylineList");
+            storylines.add((new Storyline()).readJSONObject((JSONObject) storylineObject));
+        }
+        Savable.printReadingFinishedMessage("storylineList");
+        return this;
     }
 
 }
