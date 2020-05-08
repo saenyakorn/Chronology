@@ -1,25 +1,18 @@
 package component.components.document;
 
-import ablity.SavableAsJSONArray;
+import ability.SavableAsJSONArray;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
-public class DocumentList implements SavableAsJSONArray {
+import java.util.Iterator;
+
+public class DocumentList implements Iterable<Document>, SavableAsJSONArray<DocumentList> {
     private final ObservableList<Document> documents;
 
     public DocumentList() {
         documents = FXCollections.observableArrayList();
-        documents.addListener((ListChangeListener.Change<? extends Document> change) -> {
-            System.out.println("Change on documentList");
-            while (change.next()) {
-                System.out.println("Document -> " + change);
-                if (change.wasUpdated()) {
-                    System.out.println("Update detected");
-                }
-            }
-        });
     }
 
     public int indexOf(Document document) {
@@ -44,15 +37,29 @@ public class DocumentList implements SavableAsJSONArray {
 
     @Override
     public String getJSONString() {
-        return this.getJSONArray().toJSONString();
+        return this.writeJSONArray().toJSONString();
     }
 
-    @Override @SuppressWarnings("unchecked")
-    public JSONArray getJSONArray() {
+    @Override
+    @SuppressWarnings("unchecked")
+    public JSONArray writeJSONArray() {
         JSONArray documentArray = new JSONArray();
-        for(Document document : documents) {
-            documentArray.add(document.getJSONObject());
+        for (Document document : documents) {
+            documentArray.add(document.writeJSONObject());
         }
         return documentArray;
+    }
+
+    @Override
+    public DocumentList readJSONArray(JSONArray documentArray) {
+        for (Object documentObject : documentArray) {
+            documents.add((new Document()).readJSONObject((JSONObject) documentObject));
+        }
+        return this;
+    }
+
+    @Override
+    public Iterator<Document> iterator() {
+        return documents.iterator();
     }
 }
