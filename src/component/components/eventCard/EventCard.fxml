@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
 <?import java.net.URL?>
-<fx:root type="Pane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<Pane xmlns:fx="http://javafx.com/fxml/1" fx:id="root" xmlns="http://javafx.com/javafx/10.0.2-internal">
     <stylesheets>
         <URL value="@EventCard.css"/>
     </stylesheets>
@@ -28,5 +28,5 @@
             <StackPane id="chapterMarker" fx:id="chapterMarker" prefWidth="200.0" prefHeight="15.0"/>
         </VBox>
     </VBox>
-    
-</fx:root>
+
+</Pane>
