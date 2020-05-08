@@ -29,20 +29,22 @@ public class EventCardList implements Iterable<EventCard>, SavableAsJSONArray<Ev
                 if (eventCard.getStoryline() != null) {
                     eventCard.setIndex(counter++);
                     eventCard.getStoryline().getContainer().getChildren().clear(); // clear gridPane
+                    eventCard.getStoryline().initializedMinMaxIndex();
                 }
             }
             for (EventCard eventCard : sortedEventCards) {
                 if (eventCard.getStoryline() != null) {
                     Storyline focusedStoryline = eventCard.getStoryline();
                     GridPane focusedGridPane = focusedStoryline.getContainer();
+                    focusedStoryline.setMinIndex(eventCard.getIndex());
                     focusedStoryline.setMaxIndex(eventCard.getIndex());
                     focusedGridPane.add(eventCard.getDisplay(), eventCard.getIndex(), 0);
                 }
             }
             for (Storyline storyline : ApplicationResource.getCurrentWorkspace().getActiveDocument().getStorylineList()) {
                 GridPane focusedGridPane = storyline.getContainer();
-                System.out.println("Storyline: " + storyline + " gridSize: " + focusedGridPane.getChildren().size());
-                storyline.modifyColumnConstraint();
+                System.out.println("Storyline: " + storyline + " gridSize: " + focusedGridPane.getChildren().size() + "min-max: " + storyline.getMinIndex() + "-" + storyline.getMaxIndex());
+                storyline.modifyStorylineStructure();
             }
             System.out.println("-------------------------------------");
         });
