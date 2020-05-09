@@ -1,18 +1,29 @@
 package component.components.document;
 
 import ability.SavableAsJSONArray;
+import application.ApplicationResource;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.input.MouseEvent;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.Iterator;
 
 public class DocumentList implements Iterable<Document>, SavableAsJSONArray<DocumentList> {
+    private final ObservableList<DocumentCustomTab> documentCustomTabs;
     private final ObservableList<Document> documents;
+    private DocumentCustomTab activeTab;
 
     public DocumentList() {
+        activeTab = new DocumentCustomTab();
         documents = FXCollections.observableArrayList();
+        documentCustomTabs = FXCollections.observableArrayList(tab -> new Observable[]{tab.getActiveProperty()});
+    }
+
+    public ObservableList<DocumentCustomTab> getDocumentCustomTabs() {
+        return documentCustomTabs;
     }
 
     public int indexOf(Document document) {
@@ -25,14 +36,38 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
 
     public void addDocument(Document document) {
         documents.add(document);
+
+        // Creating Custom Document Tab
+        DocumentCustomTab tab = new DocumentCustomTab(document.getName());
+        tab.getButton().setOnMouseClicked((MouseEvent event) -> removeDocument(document));
+        tab.setOnMouseClicked((MouseEvent event) -> setActiveTab(tab));
+        documentCustomTabs.add(tab);
+        setActiveTab(tab);
     }
 
     public void removeDocument(Document document) {
+        documentCustomTabs.remove(documents.indexOf(document));
         documents.remove(document);
+        ApplicationResource.getCurrentWorkspace().getSideBar().renderDocumentTreeItem();
     }
 
     public int getSize() {
         return documents.size();
+    }
+
+    public Document getActiveDocument() {
+        return getDocumentFromTab(activeTab);
+    }
+
+    private void setActiveTab(DocumentCustomTab tab) {
+        tab.setActive(true);
+        activeTab.setActive(false);
+        activeTab = tab;
+        ApplicationResource.getCurrentWorkspace().getViewer().setDocument(getActiveDocument());
+    }
+
+    public Document getDocumentFromTab(DocumentCustomTab tab) {
+        return documents.get(documentCustomTabs.indexOf(tab));
     }
 
     @Override
