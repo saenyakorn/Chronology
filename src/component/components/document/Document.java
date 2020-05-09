@@ -9,53 +9,38 @@ import component.components.eventCard.EventCardList;
 import component.components.storyline.Storyline;
 import component.components.storyline.StorylineList;
 import javafx.beans.binding.Bindings;
-import javafx.scene.control.Tab;
 import javafx.scene.layout.VBox;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class Document extends Tab implements SavableAsJSONObject<Document> {
-
+public class Document extends VBox implements SavableAsJSONObject<Document> {
     private String name;
-    private final VBox vBox;
     private final EventCardList eventCards;
     private final ChapterList chapters;
     private final StorylineList storylines;
 
     public Document() {
         name = "";
-        vBox = new VBox();
         eventCards = new EventCardList();
         chapters = new ChapterList();
         storylines = new StorylineList();
-        setText(name);
-        Bindings.bindContentBidirectional(storylines.getStorylinePanes(), vBox.getChildren());
-        setContent(vBox);
-        setOnCloseRequest(event -> ApplicationResource.getCurrentWorkspace().removeDocument(this));
+        Bindings.bindContent(getChildren(), storylines.getStorylinePanes());
     }
 
     public Document(String name) {
         this.name = name;
-        vBox = new VBox();
         eventCards = new EventCardList();
         chapters = new ChapterList();
         storylines = new StorylineList();
-        setText(name);
-        Bindings.bindContentBidirectional(storylines.getStorylinePanes(), vBox.getChildren());
-        setContent(vBox);
-        setOnCloseRequest(event -> ApplicationResource.getCurrentWorkspace().removeDocument(this));
+        Bindings.bindContent(getChildren(), storylines.getStorylinePanes());
     }
 
     public Document(String name, EventCardList eventCards, ChapterList chapters, StorylineList storylines) {
         this.name = name;
-        this.vBox = new VBox();
         this.eventCards = eventCards;
         this.chapters = chapters;
         this.storylines = storylines;
-        setText(name);
-        Bindings.bindContentBidirectional(storylines.getStorylinePanes(), vBox.getChildren());
-        setContent(vBox);
-        setOnCloseRequest(event -> ApplicationResource.getCurrentWorkspace().removeDocument(this));
+        Bindings.bindContent(getChildren(), storylines.getStorylinePanes());
     }
 
     public EventCardList getEventCardList() {
@@ -76,7 +61,6 @@ public class Document extends Tab implements SavableAsJSONObject<Document> {
 
     public void setName(String name) {
         this.name = name;
-        setText(name);
     }
 
     public void addEventCard(EventCard eventCard) {
@@ -86,7 +70,7 @@ public class Document extends Tab implements SavableAsJSONObject<Document> {
 
     public void addStoryLine(Storyline storyline) {
         storylines.addStoryline(storyline);
-        ApplicationResource.getCurrentWorkspace().getViewer().setContent(getContent());
+        ApplicationResource.getCurrentWorkspace().getViewer().setDocument(this);
         ApplicationResource.getCurrentWorkspace().getSideBar().renderStorylineTreeItem(this);
     }
 
@@ -96,19 +80,24 @@ public class Document extends Tab implements SavableAsJSONObject<Document> {
     }
 
     public void removeEventCard(EventCard eventCard) {
+        eventCards.removeEventCard(eventCard);
+        ApplicationResource.getCurrentWorkspace().getSideBar().renderEventCardTreeItem(this);
     }
 
     public void removeStoryline(Storyline storyline) {
         storylines.removeStoryline(storyline);
+        ApplicationResource.getCurrentWorkspace().getViewer().setDocument(this);
+        ApplicationResource.getCurrentWorkspace().getSideBar().renderStorylineTreeItem(this);
     }
 
     public void removeChapter(Chapter chapter) {
         chapters.removeChapter(chapter);
+        ApplicationResource.getCurrentWorkspace().getSideBar().renderChapterTreeItem(this);
     }
 
     @Override
     public String toString() {
-        return getText();
+        return name;
     }
 
     @Override
