@@ -8,8 +8,6 @@ import component.components.document.Document;
 import component.components.document.DocumentList;
 import component.layouts.sideBar.SideBar;
 import component.layouts.viewer.Viewer;
-import javafx.beans.value.ObservableValue;
-import javafx.scene.control.Tab;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import org.json.simple.JSONArray;
@@ -23,14 +21,6 @@ public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
     public Workspace() {
         // Set Style
         HBox.setHgrow(viewer, Priority.ALWAYS);
-
-        // Changing Tab event
-        viewer.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Tab> observableValue, Tab previousTab, Tab currentTab) -> {
-            if (currentTab instanceof Document) {
-                Document selectedDocument = (Document) currentTab;
-                setActiveDocument(selectedDocument);
-            }
-        });
 
         // Added all components into HBox
         this.getChildren().addAll(sideBar, viewer);
@@ -49,25 +39,20 @@ public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
     }
 
     public Document getActiveDocument() {
-        return documents.get(viewer.getSelectionModel().getSelectedIndex());
+        return documents.getActiveDocument();
     }
 
     public void setActiveDocument(Document document) {
-        viewer.getSelectionModel().select(document);
         sideBar.renderSideBar(document);
     }
 
     public void addDocument(Document document) {
         documents.addDocument(document);
-        viewer.addDocument(document);
-        Document currentDocument = this.getActiveDocument();
-        setActiveDocument(currentDocument);
     }
 
     public void addAllDocument(Document... args) {
         for (Document document : args) {
             documents.addDocument(document);
-            viewer.addDocument(document);
         }
         Document currentDocument = this.getActiveDocument();
         setActiveDocument(currentDocument);
@@ -75,7 +60,6 @@ public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
 
     public void removeDocument(Document document) {
         documents.removeDocument(document);
-        viewer.removeDocument(document);
     }
 
     @Override
