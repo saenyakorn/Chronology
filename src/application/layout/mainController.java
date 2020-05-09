@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -30,6 +31,15 @@ public class mainController {
     private MenuBar menuBar;
     @FXML
     private HBox tabContainer;
+    @FXML
+    private HBox navigationBar;
+    @FXML
+    private Circle closeButton;
+    @FXML
+    private Circle hideButton;
+    @FXML
+    private Circle expandButton;
+
 
     private final String os = System.getProperty("os.name");
 

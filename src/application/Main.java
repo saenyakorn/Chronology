@@ -20,7 +20,7 @@ public class Main extends Application {
             root.getStylesheets().add(getClass().getResource("StylingConstant.css").toExternalForm());
             mainWindow.setTitle(SystemConstants.APP_NAME);
             mainWindow.setScene(new Scene(root, mainWindow.getMaxWidth(), mainWindow.getMaxHeight()));
-            mainWindow.initStyle(StageStyle.UNDECORATED);
+            mainWindow.initStyle(StageStyle.TRANSPARENT);
             mainWindow.setMaximized(true);
             mainWindow.show();
         } catch (Exception e) {

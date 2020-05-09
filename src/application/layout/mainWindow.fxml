@@ -11,7 +11,7 @@
         <URL value="@MainWindow.css"/>
     </stylesheets>
 
-    <!-- Navigation Bar (static elements) -->
+    <!-- Stage Bar (static elements) -->
     <HBox fx:id="navigationBar" styleClass="navigation-bar">
         <HBox styleClass="window-button-group">
             <Circle radius="5.5" fx:id="closeButton" styleClass="circle-button, close"
@@ -27,7 +27,7 @@
         </HBox>
     </HBox>
 
-    <!-- Menu Bar (static elements) -->
+    <!-- Navigation Bar (static elements) -->
     <MenuBar fx:id="menuBar" useSystemMenuBar="true">
         <Menu text="File">
             <MenuItem text="New Project" onAction="#handleNewProjectClick"/>
