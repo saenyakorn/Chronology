@@ -1,0 +1,21 @@
+@import "../../../application/StylingConstant.scss";
+
+.document-tab-container {
+  -fx-pref-height: $navigation-bar-size;
+  -fx-alignment: center-left;
+  -fx-spacing: $spacing;
+  -fx-background-color: $dark-grey;
+  -fx-padding: 0px $spacing;
+
+  &.active {
+    -fx-background-color: $medium-grey;
+  }
+
+  .document-tab-text {
+    -fx-text-fill: $white;
+  }
+
+  .document-tab-button {
+
+  }
+}
