@@ -1,16 +1,18 @@
 @import "../StylingConstant.scss";
 
-.navigation-bar {
+@mixin hBox-needs-style {
   -fx-pref-height: $navigation-bar-size;
   -fx-alignment: center-left;
   -fx-background-color: $black;
+}
+
+.navigation-bar {
+  @include hBox-needs-style;
   -fx-spacing: $spacing;
 
   .window-button-group {
+    @include hBox-needs-style;
     -fx-padding: 0px $spacing*2;
-    -fx-pref-height: $navigation-bar-size;
-    -fx-alignment: center-left;
-    -fx-background-color: $black;
     -fx-spacing: $spacing;
 
     .circle-button {
@@ -35,9 +37,9 @@
   }
 
   .tab-group {
-    -fx-pref-height: $navigation-bar-size;
-    -fx-alignment: center-left;
+    @include hBox-needs-style;
     -fx-background-color: transparent;
+
     .add-tab-button {
       -fx-border-radius: 0;
       -fx-background-radius: 0;
@@ -46,10 +48,11 @@
       -fx-background-color: $dark-grey;
       -fx-fill: $black;
     }
-    .tab {
 
+    .tab-container {
+      @include hBox-needs-style;
+      -fx-background-color: transparent;
     }
   }
-
 }
 
