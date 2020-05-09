@@ -1,13 +1,15 @@
 package application.layout;
 
 import application.ApplicationResource;
+import component.components.document.DocumentList;
 import component.dialog.*;
 import component.layouts.workspace.Workspace;
-import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -26,6 +28,8 @@ public class mainController {
     private VBox root;
     @FXML
     private MenuBar menuBar;
+    @FXML
+    private HBox tabContainer;
 
     private final String os = System.getProperty("os.name");
 
@@ -41,7 +45,10 @@ public class mainController {
         // setup menu bar property
         if (os != null && os.startsWith("Mac"))
             menuBar.useSystemMenuBarProperty().set(true);
-        Platform.runLater(() -> menuBar.setUseSystemMenuBar(true));
+
+        // binding tabContainer with documentList
+        DocumentList documentList = ApplicationResource.getCurrentWorkspace().getDocumentList();
+        Bindings.bindContent(tabContainer.getChildren(), documentList.getDocumentCustomTabs());
     }
 
     @FXML
@@ -121,7 +128,6 @@ public class mainController {
     protected void handleExpandWindow(MouseEvent event) {
         Stage mainWindow = (Stage) root.getScene().getWindow();
         mainWindow.setFullScreen(!mainWindow.isFullScreen());
-
     }
 
     @SuppressWarnings("unchecked")
