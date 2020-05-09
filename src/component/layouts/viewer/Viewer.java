@@ -5,39 +5,25 @@ import component.components.document.Document;
 import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
 import javafx.event.ActionEvent;
-import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 
-public class Viewer extends TabPane {
+public class Viewer extends ScrollPane {
 
-    private final ScrollPane scrollPane;
     private final ContextMenu contextMenu;
 
     public Viewer() {
-        scrollPane = new ScrollPane();
         contextMenu = new ContextMenu();
         initializeContextMenu();
         initializeEventHandler();
-        getStylesheets().add(getClass().getResource("HiddenTabPane.css").toExternalForm());
-        getStyleClass().add("wizard");
     }
 
-    public void addDocument(Document document) {
-        this.getTabs().add(document);
-    }
-
-    public void removeDocument(Document document) {
-        this.getTabs().remove(document);
-    }
-
-    public void setContent(Node node) {
-        if (node instanceof VBox) {
-            VBox vBox = (VBox) node;
-            vBox.setOnMousePressed((MouseEvent event) -> rightClickContextMenu(event));
-            scrollPane.setContent(vBox);
-        }
+    public void setDocument(Document document) {
+        document.setOnMousePressed((MouseEvent event) -> rightClickContextMenu(event));
+        setContent(document);
     }
 
     private void createStoryline() {
@@ -63,7 +49,6 @@ public class Viewer extends TabPane {
 
     private void initializeEventHandler() {
         setOnMousePressed((MouseEvent event) -> rightClickContextMenu(event));
-        scrollPane.setOnMousePressed((MouseEvent event) -> rightClickContextMenu(event));
     }
 
     private void initializeContextMenu() {
