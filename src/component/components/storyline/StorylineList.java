@@ -5,7 +5,7 @@ import ability.SavableAsJSONArray;
 import component.components.eventCard.EventCard;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.Node;
+import javafx.scene.layout.Pane;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -13,7 +13,7 @@ import java.util.Iterator;
 
 public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray<StorylineList> {
     private final ObservableList<Storyline> storylines;
-    private final ObservableList<Node> storylinePanes;
+    private final ObservableList<Pane> storylinePanes;
 
     public StorylineList() {
         storylines = FXCollections.observableArrayList();
@@ -24,7 +24,7 @@ public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray<St
         return item1.compareTo(item2);
     }
 
-    public ObservableList<Node> getStorylinePanes() {
+    public ObservableList<Pane> getStorylinePanes() {
         return storylinePanes;
     }
 
