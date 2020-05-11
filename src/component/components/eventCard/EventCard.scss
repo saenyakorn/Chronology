@@ -1,0 +1,75 @@
+@import "../../../application/StylingConstants.scss";
+
+StackPane {
+  -fx-padding: $padding-larger;
+}
+
+.date-time-container {
+  -fx-padding: $padding-smaller;
+  -fx-spacing: $spacing*6;
+}
+
+.date-time {
+  -fx-font-family: $font-bold;
+  -fx-font-size: $large-heading-size;
+}
+
+.event-card {
+  -fx-background-radius: $border-radius;
+  -fx-effect: $drop-shadow;
+
+  &:hover {
+    -fx-effect: $drop-shadow-hover;
+  }
+}
+
+.card-title-container {
+  -fx-background-color: $red;
+  -fx-background-radius: $border-radius $border-radius 0 0;
+}
+
+.card-title {
+  -fx-font-family: $font-regular;
+  -fx-font-size: $large-heading-size;
+  -fx-text-fill: $white;
+  -fx-background-color: transparent;
+  -fx-opacity: 0.8;
+
+  &:disabled {
+    -fx-font-family: $font-bold;
+    -fx-font-size: $large-heading-size;
+    -fx-text-fill: $white;
+    -fx-background-color: transparent;
+    -fx-opacity: 1.0;
+  }
+}
+
+.card-description-container {
+  -fx-background-color: $white;
+}
+
+.card-description {
+  -fx-font-family: $font-regular;
+  -fx-font-weight: 400;
+  -fx-font-size: $heading-size;
+  -fx-text-fill: $black;
+
+  &:disabled {
+    -fx-font-family: $font-regular;
+    -fx-font-weight: 400;
+    -fx-font-size: $heading-size;
+    -fx-text-fill: $black;
+    -fx-background-color: transparent;
+    -fx-opacity: 1.0;
+  }
+}
+
+.card-description .content {
+  -fx-background-color: transparent, $white, transparent, $white;
+}
+
+.chapter-marker {
+  -fx-background-radius: 0 0 $border-radius $border-radius;
+}
+
+

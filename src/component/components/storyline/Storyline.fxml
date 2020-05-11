@@ -19,7 +19,7 @@
             <padding>
                 <Insets top="85"/>
             </padding>
-            <TextField styleClass="title" fx:id="storylineTitle" prefWidth="200"/>
+            <TextField fx:id="storylineTitle" styleClass="title" prefWidth="200"/>
         </HBox>
         <GridPane fx:id="eventCardContainer"/>
     </HBox>
