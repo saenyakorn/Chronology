@@ -21,6 +21,10 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
         documentCustomTabs = FXCollections.observableArrayList();
     }
 
+    public ObservableList<Document> getDocuments() {
+        return documents;
+    }
+
     public ObservableList<DocumentCustomTab> getDocumentCustomTabs() {
         return documentCustomTabs;
     }
