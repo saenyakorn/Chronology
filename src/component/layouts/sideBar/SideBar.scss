@@ -1,11 +1,19 @@
-@import "../../../application/StylingConstant.scss";
+@import "../../../application/StylingConstants.scss";
 
 @mixin white-background {
   -fx-background: $white;
 }
 
+.heading {
+  -fx-background-color: $medium-gray;
+  -fx-pref-width: $side-bar-width;
+  -fx-padding: $padding-smaller;
+  -fx-font-family: $font-bold;
+}
+
 .side-bar {
   @include white-background;
+  -fx-font-family: $font-regular;
 }
 
 .v-box {
@@ -19,9 +27,4 @@
 .icon-24px {
   -fx-scale-x: 0.67;
   -fx-scale-y: 0.67;
-  -fx-fill: $dark-grey;
-}
-
-.heading {
-  -fx-font-weight: bold;
 }
