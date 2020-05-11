@@ -1,4 +1,4 @@
-@import "../StylingConstant.scss";
+@import "../StylingConstants";
 
 @mixin hBox-needs-style {
   -fx-pref-height: $navigation-bar-size;
@@ -17,7 +17,7 @@
 
     .circle-button {
       -fx-stroke-width: 1.5px;
-      -fx-stroke: $dark-grey;
+      -fx-stroke: $dark-gray;
 
       &.close:hover {
         -fx-fill: $red;
@@ -45,7 +45,7 @@
       -fx-background-radius: 0;
       -fx-pref-height: $navigation-bar-size;
       -fx-pref-width: $navigation-bar-size;
-      -fx-background-color: $dark-grey;
+      -fx-background-color: $dark-gray;
       -fx-fill: $black;
     }
 

@@ -17,7 +17,7 @@ public class Main extends Application {
     public void start(Stage mainWindow) throws Exception {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("layout/mainWindow.fxml"));
-            root.getStylesheets().add(getClass().getResource("StylingConstant.css").toExternalForm());
+            root.getStylesheets().add(getClass().getResource("StylingConstants.css").toExternalForm());
             mainWindow.setTitle(SystemConstants.APP_NAME);
             mainWindow.setScene(new Scene(root, mainWindow.getMaxWidth(), mainWindow.getMaxHeight()));
             mainWindow.initStyle(StageStyle.TRANSPARENT);
