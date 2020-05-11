@@ -16,6 +16,14 @@
   }
 
   .document-tab-button {
+    -fx-padding: 0;
+    -fx-fill: $white;
+    -fx-background-color: transparent;
+  }
 
+  .icon-24px {
+    -fx-scale-x: 0.67;
+    -fx-scale-y: 0.67;
+    -fx-fill: $white;
   }
 }

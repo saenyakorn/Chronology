@@ -9,58 +9,32 @@ import component.components.eventCard.EventCardList;
 import component.components.storyline.Storyline;
 import component.components.storyline.StorylineList;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.layout.VBox;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class Document extends VBox implements SavableAsJSONObject<Document> {
-    private String name;
-    private final EventCardList eventCards;
-    private final ChapterList chapters;
-    private final StorylineList storylines;
+    private final SimpleStringProperty name = new SimpleStringProperty("");
+    private EventCardList eventCards = new EventCardList();
+    private ChapterList chapters = new ChapterList();
+    private StorylineList storylines = new StorylineList();
 
     public Document() {
-        name = "";
-        eventCards = new EventCardList();
-        chapters = new ChapterList();
-        storylines = new StorylineList();
         Bindings.bindContent(getChildren(), storylines.getStorylinePanes());
     }
 
     public Document(String name) {
-        this.name = name;
-        eventCards = new EventCardList();
-        chapters = new ChapterList();
-        storylines = new StorylineList();
+        setName(name);
         Bindings.bindContent(getChildren(), storylines.getStorylinePanes());
     }
 
     public Document(String name, EventCardList eventCards, ChapterList chapters, StorylineList storylines) {
-        this.name = name;
+        setName(name);
         this.eventCards = eventCards;
         this.chapters = chapters;
         this.storylines = storylines;
         Bindings.bindContent(getChildren(), storylines.getStorylinePanes());
-    }
-
-    public EventCardList getEventCardList() {
-        return eventCards;
-    }
-
-    public ChapterList getChapterList() {
-        return chapters;
-    }
-
-    public StorylineList getStorylineList() {
-        return storylines;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void addEventCard(EventCard eventCard) {
@@ -95,9 +69,33 @@ public class Document extends VBox implements SavableAsJSONObject<Document> {
         ApplicationResource.getCurrentWorkspace().getSideBar().renderChapterTreeItem(this);
     }
 
+    public String getName() {
+        return name.get();
+    }
+
+    public void setName(String name) {
+        this.name.set(name);
+    }
+
+    public SimpleStringProperty nameProperty() {
+        return name;
+    }
+
+    public EventCardList getEventCards() {
+        return eventCards;
+    }
+
+    public ChapterList getChapters() {
+        return chapters;
+    }
+
+    public StorylineList getStorylines() {
+        return storylines;
+    }
+
     @Override
     public String toString() {
-        return name;
+        return name.get();
     }
 
     @Override
