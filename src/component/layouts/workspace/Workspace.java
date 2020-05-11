@@ -21,6 +21,10 @@ public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
     public Workspace() {
         // Set Style
         HBox.setHgrow(viewer, Priority.ALWAYS);
+        viewer.setMinSize(viewer.getPrefWidth(), viewer.getPrefHeight());
+        viewer.setMaxSize(viewer.getPrefWidth(), viewer.getPrefHeight());
+        sideBar.setMinSize(sideBar.getPrefWidth(), sideBar.getPrefHeight());
+        sideBar.setMaxSize(sideBar.getPrefWidth(), sideBar.getPrefHeight());
 
         // Added all components into HBox
         this.getChildren().addAll(sideBar, viewer);
