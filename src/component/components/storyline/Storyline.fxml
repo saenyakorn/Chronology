@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import java.net.URL?>
-<Pane xmlns:fx="http://javafx.com/fxml/1" fx:id="root"
+<Pane xmlns:fx="http://javafx.com/fxml/1" fx:id="root" styleClass="body"
       prefHeight="200" xmlns="http://javafx.com/javafx/10.0.2-internal">
     <stylesheets>
         <URL value="@Storyline.css"/>
@@ -19,7 +19,7 @@
             <padding>
                 <Insets top="85"/>
             </padding>
-            <TextField id="storylineTitle" fx:id="storylineTitle" prefWidth="200"/>
+            <TextField styleClass="title" fx:id="storylineTitle" prefWidth="200"/>
         </HBox>
         <GridPane fx:id="eventCardContainer"/>
     </HBox>
