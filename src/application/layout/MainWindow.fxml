@@ -5,14 +5,15 @@
 <?import javafx.scene.shape.Circle?>
 <?import java.net.URL?>
 <VBox xmlns:fx="http://javafx.com/fxml" fx:id="root" xmlns="http://javafx.com/javafx"
-      fx:controller="application.layout.mainController">
+      fx:controller="application.layout.MainController">
 
     <stylesheets>
         <URL value="@MainWindow.css"/>
     </stylesheets>
 
     <!-- Stage Bar (static elements) -->
-    <HBox fx:id="navigationBar" styleClass="navigation-bar">
+    <HBox fx:id="navigationBar" styleClass="navigation-bar" onMousePressed="#handleStagePressed"
+          onMouseDragged="#handleStageDragged">
         <HBox styleClass="window-button-group">
             <Circle radius="5.5" fx:id="closeButton" styleClass="circle-button, close"
                     onMouseClicked="#handleCloseWindow"/>

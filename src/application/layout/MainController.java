@@ -23,7 +23,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class mainController {
+public class MainController {
+
+    private final String os = System.getProperty("os.name");
+    double x, y;
 
     @FXML
     private VBox root;
@@ -40,11 +43,11 @@ public class mainController {
     @FXML
     private Circle expandButton;
 
-
-    private final String os = System.getProperty("os.name");
-
     @FXML
     public void initialize() {
+        // set scene style
+        root = ApplicationResource.getShadowScene(root);
+
         // new project
         ApplicationResource.newProject();
 
@@ -124,6 +127,19 @@ public class mainController {
     }
 
     @FXML
+    private void handleStageDragged(MouseEvent event) {
+        Stage mainWindow = (Stage) root.getScene().getWindow();
+        mainWindow.setX(event.getScreenX() - x);
+        mainWindow.setY(event.getScreenY() - y);
+    }
+
+    @FXML
+    protected void handleStagePressed(MouseEvent event) {
+        x = event.getSceneX();
+        y = event.getSceneY();
+    }
+
+    @FXML
     protected void handleCloseWindow(MouseEvent event) {
         Stage mainWindow = (Stage) root.getScene().getWindow();
         mainWindow.close();
@@ -132,11 +148,13 @@ public class mainController {
     @FXML
     protected void handleHideWindow(MouseEvent event) {
         Stage mainWindow = (Stage) root.getScene().getWindow();
+        mainWindow.setIconified(true);
     }
 
     @FXML
     protected void handleExpandWindow(MouseEvent event) {
         Stage mainWindow = (Stage) root.getScene().getWindow();
+        mainWindow.setFullScreenExitHint("");
         mainWindow.setFullScreen(!mainWindow.isFullScreen());
     }
 

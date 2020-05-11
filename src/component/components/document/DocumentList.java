@@ -2,7 +2,6 @@ package component.components.document;
 
 import ability.SavableAsJSONArray;
 import application.ApplicationResource;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.input.MouseEvent;
@@ -19,7 +18,7 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
     public DocumentList() {
         activeTab = new DocumentCustomTab();
         documents = FXCollections.observableArrayList();
-        documentCustomTabs = FXCollections.observableArrayList(tab -> new Observable[]{tab.getActiveProperty()});
+        documentCustomTabs = FXCollections.observableArrayList();
     }
 
     public ObservableList<DocumentCustomTab> getDocumentCustomTabs() {

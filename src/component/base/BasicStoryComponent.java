@@ -10,6 +10,8 @@ import component.components.storyline.Storyline;
 import component.components.timeModifier.PredefinedTimePeriod;
 import component.components.timeModifier.TimePeriod;
 import component.components.timeModifier.TimePeriodGenerator;
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.paint.Color;
 import org.json.simple.JSONObject;
@@ -23,7 +25,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
     protected String title;
     protected String description;
     protected Color color;
-    protected TimePeriod timePeriod;
+    protected Property<TimePeriod> timePeriod;
 
     public BasicStoryComponent() {
         this.componentId = Integer.toString(Objects.hashCode(this));
@@ -31,7 +33,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         this.title = "Title";
         this.description = "Lorem ipsum dolor set amet, ego bir setaso de.";
         this.color = GlobalColor.DEFAULT_COLOR;
-        this.timePeriod = TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY);
+        this.timePeriod = new SimpleObjectProperty(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
     }
 
     public BasicStoryComponent(String componentId) {
@@ -40,7 +42,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         this.title = "Title";
         this.description = "Lorem ipsum dolor set amet, ego bir setaso de.";
         this.color = GlobalColor.DEFAULT_COLOR;
-        this.timePeriod = TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY);
+        this.timePeriod = new SimpleObjectProperty(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
     }
 
     public BasicStoryComponent(String title, String description) {
@@ -49,7 +51,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         this.title = title;
         this.description = description;
         this.color = GlobalColor.DEFAULT_COLOR;
-        this.timePeriod = TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY);
+        this.timePeriod = new SimpleObjectProperty(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
     }
 
     public BasicStoryComponent(String title, String description, Color color, TimePeriod timePeriod) {
@@ -58,7 +60,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         this.title = title;
         this.description = description;
         this.color = color;
-        this.timePeriod = timePeriod;
+        this.timePeriod = new SimpleObjectProperty(timePeriod);
     }
 
     public String getComponentId() {
@@ -92,11 +94,15 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
     }
 
     public TimePeriod getTimePeriod() {
-        return timePeriod;
+        return timePeriod.getValue();
     }
 
     public void setTimePeriod(TimePeriod timePeriod) {
-        this.timePeriod = timePeriod;
+        this.timePeriod.setValue(timePeriod);
+    }
+
+    public Property<TimePeriod> getTimePeriodProperty() {
+        return timePeriod;
     }
 
     @Override

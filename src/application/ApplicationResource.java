@@ -6,6 +6,7 @@ import component.components.document.Document;
 import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
 import component.layouts.workspace.Workspace;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.SVGPath;
 import org.json.simple.JSONObject;
 import org.xml.sax.SAXException;
@@ -99,5 +100,10 @@ public class ApplicationResource {
             e.printStackTrace();
         }
         return svgPath;
+    }
+
+    public static VBox getShadowScene(VBox root) {
+        // TODO styling customize window application
+        return root;
     }
 }

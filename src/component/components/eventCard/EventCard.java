@@ -151,7 +151,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         this.selfStoryline.setValue(storyline);
         if (storyline != null) {
             setColor(storyline.getColor());
-            setSelfComponentTimePeriod(timePeriod, storyline);
+            setSelfComponentTimePeriod(getTimePeriod(), storyline);
         }
     }
 
@@ -163,7 +163,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         this.selfChapter.setValue(chapter);
         //chapterMarker.setStyle("-fx-background-color: " + colorToHex(selfChapter.getColor()) + ";");
         if (chapter != null) {
-            setSelfComponentTimePeriod(timePeriod, chapter);
+            setSelfComponentTimePeriod(getTimePeriod(), chapter);
         }
     }
 
@@ -226,7 +226,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     @Override
     public int compareTo(EventCard o) throws IllegalArgumentException {
-        return timePeriod.compareTo(o.timePeriod);
+        return getTimePeriod().compareTo(o.getTimePeriod());
     }
 
     @Override
