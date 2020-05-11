@@ -1,6 +1,7 @@
-package component.base;
+package component.base.cell;
 
 import application.ApplicationResource;
+import component.base.BasicStoryComponent;
 import component.components.chapter.Chapter;
 import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
@@ -13,12 +14,11 @@ import javafx.scene.shape.SVGPath;
 public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryComponent> {
 
     TextField textField;
-    private final SVGPath eventCardIcon = ApplicationResource.getIconSVG("file:res/icon/event_card_icon_24px.svg");
-    private final SVGPath storylineIcon = ApplicationResource.getIconSVG("file:res/icon/storyline_icon_24px.svg");
-    private final SVGPath chapterIcon = ApplicationResource.getIconSVG("file:res/icon/chapter_icon_24px.svg");
+    private final SVGPath eventCardIcon = ApplicationResource.getIconSVG("event_card_icon_24px.svg");
+    private final SVGPath storylineIcon = ApplicationResource.getIconSVG("storyline_icon_24px.svg");
+    private final SVGPath chapterIcon = ApplicationResource.getIconSVG("chapter_icon_24px.svg");
 
     public BasicStoryComponentTreeCell() {
-        super();
         getStylesheets().add(getClass().getResource("TreeCell.css").toExternalForm());
         getStyleClass().add("tree-cell");
         initializeEventHandler();

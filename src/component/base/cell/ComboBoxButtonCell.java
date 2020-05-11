@@ -1,5 +1,6 @@
-package component.base;
+package component.base.cell;
 
+import component.base.BasicStoryComponent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 

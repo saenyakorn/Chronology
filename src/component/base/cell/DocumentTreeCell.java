@@ -1,4 +1,4 @@
-package component.base;
+package component.base.cell;
 
 import application.ApplicationResource;
 import component.components.document.Document;
@@ -13,7 +13,7 @@ import javafx.scene.shape.SVGPath;
 public final class DocumentTreeCell extends TreeCell<Document> {
 
     TextField textField;
-    private final SVGPath documentIcon = ApplicationResource.getIconSVG("file:res/icon/document_icon_24px.svg");
+    private final SVGPath documentIcon = ApplicationResource.getIconSVG("document_icon_24px.svg");
 
     public DocumentTreeCell() {
         super();
