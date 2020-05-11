@@ -100,7 +100,9 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
     }
 
     @Override
-    abstract public String toString();
+    public String toString() {
+        return title;
+    }
 
     public static BasicStoryComponent JSONObjectToBasicStoryComponent(String componentID, JSONObject componentObject) {
         String type = (String) componentObject.get("type");
