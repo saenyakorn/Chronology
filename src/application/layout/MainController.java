@@ -7,13 +7,13 @@ import component.layouts.workspace.Workspace;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.MenuBar;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
-import javafx.stage.Stage;
+import javafx.scene.shape.SVGPath;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -26,7 +26,6 @@ import java.io.IOException;
 public class MainController {
 
     private final String os = System.getProperty("os.name");
-    double x, y;
 
     @FXML
     private VBox root;
@@ -35,19 +34,12 @@ public class MainController {
     @FXML
     private HBox tabContainer;
     @FXML
-    private HBox navigationBar;
+    private HBox hamburgerContainer;
     @FXML
-    private Circle closeButton;
-    @FXML
-    private Circle hideButton;
-    @FXML
-    private Circle expandButton;
+    private Button addTabButton;
 
     @FXML
     public void initialize() {
-        // set scene style
-        root = ApplicationResource.getShadowScene(root);
-
         // new project
         ApplicationResource.newProject();
 
@@ -59,9 +51,22 @@ public class MainController {
         if (os != null && os.startsWith("Mac"))
             menuBar.useSystemMenuBarProperty().set(true);
 
+        // add tab button setUp
+        SVGPath plusIcon = ApplicationResource.getIconSVG("plus_icon_24px.svg");
+        plusIcon.getStyleClass().add("icon-24px");
+        addTabButton.setGraphic(plusIcon);
+        addTabButton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+
+        // hamburger setUp
+        SVGPath hamburgerIcon = ApplicationResource.getIconSVG("hamburger_icon_24px.svg");
+        hamburgerIcon.getStyleClass().add("hamburger-button");
+        hamburgerContainer.getChildren().add(hamburgerIcon);
+
         // binding tabContainer with documentList
         DocumentList documentList = ApplicationResource.getCurrentWorkspace().getDocumentList();
         Bindings.bindContent(tabContainer.getChildren(), documentList.getDocumentCustomTabs());
+
+        // TODO Rewrite this class more clearly. it work but hard for debugging.
     }
 
     @FXML
@@ -127,35 +132,8 @@ public class MainController {
     }
 
     @FXML
-    private void handleStageDragged(MouseEvent event) {
-        Stage mainWindow = (Stage) root.getScene().getWindow();
-        mainWindow.setX(event.getScreenX() - x);
-        mainWindow.setY(event.getScreenY() - y);
-    }
+    protected void toggleMenuView() {
 
-    @FXML
-    protected void handleStagePressed(MouseEvent event) {
-        x = event.getSceneX();
-        y = event.getSceneY();
-    }
-
-    @FXML
-    protected void handleCloseWindow(MouseEvent event) {
-        Stage mainWindow = (Stage) root.getScene().getWindow();
-        mainWindow.close();
-    }
-
-    @FXML
-    protected void handleHideWindow(MouseEvent event) {
-        Stage mainWindow = (Stage) root.getScene().getWindow();
-        mainWindow.setIconified(true);
-    }
-
-    @FXML
-    protected void handleExpandWindow(MouseEvent event) {
-        Stage mainWindow = (Stage) root.getScene().getWindow();
-        mainWindow.setFullScreenExitHint("");
-        mainWindow.setFullScreen(!mainWindow.isFullScreen());
     }
 
     @SuppressWarnings("unchecked")
