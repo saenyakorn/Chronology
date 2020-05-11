@@ -6,7 +6,7 @@ import component.components.document.Document;
 import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
 import component.layouts.workspace.Workspace;
-import javafx.scene.layout.VBox;
+import javafx.scene.Parent;
 import javafx.scene.shape.SVGPath;
 import org.json.simple.JSONObject;
 import org.xml.sax.SAXException;
@@ -90,6 +90,7 @@ public class ApplicationResource {
     public static SVGPath getIconSVG(String path) {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         SVGPath svgPath = new SVGPath();
+        path = "file:res/icon/" + path;
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
             org.w3c.dom.Document document = builder.parse(path);
@@ -102,8 +103,8 @@ public class ApplicationResource {
         return svgPath;
     }
 
-    public static VBox getShadowScene(VBox root) {
-        // TODO styling customize window application
-        return root;
+    public static void loadStyleSheet(Parent parent, String path) {
+        parent.getStylesheets().add(parent.getClass().getResource(path).toExternalForm());
     }
 }
+
