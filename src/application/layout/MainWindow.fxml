@@ -2,9 +2,8 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.Circle?>
 <?import java.net.URL?>
-<VBox xmlns:fx="http://javafx.com/fxml" fx:id="root" xmlns="http://javafx.com/javafx"
+<VBox xmlns:fx="http://javafx.com/fxml" fx:id="root" styleClass="root" xmlns="http://javafx.com/javafx"
       fx:controller="application.layout.MainController">
 
     <stylesheets>
@@ -12,19 +11,11 @@
     </stylesheets>
 
     <!-- Stage Bar (static elements) -->
-    <HBox fx:id="navigationBar" styleClass="navigation-bar" onMousePressed="#handleStagePressed"
-          onMouseDragged="#handleStageDragged">
-        <HBox styleClass="window-button-group">
-            <Circle radius="5.5" fx:id="closeButton" styleClass="circle-button, close"
-                    onMouseClicked="#handleCloseWindow"/>
-            <Circle radius="5.5" fx:id="hideButton" styleClass="circle-button, hide"
-                    onMouseClicked="#handleHideWindow"/>
-            <Circle radius="5.5" fx:id="expandButton" styleClass="circle-button, expand"
-                    onMouseClicked="#handleExpandWindow"/>
-        </HBox>
+    <HBox fx:id="navigationBar" styleClass="navigation-bar">
+        <HBox fx:id="hamburgerContainer" styleClass="hamburger-container" onMouseClicked="#toggleMenuView"/>
         <HBox styleClass="tab-group">
             <HBox fx:id="tabContainer" styleClass="tab-container"/>
-            <Button styleClass="add-tab-button" onAction="#handleNewDocumentClick"/>
+            <Button fx:id="addTabButton" styleClass="add-tab-button" onAction="#handleNewDocumentClick"/>
         </HBox>
     </HBox>
 

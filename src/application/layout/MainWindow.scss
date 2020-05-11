@@ -6,33 +6,24 @@
   -fx-background-color: $black;
 }
 
+.root {
+  -fx-border-radius: $border-radius;
+  -fx-background-radius: $border-radius*100;
+  -fx-effect: dropshadow(gaussian, $black, 10, 1.0, 100, 100);
+}
+
 .navigation-bar {
   @include hBox-needs-style;
   -fx-spacing: $spacing;
+  -fx-fill: $white;
+  -fx-padding: 0 $spacing;
 
-  .window-button-group {
+  .hamburger-container {
     @include hBox-needs-style;
-    -fx-padding: 0px $spacing*2;
-    -fx-spacing: $spacing;
+    -fx-padding: $spacing;
 
-    .circle-button {
-      -fx-stroke-width: 1.5px;
-      -fx-stroke: $dark-grey;
-
-      &.close:hover {
-        -fx-fill: $red;
-        -fx-effect: $drop-shadow;
-      }
-
-      &.hide:hover {
-        -fx-fill: $orange;
-        -fx-effect: $drop-shadow;
-      }
-
-      &.expand:hover {
-        -fx-fill: $lime;
-        -fx-effect: $drop-shadow;
-      }
+    .hamburger-button {
+      -fx-fill: $white;
     }
   }
 
@@ -45,8 +36,14 @@
       -fx-background-radius: 0;
       -fx-pref-height: $navigation-bar-size;
       -fx-pref-width: $navigation-bar-size;
-      -fx-background-color: $dark-grey;
+      -fx-background-color: transparent;
       -fx-fill: $black;
+
+      .icon-24px {
+        -fx-scale-x: 0.67;
+        -fx-scale-y: 0.67;
+        -fx-fill: $white;
+      }
     }
 
     .tab-container {
