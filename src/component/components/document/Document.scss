@@ -1,14 +1,14 @@
-@import "../../../application/StylingConstant.scss";
+@import "../../../application/StylingConstants";
 
 .document-tab-container {
   -fx-pref-height: $navigation-bar-size;
   -fx-alignment: center-left;
   -fx-spacing: $spacing;
-  -fx-background-color: $dark-grey;
+  -fx-background-color: $dark-gray;
   -fx-padding: 0px $spacing;
 
   &.active {
-    -fx-background-color: $medium-grey;
+    -fx-background-color: $medium-gray;
   }
 
   .document-tab-text {

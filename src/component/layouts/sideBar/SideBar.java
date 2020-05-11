@@ -14,6 +14,7 @@ import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
 import component.components.storyline.Storyline;
 import component.components.storyline.StorylineList;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
@@ -37,6 +38,8 @@ public class SideBar extends ScrollPane {
         getStylesheets().add(getClass().getResource("SideBar.css").toExternalForm());
 
         // basicStoryComponentTreeView setting
+        Label componentSectionHeading = new Label("Story Components");
+        componentSectionHeading.getStyleClass().add("heading");
         basicStoryComponentTreeView = new TreeView<>();
         basicStoryComponentTreeView.setShowRoot(false);
         basicStoryComponentTreeView.setEditable(true);
@@ -44,6 +47,8 @@ public class SideBar extends ScrollPane {
         basicStoryComponentTreeView.setCellFactory(params -> new BasicStoryComponentTreeCell());
 
         // documentTreeView setting
+        Label documentSectionHeading = new Label("Documents");
+        documentSectionHeading.getStyleClass().add("heading");
         documentTreeView = new TreeView<>();
         documentTreeView.setShowRoot(false);
         documentTreeView.setEditable(true);
@@ -54,8 +59,7 @@ public class SideBar extends ScrollPane {
         VBox vBox = new VBox();
         vBox.setMaxHeight(Double.POSITIVE_INFINITY);
         vBox.getStyleClass().add("v-box");
-        vBox.getChildren().add(basicStoryComponentTreeView);
-        vBox.getChildren().add(documentTreeView);
+        vBox.getChildren().addAll(componentSectionHeading, basicStoryComponentTreeView, documentSectionHeading, documentTreeView);
 
         // scroll pane setting
         getStyleClass().add("side-bar");
@@ -65,8 +69,9 @@ public class SideBar extends ScrollPane {
 
         // initialize TreeView
         initializeBasicStoryComponentTreeView();
-        initializeTreeViewDocument();
+        initializeDocumentTreeView();
 
+        //set icon styles
         eventCardIcon.getStyleClass().add("icon-24px");
         storylineIcon.getStyleClass().add("icon-24px");
         chapterIcon.getStyleClass().add("icon-24px");
@@ -89,7 +94,7 @@ public class SideBar extends ScrollPane {
         basicStoryComponentTreeView.setRoot(rootItem);
     }
 
-    private void initializeTreeViewDocument() {
+    private void initializeDocumentTreeView() {
         TreeItem<Document> rootItem = new TreeItem<>();
         documentTreeView.setRoot(rootItem);
     }

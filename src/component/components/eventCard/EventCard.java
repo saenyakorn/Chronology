@@ -1,6 +1,7 @@
 package component.components.eventCard;
 
 import ability.Savable;
+import colors.GlobalColor;
 import component.base.BasicStoryComponent;
 import component.components.chapter.Chapter;
 import component.components.storyline.Storyline;
@@ -187,7 +188,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         super.setColor(color);
         date.setFill(color);
         time.setFill(color);
-        cardTitleContainer.setStyle("-fx-background-color: " + colorToHex(color) + ";");
+        cardTitleContainer.setStyle("-fx-background-color: " + GlobalColor.colorToHex(color) + ";");
     }
 
     @Override

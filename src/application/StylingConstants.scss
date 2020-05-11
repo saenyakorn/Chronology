@@ -1,21 +1,30 @@
+@import "font.css";
+
 /* component styling constant */
 $navigation-bar-size: 40px;
+$side-bar-width: 200px;
 
 /* Styling constants */
 $spacing: 8px;
 $border-radius: 20px;
+$padding-smaller: 5 15 5 15;
+$padding-larger: 10 15 10 15;
 $transition-delay: 0.2s;
 $drop-shadow: dropshadow(gaussian, rgba(28, 28, 28, 0.1), 20, 0, 0, 10); /* use with -fx-effect */
+$drop-shadow-hover: dropshadow(gaussian, rgba(28, 28, 28, 0.3), 20, 0, 0, 10);
 
 /* Font Constants */
+$font-regular: Sarabun;
+$font-bold: "Sarabun ExtraBold";
+$large-heading-size: 16px;
 $heading-size: 14px;
 $regular-size: 12px;
 
 /* Monochrome */
 $white: rgb(255, 255, 255);
 $light-gray: rgb(246, 246, 246);
-$medium-grey: rgb(107, 107, 107);
-$dark-grey: rgb(79, 79, 79);
+$medium-gray: rgb(107, 107, 107);
+$dark-gray: rgb(79, 79, 79);
 $black: rgb(28, 28, 28);
 
 /* Default palette */

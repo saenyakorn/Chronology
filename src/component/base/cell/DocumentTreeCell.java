@@ -1,6 +1,7 @@
 package component.base.cell;
 
 import application.ApplicationResource;
+import colors.GlobalColor;
 import component.components.document.Document;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
@@ -21,7 +22,6 @@ public final class DocumentTreeCell extends TreeCell<Document> {
         getStyleClass().add("tree-cell");
         initializeEventHandler();
         documentIcon.getStyleClass().add("icon-24px");
-        this.getStyleClass().add("heading");
     }
 
     @Override
@@ -57,6 +57,7 @@ public final class DocumentTreeCell extends TreeCell<Document> {
                 setGraphic(textField);
             } else {
                 setText(getString());
+                documentIcon.setFill(GlobalColor.DEFAULT_COLOR);
                 setGraphic(documentIcon);
             }
         }

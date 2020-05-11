@@ -1,4 +1,4 @@
-@import "../../../application/StylingConstant";
+@import "../../../application/StylingConstants";
 
 .tree-cell {
   -fx-background-color: $white;
@@ -8,7 +8,7 @@
   }
 
   &:selected {
-    -fx-text-fill: $medium-grey;
+    -fx-text-fill: $medium-gray;
     -fx-background-color: $lavender_20;
   }
 }

@@ -135,7 +135,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         JSONObject componentObject = new JSONObject();
         componentObject.put("title", title);
         componentObject.put("description", description);
-        componentObject.put("Color", colorToHex(color));
+        componentObject.put("Color", GlobalColor.colorToHex(color));
         componentObject.put("TimePeriod", timePeriod.toString());
         return componentObject;
     }
@@ -168,10 +168,4 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         }
     }
 
-    protected static String colorToHex(Color color) {
-        return String.format("#%02x%02x%02x",
-                (int) (255 * color.getRed()),
-                (int) (255 * color.getGreen()),
-                (int) (255 * color.getBlue()));
-    }
 }

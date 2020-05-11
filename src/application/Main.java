@@ -15,12 +15,13 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage mainWindow) throws Exception {
+    public void start(Stage mainWindow) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("layout/MainWindow.fxml"));
             root.getStylesheets().add(getClass().getResource("StylingConstant.css").toExternalForm());
             Scene scene = new Scene(root, mainWindow.getMaxWidth(), mainWindow.getMaxHeight());
             mainWindow.setScene(scene);
+            root.getStylesheets().add(getClass().getResource("StylingConstants.css").toExternalForm());
             mainWindow.setTitle(SystemConstants.APP_NAME);
             mainWindow.resizableProperty().setValue(true);
             mainWindow.setMaximized(true);

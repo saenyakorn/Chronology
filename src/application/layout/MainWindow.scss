@@ -1,9 +1,10 @@
-@import "../StylingConstant.scss";
+@import "../StylingConstants.scss";
 
 @mixin hBox-needs-style {
   -fx-pref-height: $navigation-bar-size;
   -fx-alignment: center-left;
   -fx-background-color: $black;
+  -fx-font-family: $font-regular;
 }
 
 .root {
