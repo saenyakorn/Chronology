@@ -18,4 +18,11 @@ public class GlobalColor {
     public static final Color[] getAllPalette() {
         return new Color[]{PINK, RED, ORANGE, LIME, SKYBLUE, LAVENDER};
     }
+
+    public static String colorToHex(Color color) {
+        return String.format("#%02x%02x%02x",
+                (int) (255 * color.getRed()),
+                (int) (255 * color.getGreen()),
+                (int) (255 * color.getBlue()));
+    }
 }

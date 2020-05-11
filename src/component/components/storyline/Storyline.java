@@ -3,6 +3,7 @@ package component.components.storyline;
 import ability.Savable;
 import application.ApplicationResource;
 import application.SystemConstants;
+import colors.GlobalColor;
 import colors.RandomColor;
 import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
@@ -159,7 +160,7 @@ public class Storyline extends BasicStoryComponent {
     public void setColor(Color color) {
         super.setColor(color);
         line.setStroke(color);
-        storylineTitle.setStyle("-fx-text-fill: " + colorToHex(color) + ";");
+        storylineTitle.setStyle("-fx-text-fill: " + GlobalColor.colorToHex(color) + ";");
     }
 
     @Override
