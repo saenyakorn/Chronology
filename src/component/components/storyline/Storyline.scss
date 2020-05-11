@@ -1,0 +1,23 @@
+@import "../../../application/StylingConstants.scss";
+
+Line {
+  -fx-stroke-width: 7;
+}
+
+.body {
+  -fx-padding: 0 200 0 0;
+}
+
+.title {
+  -fx-font-family: $font-regular;
+  -fx-font-size: 18px;
+  -fx-background-color: transparent;
+  -fx-opacity: 0.8;
+
+  &:disabled {
+    -fx-font-family: $font-bold;
+    -fx-font-size: 18px;
+    -fx-background-color: transparent;
+    -fx-opacity: 1.0;
+  }
+}

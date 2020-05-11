@@ -1,7 +1,9 @@
 package component.components.chapter;
 
 import ability.Savable;
+import application.ApplicationResource;
 import component.base.BasicStoryComponent;
+import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
 import component.components.timeModifier.TimePeriod;
 import javafx.scene.paint.Color;
@@ -33,6 +35,15 @@ public class Chapter extends BasicStoryComponent {
     @Override
     public String toString() {
         return title;
+    }
+
+    @Override
+    public void setColor(Color color) {
+        super.setColor(color);
+        EventCardList eventCards = ApplicationResource.getCurrentWorkspace().getActiveDocument().getEventCards();
+        for (EventCard eventCard : eventCards) {
+            eventCard.setChapterColor(color);
+        }
     }
 
     @Override

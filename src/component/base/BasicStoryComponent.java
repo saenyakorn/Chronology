@@ -18,7 +18,7 @@ import org.json.simple.JSONObject;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Objects;
+import java.util.UUID;
 
 public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicStoryComponent> {
     protected final String componentId;
@@ -27,8 +27,9 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
     protected Color color;
     protected Property<TimePeriod> timePeriod;
 
+    @SuppressWarnings("unchecked")
     public BasicStoryComponent() {
-        this.componentId = Integer.toString(Objects.hashCode(this));
+        this.componentId = UUID.randomUUID().toString();
         ApplicationResource.putItemToCurrentHashMap(componentId, this);
         this.title = "Title";
         this.description = "Lorem ipsum dolor set amet, ego bir setaso de.";
@@ -36,6 +37,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         this.timePeriod = new SimpleObjectProperty(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
     }
 
+    @SuppressWarnings("unchecked")
     public BasicStoryComponent(String componentId) {
         this.componentId = componentId;
         //no put item because used to load a hashMap from file
@@ -45,8 +47,9 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         this.timePeriod = new SimpleObjectProperty(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
     }
 
+    @SuppressWarnings("unchecked")
     public BasicStoryComponent(String title, String description) {
-        this.componentId = Integer.toString(Objects.hashCode(this));
+        this.componentId = UUID.randomUUID().toString();
         ApplicationResource.putItemToCurrentHashMap(componentId, this);
         this.title = title;
         this.description = description;
@@ -54,8 +57,9 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         this.timePeriod = new SimpleObjectProperty(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
     }
 
+    @SuppressWarnings("unchecked")
     public BasicStoryComponent(String title, String description, Color color, TimePeriod timePeriod) {
-        this.componentId = Integer.toString(Objects.hashCode(this));
+        this.componentId = UUID.randomUUID().toString();
         ApplicationResource.putItemToCurrentHashMap(componentId, this);
         this.title = title;
         this.description = description;

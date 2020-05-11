@@ -121,7 +121,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         dateTimeContainer.setOnMousePressed((MouseEvent event) -> rightClickContextMenu(event));
 
         if (getChapter() == null) {
-            chapterMarker.setStyle("-fx-background-color: white ;");
+            chapterMarker.setStyle("-fx-background-color: white;");
         } else {
             setChapter(getChapter());
         }
@@ -161,10 +161,14 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     public void setChapter(Chapter chapter) {
         this.selfChapter.setValue(chapter);
-        //chapterMarker.setStyle("-fx-background-color: " + colorToHex(selfChapter.getColor()) + ";");
         if (chapter != null) {
+            setChapterColor(chapter.getColor());
             setSelfComponentTimePeriod(getTimePeriod(), chapter);
         }
+    }
+
+    public void setChapterColor(Color color) {
+        chapterMarker.setStyle("-fx-background-color: " + GlobalColor.colorToHex(color) + ";");
     }
 
     public Pane getDisplay() {
