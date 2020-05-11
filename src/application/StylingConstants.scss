@@ -1,3 +1,5 @@
+@import "font.css";
+
 /* component styling constant */
 $navigation-bar-size: 40px;
 $side-bar-width: 200px;
@@ -9,10 +11,12 @@ $padding-smaller: 5 15 5 15;
 $padding-larger: 10 15 10 15;
 $transition-delay: 0.2s;
 $drop-shadow: dropshadow(gaussian, rgba(28, 28, 28, 0.1), 20, 0, 0, 10); /* use with -fx-effect */
+$drop-shadow-hover: dropshadow(gaussian, rgba(28,28,28,0.3), 20, 0, 0, 10);
 
 /* Font Constants */
 $font-regular: Sarabun;
 $font-bold: "Sarabun ExtraBold";
+$large-heading-size: 16px;
 $heading-size: 14px;
 $regular-size: 12px;
 
