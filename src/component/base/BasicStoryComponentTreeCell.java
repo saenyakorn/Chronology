@@ -1,6 +1,7 @@
 package component.base;
 
 import application.ApplicationResource;
+import colors.GlobalColor;
 import component.components.chapter.Chapter;
 import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
@@ -62,10 +63,17 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
             } else {
                 setText(getString());
                 if (item instanceof EventCard) {
+                    if(((EventCard) item).getStoryline() != null) {
+                        eventCardIcon.setFill(((EventCard) item).getStoryline().getColor());
+                    } else {
+                        eventCardIcon.setFill(GlobalColor.DEFAULT_COLOR);
+                    }
                     setGraphic(eventCardIcon);
                 } else if (item instanceof Storyline) {
+                    storylineIcon.setFill(item.getColor());
                     setGraphic(storylineIcon);
                 } else if (item instanceof Chapter) {
+                    chapterIcon.setFill(item.getColor());
                     setGraphic(chapterIcon);
                 }
             }
