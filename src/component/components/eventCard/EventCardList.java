@@ -41,7 +41,7 @@ public class EventCardList implements Iterable<EventCard>, SavableAsJSONArray<Ev
                     focusedGridPane.add(eventCard.getDisplay(), eventCard.getIndex(), 0);
                 }
             }
-            for (Storyline storyline : ApplicationResource.getCurrentWorkspace().getActiveDocument().getStorylineList()) {
+            for (Storyline storyline : ApplicationResource.getCurrentWorkspace().getActiveDocument().getStorylines()) {
                 GridPane focusedGridPane = storyline.getContainer();
                 // System.out.println("Storyline: " + storyline + " gridSize: " + focusedGridPane.getChildren().size() + "min-max: " + storyline.getMinIndex() + "-" + storyline.getMaxIndex());
                 storyline.modifyStorylineStructure();

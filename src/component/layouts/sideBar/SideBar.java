@@ -3,9 +3,9 @@ package component.layouts.sideBar;
 import application.ApplicationResource;
 import application.SystemConstants;
 import component.base.BasicStoryComponent;
-import component.base.BasicStoryComponentTreeCell;
 import component.base.BlankBasicStoryComponent;
-import component.base.DocumentTreeCell;
+import component.base.cell.BasicStoryComponentTreeCell;
+import component.base.cell.DocumentTreeCell;
 import component.components.chapter.Chapter;
 import component.components.chapter.ChapterList;
 import component.components.document.Document;
@@ -27,10 +27,10 @@ public class SideBar extends ScrollPane {
     private final TreeView<BasicStoryComponent> basicStoryComponentTreeView;
 
     // Icon for each item
-    private final SVGPath eventCardIcon = ApplicationResource.getIconSVG("file:res/icon/event_card_icon_24px.svg");
-    private final SVGPath storylineIcon = ApplicationResource.getIconSVG("file:res/icon/storyline_icon_24px.svg");
-    private final SVGPath chapterIcon = ApplicationResource.getIconSVG("file:res/icon/chapter_icon_24px.svg");
-    private final SVGPath documentIcon = ApplicationResource.getIconSVG("file:res/icon/document_icon_24px.svg");
+    private final SVGPath eventCardIcon = ApplicationResource.getIconSVG("event_card_icon_24px.svg");
+    private final SVGPath storylineIcon = ApplicationResource.getIconSVG("storyline_icon_24px.svg");
+    private final SVGPath chapterIcon = ApplicationResource.getIconSVG("chapter_icon_24px.svg");
+    private final SVGPath documentIcon = ApplicationResource.getIconSVG("check_icon_24px.svg");
 
     public SideBar() {
         // load css file
@@ -95,7 +95,7 @@ public class SideBar extends ScrollPane {
     }
 
     public void renderEventCardTreeItem(Document activeDocument) {
-        EventCardList eventCardList = activeDocument.getEventCardList();
+        EventCardList eventCardList = activeDocument.getEventCards();
         TreeItem<BasicStoryComponent> eventCardTreeItemRoot = basicStoryComponentTreeView.getRoot().getChildren().get(0);
         eventCardTreeItemRoot.getChildren().clear();
         for (EventCard eventCard : eventCardList) {
@@ -107,8 +107,8 @@ public class SideBar extends ScrollPane {
     }
 
     public void renderStorylineTreeItem(Document activeDocument) {
-        EventCardList eventCardList = activeDocument.getEventCardList();
-        StorylineList storylineList = activeDocument.getStorylineList();
+        EventCardList eventCardList = activeDocument.getEventCards();
+        StorylineList storylineList = activeDocument.getStorylines();
         TreeItem<BasicStoryComponent> storylineTreeItemRoot = basicStoryComponentTreeView.getRoot().getChildren().get(1);
         storylineTreeItemRoot.getChildren().clear();
         for (Storyline storyline : storylineList) {
@@ -124,8 +124,8 @@ public class SideBar extends ScrollPane {
     }
 
     public void renderChapterTreeItem(Document activeDocument) {
-        EventCardList eventCardList = activeDocument.getEventCardList();
-        ChapterList chapterList = activeDocument.getChapterList();
+        EventCardList eventCardList = activeDocument.getEventCards();
+        ChapterList chapterList = activeDocument.getChapters();
         TreeItem<BasicStoryComponent> chapterTreeItemRoot = basicStoryComponentTreeView.getRoot().getChildren().get(2);
         chapterTreeItemRoot.getChildren().clear();
         for (Chapter chapter : chapterList) {

@@ -3,8 +3,8 @@ package component.dialog;
 import application.ApplicationResource;
 import component.base.BasicStoryComponent;
 import component.base.BlankBasicStoryComponent;
-import component.base.ComboBoxButtonCell;
-import component.base.ComboBoxListCell;
+import component.base.cell.ComboBoxButtonCell;
+import component.base.cell.ComboBoxListCell;
 import component.components.chapter.Chapter;
 import component.components.chapter.ChapterList;
 import component.components.document.Document;
@@ -61,7 +61,7 @@ public class NewEventCardDialog extends Dialog {
     private void createChapterComboBox() {
         ComboBox<BasicStoryComponent> chapterCombo = new ComboBox<>();
         Document document = ApplicationResource.getCurrentWorkspace().getActiveDocument();
-        ChapterList chapters = document.getChapterList();
+        ChapterList chapters = document.getChapters();
         chapterCombo.getItems().add(new BlankBasicStoryComponent("None", "None"));
         for (Chapter chapter : chapters) {
             chapterCombo.getItems().add(chapter);
@@ -75,7 +75,7 @@ public class NewEventCardDialog extends Dialog {
     private void createStorylineComboBox() {
         ComboBox<BasicStoryComponent> storylineCombo = new ComboBox<>();
         Document document = ApplicationResource.getCurrentWorkspace().getActiveDocument();
-        StorylineList storylines = document.getStorylineList();
+        StorylineList storylines = document.getStorylines();
         storylineCombo.getItems().add(new BlankBasicStoryComponent("None", "None"));
         for (Storyline storyline : storylines) {
             storylineCombo.getItems().add(storyline);
