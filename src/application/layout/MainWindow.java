@@ -128,6 +128,8 @@ public class MainWindow {
         File selectedFile = fileChooser.showOpenDialog(root.getScene().getWindow());
         ApplicationUtils.setSavedFile(selectedFile);
         readFromFile(selectedFile);
+        //clear
+        ApplicationUtils.update();
     }
 
     @FXML
