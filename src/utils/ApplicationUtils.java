@@ -15,12 +15,17 @@ public class ApplicationUtils {
 
     private static File savedFile = null;
     private static Workspace currentWorkspace = null;
-    private static final HashMap<String, BasicStoryComponent> hashMap = new HashMap<>(); //contains all basic story components
+    private static HashMap<String, BasicStoryComponent> hashMap = new HashMap<>(); //contains all basic story components
 
     public static void initialize() {
         savedFile = null;
         Workspace workspace = new Workspace();
         setCurrentWorkspace(workspace);
+    }
+
+    public static void clear() {
+        hashMap = new HashMap<>();
+        setCurrentWorkspace(new Workspace());
     }
 
     public static Workspace getCurrentWorkspace() {
@@ -38,6 +43,7 @@ public class ApplicationUtils {
     public static void update() {
         Document currentDocument = ApplicationUtils.getCurrentWorkspace().getActiveDocument();
         ApplicationUtils.getCurrentWorkspace().setActiveDocument(currentDocument);
+        ApplicationUtils.getCurrentWorkspace().getDocumentList().getActiveDocument().getEventCards().update();
     }
 
     public static void setCurrentWorkspace(Workspace currentWorkspace) {
