@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import utils.SystemUtils;
 import utils.TransitionUtils;
 
@@ -13,11 +14,14 @@ public class IntroScreen {
 
     @FXML
     private VBox root;
+    @FXML
+    private Text header;
 
     @FXML
     protected void initialize() {
         progressBar = new ProgressBar();
         progressBar.getStyleClass().add("progress-bar");
+        header.setText(SystemUtils.APP_NAME);
         root.getChildren().add(progressBar);
         new Thread(() -> simulateProgress(0)).start();
     }
