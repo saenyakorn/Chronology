@@ -46,6 +46,7 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
         tab.setOnMouseClicked((MouseEvent event) -> setActiveTab(tab));
         documentCustomTabs.add(tab);
         setActiveTab(tab);
+        ApplicationUtils.getCurrentWorkspace().getSideBar().renderDocumentTreeItem();
     }
 
     public void removeDocument(Document document) {
