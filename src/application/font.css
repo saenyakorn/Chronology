@@ -2,12 +2,12 @@
     font-family: "Sarabun ExtraBold";
     font-weight: 800;
     font-style: normal;
-    src: url('../../res/fonts/Sarabun-ExtraBold.ttf') format('truetype');
+    src: url('../fonts/Sarabun-ExtraBold.ttf') format('truetype');
 }
 
 @font-face {
     font-family: "Sarabun";
     font-weight: 400;
     font-style: normal;
-    src: url('../../res/fonts/Sarabun-Regular.ttf') format('truetype');
+    src: url('../fonts/Sarabun-Regular.ttf') format('truetype');
 }
