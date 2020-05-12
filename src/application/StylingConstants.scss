@@ -1,3 +1,5 @@
+@import "font.css";
+
 /* component styling constant */
 $navigation-bar-size: 40px;
 $side-bar-width: 200px;
@@ -40,20 +42,6 @@ $orange_20: rgba(255, 166, 62, 0.2);
 $lime_20: rgba(148, 238, 106, 0.2);
 $sky-blue_20: rgba(62, 197, 255, 0.2);
 $lavender_20: rgba(165, 135, 251, 0.2);
-
-//@font-face {
-//  font-family: "Sarabun ExtraBold";
-//  font-weight: 800;
-//  font-style: normal;
-//  src: url('../../res/fonts/Sarabun-ExtraBold.ttf') format('truetype');
-//}
-//
-//@font-face {
-//  font-family: "Sarabun";
-//  font-weight: 400;
-//  font-style: normal;
-//  src: url('../../res/fonts/Sarabun-Regular.ttf') format('truetype');
-//}
 
 * {
   -fx-focus-color: transparent;

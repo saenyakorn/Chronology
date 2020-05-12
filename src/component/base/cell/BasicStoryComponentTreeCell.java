@@ -23,7 +23,7 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
     private final SVGPath chapterIcon = SystemUtils.getIconSVG("chapter_icon_24px.svg");
 
     public BasicStoryComponentTreeCell() {
-        SystemUtils.loadStyleSheet(this, "TreeCell.css");
+        getStylesheets().add(getClass().getResource("TreeCell.css").toExternalForm());
         getStyleClass().add("tree-cell");
         initializeEventHandler();
         eventCardIcon.getStyleClass().add("icon-24px");

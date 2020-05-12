@@ -42,7 +42,7 @@ public class DocumentCustomTab extends HBox {
     }
 
     private void initializeFXComponent() {
-        SystemUtils.loadStyleSheet(this, "Document.css");
+        getStylesheets().add(getClass().getResource("Document.css").toExternalForm());
         getChildren().addAll(label, closeButton);
         getStyleClass().add("document-tab-container");
         label.getStyleClass().add("document-tab-text");

@@ -37,8 +37,4 @@ public class SystemUtils {
         }
         return svgPath;
     }
-
-    public static void loadStyleSheet(Parent parent, String path) {
-        parent.getStylesheets().add(parent.getClass().getResource(path).toExternalForm());
-    }
 }
