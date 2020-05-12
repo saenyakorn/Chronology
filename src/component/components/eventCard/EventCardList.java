@@ -22,32 +22,32 @@ public class EventCardList implements Iterable<EventCard>, SavableAsJSONArray<Ev
     public EventCardList() {
         eventCards = FXCollections.observableArrayList(eventCard -> new Observable[]{eventCard.getTimePeriodProperty(), eventCard.getStorylineProperty(), eventCard.getChapterProperty()});
         sortedEventCards = new SortedList<>(eventCards, (item1, item2) -> sortByEventCardDate(item1, item2));
-        sortedEventCards.addListener((ListChangeListener.Change<? extends EventCard> change) -> {
-            int counter = 0;
-            for (EventCard eventCard : sortedEventCards) {
-                eventCard.setIndex(-1);
-                if (eventCard.getStoryline() != null) {
-                    eventCard.setIndex(counter++);
-                    eventCard.getStoryline().getContainer().getChildren().clear(); // clear gridPane
-                    eventCard.getStoryline().initializedMinMaxIndex();
-                }
+        sortedEventCards.addListener((ListChangeListener.Change<? extends EventCard> change) -> update());
+    }
+
+    public void update() {
+        int counter = 0;
+        for (EventCard eventCard : sortedEventCards) {
+            eventCard.setIndex(-1);
+            if (eventCard.getStoryline() != null) {
+                eventCard.setIndex(counter++);
+                eventCard.getStoryline().getContainer().getChildren().clear(); // clear gridPane
+                eventCard.getStoryline().initializedMinMaxIndex();
             }
-            for (EventCard eventCard : sortedEventCards) {
-                if (eventCard.getStoryline() != null) {
-                    Storyline focusedStoryline = eventCard.getStoryline();
-                    GridPane focusedGridPane = focusedStoryline.getContainer();
-                    focusedStoryline.setMinIndex(eventCard.getIndex());
-                    focusedStoryline.setMaxIndex(eventCard.getIndex());
-                    focusedGridPane.add(eventCard.getDisplay(), eventCard.getIndex(), 0);
-                }
+        }
+        for (EventCard eventCard : sortedEventCards) {
+            if (eventCard.getStoryline() != null) {
+                Storyline focusedStoryline = eventCard.getStoryline();
+                GridPane focusedGridPane = focusedStoryline.getContainer();
+                focusedStoryline.setMinIndex(eventCard.getIndex());
+                focusedStoryline.setMaxIndex(eventCard.getIndex());
+                focusedGridPane.add(eventCard.getDisplay(), eventCard.getIndex(), 0);
             }
-            for (Storyline storyline : ApplicationUtils.getCurrentWorkspace().getActiveDocument().getStorylines()) {
-                GridPane focusedGridPane = storyline.getContainer();
-                // System.out.println("Storyline: " + storyline + " gridSize: " + focusedGridPane.getChildren().size() + "min-max: " + storyline.getMinIndex() + "-" + storyline.getMaxIndex());
-                storyline.modifyStorylineStructure();
-            }
-            System.out.println("-------------------------------------");
-        });
+        }
+        for (Storyline storyline : ApplicationUtils.getCurrentWorkspace().getActiveDocument().getStorylines()) {
+            storyline.modifyStorylineStructure();
+        }
+        System.out.println("-------------------------------------");
     }
 
     public ObservableList<EventCard> getEventCards() {
