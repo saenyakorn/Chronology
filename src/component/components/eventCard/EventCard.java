@@ -12,6 +12,7 @@ import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
@@ -305,7 +306,9 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     private void initializeEventHandler() {
         root.setOnDragDetected((MouseEvent event) -> {
             Dragboard dragboard = root.startDragAndDrop(TransferMode.MOVE);
-            dragboard.setDragView(root.snapshot(null, null));
+            SnapshotParameters parameters = new SnapshotParameters();
+            parameters.setFill(Color.TRANSPARENT);
+            dragboard.setDragView(root.snapshot(parameters, null));
             ClipboardContent clipboardContent = new ClipboardContent();
             clipboardContent.putString(getComponentId());
             dragboard.setContent(clipboardContent);

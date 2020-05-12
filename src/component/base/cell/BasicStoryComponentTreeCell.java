@@ -7,14 +7,17 @@ import component.components.chapter.Chapter;
 import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
 import javafx.scene.Node;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeCell;
 import javafx.scene.input.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
 
 public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryComponent> {
 
-    TextField textField;
+    private boolean hasGraphic;
+    private TextField textField;
     private final SVGPath eventCardIcon = ApplicationResource.getIconSVG("event_card_icon_24px.svg");
     private final SVGPath storylineIcon = ApplicationResource.getIconSVG("storyline_icon_24px.svg");
     private final SVGPath chapterIcon = ApplicationResource.getIconSVG("chapter_icon_24px.svg");
@@ -49,7 +52,6 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
     @Override
     protected void updateItem(BasicStoryComponent item, boolean empty) {
         super.updateItem(item, empty);
-
         if (empty || item == null) {
             setText(null);
             setGraphic(null);
@@ -110,7 +112,9 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
         setOnDragDetected((MouseEvent event) -> {
             if (getItem() != null) {
                 Dragboard dragboard = startDragAndDrop(TransferMode.MOVE);
-                dragboard.setDragView(snapshot(null, null));
+                SnapshotParameters parameters = new SnapshotParameters();
+                parameters.setFill(Color.TRANSPARENT);
+                dragboard.setDragView(snapshot(parameters, null));
                 ClipboardContent clipboardContent = new ClipboardContent();
                 clipboardContent.putString(getItem().getComponentId());
                 dragboard.setContent(clipboardContent);
