@@ -1,6 +1,5 @@
 package utils;
 
-import javafx.scene.Parent;
 import javafx.scene.shape.SVGPath;
 import org.xml.sax.SAXException;
 

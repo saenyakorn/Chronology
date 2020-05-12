@@ -2,7 +2,6 @@ package application.layout;
 
 import component.components.document.DocumentList;
 import component.dialog.*;
-import component.layouts.workspace.Workspace;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -127,8 +126,8 @@ public class MainWindow {
     protected void handleOpenClick(ActionEvent event) {
         File selectedFile = fileChooser.showOpenDialog(root.getScene().getWindow());
         ApplicationUtils.setSavedFile(selectedFile);
+        ApplicationUtils.clear();
         readFromFile(selectedFile);
-        //clear
         ApplicationUtils.update();
     }
 
@@ -168,7 +167,7 @@ public class MainWindow {
 
     @SuppressWarnings("unchecked")
     private void readJSONObject(JSONObject workspaceObject) {
-        ApplicationUtils.setCurrentWorkspace((new Workspace()).readJSONObject(workspaceObject));
+        ApplicationUtils.getCurrentWorkspace().readJSONObject(workspaceObject);
         System.out.println("Open file complete - Current workspace set to loaded workspace");
     }
 }
