@@ -1,7 +1,7 @@
 package component.layouts.workspace;
 
-import ability.Savable;
-import ability.SavableAsJSONObject;
+import component.ability.Savable;
+import component.ability.SavableAsJSONObject;
 import component.base.BasicStoryComponent;
 import component.components.document.Document;
 import component.components.document.DocumentList;

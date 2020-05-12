@@ -1,8 +1,8 @@
 package component.components.storyline;
 
-import ability.Savable;
 import colors.GlobalColor;
 import colors.RandomColor;
+import component.ability.Savable;
 import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;

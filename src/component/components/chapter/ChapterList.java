@@ -1,7 +1,7 @@
 package component.components.chapter;
 
-import ability.Savable;
-import ability.SavableAsJSONArray;
+import component.ability.Savable;
+import component.ability.SavableAsJSONArray;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.json.simple.JSONArray;

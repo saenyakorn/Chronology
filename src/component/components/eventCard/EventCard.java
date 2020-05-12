@@ -1,7 +1,7 @@
 package component.components.eventCard;
 
-import ability.Savable;
 import colors.GlobalColor;
+import component.ability.Savable;
 import component.base.BasicStoryComponent;
 import component.components.chapter.Chapter;
 import component.components.storyline.Storyline;

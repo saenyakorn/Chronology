@@ -1,7 +1,7 @@
 package component.components.storyline;
 
-import ability.Savable;
-import ability.SavableAsJSONArray;
+import component.ability.Savable;
+import component.ability.SavableAsJSONArray;
 import component.components.eventCard.EventCard;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

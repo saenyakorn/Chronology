@@ -1,6 +1,6 @@
 package component.components.chapter;
 
-import ability.Savable;
+import component.ability.Savable;
 import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;

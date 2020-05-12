@@ -1,6 +1,6 @@
 package component.components.document;
 
-import ability.SavableAsJSONArray;
+import component.ability.SavableAsJSONArray;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.input.MouseEvent;

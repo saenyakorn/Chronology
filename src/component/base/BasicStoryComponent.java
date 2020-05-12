@@ -1,8 +1,8 @@
 package component.base;
 
-import ability.SavableAsJSONObject;
 import colors.GlobalColor;
 import colors.RandomColor;
+import component.ability.SavableAsJSONObject;
 import component.components.chapter.Chapter;
 import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;

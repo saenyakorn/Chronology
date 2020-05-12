@@ -1,6 +1,6 @@
 package component.components.document;
 
-import ability.SavableAsJSONObject;
+import component.ability.SavableAsJSONObject;
 import component.components.chapter.Chapter;
 import component.components.chapter.ChapterList;
 import component.components.eventCard.EventCard;
