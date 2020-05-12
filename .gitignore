@@ -64,3 +64,8 @@ JSONoutput/
 output.json
 
 # Created by .ignore support plugin (hsz.mobi)
+/bin/
+
+#Eclipse files
+.classpath
+.project
