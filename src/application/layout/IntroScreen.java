@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.VBox;
+import utils.SystemUtils;
 import utils.TransitionUtils;
 
 public class IntroScreen {
@@ -32,7 +33,7 @@ public class IntroScreen {
                 value += 0.002d;
             }
             Thread.sleep(300);
-            Platform.runLater(() -> TransitionUtils.fadeOut(root, 650, () -> root.setVisible(false)));
+            Platform.runLater(() -> TransitionUtils.fadeOut(root, SystemUtils.INTRO_DURATION, () -> root.setVisible(false)));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
