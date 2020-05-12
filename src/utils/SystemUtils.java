@@ -1,6 +1,5 @@
 package utils;
 
-import javafx.scene.Parent;
 import javafx.scene.shape.SVGPath;
 import org.xml.sax.SAXException;
 
@@ -36,9 +35,5 @@ public class SystemUtils {
             e.printStackTrace();
         }
         return svgPath;
-    }
-
-    public static void loadStyleSheet(Parent parent, String path) {
-        parent.getStylesheets().add(parent.getClass().getResource(path).toExternalForm());
     }
 }

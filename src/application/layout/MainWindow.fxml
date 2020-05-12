@@ -10,15 +10,6 @@
         <URL value="@MainWindow.css"/>
     </stylesheets>
 
-    <!-- Stage Bar (static elements) -->
-    <HBox fx:id="navigationBar" styleClass="navigation-bar">
-        <HBox fx:id="hamburgerContainer" styleClass="hamburger-container" onMouseClicked="#toggleMenuView"/>
-        <HBox styleClass="tab-group">
-            <HBox fx:id="tabContainer" styleClass="tab-container"/>
-            <Button fx:id="addTabButton" styleClass="add-tab-button" onAction="#handleNewDocumentClick"/>
-        </HBox>
-    </HBox>
-
     <!-- Navigation Bar (static elements) -->
     <MenuBar fx:id="menuBar" useSystemMenuBar="true">
         <Menu text="File">
@@ -37,6 +28,15 @@
             <MenuItem text="Comment"/>
         </Menu>
     </MenuBar>
+
+    <!-- Stage Bar (static elements) -->
+    <HBox fx:id="navigationBar" styleClass="navigation-bar">
+        <HBox fx:id="hamburgerContainer" styleClass="hamburger-container" onMouseClicked="#toggleMenuView"/>
+        <HBox styleClass="tab-group">
+            <HBox fx:id="tabContainer" styleClass="tab-container"/>
+            <Button fx:id="addTabButton" styleClass="add-tab-button" onAction="#handleNewDocumentClick"/>
+        </HBox>
+    </HBox>
 
     <!-- Workspace zone (dynamic elements) -->
 </VBox>
