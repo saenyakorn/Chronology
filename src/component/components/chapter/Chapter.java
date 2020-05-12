@@ -1,13 +1,11 @@
 package component.components.chapter;
 
-import ability.Savable;
 import application.ApplicationResource;
 import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
 import component.components.timeModifier.TimePeriod;
 import javafx.scene.paint.Color;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class Chapter extends BasicStoryComponent {
@@ -54,15 +52,5 @@ public class Chapter extends BasicStoryComponent {
         JSONObject chapterObject = super.writeJSONObject();
         chapterObject.put("type", "Chapter");
         return chapterObject;
-    }
-
-    @Override
-    public Chapter readJSONObject(JSONObject chapterObject) {
-        Savable.printReadingMessage("chapter " + title);
-        super.readJSONObject(chapterObject);
-        JSONArray eventCardArray = (JSONArray) chapterObject.get("eventCardList");
-//        eventCards.readJSONArray(eventCardArray);
-        Savable.printReadingFinishedMessage("chapter " + title);
-        return this;
     }
 }

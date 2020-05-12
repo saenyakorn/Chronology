@@ -1,6 +1,5 @@
 package component.layouts.workspace;
 
-import ability.Savable;
 import ability.SavableAsJSONObject;
 import application.ApplicationResource;
 import component.base.BasicStoryComponent;
@@ -87,25 +86,28 @@ public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
 
     @Override
     public Workspace readJSONObject(JSONObject workspaceObject) {
-        Savable.printReadingMessage("workspace");
         JSONObject hashMapObject = (JSONObject) workspaceObject.get("hashMap");
         JSONArray documentArray = (JSONArray) workspaceObject.get("documentList");
 
-        Savable.printReadingMessage("hashMap");
         hashMapObject.forEach((key, value) -> {
             String componentID = (String) key;
             JSONObject componentObject = (JSONObject) value;
-            BasicStoryComponent component = BasicStoryComponent.JSONObjectToBasicStoryComponent(componentID, componentObject);
-            System.out.println("Populating hashMap - key: " + key + ", type: " + component.getClass().getName());
-            ApplicationResource.putItemToCurrentHashMap(componentID, component.readJSONObject(componentObject));
+            if(!componentObject.get("type").equals("EventCard")){
+                BasicStoryComponent component = BasicStoryComponent.JSONObjectToBasicStoryComponent(componentID, componentObject);
+                System.out.println("Populating hashMap - key: " + key + ", type: " + component.getClass().getName());
+                ApplicationResource.putItemToCurrentHashMap(componentID, component.readJSONObject(componentObject));
+            }
         });
-        Savable.printReadingFinishedMessage("hashMap");
-
-        Savable.printReadingMessage("documentList");
+        hashMapObject.forEach((key, value) -> {
+            String componentID = (String) key;
+            JSONObject componentObject = (JSONObject) value;
+            if(componentObject.get("type").equals("EventCard")){
+                BasicStoryComponent component = BasicStoryComponent.JSONObjectToBasicStoryComponent(componentID, componentObject);
+                System.out.println("Populating hashMap - key: " + key + ", type: " + component.getClass().getName());
+                ApplicationResource.putItemToCurrentHashMap(componentID, component.readJSONObject(componentObject));
+            }
+        });
         documents.readJSONArray(documentArray);
-        Savable.printReadingFinishedMessage("documentList");
-        Savable.printReadingFinishedMessage("workspace");
-
         return this;
     }
 

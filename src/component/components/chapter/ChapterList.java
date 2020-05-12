@@ -1,7 +1,7 @@
 package component.components.chapter;
 
-import ability.Savable;
 import ability.SavableAsJSONArray;
+import component.base.BasicStoryComponent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.json.simple.JSONArray;
@@ -67,12 +67,9 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray<Chapte
 
     @Override
     public ChapterList readJSONArray(JSONArray chapterArray) {
-        Savable.printReadingMessage("chapterList");
         for (Object chapterObject : chapterArray) {
-            System.out.println("Populating chapterList");
-            chapters.add((new Chapter()).readJSONObject((JSONObject) chapterObject));
+            chapters.add((Chapter) BasicStoryComponent.readJSONObjectAsComponentID((JSONObject) chapterObject));
         }
-        Savable.printReadingFinishedMessage("chapterList");
         return this;
     }
 

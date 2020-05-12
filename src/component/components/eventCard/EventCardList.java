@@ -1,8 +1,8 @@
 package component.components.eventCard;
 
-import ability.Savable;
 import ability.SavableAsJSONArray;
 import application.ApplicationResource;
+import component.base.BasicStoryComponent;
 import component.components.storyline.Storyline;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
@@ -113,14 +113,9 @@ public class EventCardList implements Iterable<EventCard>, SavableAsJSONArray<Ev
 
     @Override
     public EventCardList readJSONArray(JSONArray eventCardArray) {
-        Savable.printReadingMessage("eventCardList");
         for (Object eventCardObject : eventCardArray) {
-            System.out.println("Populating eventCardList");
-            eventCards.add((new EventCard()).readJSONObject((JSONObject) eventCardObject));
-            //null null problem due to here, because eventCard object called from hashmap has only componentID
-            // TODO : Different method when called from hash map (add current event card instead of a new one?)
+            eventCards.add((EventCard) BasicStoryComponent.readJSONObjectAsComponentID((JSONObject) eventCardObject));
         }
-        Savable.printReadingFinishedMessage("eventCardList");
         return this;
     }
 

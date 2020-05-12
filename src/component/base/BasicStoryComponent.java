@@ -161,6 +161,10 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         return this;
     }
 
+    public static BasicStoryComponent readJSONObjectAsComponentID(JSONObject componentObject) {
+        return ApplicationResource.getValueFromCurrentHashMap((String) componentObject.get("componentID"));
+    }
+
     protected void loadFXML(String link) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(link));
         // fxmlLoader.setRoot(this);

@@ -1,6 +1,6 @@
 package component.components.eventCard;
 
-import ability.Savable;
+import application.ApplicationResource;
 import colors.GlobalColor;
 import component.base.BasicStoryComponent;
 import component.components.chapter.Chapter;
@@ -257,29 +257,12 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     @Override
     public EventCard readJSONObject(JSONObject eventCardObject) {
-        Savable.printReadingMessage("eventCard " + title);
-
         super.readJSONObject(eventCardObject);
         String selfChapterID = (String) eventCardObject.get("selfChapter");
         String selfStorylineID = (String) eventCardObject.get("selfStoryline");
 
-        /*if(selfChapterID != null) {
-            this.setChapter((Chapter) ApplicationResource.getValueFromCurrentHashMap(selfChapterID));
-        } else {
-            this.setChapter(null);
-        }
-
-        if(selfStorylineID != null) {
-            this.setStoryline((Storyline) ApplicationResource.getValueFromCurrentHashMap(selfStorylineID));
-        } else {
-            this.setStoryline(null);
-        }*/
-        //potential problem - hash map not set as current yet?
-
-        setChapter(null);
-        setStoryline(null);
-
-        Savable.printReadingFinishedMessage("eventCard " + title);
+        setChapter((Chapter) ApplicationResource.getValueFromCurrentHashMap(selfChapterID));
+        setStoryline((Storyline) ApplicationResource.getValueFromCurrentHashMap(selfStorylineID));
 
         return this;
     }

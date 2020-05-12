@@ -25,6 +25,7 @@ import java.io.*;
 public class MainController {
 
     private final String os = System.getProperty("os.name");
+    private final FileChooser fileChooser = new FileChooser();
 
     @FXML
     private VBox root;
@@ -51,6 +52,9 @@ public class MainController {
         // setup menu bar property
         if (os != null && os.startsWith("Mac"))
             menuBar.useSystemMenuBarProperty().set(true);
+
+        // setup file chooser
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON file", "*.json"));
 
         // add tab button setUp
         SVGPath plusIcon = ApplicationResource.getIconSVG("plus_icon_24px.svg");
@@ -103,8 +107,7 @@ public class MainController {
     @FXML
     protected void handleSaveClick(ActionEvent event) {
         if(ApplicationResource.getSavedFile() != null) {
-            writeJSONFile(ApplicationResource.getSavedFile());
-            System.out.println("[Save] File saved to " + ApplicationResource.getSavedFile());
+            writeToFile(ApplicationResource.getSavedFile());
             //TODO : Display "Saved"! somewhere on UI
         } else {
             System.out.println("Save not available!");
@@ -114,27 +117,16 @@ public class MainController {
 
     @FXML
     protected void handleSaveAsClick(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON file", "*.json"));
         File selectedFile = fileChooser.showSaveDialog(ApplicationResource.getMainWindow());
         ApplicationResource.setSavedFile(selectedFile);
-        writeJSONFile(selectedFile);
-        System.out.println("[Save As] File saved to " + selectedFile);
+        writeToFile(selectedFile);
     }
 
     @FXML
     protected void handleOpenClick(ActionEvent event) {
-        JSONParser parser = new JSONParser();
-        try (FileReader file = new FileReader("JSONoutput/output_saved.json")) {
-            Object obj = parser.parse(file);
-            readJSONFile((JSONObject) obj);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        File selectedFile = fileChooser.showOpenDialog(ApplicationResource.getMainWindow());
+        ApplicationResource.setSavedFile(selectedFile);
+        readFromFile(selectedFile);
     }
 
     @FXML
@@ -142,18 +134,37 @@ public class MainController {
 
     }
 
-    private void writeJSONFile(File selectedFile) {
-        try {
-            FileWriter file = new FileWriter(selectedFile);
-            file.write(ApplicationResource.getCurrentWorkspace().getJSONString());
-            file.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
+    private void writeToFile(File selectedFile) {
+        if(selectedFile != null) {
+            try {
+                FileWriter file = new FileWriter(selectedFile);
+                file.write(ApplicationResource.getCurrentWorkspace().getJSONString());
+                file.flush();
+                System.out.println("File saved to " + ApplicationResource.getSavedFile());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void readFromFile(File selectedFile) {
+        if(selectedFile != null) {
+            JSONParser parser = new JSONParser();
+            try (FileReader file = new FileReader(selectedFile)) {
+                Object obj = parser.parse(file);
+                readJSONObject((JSONObject) obj);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @SuppressWarnings("unchecked")
-    private void readJSONFile(JSONObject workspaceObject) {
+    private void readJSONObject(JSONObject workspaceObject) {
         ApplicationResource.setCurrentWorkspace((new Workspace()).readJSONObject(workspaceObject));
         System.out.println("Open file complete - Current workspace set to loaded workspace");
     }

@@ -1,6 +1,5 @@
 package component.components.storyline;
 
-import ability.Savable;
 import application.ApplicationResource;
 import application.SystemConstants;
 import colors.GlobalColor;
@@ -26,7 +25,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class Storyline extends BasicStoryComponent {
@@ -180,16 +178,6 @@ public class Storyline extends BasicStoryComponent {
         JSONObject storylineObject = super.writeJSONObject();
         storylineObject.put("type", "Storyline");
         return storylineObject;
-    }
-
-    @Override
-    public Storyline readJSONObject(JSONObject storylineObject) {
-        Savable.printReadingMessage("storyline " + title);
-        super.readJSONObject(storylineObject);
-        JSONArray eventCardArray = (JSONArray) storylineObject.get("eventCardList");
-//        eventCards.readJSONArray(eventCardArray);
-        Savable.printReadingFinishedMessage("storyline " + title);
-        return this;
     }
 
     public void initializeEventHandler() {
