@@ -91,7 +91,7 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
     @Override
     public DocumentList readJSONArray(JSONArray documentArray) {
         for (Object documentObject : documentArray) {
-            documents.add((new Document()).readJSONObject((JSONObject) documentObject));
+            addDocument((new Document()).readJSONObject((JSONObject) documentObject));
         }
         return this;
     }
