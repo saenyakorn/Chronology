@@ -32,7 +32,7 @@ public abstract class Dialog {
         fxmlLoader.setController(this);
         try {
             Parent root = fxmlLoader.load();
-            root.getStylesheets().add(getClass().getResource("Dialog.css").toExternalForm());
+            SystemUtils.loadStyleSheet(root, "Dialog.css");
             stage.setTitle(title);
             stage.setScene(new Scene(root, SystemUtils.DIALOG_PREF_HEIGHT, SystemUtils.DIALOG_PREF_WIDTH));
         } catch (IOException e) {

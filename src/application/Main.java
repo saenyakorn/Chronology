@@ -21,7 +21,7 @@ public class Main extends Application {
     public void start(Stage mainWindow) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("layout/MainWindow.fxml"));
-            root.getStylesheets().add(getClass().getResource("StylingConstant.css").toExternalForm());
+            SystemUtils.loadStyleSheet(root, "StylingConstant.css");
 
             // Added loading layout to application
             StackPane stackPane = new StackPane();
