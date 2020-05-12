@@ -7,9 +7,6 @@
           TimePeriod: String
           selfChapter: null || String
           selfStoryline: null || String
-          [] eventCardList:
-             {} eventCard:
-                componentID: String
    [] documentList:
       {} document:
          name: String
