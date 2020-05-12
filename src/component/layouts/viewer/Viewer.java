@@ -1,6 +1,5 @@
 package component.layouts.viewer;
 
-import application.ApplicationResource;
 import component.components.document.Document;
 import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
@@ -10,6 +9,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.input.MouseEvent;
+import utils.ApplicationUtils;
 
 public class Viewer extends ScrollPane {
 
@@ -28,14 +28,14 @@ public class Viewer extends ScrollPane {
 
     private void createStoryline() {
         Storyline newStoryline = new Storyline();
-        ApplicationResource.getCurrentWorkspace().getActiveDocument().addStoryLine(newStoryline);
-        ApplicationResource.update();
+        ApplicationUtils.getCurrentWorkspace().getActiveDocument().addStoryLine(newStoryline);
+        ApplicationUtils.update();
     }
 
     private void createEventCard() {
         EventCard newEventCard = new EventCard();
-        ApplicationResource.getCurrentWorkspace().getActiveDocument().addEventCard(newEventCard);
-        ApplicationResource.update();
+        ApplicationUtils.getCurrentWorkspace().getActiveDocument().addEventCard(newEventCard);
+        ApplicationUtils.update();
     }
 
     private void rightClickContextMenu(MouseEvent event) {

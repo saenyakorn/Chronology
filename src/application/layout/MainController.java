@@ -1,6 +1,5 @@
 package application.layout;
 
-import application.ApplicationResource;
 import component.components.document.DocumentList;
 import component.dialog.*;
 import component.layouts.workspace.Workspace;
@@ -19,6 +18,8 @@ import javafx.stage.FileChooser;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import utils.ApplicationUtils;
+import utils.SystemUtils;
 
 import java.io.*;
 
@@ -43,10 +44,10 @@ public class MainController {
     @FXML
     public void initialize() {
         // new project
-        ApplicationResource.newProject();
+        ApplicationUtils.newProject();
 
         // vBox contain workspace
-        root.getChildren().add(ApplicationResource.getCurrentWorkspace());
+        root.getChildren().add(ApplicationUtils.getCurrentWorkspace());
         VBox.setVgrow(root.getChildren().get(root.getChildren().size() - 1), Priority.ALWAYS);
 
         // setup menu bar property
@@ -57,18 +58,18 @@ public class MainController {
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON file", "*.json"));
 
         // add tab button setUp
-        SVGPath plusIcon = ApplicationResource.getIconSVG("plus_icon_24px.svg");
+        SVGPath plusIcon = SystemUtils.getIconSVG("plus_icon_24px.svg");
         plusIcon.getStyleClass().add("icon-24px");
         addTabButton.setGraphic(plusIcon);
         addTabButton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
         // hamburger setUp
-        SVGPath hamburgerIcon = ApplicationResource.getIconSVG("hamburger_icon_24px.svg");
+        SVGPath hamburgerIcon = SystemUtils.getIconSVG("hamburger_icon_24px.svg");
         hamburgerIcon.getStyleClass().add("hamburger-button");
         hamburgerContainer.getChildren().add(hamburgerIcon);
 
         // binding tabContainer with documentList
-        DocumentList documentList = ApplicationResource.getCurrentWorkspace().getDocumentList();
+        DocumentList documentList = ApplicationUtils.getCurrentWorkspace().getDocumentList();
         Bindings.bindContent(tabContainer.getChildren(), documentList.getDocumentCustomTabs());
 
         // TODO Rewrite this class more clearly. it work but hard for debugging.
@@ -106,8 +107,8 @@ public class MainController {
 
     @FXML
     protected void handleSaveClick(ActionEvent event) {
-        if(ApplicationResource.getSavedFile() != null) {
-            writeToFile(ApplicationResource.getSavedFile());
+        if(ApplicationUtils.getSavedFile() != null) {
+            writeToFile(ApplicationUtils.getSavedFile());
             //TODO : Display "Saved"! somewhere on UI
         } else {
             System.out.println("Save not available!");
@@ -117,15 +118,15 @@ public class MainController {
 
     @FXML
     protected void handleSaveAsClick(ActionEvent event) {
-        File selectedFile = fileChooser.showSaveDialog(ApplicationResource.getMainWindow());
-        ApplicationResource.setSavedFile(selectedFile);
+        File selectedFile = fileChooser.showSaveDialog(root.getScene().getWindow());
+        ApplicationUtils.setSavedFile(selectedFile);
         writeToFile(selectedFile);
     }
 
     @FXML
     protected void handleOpenClick(ActionEvent event) {
-        File selectedFile = fileChooser.showOpenDialog(ApplicationResource.getMainWindow());
-        ApplicationResource.setSavedFile(selectedFile);
+        File selectedFile = fileChooser.showOpenDialog(root.getScene().getWindow());
+        ApplicationUtils.setSavedFile(selectedFile);
         readFromFile(selectedFile);
     }
 
@@ -138,9 +139,9 @@ public class MainController {
         if(selectedFile != null) {
             try {
                 FileWriter file = new FileWriter(selectedFile);
-                file.write(ApplicationResource.getCurrentWorkspace().getJSONString());
+                file.write(ApplicationUtils.getCurrentWorkspace().getJSONString());
                 file.flush();
-                System.out.println("File saved to " + ApplicationResource.getSavedFile());
+                System.out.println("File saved to " + ApplicationUtils.getSavedFile());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -165,7 +166,7 @@ public class MainController {
 
     @SuppressWarnings("unchecked")
     private void readJSONObject(JSONObject workspaceObject) {
-        ApplicationResource.setCurrentWorkspace((new Workspace()).readJSONObject(workspaceObject));
+        ApplicationUtils.setCurrentWorkspace((new Workspace()).readJSONObject(workspaceObject));
         System.out.println("Open file complete - Current workspace set to loaded workspace");
     }
 }

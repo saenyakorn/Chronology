@@ -1,7 +1,5 @@
 package component.layouts.sideBar;
 
-import application.ApplicationResource;
-import application.SystemConstants;
 import component.base.BasicStoryComponent;
 import component.base.BlankBasicStoryComponent;
 import component.base.cell.BasicStoryComponentTreeCell;
@@ -20,6 +18,8 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.SVGPath;
+import utils.ApplicationUtils;
+import utils.SystemUtils;
 
 public class SideBar extends ScrollPane {
 
@@ -28,14 +28,14 @@ public class SideBar extends ScrollPane {
     private final TreeView<BasicStoryComponent> basicStoryComponentTreeView;
 
     // Icon for each item
-    private final SVGPath eventCardIcon = ApplicationResource.getIconSVG("event_card_icon_24px.svg");
-    private final SVGPath storylineIcon = ApplicationResource.getIconSVG("storyline_icon_24px.svg");
-    private final SVGPath chapterIcon = ApplicationResource.getIconSVG("chapter_icon_24px.svg");
-    private final SVGPath documentIcon = ApplicationResource.getIconSVG("check_icon_24px.svg");
+    private final SVGPath eventCardIcon = SystemUtils.getIconSVG("event_card_icon_24px.svg");
+    private final SVGPath storylineIcon = SystemUtils.getIconSVG("storyline_icon_24px.svg");
+    private final SVGPath chapterIcon = SystemUtils.getIconSVG("chapter_icon_24px.svg");
+    private final SVGPath documentIcon = SystemUtils.getIconSVG("check_icon_24px.svg");
 
     public SideBar() {
         // load css file
-        ApplicationResource.loadStyleSheet(this, "SideBar.css");
+        SystemUtils.loadStyleSheet(this, "SideBar.css");
         getStyleClass().add("body");
 
         // basicStoryComponentTreeView setting
@@ -65,7 +65,7 @@ public class SideBar extends ScrollPane {
         // scroll pane setting
         getStyleClass().add("side-bar");
         setFitToWidth(true);
-        setPrefWidth(SystemConstants.SIDEBAR_PREF_WIDTH);
+        setPrefWidth(SystemUtils.SIDEBAR_PREF_WIDTH);
         setContent(vBox);
 
         // initialize TreeView
@@ -149,7 +149,7 @@ public class SideBar extends ScrollPane {
     public void renderDocumentTreeItem() {
         TreeItem<Document> rootItem = documentTreeView.getRoot();
         rootItem.getChildren().clear();
-        DocumentList documentList = ApplicationResource.getCurrentWorkspace().getDocumentList();
+        DocumentList documentList = ApplicationUtils.getCurrentWorkspace().getDocumentList();
         for (Document document : documentList) {
             TreeItem<Document> treeItem = new TreeItem<>(document, documentIcon);
             rootItem.getChildren().add(treeItem);

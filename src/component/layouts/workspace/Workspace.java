@@ -1,7 +1,6 @@
 package component.layouts.workspace;
 
-import ability.SavableAsJSONObject;
-import application.ApplicationResource;
+import component.ability.SavableAsJSONObject;
 import component.base.BasicStoryComponent;
 import component.components.document.Document;
 import component.components.document.DocumentList;
@@ -11,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import utils.ApplicationUtils;
 
 public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
     private final DocumentList documents = new DocumentList();
@@ -79,7 +79,7 @@ public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
     @SuppressWarnings("unchecked")
     public JSONObject writeJSONObject() {
         JSONObject workspaceObject = new JSONObject();
-        workspaceObject.put("hashMap", ApplicationResource.getCurrentHashMapAsJSONObject());
+        workspaceObject.put("hashMap", ApplicationUtils.getCurrentHashMapAsJSONObject());
         workspaceObject.put("documentList", documents.writeJSONArray());
         return workspaceObject;
     }
@@ -95,7 +95,7 @@ public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
             if(!componentObject.get("type").equals("EventCard")){
                 BasicStoryComponent component = BasicStoryComponent.JSONObjectToBasicStoryComponent(componentID, componentObject);
                 System.out.println("Populating hashMap - key: " + key + ", type: " + component.getClass().getName());
-                ApplicationResource.putItemToCurrentHashMap(componentID, component.readJSONObject(componentObject));
+                ApplicationUtils.putItemToCurrentHashMap(componentID, component.readJSONObject(componentObject));
             }
         });
         hashMapObject.forEach((key, value) -> {
@@ -104,7 +104,7 @@ public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
             if(componentObject.get("type").equals("EventCard")){
                 BasicStoryComponent component = BasicStoryComponent.JSONObjectToBasicStoryComponent(componentID, componentObject);
                 System.out.println("Populating hashMap - key: " + key + ", type: " + component.getClass().getName());
-                ApplicationResource.putItemToCurrentHashMap(componentID, component.readJSONObject(componentObject));
+                ApplicationUtils.putItemToCurrentHashMap(componentID, component.readJSONObject(componentObject));
             }
         });
         documents.readJSONArray(documentArray);

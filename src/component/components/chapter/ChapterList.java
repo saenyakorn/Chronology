@@ -1,6 +1,6 @@
 package component.components.chapter;
 
-import ability.SavableAsJSONArray;
+import component.ability.SavableAsJSONArray;
 import component.base.BasicStoryComponent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +10,7 @@ import org.json.simple.JSONObject;
 import java.util.Iterator;
 
 public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray<ChapterList> {
+
     private final ObservableList<Chapter> chapters;
 
     public ChapterList() {

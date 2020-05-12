@@ -1,12 +1,12 @@
 package component.dialog;
 
-import application.ApplicationResource;
 import component.components.storyline.Storyline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import utils.ApplicationUtils;
 
 public class NewStorylineDialog extends Dialog {
 
@@ -26,8 +26,8 @@ public class NewStorylineDialog extends Dialog {
     private void AddNewStoryline(String title, String description) {
         System.out.println("Creating a new Storyline");
         Storyline newStoryline = new Storyline(title, description);
-        ApplicationResource.getCurrentWorkspace().getActiveDocument().addStoryLine(newStoryline);
-        ApplicationResource.update();
+        ApplicationUtils.getCurrentWorkspace().getActiveDocument().addStoryLine(newStoryline);
+        ApplicationUtils.update();
         System.out.println("Done");
         this.close();
     }

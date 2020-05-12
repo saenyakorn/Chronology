@@ -1,7 +1,6 @@
 package component.components.document;
 
-import ability.SavableAsJSONObject;
-import application.ApplicationResource;
+import component.ability.SavableAsJSONObject;
 import component.components.chapter.Chapter;
 import component.components.chapter.ChapterList;
 import component.components.eventCard.EventCard;
@@ -13,6 +12,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.layout.VBox;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import utils.ApplicationUtils;
 
 public class Document extends VBox implements SavableAsJSONObject<Document> {
     private final SimpleStringProperty name = new SimpleStringProperty("");
@@ -39,34 +39,34 @@ public class Document extends VBox implements SavableAsJSONObject<Document> {
 
     public void addEventCard(EventCard eventCard) {
         eventCards.addEventCard(eventCard);
-        ApplicationResource.getCurrentWorkspace().getSideBar().renderEventCardTreeItem(this);
+        ApplicationUtils.getCurrentWorkspace().getSideBar().renderEventCardTreeItem(this);
     }
 
     public void addStoryLine(Storyline storyline) {
         storylines.addStoryline(storyline);
-        ApplicationResource.getCurrentWorkspace().getViewer().setDocument(this);
-        ApplicationResource.getCurrentWorkspace().getSideBar().renderStorylineTreeItem(this);
+        ApplicationUtils.getCurrentWorkspace().getViewer().setDocument(this);
+        ApplicationUtils.getCurrentWorkspace().getSideBar().renderStorylineTreeItem(this);
     }
 
     public void addChapter(Chapter chapter) {
         chapters.addChapter(chapter);
-        ApplicationResource.getCurrentWorkspace().getSideBar().renderChapterTreeItem(this);
+        ApplicationUtils.getCurrentWorkspace().getSideBar().renderChapterTreeItem(this);
     }
 
     public void removeEventCard(EventCard eventCard) {
         eventCards.removeEventCard(eventCard);
-        ApplicationResource.getCurrentWorkspace().getSideBar().renderEventCardTreeItem(this);
+        ApplicationUtils.getCurrentWorkspace().getSideBar().renderEventCardTreeItem(this);
     }
 
     public void removeStoryline(Storyline storyline) {
         storylines.removeStoryline(storyline);
-        ApplicationResource.getCurrentWorkspace().getViewer().setDocument(this);
-        ApplicationResource.getCurrentWorkspace().getSideBar().renderStorylineTreeItem(this);
+        ApplicationUtils.getCurrentWorkspace().getViewer().setDocument(this);
+        ApplicationUtils.getCurrentWorkspace().getSideBar().renderStorylineTreeItem(this);
     }
 
     public void removeChapter(Chapter chapter) {
         chapters.removeChapter(chapter);
-        ApplicationResource.getCurrentWorkspace().getSideBar().renderChapterTreeItem(this);
+        ApplicationUtils.getCurrentWorkspace().getSideBar().renderChapterTreeItem(this);
     }
 
     public String getName() {

@@ -1,6 +1,6 @@
 package component.components.storyline;
 
-import ability.SavableAsJSONArray;
+import component.ability.SavableAsJSONArray;
 import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
 import javafx.collections.FXCollections;

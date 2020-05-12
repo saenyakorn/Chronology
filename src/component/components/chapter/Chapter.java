@@ -1,12 +1,12 @@
 package component.components.chapter;
 
-import application.ApplicationResource;
 import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
 import component.components.timeModifier.TimePeriod;
 import javafx.scene.paint.Color;
 import org.json.simple.JSONObject;
+import utils.ApplicationUtils;
 
 public class Chapter extends BasicStoryComponent {
 
@@ -38,7 +38,7 @@ public class Chapter extends BasicStoryComponent {
     @Override
     public void setColor(Color color) {
         super.setColor(color);
-        EventCardList eventCards = ApplicationResource.getCurrentWorkspace().getActiveDocument().getEventCards();
+        EventCardList eventCards = ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards();
         for (EventCard eventCard : eventCards) {
             if(eventCard.getChapter().equals(this)){
                 eventCard.setChapterColor(color);

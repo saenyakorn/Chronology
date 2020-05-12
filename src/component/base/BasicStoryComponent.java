@@ -1,9 +1,8 @@
 package component.base;
 
-import ability.SavableAsJSONObject;
-import application.ApplicationResource;
 import colors.GlobalColor;
 import colors.RandomColor;
+import component.ability.SavableAsJSONObject;
 import component.components.chapter.Chapter;
 import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
@@ -15,6 +14,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.paint.Color;
 import org.json.simple.JSONObject;
+import utils.ApplicationUtils;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -30,7 +30,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
     @SuppressWarnings("unchecked")
     public BasicStoryComponent() {
         this.componentId = UUID.randomUUID().toString();
-        ApplicationResource.putItemToCurrentHashMap(componentId, this);
+        ApplicationUtils.putItemToCurrentHashMap(componentId, this);
         this.title = "Title";
         this.description = "Lorem ipsum dolor set amet, ego bir setaso de.";
         this.color = GlobalColor.DEFAULT_COLOR;
@@ -50,7 +50,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
     @SuppressWarnings("unchecked")
     public BasicStoryComponent(String title, String description) {
         this.componentId = UUID.randomUUID().toString();
-        ApplicationResource.putItemToCurrentHashMap(componentId, this);
+        ApplicationUtils.putItemToCurrentHashMap(componentId, this);
         this.title = title;
         this.description = description;
         this.color = GlobalColor.DEFAULT_COLOR;
@@ -60,7 +60,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
     @SuppressWarnings("unchecked")
     public BasicStoryComponent(String title, String description, Color color, TimePeriod timePeriod) {
         this.componentId = UUID.randomUUID().toString();
-        ApplicationResource.putItemToCurrentHashMap(componentId, this);
+        ApplicationUtils.putItemToCurrentHashMap(componentId, this);
         this.title = title;
         this.description = description;
         this.color = color;

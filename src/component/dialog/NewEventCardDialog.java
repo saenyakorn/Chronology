@@ -1,6 +1,5 @@
 package component.dialog;
 
-import application.ApplicationResource;
 import component.base.BasicStoryComponent;
 import component.base.BlankBasicStoryComponent;
 import component.base.cell.ComboBoxButtonCell;
@@ -18,6 +17,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import utils.ApplicationUtils;
 
 public class NewEventCardDialog extends Dialog {
 
@@ -38,8 +38,8 @@ public class NewEventCardDialog extends Dialog {
 
     public void addNewEventCard(String title, String description) {
         EventCard newEventCard = new EventCard(title, description);
-        ApplicationResource.getCurrentWorkspace().getActiveDocument().addEventCard(newEventCard);
-        ApplicationResource.update();
+        ApplicationUtils.getCurrentWorkspace().getActiveDocument().addEventCard(newEventCard);
+        ApplicationUtils.update();
         this.close();
     }
 
@@ -60,7 +60,7 @@ public class NewEventCardDialog extends Dialog {
 
     private void createChapterComboBox() {
         ComboBox<BasicStoryComponent> chapterCombo = new ComboBox<>();
-        Document document = ApplicationResource.getCurrentWorkspace().getActiveDocument();
+        Document document = ApplicationUtils.getCurrentWorkspace().getActiveDocument();
         ChapterList chapters = document.getChapters();
         chapterCombo.getItems().add(new BlankBasicStoryComponent("None", "None"));
         for (Chapter chapter : chapters) {
@@ -74,7 +74,7 @@ public class NewEventCardDialog extends Dialog {
 
     private void createStorylineComboBox() {
         ComboBox<BasicStoryComponent> storylineCombo = new ComboBox<>();
-        Document document = ApplicationResource.getCurrentWorkspace().getActiveDocument();
+        Document document = ApplicationUtils.getCurrentWorkspace().getActiveDocument();
         StorylineList storylines = document.getStorylines();
         storylineCombo.getItems().add(new BlankBasicStoryComponent("None", "None"));
         for (Storyline storyline : storylines) {

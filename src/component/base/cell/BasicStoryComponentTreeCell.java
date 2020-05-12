@@ -1,26 +1,29 @@
 package component.base.cell;
 
-import application.ApplicationResource;
 import colors.GlobalColor;
 import component.base.BasicStoryComponent;
 import component.components.chapter.Chapter;
 import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
 import javafx.scene.Node;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeCell;
 import javafx.scene.input.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
+import utils.ApplicationUtils;
+import utils.SystemUtils;
 
 public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryComponent> {
 
-    TextField textField;
-    private final SVGPath eventCardIcon = ApplicationResource.getIconSVG("event_card_icon_24px.svg");
-    private final SVGPath storylineIcon = ApplicationResource.getIconSVG("storyline_icon_24px.svg");
-    private final SVGPath chapterIcon = ApplicationResource.getIconSVG("chapter_icon_24px.svg");
+    private TextField textField;
+    private final SVGPath eventCardIcon = SystemUtils.getIconSVG("event_card_icon_24px.svg");
+    private final SVGPath storylineIcon = SystemUtils.getIconSVG("storyline_icon_24px.svg");
+    private final SVGPath chapterIcon = SystemUtils.getIconSVG("chapter_icon_24px.svg");
 
     public BasicStoryComponentTreeCell() {
-        getStylesheets().add(getClass().getResource("TreeCell.css").toExternalForm());
+        SystemUtils.loadStyleSheet(this, "TreeCell.css");
         getStyleClass().add("tree-cell");
         initializeEventHandler();
         eventCardIcon.getStyleClass().add("icon-24px");
@@ -49,7 +52,6 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
     @Override
     protected void updateItem(BasicStoryComponent item, boolean empty) {
         super.updateItem(item, empty);
-
         if (empty || item == null) {
             setText(null);
             setGraphic(null);
@@ -110,7 +112,9 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
         setOnDragDetected((MouseEvent event) -> {
             if (getItem() != null) {
                 Dragboard dragboard = startDragAndDrop(TransferMode.MOVE);
-                dragboard.setDragView(snapshot(null, null));
+                SnapshotParameters parameters = new SnapshotParameters();
+                parameters.setFill(Color.TRANSPARENT);
+                dragboard.setDragView(snapshot(parameters, null));
                 ClipboardContent clipboardContent = new ClipboardContent();
                 clipboardContent.putString(getItem().getComponentId());
                 dragboard.setContent(clipboardContent);
@@ -125,14 +129,14 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
         });
         setOnDragDropped((DragEvent event) -> {
             String itemId = event.getDragboard().getString();
-            BasicStoryComponent item = ApplicationResource.getValueFromCurrentHashMap(itemId);
+            BasicStoryComponent item = ApplicationUtils.getValueFromCurrentHashMap(itemId);
             if (item instanceof EventCard && getItem() instanceof Chapter) {
                 EventCard eventCard = (EventCard) item;
                 Chapter target = (Chapter) getItem();
-                ApplicationResource.getCurrentWorkspace().getActiveDocument().removeEventCard(eventCard);
+                ApplicationUtils.getCurrentWorkspace().getActiveDocument().removeEventCard(eventCard);
                 eventCard.setChapter(target);
-                ApplicationResource.getCurrentWorkspace().getActiveDocument().addEventCard(eventCard);
-                ApplicationResource.update();
+                ApplicationUtils.getCurrentWorkspace().getActiveDocument().addEventCard(eventCard);
+                ApplicationUtils.update();
             }
             event.consume();
         });

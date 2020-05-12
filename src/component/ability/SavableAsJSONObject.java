@@ -1,4 +1,4 @@
-package ability;
+package component.ability;
 
 import org.json.simple.JSONObject;
 
