@@ -24,7 +24,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class MainController {
+public class MainWindow {
 
     private final String os = System.getProperty("os.name");
 
