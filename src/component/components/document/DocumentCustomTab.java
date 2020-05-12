@@ -1,19 +1,19 @@
 package component.components.document;
 
-import application.ApplicationResource;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.SVGPath;
+import utils.ApplicationUtils;
 
 public class DocumentCustomTab extends HBox {
 
     private final Label label = new Label();
     private final Button closeButton = new Button();
     private final SimpleBooleanProperty active = new SimpleBooleanProperty(false);
-    private final SVGPath closeIcon = ApplicationResource.getIconSVG("close_icon_24px.svg");
+    private final SVGPath closeIcon = ApplicationUtils.getIconSVG("close_icon_24px.svg");
 
     public DocumentCustomTab() {
         initializeFXComponent();
@@ -42,7 +42,7 @@ public class DocumentCustomTab extends HBox {
     }
 
     private void initializeFXComponent() {
-        ApplicationResource.loadStyleSheet(this, "Document.css");
+        ApplicationUtils.loadStyleSheet(this, "Document.css");
         getChildren().addAll(label, closeButton);
         getStyleClass().add("document-tab-container");
         label.getStyleClass().add("document-tab-text");

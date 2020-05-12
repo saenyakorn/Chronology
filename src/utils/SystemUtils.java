@@ -1,6 +1,6 @@
-package application;
+package utils;
 
-public class SystemConstants {
+public class SystemUtils {
 
     /* Application constants */
     public static final String APP_NAME = "Chronology";

@@ -1,12 +1,12 @@
 package component.dialog;
 
-import application.ApplicationResource;
 import component.components.chapter.Chapter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import utils.ApplicationUtils;
 
 public class NewChapterDialog extends Dialog {
 
@@ -25,8 +25,8 @@ public class NewChapterDialog extends Dialog {
 
     private void AddNewChapter(String title, String description) {
         Chapter newChapter = new Chapter(title, description);
-        ApplicationResource.getCurrentWorkspace().getActiveDocument().addChapter(newChapter);
-        ApplicationResource.update();
+        ApplicationUtils.getCurrentWorkspace().getActiveDocument().addChapter(newChapter);
+        ApplicationUtils.update();
         this.close();
     }
 

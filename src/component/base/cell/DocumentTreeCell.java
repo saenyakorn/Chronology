@@ -1,6 +1,5 @@
 package component.base.cell;
 
-import application.ApplicationResource;
 import colors.GlobalColor;
 import component.components.document.Document;
 import javafx.scene.Node;
@@ -10,11 +9,12 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.SVGPath;
+import utils.ApplicationUtils;
 
 public final class DocumentTreeCell extends TreeCell<Document> {
 
     TextField textField;
-    private final SVGPath documentIcon = ApplicationResource.getIconSVG("document_icon_24px.svg");
+    private final SVGPath documentIcon = ApplicationUtils.getIconSVG("document_icon_24px.svg");
 
     public DocumentTreeCell() {
         super();
@@ -92,7 +92,7 @@ public final class DocumentTreeCell extends TreeCell<Document> {
     private void initializeEventHandler() {
         setOnMouseClicked((MouseEvent event) -> {
             if (getItem() instanceof Document) {
-                ApplicationResource.getCurrentWorkspace().setActiveDocument(getItem());
+                ApplicationUtils.getCurrentWorkspace().setActiveDocument(getItem());
             }
         });
     }

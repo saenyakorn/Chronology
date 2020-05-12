@@ -1,11 +1,11 @@
 package component.dialog;
 
-import application.ApplicationResource;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import utils.ApplicationUtils;
 
 public class NewProjectDialog extends Dialog {
 
@@ -23,7 +23,7 @@ public class NewProjectDialog extends Dialog {
 
     private void createNewProject() {
         System.out.println("Creating a new project");
-        ApplicationResource.newProject();
+        ApplicationUtils.newProject();
         System.out.println("Done");
         this.close();
     }

@@ -1,6 +1,5 @@
 package component.dialog;
 
-import application.SystemConstants;
 import component.base.BasicStoryComponent;
 import component.components.timeModifier.PredefinedTimePeriod;
 import component.components.timeModifier.TimePeriod;
@@ -15,13 +14,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import jfxtras.scene.control.LocalDateTimeTextField;
+import utils.SystemUtils;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class SetTimePeriodDialog extends Dialog {
-    private BasicStoryComponent component;
+    private final BasicStoryComponent component;
     private boolean isCustomMode;
     private ToggleGroup predefinedTimePeriods;
 
@@ -50,7 +50,7 @@ public class SetTimePeriodDialog extends Dialog {
         try {
             Parent root = fxmlLoader.load();
             stage.setTitle("Set Event Date & Time");
-            stage.setScene(new Scene(root, SystemConstants.DIALOG_PREF_WIDTH * 2, SystemConstants.DIALOG_PREF_HEIGHT));
+            stage.setScene(new Scene(root, SystemUtils.DIALOG_PREF_WIDTH * 2, SystemUtils.DIALOG_PREF_HEIGHT));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -146,11 +146,7 @@ public class SetTimePeriodDialog extends Dialog {
         } else if(isCustomMode) {
             LocalDateTime beginDateTime = customModeBeginDatePicker.getLocalDateTime();
             LocalDateTime endDateTime = customModeEndDatePicker.getLocalDateTime();
-            if(endDateTime.isBefore(beginDateTime)){
-                setButton.setDisable(true);
-            } else {
-                setButton.setDisable(false);
-            }
+            setButton.setDisable(endDateTime.isBefore(beginDateTime));
         } else {
             setButton.setDisable(false);
         }

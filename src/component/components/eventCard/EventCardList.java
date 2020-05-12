@@ -2,7 +2,6 @@ package component.components.eventCard;
 
 import ability.Savable;
 import ability.SavableAsJSONArray;
-import application.ApplicationResource;
 import component.components.storyline.Storyline;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
@@ -12,6 +11,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.scene.layout.GridPane;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import utils.ApplicationUtils;
 
 import java.util.Iterator;
 
@@ -41,7 +41,7 @@ public class EventCardList implements Iterable<EventCard>, SavableAsJSONArray<Ev
                     focusedGridPane.add(eventCard.getDisplay(), eventCard.getIndex(), 0);
                 }
             }
-            for (Storyline storyline : ApplicationResource.getCurrentWorkspace().getActiveDocument().getStorylines()) {
+            for (Storyline storyline : ApplicationUtils.getCurrentWorkspace().getActiveDocument().getStorylines()) {
                 GridPane focusedGridPane = storyline.getContainer();
                 // System.out.println("Storyline: " + storyline + " gridSize: " + focusedGridPane.getChildren().size() + "min-max: " + storyline.getMinIndex() + "-" + storyline.getMaxIndex());
                 storyline.modifyStorylineStructure();

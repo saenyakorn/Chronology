@@ -1,6 +1,5 @@
 package component.dialog;
 
-import application.SystemConstants;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -9,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import utils.SystemUtils;
 
 import java.io.IOException;
 
@@ -34,7 +34,7 @@ public abstract class Dialog {
             Parent root = fxmlLoader.load();
             root.getStylesheets().add(getClass().getResource("Dialog.css").toExternalForm());
             stage.setTitle(title);
-            stage.setScene(new Scene(root, SystemConstants.DIALOG_PREF_HEIGHT, SystemConstants.DIALOG_PREF_WIDTH));
+            stage.setScene(new Scene(root, SystemUtils.DIALOG_PREF_HEIGHT, SystemUtils.DIALOG_PREF_WIDTH));
         } catch (IOException e) {
             e.printStackTrace();
         }

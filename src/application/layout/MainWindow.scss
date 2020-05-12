@@ -13,6 +13,20 @@
   -fx-effect: dropshadow(gaussian, $black, 10, 1.0, 100, 100);
 }
 
+.stack {
+  -fx-background-color: $sky-blue;
+  -fx-alignment: center;
+}
+.test {
+  -fx-background-color: $red;
+  -fx-z-index: 999;
+  -fx-alignment: center;
+}
+.test2 {
+  -fx-background-color: $lime;
+  -fx-alignment: center;
+}
+
 .navigation-bar {
   @include hBox-needs-style;
   -fx-spacing: $spacing;

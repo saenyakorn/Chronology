@@ -1,12 +1,12 @@
 package component.components.document;
 
 import ability.SavableAsJSONArray;
-import application.ApplicationResource;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.input.MouseEvent;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import utils.ApplicationUtils;
 
 import java.util.Iterator;
 
@@ -51,7 +51,7 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
     public void removeDocument(Document document) {
         documentCustomTabs.remove(documents.indexOf(document));
         documents.remove(document);
-        ApplicationResource.getCurrentWorkspace().getSideBar().renderDocumentTreeItem();
+        ApplicationUtils.getCurrentWorkspace().getSideBar().renderDocumentTreeItem();
     }
 
     public int getSize() {
@@ -66,7 +66,7 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
         tab.setActive(true);
         activeTab.setActive(false);
         activeTab = tab;
-        ApplicationResource.getCurrentWorkspace().getViewer().setDocument(getActiveDocument());
+        ApplicationUtils.getCurrentWorkspace().getViewer().setDocument(getActiveDocument());
     }
 
     public Document getDocumentFromTab(DocumentCustomTab tab) {

@@ -1,6 +1,5 @@
 package application.layout;
 
-import application.ApplicationResource;
 import component.components.document.DocumentList;
 import component.dialog.*;
 import component.layouts.workspace.Workspace;
@@ -17,6 +16,7 @@ import javafx.scene.shape.SVGPath;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import utils.ApplicationUtils;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -41,10 +41,10 @@ public class MainController {
     @FXML
     public void initialize() {
         // new project
-        ApplicationResource.newProject();
+        ApplicationUtils.newProject();
 
         // vBox contain workspace
-        root.getChildren().add(ApplicationResource.getCurrentWorkspace());
+        root.getChildren().add(ApplicationUtils.getCurrentWorkspace());
         VBox.setVgrow(root.getChildren().get(root.getChildren().size() - 1), Priority.ALWAYS);
 
         // setup menu bar property
@@ -52,18 +52,18 @@ public class MainController {
             menuBar.useSystemMenuBarProperty().set(true);
 
         // add tab button setUp
-        SVGPath plusIcon = ApplicationResource.getIconSVG("plus_icon_24px.svg");
+        SVGPath plusIcon = ApplicationUtils.getIconSVG("plus_icon_24px.svg");
         plusIcon.getStyleClass().add("icon-24px");
         addTabButton.setGraphic(plusIcon);
         addTabButton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
         // hamburger setUp
-        SVGPath hamburgerIcon = ApplicationResource.getIconSVG("hamburger_icon_24px.svg");
+        SVGPath hamburgerIcon = ApplicationUtils.getIconSVG("hamburger_icon_24px.svg");
         hamburgerIcon.getStyleClass().add("hamburger-button");
         hamburgerContainer.getChildren().add(hamburgerIcon);
 
         // binding tabContainer with documentList
-        DocumentList documentList = ApplicationResource.getCurrentWorkspace().getDocumentList();
+        DocumentList documentList = ApplicationUtils.getCurrentWorkspace().getDocumentList();
         Bindings.bindContent(tabContainer.getChildren(), documentList.getDocumentCustomTabs());
 
         // TODO Rewrite this class more clearly. it work but hard for debugging.
@@ -104,7 +104,7 @@ public class MainController {
         try {
             //FileWriter file = new FileWriter(ApplicationResource.getSavedFile()); //savedFile is currently null!
             FileWriter file = new FileWriter("output.json");
-            file.write(ApplicationResource.getCurrentWorkspace().getJSONString());
+            file.write(ApplicationUtils.getCurrentWorkspace().getJSONString());
             file.flush();
         } catch (IOException e) {
             e.printStackTrace();
@@ -138,7 +138,7 @@ public class MainController {
 
     @SuppressWarnings("unchecked")
     private void readJSONFile(JSONObject workspaceObject) {
-        ApplicationResource.setCurrentWorkspace((new Workspace()).readJSONObject(workspaceObject));
+        ApplicationUtils.setCurrentWorkspace((new Workspace()).readJSONObject(workspaceObject));
         System.out.println("Open file complete - Current workspace set to loaded workspace");
     }
 }

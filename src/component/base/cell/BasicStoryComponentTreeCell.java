@@ -1,6 +1,5 @@
 package component.base.cell;
 
-import application.ApplicationResource;
 import colors.GlobalColor;
 import component.base.BasicStoryComponent;
 import component.components.chapter.Chapter;
@@ -13,14 +12,14 @@ import javafx.scene.control.TreeCell;
 import javafx.scene.input.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
+import utils.ApplicationUtils;
 
 public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryComponent> {
 
-    private boolean hasGraphic;
     private TextField textField;
-    private final SVGPath eventCardIcon = ApplicationResource.getIconSVG("event_card_icon_24px.svg");
-    private final SVGPath storylineIcon = ApplicationResource.getIconSVG("storyline_icon_24px.svg");
-    private final SVGPath chapterIcon = ApplicationResource.getIconSVG("chapter_icon_24px.svg");
+    private final SVGPath eventCardIcon = ApplicationUtils.getIconSVG("event_card_icon_24px.svg");
+    private final SVGPath storylineIcon = ApplicationUtils.getIconSVG("storyline_icon_24px.svg");
+    private final SVGPath chapterIcon = ApplicationUtils.getIconSVG("chapter_icon_24px.svg");
 
     public BasicStoryComponentTreeCell() {
         getStylesheets().add(getClass().getResource("TreeCell.css").toExternalForm());
@@ -129,14 +128,14 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
         });
         setOnDragDropped((DragEvent event) -> {
             String itemId = event.getDragboard().getString();
-            BasicStoryComponent item = ApplicationResource.getValueFromCurrentHashMap(itemId);
+            BasicStoryComponent item = ApplicationUtils.getValueFromCurrentHashMap(itemId);
             if (item instanceof EventCard && getItem() instanceof Chapter) {
                 EventCard eventCard = (EventCard) item;
                 Chapter target = (Chapter) getItem();
-                ApplicationResource.getCurrentWorkspace().getActiveDocument().removeEventCard(eventCard);
+                ApplicationUtils.getCurrentWorkspace().getActiveDocument().removeEventCard(eventCard);
                 eventCard.setChapter(target);
-                ApplicationResource.getCurrentWorkspace().getActiveDocument().addEventCard(eventCard);
-                ApplicationResource.update();
+                ApplicationUtils.getCurrentWorkspace().getActiveDocument().addEventCard(eventCard);
+                ApplicationUtils.update();
             }
             event.consume();
         });

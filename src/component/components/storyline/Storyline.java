@@ -1,8 +1,6 @@
 package component.components.storyline;
 
 import ability.Savable;
-import application.ApplicationResource;
-import application.SystemConstants;
 import colors.GlobalColor;
 import colors.RandomColor;
 import component.base.BasicStoryComponent;
@@ -28,6 +26,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import utils.ApplicationUtils;
+import utils.SystemUtils;
 
 public class Storyline extends BasicStoryComponent {
     private int minIndex = Integer.MAX_VALUE;
@@ -103,7 +103,7 @@ public class Storyline extends BasicStoryComponent {
     public void modifyStorylineStructure() {
         // setup all column constraint
         int gapSize = 30;
-        int columnSize = SystemConstants.EVENT_CARD_PREF_WIDTH + gapSize;
+        int columnSize = SystemUtils.EVENT_CARD_PREF_WIDTH + gapSize;
         ObservableList<ColumnConstraints> columnConstraints = FXCollections.observableArrayList();
         for (int i = 0; i < getMaxIndex(); i++) {
             columnConstraints.add(new ColumnConstraints(columnSize));
@@ -196,11 +196,11 @@ public class Storyline extends BasicStoryComponent {
         });
         root.setOnDragDropped((DragEvent event) -> {
             String itemId = event.getDragboard().getString();
-            BasicStoryComponent item = ApplicationResource.getValueFromCurrentHashMap(itemId);
+            BasicStoryComponent item = ApplicationUtils.getValueFromCurrentHashMap(itemId);
             if (item instanceof EventCard) {
                 EventCard eventCard = (EventCard) item;
                 eventCard.setStoryline(this);
-                ApplicationResource.update();
+                ApplicationUtils.update();
             }
             event.consume();
         });

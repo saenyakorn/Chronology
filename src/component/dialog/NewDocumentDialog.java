@@ -1,12 +1,12 @@
 package component.dialog;
 
-import application.ApplicationResource;
 import component.components.document.Document;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import utils.ApplicationUtils;
 
 public class NewDocumentDialog extends Dialog {
     @FXML
@@ -21,7 +21,7 @@ public class NewDocumentDialog extends Dialog {
     }
 
     private void addNewDocument(String name) {
-        ApplicationResource.getCurrentWorkspace().addDocument(new Document(name));
+        ApplicationUtils.getCurrentWorkspace().addDocument(new Document(name));
         this.close();
     }
 
