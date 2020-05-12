@@ -6,14 +6,14 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.SVGPath;
-import utils.ApplicationUtils;
+import utils.SystemUtils;
 
 public class DocumentCustomTab extends HBox {
 
     private final Label label = new Label();
     private final Button closeButton = new Button();
     private final SimpleBooleanProperty active = new SimpleBooleanProperty(false);
-    private final SVGPath closeIcon = ApplicationUtils.getIconSVG("close_icon_24px.svg");
+    private final SVGPath closeIcon = SystemUtils.getIconSVG("close_icon_24px.svg");
 
     public DocumentCustomTab() {
         initializeFXComponent();
@@ -42,7 +42,7 @@ public class DocumentCustomTab extends HBox {
     }
 
     private void initializeFXComponent() {
-        ApplicationUtils.loadStyleSheet(this, "Document.css");
+        SystemUtils.loadStyleSheet(this, "Document.css");
         getChildren().addAll(label, closeButton);
         getStyleClass().add("document-tab-container");
         label.getStyleClass().add("document-tab-text");

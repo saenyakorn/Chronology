@@ -10,11 +10,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.SVGPath;
 import utils.ApplicationUtils;
+import utils.SystemUtils;
 
 public final class DocumentTreeCell extends TreeCell<Document> {
 
     TextField textField;
-    private final SVGPath documentIcon = ApplicationUtils.getIconSVG("document_icon_24px.svg");
+    private final SVGPath documentIcon = SystemUtils.getIconSVG("document_icon_24px.svg");
 
     public DocumentTreeCell() {
         super();

@@ -6,27 +6,16 @@ import component.components.document.Document;
 import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
 import component.layouts.workspace.Workspace;
-import javafx.scene.Parent;
-import javafx.scene.shape.SVGPath;
 import org.json.simple.JSONObject;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
-import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 
 public class ApplicationUtils {
 
-    private static final HashMap<String, BasicStoryComponent> hashMap = new HashMap<>(); //contains all basic story components
     private static File savedFile = null;
     private static Workspace currentWorkspace = null;
+    private static final HashMap<String, BasicStoryComponent> hashMap = new HashMap<>(); //contains all basic story components
 
     public static void initialize() {
         savedFile = null;
@@ -85,26 +74,6 @@ public class ApplicationUtils {
 
         // render side bar
         ApplicationUtils.getCurrentWorkspace().getSideBar().renderSideBar(ApplicationUtils.getCurrentWorkspace().getActiveDocument());
-    }
-
-    public static SVGPath getIconSVG(String path) {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        SVGPath svgPath = new SVGPath();
-        path = "file:res/icon/" + path;
-        try {
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            org.w3c.dom.Document document = builder.parse(path);
-            XPathExpression expression = XPathFactory.newInstance().newXPath().compile("//path/@d");
-            String svgPathString = (String) expression.evaluate(document, XPathConstants.STRING);
-            svgPath.setContent(svgPathString);
-        } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException e) {
-            e.printStackTrace();
-        }
-        return svgPath;
-    }
-
-    public static void loadStyleSheet(Parent parent, String path) {
-        parent.getStylesheets().add(parent.getClass().getResource(path).toExternalForm());
     }
 }
 

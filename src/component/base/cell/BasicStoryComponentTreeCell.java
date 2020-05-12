@@ -13,13 +13,14 @@ import javafx.scene.input.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
 import utils.ApplicationUtils;
+import utils.SystemUtils;
 
 public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryComponent> {
 
     private TextField textField;
-    private final SVGPath eventCardIcon = ApplicationUtils.getIconSVG("event_card_icon_24px.svg");
-    private final SVGPath storylineIcon = ApplicationUtils.getIconSVG("storyline_icon_24px.svg");
-    private final SVGPath chapterIcon = ApplicationUtils.getIconSVG("chapter_icon_24px.svg");
+    private final SVGPath eventCardIcon = SystemUtils.getIconSVG("event_card_icon_24px.svg");
+    private final SVGPath storylineIcon = SystemUtils.getIconSVG("storyline_icon_24px.svg");
+    private final SVGPath chapterIcon = SystemUtils.getIconSVG("chapter_icon_24px.svg");
 
     public BasicStoryComponentTreeCell() {
         getStylesheets().add(getClass().getResource("TreeCell.css").toExternalForm());

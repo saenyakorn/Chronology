@@ -17,6 +17,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import utils.ApplicationUtils;
+import utils.SystemUtils;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -52,13 +53,13 @@ public class MainController {
             menuBar.useSystemMenuBarProperty().set(true);
 
         // add tab button setUp
-        SVGPath plusIcon = ApplicationUtils.getIconSVG("plus_icon_24px.svg");
+        SVGPath plusIcon = SystemUtils.getIconSVG("plus_icon_24px.svg");
         plusIcon.getStyleClass().add("icon-24px");
         addTabButton.setGraphic(plusIcon);
         addTabButton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
         // hamburger setUp
-        SVGPath hamburgerIcon = ApplicationUtils.getIconSVG("hamburger_icon_24px.svg");
+        SVGPath hamburgerIcon = SystemUtils.getIconSVG("hamburger_icon_24px.svg");
         hamburgerIcon.getStyleClass().add("hamburger-button");
         hamburgerContainer.getChildren().add(hamburgerIcon);
 
