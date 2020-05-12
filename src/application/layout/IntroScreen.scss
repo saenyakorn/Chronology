@@ -1,0 +1,33 @@
+@import "../StylingConstants.scss";
+
+.root {
+  -fx-background-color: $white;
+  -fx-alignment: center;
+  -fx-padding: $spacing*10 $spacing $spacing*10 $spacing;
+}
+
+.header-container {
+  -fx-alignment: center;
+  -fx-padding: 0 0 $spacing*5 0;
+
+  .header {
+    -fx-font-size: 100px;
+  }
+}
+
+.loading-container {
+  -fx-alignment: center;
+  -fx-padding: 0 0 $spacing 0;
+
+  .loading {
+    -fx-font-size: 24px;
+  }
+}
+
+.progress-bar {
+  -fx-border-radius: 100px;
+  -fx-background-radius: 100px;
+  -fx-pref-width: 480px;
+  -fx-pref-height: 10px;
+  -fx-accent: $red;
+}
