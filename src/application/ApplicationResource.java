@@ -8,6 +8,7 @@ import component.components.storyline.Storyline;
 import component.layouts.workspace.Workspace;
 import javafx.scene.Parent;
 import javafx.scene.shape.SVGPath;
+import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 import org.xml.sax.SAXException;
 
@@ -24,6 +25,7 @@ import java.util.HashMap;
 
 public class ApplicationResource {
 
+    private static Stage mainWindow = null;
     private static final HashMap<String, BasicStoryComponent> hashMap = new HashMap<>(); //contains all basic story components
     private static File savedFile = null;
     private static Workspace currentWorkspace = null;
@@ -44,6 +46,14 @@ public class ApplicationResource {
 
     public static void setSavedFile(File savedFile) {
         ApplicationResource.savedFile = savedFile;
+    }
+
+    public static Stage getMainWindow() {
+        return mainWindow;
+    }
+
+    public static void setMainWindow(Stage mainWindow) {
+        ApplicationResource.mainWindow = mainWindow;
     }
 
     public static void update() {

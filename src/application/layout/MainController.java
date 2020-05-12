@@ -10,18 +10,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.SVGPath;
+import javafx.stage.FileChooser;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class MainController {
 
@@ -31,6 +30,8 @@ public class MainController {
     private VBox root;
     @FXML
     private MenuBar menuBar;
+    @FXML
+    private MenuItem saveMenu;
     @FXML
     private HBox tabContainer;
     @FXML
@@ -101,19 +102,24 @@ public class MainController {
 
     @FXML
     protected void handleSaveClick(ActionEvent event) {
-        try {
-            //FileWriter file = new FileWriter(ApplicationResource.getSavedFile()); //savedFile is currently null!
-            FileWriter file = new FileWriter("output.json");
-            file.write(ApplicationResource.getCurrentWorkspace().getJSONString());
-            file.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(ApplicationResource.getSavedFile() != null) {
+            writeJSONFile(ApplicationResource.getSavedFile());
+            System.out.println("[Save] File saved to " + ApplicationResource.getSavedFile());
+            //TODO : Display "Saved"! somewhere on UI
+        } else {
+            System.out.println("Save not available!");
         }
+        //TODO : Disable this option if savedFile is null
     }
 
     @FXML
     protected void handleSaveAsClick(ActionEvent event) {
-
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON file", "*.json"));
+        File selectedFile = fileChooser.showSaveDialog(ApplicationResource.getMainWindow());
+        ApplicationResource.setSavedFile(selectedFile);
+        writeJSONFile(selectedFile);
+        System.out.println("[Save As] File saved to " + selectedFile);
     }
 
     @FXML
@@ -134,6 +140,16 @@ public class MainController {
     @FXML
     protected void toggleMenuView() {
 
+    }
+
+    private void writeJSONFile(File selectedFile) {
+        try {
+            FileWriter file = new FileWriter(selectedFile);
+            file.write(ApplicationResource.getCurrentWorkspace().getJSONString());
+            file.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @SuppressWarnings("unchecked")

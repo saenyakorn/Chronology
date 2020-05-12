@@ -19,6 +19,7 @@ public class Main extends Application {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("layout/MainWindow.fxml"));
             root.getStylesheets().add(getClass().getResource("StylingConstant.css").toExternalForm());
+            ApplicationResource.setMainWindow(mainWindow);
             Scene scene = new Scene(root, mainWindow.getMaxWidth(), mainWindow.getMaxHeight());
             mainWindow.setScene(scene);
             root.getStylesheets().add(getClass().getResource("StylingConstants.css").toExternalForm());

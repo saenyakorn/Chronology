@@ -140,7 +140,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         componentObject.put("title", title);
         componentObject.put("description", description);
         componentObject.put("Color", GlobalColor.colorToHex(color));
-        componentObject.put("TimePeriod", timePeriod.toString());
+        componentObject.put("TimePeriod", getTimePeriod().toString());
         return componentObject;
     }
 

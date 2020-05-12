@@ -107,7 +107,7 @@ public class Document extends VBox implements SavableAsJSONObject<Document> {
     @SuppressWarnings("unchecked")
     public JSONObject writeJSONObject() {
         JSONObject documentObject = new JSONObject();
-        documentObject.put("name", name);
+        documentObject.put("name", getName());
         documentObject.put("eventCardList", eventCards.writeJSONArray());
         documentObject.put("chapterList", chapters.writeJSONArray());
         documentObject.put("storylineList", storylines.writeJSONArray());
