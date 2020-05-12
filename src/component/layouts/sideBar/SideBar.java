@@ -35,7 +35,8 @@ public class SideBar extends ScrollPane {
 
     public SideBar() {
         // load css file
-        getStylesheets().add(getClass().getResource("SideBar.css").toExternalForm());
+        ApplicationResource.loadStyleSheet(this, "SideBar.css");
+        getStyleClass().add("body");
 
         // basicStoryComponentTreeView setting
         Label componentSectionHeading = new Label("Story Components");

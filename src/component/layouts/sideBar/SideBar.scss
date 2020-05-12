@@ -4,6 +4,10 @@
   -fx-background: $white;
 }
 
+.body {
+  -fx-padding: 0;
+}
+
 .heading {
   -fx-background-color: $light-gray;
   -fx-pref-width: $side-bar-width;
