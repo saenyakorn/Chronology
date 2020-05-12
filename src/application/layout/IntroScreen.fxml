@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import java.net.URL?>
+<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx" styleClass="root" fx:id="root"
+      fx:controller="application.layout.IntroScreen" prefHeight="400.0" prefWidth="600.0">
+
+    <stylesheets>
+        <URL value="@IntroScreen.css"/>
+    </stylesheets>
+
+    <VBox styleClass="header-container">
+        <Text text="Chronology" styleClass="header"/>
+    </VBox>
+
+</VBox>

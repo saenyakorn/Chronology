@@ -21,12 +21,12 @@ public class Main extends Application {
     public void start(Stage mainWindow) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("layout/MainWindow.fxml"));
-            SystemUtils.loadStyleSheet(root, "StylingConstants.css");
+            Parent intro = FXMLLoader.load(getClass().getResource("layout/IntroScreen.fxml"));
 
             // Added loading layout to application
             StackPane stackPane = new StackPane();
             stackPane.setAlignment(Pos.CENTER);
-            stackPane.getChildren().addAll(root);
+            stackPane.getChildren().addAll(root, intro);
 
             mainWindow.setScene(new Scene(stackPane, mainWindow.getMaxWidth(), mainWindow.getMaxHeight()));
             mainWindow.setTitle(SystemUtils.APP_NAME);

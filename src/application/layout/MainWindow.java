@@ -23,7 +23,7 @@ import utils.SystemUtils;
 
 import java.io.*;
 
-public class MainController {
+public class MainWindow {
 
     private final String os = System.getProperty("os.name");
     private final FileChooser fileChooser = new FileChooser();
