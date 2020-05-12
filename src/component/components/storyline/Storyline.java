@@ -161,6 +161,12 @@ public class Storyline extends BasicStoryComponent {
         super.setColor(color);
         line.setStroke(color);
         storylineTitle.setStyle("-fx-text-fill: " + GlobalColor.colorToHex(color) + ";");
+        EventCardList eventCards = ApplicationResource.getCurrentWorkspace().getActiveDocument().getEventCards();
+        for (EventCard eventCard : eventCards) {
+            if(eventCard.getStoryline().equals(this)){
+                eventCard.setColor(color);
+            }
+        }
     }
 
     @Override
@@ -172,7 +178,6 @@ public class Storyline extends BasicStoryComponent {
     @SuppressWarnings("unchecked")
     public JSONObject writeJSONObject() {
         JSONObject storylineObject = super.writeJSONObject();
-//        storylineObject.put("eventCardList", eventCards.writeJSONArray());
         storylineObject.put("type", "Storyline");
         return storylineObject;
     }

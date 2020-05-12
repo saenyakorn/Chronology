@@ -42,7 +42,9 @@ public class Chapter extends BasicStoryComponent {
         super.setColor(color);
         EventCardList eventCards = ApplicationResource.getCurrentWorkspace().getActiveDocument().getEventCards();
         for (EventCard eventCard : eventCards) {
-            eventCard.setChapterColor(color);
+            if(eventCard.getChapter().equals(this)){
+                eventCard.setChapterColor(color);
+            }
         }
     }
 
@@ -50,7 +52,6 @@ public class Chapter extends BasicStoryComponent {
     @SuppressWarnings("unchecked")
     public JSONObject writeJSONObject() {
         JSONObject chapterObject = super.writeJSONObject();
-//        chapterObject.put("eventCardList", eventCards.writeJSONArray());
         chapterObject.put("type", "Chapter");
         return chapterObject;
     }
