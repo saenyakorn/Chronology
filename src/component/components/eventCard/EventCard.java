@@ -26,6 +26,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import org.json.simple.JSONObject;
+import utils.ApplicationUtils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -261,8 +262,8 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         String selfChapterID = (String) eventCardObject.get("selfChapter");
         String selfStorylineID = (String) eventCardObject.get("selfStoryline");
 
-        setChapter((Chapter) ApplicationResource.getValueFromCurrentHashMap(selfChapterID));
-        setStoryline((Storyline) ApplicationResource.getValueFromCurrentHashMap(selfStorylineID));
+        setChapter((Chapter) ApplicationUtils.getValueFromCurrentHashMap(selfChapterID));
+        setStoryline((Storyline) ApplicationUtils.getValueFromCurrentHashMap(selfStorylineID));
 
         return this;
     }
