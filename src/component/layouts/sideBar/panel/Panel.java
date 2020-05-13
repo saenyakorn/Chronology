@@ -16,6 +16,10 @@ public abstract class Panel<T> extends VBox {
     ListChangeListener<T> listener = new ListChangeListener<T>() {
         @Override
         public void onChanged(Change<? extends T> change) {
+            getTreeView().getRoot().getChildren().clear();
+            for (T item : change.getList()) {
+                addItem(item);
+            }
         }
     };
 
