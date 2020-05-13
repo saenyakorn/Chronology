@@ -126,9 +126,7 @@ public class MainWindow {
     protected void handleOpenClick(ActionEvent event) {
         File selectedFile = fileChooser.showOpenDialog(root.getScene().getWindow());
         ApplicationUtils.setSavedFile(selectedFile);
-        ApplicationUtils.clear();
         readFromFile(selectedFile);
-        ApplicationUtils.update();
     }
 
     @FXML
@@ -150,11 +148,13 @@ public class MainWindow {
     }
 
     private void readFromFile(File selectedFile) {
+        ApplicationUtils.clear();
         if(selectedFile != null) {
             JSONParser parser = new JSONParser();
             try (FileReader file = new FileReader(selectedFile)) {
                 Object obj = parser.parse(file);
                 readJSONObject((JSONObject) obj);
+                ApplicationUtils.update();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
