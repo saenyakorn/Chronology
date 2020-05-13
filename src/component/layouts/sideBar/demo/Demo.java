@@ -6,13 +6,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.SVGPath;
+import utils.SystemUtils;
 
 public abstract class Demo<T> extends VBox {
 
     protected Label header = new Label();
     protected TreeView<T> treeView = new TreeView<>();
-    protected SVGPath icon = new SVGPath();
 
     ListChangeListener<T> listener = new ListChangeListener<T>() {
         @Override
@@ -24,9 +23,8 @@ public abstract class Demo<T> extends VBox {
         getStylesheets().add(getClass().getResource("../SideBar.css").toExternalForm());
         treeView.setRoot(new TreeItem<>());
         treeView.setShowRoot(false);
-        icon.getStyleClass().add("icon-24px");
         header.getStyleClass().add("heading");
-        setMaxHeight(200);
+        setMaxHeight(SystemUtils.SIDEBAR_PREF_HEIGHT);
         getChildren().addAll(header, treeView);
     }
 
@@ -42,14 +40,6 @@ public abstract class Demo<T> extends VBox {
         return treeView;
     }
 
-    public SVGPath getIcon() {
-        return icon;
-    }
-
-    public void setIcon(SVGPath icon) {
-        this.icon.setContent(icon.getContent());
-    }
-
     public void binding(ObservableList<T> list) {
         list.addListener(listener);
         setAllItem(list);
@@ -61,10 +51,7 @@ public abstract class Demo<T> extends VBox {
     }
 
     public void addItem(T item) {
-        SVGPath cloneIcon = new SVGPath();
-        cloneIcon.getStyleClass().add("icon-24px");
-        cloneIcon.setContent(icon.getContent());
-        TreeItem<T> treeItem = new TreeItem<>(item, cloneIcon);
+        TreeItem<T> treeItem = new TreeItem<>(item);
         treeView.getRoot().getChildren().add(treeItem);
     }
 

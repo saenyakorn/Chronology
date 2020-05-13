@@ -43,6 +43,7 @@ public class SideBar extends ScrollPane {
     }
 
     public void clear(Document document) {
+        documentDemo.unbinding(ApplicationUtils.getCurrentWorkspace().getDocumentList().listProperty());
         eventCardDemo.unbinding(document.getEventCards().getEventCards());
         storylineDemo.unbinding(document.getStorylines().getStorylines());
         chapterDemo.unbinding(document.getChapters().getChapters());
