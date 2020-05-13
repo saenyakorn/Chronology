@@ -13,15 +13,13 @@ public abstract class Panel<T> extends VBox {
     protected Label header = new Label();
     protected TreeView<T> treeView = new TreeView<>();
 
-    ListChangeListener<T> listener = new ListChangeListener<T>() {
-        @Override
-        public void onChanged(Change<? extends T> change) {
-            getTreeView().getRoot().getChildren().clear();
-            for (T item : change.getList()) {
-                addItem(item);
-            }
+    private ListChangeListener<T> listener = (ListChangeListener.Change<? extends T> change) -> {
+        getTreeView().getRoot().getChildren().clear();
+        for (T item : change.getList()) {
+            addItem(item);
         }
     };
+
 
     public Panel() {
         getStylesheets().add(getClass().getResource("../SideBar.css").toExternalForm());
