@@ -226,7 +226,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     @Override
     public String toString() {
-        return title;
+        return getTitle();
     }
 
     @Override

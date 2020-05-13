@@ -3,12 +3,12 @@ package component.base;
 public class BlankBasicStoryComponent extends BasicStoryComponent {
 
     public BlankBasicStoryComponent(String title, String description) {
-        this.title = title;
-        this.description = description;
+        setTitle(title);
+        setDescription(description);
     }
 
     @Override
     public String toString() {
-        return title;
+        return getTitle();
     }
 }

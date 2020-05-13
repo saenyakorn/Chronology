@@ -169,7 +169,7 @@ public class Storyline extends BasicStoryComponent {
 
     @Override
     public String toString() {
-        return title;
+        return getTitle();
     }
 
     @Override
