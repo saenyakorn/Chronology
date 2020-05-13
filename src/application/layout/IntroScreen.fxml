@@ -11,7 +11,7 @@
     </stylesheets>
 
     <VBox styleClass="header-container">
-        <Text text="Chronology" styleClass="header"/>
+        <Text fx:id="header" styleClass="header"/>
     </VBox>
 
 </VBox>
