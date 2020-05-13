@@ -11,21 +11,20 @@ import utils.ApplicationUtils;
 import java.util.Iterator;
 
 public class DocumentList implements Iterable<Document>, SavableAsJSONArray<DocumentList> {
-    private final ObservableList<DocumentCustomTab> documentCustomTabs;
-    private final ObservableList<Document> documents;
-    private DocumentCustomTab activeTab;
+
+    private final ObservableList<Document> documents = FXCollections.observableArrayList();
+    private final ObservableList<DocumentCustomTab> documentCustomTabs = FXCollections.observableArrayList();
+    private DocumentCustomTab activeTab = null;
 
     public DocumentList() {
-        activeTab = new DocumentCustomTab();
-        documents = FXCollections.observableArrayList();
-        documentCustomTabs = FXCollections.observableArrayList();
+        super();
     }
 
-    public ObservableList<Document> getDocuments() {
+    public ObservableList<Document> listProperty() {
         return documents;
     }
 
-    public ObservableList<DocumentCustomTab> getDocumentCustomTabs() {
+    public ObservableList<DocumentCustomTab> tabsProperty() {
         return documentCustomTabs;
     }
 
@@ -42,17 +41,15 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
 
         // Creating Custom Document Tab
         DocumentCustomTab tab = new DocumentCustomTab(document.getName());
-        tab.getButton().setOnMouseClicked((MouseEvent event) -> removeDocument(document));
         tab.setOnMouseClicked((MouseEvent event) -> setActiveTab(tab));
+        tab.setOnCloseRequest(() -> removeDocument(document));
         documentCustomTabs.add(tab);
         setActiveTab(tab);
-        ApplicationUtils.getCurrentWorkspace().getSideBar().renderDocumentTreeItem();
     }
 
     public void removeDocument(Document document) {
         documentCustomTabs.remove(documents.indexOf(document));
         documents.remove(document);
-        ApplicationUtils.getCurrentWorkspace().getSideBar().renderDocumentTreeItem();
     }
 
     public int getSize() {
@@ -60,17 +57,23 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
     }
 
     public Document getActiveDocument() {
+        if (activeTab == null) {
+            return null;
+        }
         return getDocumentFromTab(activeTab);
     }
 
     private void setActiveTab(DocumentCustomTab tab) {
         tab.setActive(true);
-        activeTab.setActive(false);
+        if (activeTab != null) {
+            activeTab.setActive(false);
+        }
+        ApplicationUtils.getCurrentWorkspace().setActiveDocument(getDocumentFromTab(tab));
+        ApplicationUtils.getCurrentWorkspace().getViewer().setDocument(getDocumentFromTab(tab));
         activeTab = tab;
-        ApplicationUtils.getCurrentWorkspace().getViewer().setDocument(getActiveDocument());
     }
 
-    public Document getDocumentFromTab(DocumentCustomTab tab) {
+    private Document getDocumentFromTab(DocumentCustomTab tab) {
         return documents.get(documentCustomTabs.indexOf(tab));
     }
 
