@@ -69,7 +69,7 @@ public class MainWindow {
 
         // binding tabContainer with documentList
         DocumentList documentList = ApplicationUtils.getCurrentWorkspace().getDocumentList();
-        Bindings.bindContent(tabContainer.getChildren(), documentList.getDocumentCustomTabs());
+        Bindings.bindContent(tabContainer.getChildren(), documentList.tabsProperty());
 
         // TODO Rewrite this class more clearly. it work but hard for debugging.
     }
