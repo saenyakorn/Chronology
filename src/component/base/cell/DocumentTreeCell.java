@@ -2,9 +2,7 @@ package component.base.cell;
 
 import colors.GlobalColor;
 import component.components.document.Document;
-import javafx.scene.Node;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TreeCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -12,9 +10,9 @@ import javafx.scene.shape.SVGPath;
 import utils.ApplicationUtils;
 import utils.SystemUtils;
 
-public final class DocumentTreeCell extends TreeCell<Document> {
+public final class DocumentTreeCell extends CustomTreeCell<Document> {
 
-    TextField textField;
+    private TextField textField;
     private final SVGPath documentIcon = SystemUtils.getIconSVG("document_icon_24px.svg");
 
     public DocumentTreeCell() {
@@ -64,19 +62,6 @@ public final class DocumentTreeCell extends TreeCell<Document> {
         }
     }
 
-    private boolean inHierarchy(Node node, Node potentialHierarchyElement) {
-        if (potentialHierarchyElement == null) {
-            return true;
-        }
-        while (node != null) {
-            if (node == potentialHierarchyElement) {
-                return true;
-            }
-            node = node.getParent();
-        }
-        return false;
-    }
-
     private void createTextField() {
         textField = new TextField(getString());
         textField.setOnKeyReleased((KeyEvent event) -> {
@@ -90,7 +75,9 @@ public final class DocumentTreeCell extends TreeCell<Document> {
         });
     }
 
-    private void initializeEventHandler() {
+    @Override
+    protected void initializeEventHandler() {
+        super.initializeEventHandler();
         setOnMouseClicked((MouseEvent event) -> {
             if (getItem() instanceof Document) {
                 ApplicationUtils.getCurrentWorkspace().setActiveDocument(getItem());
