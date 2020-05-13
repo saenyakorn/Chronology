@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 <VBox xmlns:fx="http://javafx.com/fxml" fx:id="root" xmlns="http://javafx.com/javafx"
-      fx:controller="application.layout.MainWindow">
+      fx:controller="application.layout.MainWindowController">
 
     <stylesheets>
         <URL value="@MainWindow.css"/>

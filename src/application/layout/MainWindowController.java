@@ -23,7 +23,7 @@ import utils.SystemUtils;
 
 import java.io.*;
 
-public class MainWindow {
+public class MainWindowController {
 
     private final String os = System.getProperty("os.name");
     private final FileChooser fileChooser = new FileChooser();
@@ -73,11 +73,6 @@ public class MainWindow {
         Bindings.bindContent(tabContainer.getChildren(), documentList.tabsProperty());
 
         // TODO Rewrite this class more clearly. it work but hard for debugging.
-    }
-
-    public void bindDocumentTabs() {
-        DocumentList documentList = ApplicationUtils.getCurrentWorkspace().getDocumentList();
-        Bindings.bindContent(tabContainer.getChildren(), documentList.tabsProperty());
     }
 
     @FXML
@@ -155,11 +150,12 @@ public class MainWindow {
 
     private void readFromFile(File selectedFile) {
         if(selectedFile != null) {
+            ApplicationUtils.clear();
             JSONParser parser = new JSONParser();
             try (FileReader file = new FileReader(selectedFile)) {
                 Object obj = parser.parse(file);
                 readJSONObject((JSONObject) obj);
-                ApplicationUtils.updateWholeMainWindow();
+                ApplicationUtils.updateOnOpen();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
