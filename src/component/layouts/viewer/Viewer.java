@@ -7,9 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.SeparatorMenuItem;
-import javafx.scene.input.MouseEvent;
 import utils.ApplicationUtils;
+import utils.SystemUtils;
 
 public class Viewer extends ScrollPane {
 
@@ -18,11 +17,10 @@ public class Viewer extends ScrollPane {
     public Viewer() {
         contextMenu = new ContextMenu();
         initializeContextMenu();
-        initializeEventHandler();
+        setContextMenu(contextMenu);
     }
 
     public void setDocument(Document document) {
-        document.setOnMousePressed((MouseEvent event) -> rightClickContextMenu(event));
         setContent(document);
     }
 
@@ -38,24 +36,11 @@ public class Viewer extends ScrollPane {
         ApplicationUtils.update();
     }
 
-    private void rightClickContextMenu(MouseEvent event) {
-        contextMenu.hide();
-        if (event.isSecondaryButtonDown()) {
-            System.out.println("Viewer: " + event.getTarget());
-            contextMenu.show(this, event.getScreenX(), event.getScreenY());
-        }
-        event.consume();
-    }
-
-    private void initializeEventHandler() {
-        setOnMousePressed((MouseEvent event) -> rightClickContextMenu(event));
-    }
-
     private void initializeContextMenu() {
-        MenuItem item1 = new MenuItem("add storyline");
-        item1.setOnAction((ActionEvent innerEvent) -> createStoryline());
-        MenuItem item2 = new MenuItem("add event card");
-        item2.setOnAction((ActionEvent innerEvent) -> createEventCard());
-        contextMenu.getItems().addAll(item1, new SeparatorMenuItem(), item2);
+        MenuItem storylineMenuItem = new MenuItem(SystemUtils.NEW_STORYLINE);
+        storylineMenuItem.setOnAction((ActionEvent innerEvent) -> createStoryline());
+        MenuItem eventCardMenuitem = new MenuItem(SystemUtils.NEW_EVENT_CARD);
+        eventCardMenuitem.setOnAction((ActionEvent innerEvent) -> createEventCard());
+        contextMenu.getItems().addAll(eventCardMenuitem, storylineMenuItem);
     }
 }
