@@ -23,13 +23,25 @@ public class ApplicationUtils {
         setCurrentWorkspace(workspace);
     }
 
+    public static void clear() {
+        //clear sidebar
+        Document activeDocument = ApplicationUtils.getCurrentWorkspace().getActiveDocument();
+        ApplicationUtils.getCurrentWorkspace().getSideBar().clear(activeDocument);
+        //document demo isn't cleared though
+
+        //clear document tabs
+        /*DocumentList documentList = ApplicationUtils.getCurrentWorkspace().getDocumentList();
+        Bindings.unbindContent(tabContainer.getChildren(), documentList.tabsProperty());*/
+
+        hashMap = new HashMap<>();
+    }
+
     public static Workspace getCurrentWorkspace() {
         return ApplicationUtils.currentWorkspace;
     }
 
     public static void setCurrentWorkspace(Workspace currentWorkspace) {
         ApplicationUtils.currentWorkspace = currentWorkspace;
-        hashMap = new HashMap<>();
         // TODO : Problem is that document tabProperty has to be rebinded
 
     }
@@ -76,8 +88,10 @@ public class ApplicationUtils {
         ApplicationUtils.getCurrentWorkspace().getDocumentList().getActiveDocument().getEventCards().update();
     }
 
-    public static void updateWholeMainWindow() {
-
+    public static void updateOnOpen() {
+        Document firstDocument = ApplicationUtils.getCurrentWorkspace().getDocumentList().get(0);
+        //basically rebind everything
+        ApplicationUtils.getCurrentWorkspace().getSideBar().initBindings(firstDocument);
     }
 }
 
