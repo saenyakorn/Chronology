@@ -4,9 +4,11 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.SVGPath;
 import utils.SystemUtils;
+import utils.TransitionUtils;
 
 public class DocumentCustomTab extends HBox {
 
@@ -37,8 +39,8 @@ public class DocumentCustomTab extends HBox {
         }
     }
 
-    public Button getButton() {
-        return closeButton;
+    public void setOnCloseRequest(TransitionUtils.TakeAction takeAction) {
+        closeButton.setOnMouseClicked((MouseEvent event) -> takeAction.action());
     }
 
     private void initializeFXComponent() {
