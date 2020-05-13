@@ -23,17 +23,15 @@ public class ApplicationUtils {
         setCurrentWorkspace(workspace);
     }
 
-    public static void clear() {
-        hashMap = new HashMap<>();
-        setCurrentWorkspace(new Workspace());
-    }
-
     public static Workspace getCurrentWorkspace() {
         return ApplicationUtils.currentWorkspace;
     }
 
     public static void setCurrentWorkspace(Workspace currentWorkspace) {
         ApplicationUtils.currentWorkspace = currentWorkspace;
+        hashMap = new HashMap<>();
+        // TODO : Problem is that document tabProperty has to be rebinded
+
     }
 
     public static File getSavedFile() {
@@ -72,10 +70,14 @@ public class ApplicationUtils {
         ApplicationUtils.getCurrentWorkspace().addDocument(newDocument);
     }
 
-    public static void update() {
+    public static void updateViewer() {
         Document activeDocument = ApplicationUtils.getCurrentWorkspace().getActiveDocument();
         ApplicationUtils.getCurrentWorkspace().setActiveDocument(activeDocument);
         ApplicationUtils.getCurrentWorkspace().getDocumentList().getActiveDocument().getEventCards().update();
+    }
+
+    public static void updateWholeMainWindow() {
+
     }
 }
 

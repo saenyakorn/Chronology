@@ -2,6 +2,7 @@ package application.layout;
 
 import component.components.document.DocumentList;
 import component.dialog.*;
+import component.layouts.workspace.Workspace;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -74,6 +75,11 @@ public class MainWindow {
         // TODO Rewrite this class more clearly. it work but hard for debugging.
     }
 
+    public void bindDocumentTabs() {
+        DocumentList documentList = ApplicationUtils.getCurrentWorkspace().getDocumentList();
+        Bindings.bindContent(tabContainer.getChildren(), documentList.tabsProperty());
+    }
+
     @FXML
     protected void handleNewProjectClick(ActionEvent event) {
         NewProjectDialog dialog = new NewProjectDialog();
@@ -126,9 +132,7 @@ public class MainWindow {
     protected void handleOpenClick(ActionEvent event) {
         File selectedFile = fileChooser.showOpenDialog(root.getScene().getWindow());
         ApplicationUtils.setSavedFile(selectedFile);
-        ApplicationUtils.clear();
         readFromFile(selectedFile);
-        ApplicationUtils.update();
     }
 
     @FXML
@@ -155,6 +159,7 @@ public class MainWindow {
             try (FileReader file = new FileReader(selectedFile)) {
                 Object obj = parser.parse(file);
                 readJSONObject((JSONObject) obj);
+                ApplicationUtils.updateWholeMainWindow();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -167,7 +172,7 @@ public class MainWindow {
 
     @SuppressWarnings("unchecked")
     private void readJSONObject(JSONObject workspaceObject) {
-        ApplicationUtils.getCurrentWorkspace().readJSONObject(workspaceObject);
+        ApplicationUtils.setCurrentWorkspace((new Workspace()).readJSONObject(workspaceObject));
         System.out.println("Open file complete - Current workspace set to loaded workspace");
     }
 }

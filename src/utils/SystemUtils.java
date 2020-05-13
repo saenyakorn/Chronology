@@ -24,10 +24,10 @@ public class SystemUtils {
     public static final double INTRO_DURATION = 650;
 
     /* Side bar header constants */
-    public static final String EVENTCARD_DEMO_HEADER = "Event Card";
-    public static final String STORYLINE_DEMO_HEADER = "Storyline";
-    public static final String CHAPTER_DEMO_HEADER = "Chapter";
-    public static final String DOCUMENT_DEMO_HEADER = "Document";
+    public static final String EVENTCARD_DEMO_HEADER = "Event Cards";
+    public static final String STORYLINE_DEMO_HEADER = "Storylines";
+    public static final String CHAPTER_DEMO_HEADER = "Chapters";
+    public static final String DOCUMENT_DEMO_HEADER = "Documents";
 
     /* context menu word constants */
     public static final String NEW_EVENT_CARD = "New event card";

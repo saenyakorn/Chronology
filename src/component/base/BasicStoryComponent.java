@@ -11,6 +11,7 @@ import component.components.timeModifier.TimePeriod;
 import component.components.timeModifier.TimePeriodGenerator;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.paint.Color;
 import org.json.simple.JSONObject;
@@ -22,79 +23,95 @@ import java.util.UUID;
 
 public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicStoryComponent> {
     protected final String componentId;
-    protected String title;
-    protected String description;
-    protected Color color;
-    protected Property<TimePeriod> timePeriod;
+    protected SimpleStringProperty title = new SimpleStringProperty();
+    protected SimpleStringProperty description = new SimpleStringProperty();
+    protected Property<Color> color = new SimpleObjectProperty<>();
+    protected Property<TimePeriod> timePeriod = new SimpleObjectProperty<>();
 
     @SuppressWarnings("unchecked")
     public BasicStoryComponent() {
-        this.componentId = UUID.randomUUID().toString();
+        componentId = UUID.randomUUID().toString();
         ApplicationUtils.putItemToCurrentHashMap(componentId, this);
-        this.title = "Title";
-        this.description = "Lorem ipsum dolor set amet, ego bir setaso de.";
-        this.color = GlobalColor.DEFAULT_COLOR;
-        this.timePeriod = new SimpleObjectProperty(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
+        title.set("Title");
+        description.set("Lorem ipsum dolor set amet, ego bir setaso de.");
+        color.setValue(GlobalColor.DEFAULT_COLOR);
+        timePeriod.setValue(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
     }
 
     @SuppressWarnings("unchecked")
     public BasicStoryComponent(String componentId) {
         this.componentId = componentId;
         //no put item because used to load a hashMap from file
-        this.title = "Title";
-        this.description = "Lorem ipsum dolor set amet, ego bir setaso de.";
-        this.color = GlobalColor.DEFAULT_COLOR;
-        this.timePeriod = new SimpleObjectProperty(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
+        title.set("Title");
+        description.set("Lorem ipsum dolor set amet, ego bir setaso de.");
+        color.setValue(GlobalColor.DEFAULT_COLOR);
+        timePeriod.setValue(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
     }
 
     @SuppressWarnings("unchecked")
     public BasicStoryComponent(String title, String description) {
-        this.componentId = UUID.randomUUID().toString();
+        componentId = UUID.randomUUID().toString();
         ApplicationUtils.putItemToCurrentHashMap(componentId, this);
-        this.title = title;
-        this.description = description;
-        this.color = GlobalColor.DEFAULT_COLOR;
-        this.timePeriod = new SimpleObjectProperty(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
+        this.title.set(title);
+        this.description.set(description);
+        color.setValue(GlobalColor.DEFAULT_COLOR);
+        timePeriod.setValue(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
     }
 
     @SuppressWarnings("unchecked")
     public BasicStoryComponent(String title, String description, Color color, TimePeriod timePeriod) {
-        this.componentId = UUID.randomUUID().toString();
+        componentId = UUID.randomUUID().toString();
         ApplicationUtils.putItemToCurrentHashMap(componentId, this);
-        this.title = title;
-        this.description = description;
-        this.color = color;
-        this.timePeriod = new SimpleObjectProperty(timePeriod);
+        this.title.set(title);
+        this.description.set(description);
+        this.color.setValue(color);
+        this.timePeriod.setValue(timePeriod);
     }
 
     public String getComponentId() {
         return componentId;
     }
 
-    public String getTitle() {
+    public SimpleStringProperty titleProperty() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public String getTitle() {
+        return title.get();
     }
 
-    public String getDescription() {
+    public void setTitle(String title) {
+        this.title.set(title);
+    }
+
+    public SimpleStringProperty descriptionProperty() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public String getDescription() {
+        return description.get();
     }
 
-    public Color getColor() {
+    public void setDescription(String description) {
+        this.description.set(description);
+    }
+
+    public Property<Color> colorProperty() {
         return color;
     }
 
+    public Color getColor() {
+        return color.getValue();
+    }
+
     public void setColor(Color color) {
-        RandomColor.removeUsedColor(this.color);
-        this.color = color;
+        RandomColor.removeUsedColor(getColor());
+        this.color.setValue(color);
         RandomColor.addUsedColor(color);
+    }
+
+    public Property<TimePeriod> timePeriodProperty() {
+        return timePeriod;
     }
 
     public TimePeriod getTimePeriod() {
@@ -105,13 +122,9 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         this.timePeriod.setValue(timePeriod);
     }
 
-    public Property<TimePeriod> getTimePeriodProperty() {
-        return timePeriod;
-    }
-
     @Override
     public String toString() {
-        return title;
+        return getTitle();
     }
 
     public static BasicStoryComponent JSONObjectToBasicStoryComponent(String componentID, JSONObject componentObject) {
@@ -137,9 +150,9 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
     @SuppressWarnings("unchecked")
     public JSONObject writeJSONObject() {
         JSONObject componentObject = new JSONObject();
-        componentObject.put("title", title);
-        componentObject.put("description", description);
-        componentObject.put("Color", GlobalColor.colorToHex(color));
+        componentObject.put("title", getTitle());
+        componentObject.put("description", getDescription());
+        componentObject.put("Color", GlobalColor.colorToHex(getColor()));
         componentObject.put("TimePeriod", getTimePeriod().toString());
         return componentObject;
     }
@@ -147,7 +160,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
     @SuppressWarnings("unchecked")
     public JSONObject writeJSONObjectAsComponentID() {
         JSONObject componentObject = new JSONObject();
-        componentObject.put("componentID", componentId);
+        componentObject.put("componentID", getComponentId());
         return componentObject;
     }
 
@@ -167,7 +180,6 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
 
     protected void loadFXML(String link) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(link));
-        // fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
         try {
             fxmlLoader.load();

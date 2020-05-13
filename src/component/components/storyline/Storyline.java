@@ -150,7 +150,7 @@ public class Storyline extends BasicStoryComponent {
             EventCard newEventCard = new EventCard();
             newEventCard.setStoryline(this);
             eventCards.addEventCard(newEventCard);
-            ApplicationUtils.update();
+            ApplicationUtils.updateViewer();
         });
         contextMenu.getItems().addAll(colorMenuItem, eventCardMenuItem);
     }
@@ -193,7 +193,7 @@ public class Storyline extends BasicStoryComponent {
             if (item instanceof EventCard) {
                 EventCard eventCard = (EventCard) item;
                 eventCard.setStoryline(this);
-                ApplicationUtils.update();
+                ApplicationUtils.updateViewer();
             }
             event.consume();
         });
