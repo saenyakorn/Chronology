@@ -39,7 +39,7 @@ public class NewEventCardDialog extends Dialog {
     public void addNewEventCard(String title, String description) {
         EventCard newEventCard = new EventCard(title, description);
         ApplicationUtils.getCurrentWorkspace().getActiveDocument().addEventCard(newEventCard);
-        ApplicationUtils.updateViewer();
+        ApplicationUtils.updateWorkspace();
         this.close();
     }
 

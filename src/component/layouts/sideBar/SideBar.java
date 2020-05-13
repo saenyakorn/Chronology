@@ -1,10 +1,10 @@
 package component.layouts.sideBar;
 
 import component.components.document.Document;
-import component.layouts.sideBar.demo.ChapterDemo;
-import component.layouts.sideBar.demo.DocumentDemo;
-import component.layouts.sideBar.demo.EventCardDemo;
-import component.layouts.sideBar.demo.StorylineDemo;
+import component.layouts.sideBar.panel.ChapterPanel;
+import component.layouts.sideBar.panel.DocumentPanel;
+import component.layouts.sideBar.panel.EventCardPanel;
+import component.layouts.sideBar.panel.StorylinePanel;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import utils.ApplicationUtils;
@@ -12,10 +12,10 @@ import utils.SystemUtils;
 
 public class SideBar extends ScrollPane {
 
-    private final DocumentDemo documentDemo = new DocumentDemo();
-    private final EventCardDemo eventCardDemo = new EventCardDemo();
-    private final ChapterDemo chapterDemo = new ChapterDemo();
-    private final StorylineDemo storylineDemo = new StorylineDemo();
+    private final DocumentPanel documentDemo = new DocumentPanel();
+    private final EventCardPanel eventCardDemo = new EventCardPanel();
+    private final ChapterPanel chapterDemo = new ChapterPanel();
+    private final StorylinePanel storylineDemo = new StorylinePanel();
 
     public SideBar() {
         // load css file
@@ -43,6 +43,7 @@ public class SideBar extends ScrollPane {
     }
 
     public void clear(Document document) {
+        documentDemo.unbinding(ApplicationUtils.getCurrentWorkspace().getDocumentList().listProperty());
         eventCardDemo.unbinding(document.getEventCards().getEventCards());
         storylineDemo.unbinding(document.getStorylines().getStorylines());
         chapterDemo.unbinding(document.getChapters().getChapters());

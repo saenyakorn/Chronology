@@ -20,7 +20,7 @@ public class EventCardList implements Iterable<EventCard>, SavableAsJSONArray<Ev
     private final SortedList<EventCard> sortedEventCards;
 
     public EventCardList() {
-        eventCards = FXCollections.observableArrayList(eventCard -> new Observable[]{eventCard.timePeriodProperty(), eventCard.getStorylineProperty(), eventCard.getChapterProperty()});
+        eventCards = FXCollections.observableArrayList(eventCard -> new Observable[]{eventCard.timePeriodProperty(), eventCard.storylineProperty(), eventCard.chapterProperty()});
         sortedEventCards = new SortedList<>(eventCards, (item1, item2) -> sortByEventCardDate(item1, item2));
         sortedEventCards.addListener((ListChangeListener.Change<? extends EventCard> change) -> update());
     }
@@ -32,7 +32,7 @@ public class EventCardList implements Iterable<EventCard>, SavableAsJSONArray<Ev
             if (eventCard.getStoryline() != null) {
                 eventCard.setIndex(counter++);
                 eventCard.getStoryline().getContainer().getChildren().clear(); // clear gridPane
-                eventCard.getStoryline().initializedMinMaxIndex();
+                eventCard.getStoryline().resetMinMaxIndex();
             }
         }
         for (EventCard eventCard : sortedEventCards) {
@@ -47,7 +47,6 @@ public class EventCardList implements Iterable<EventCard>, SavableAsJSONArray<Ev
         for (Storyline storyline : ApplicationUtils.getCurrentWorkspace().getActiveDocument().getStorylines()) {
             storyline.modifyStorylineStructure();
         }
-        System.out.println("-------------------------------------");
     }
 
     public ObservableList<EventCard> getEventCards() {

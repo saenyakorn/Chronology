@@ -75,7 +75,7 @@ public class ChapterTreeCell extends CustomTreeCell<Chapter> {
                 ApplicationUtils.getCurrentWorkspace().getActiveDocument().removeEventCard(eventCard);
                 eventCard.setChapter(target);
                 ApplicationUtils.getCurrentWorkspace().getActiveDocument().addEventCard(eventCard);
-                ApplicationUtils.updateViewer();
+                ApplicationUtils.updateWorkspace();
             }
             event.consume();
         });

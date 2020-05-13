@@ -82,7 +82,7 @@ public class ApplicationUtils {
         ApplicationUtils.getCurrentWorkspace().addDocument(newDocument);
     }
 
-    public static void updateViewer() {
+    public static void updateWorkspace() {
         Document activeDocument = ApplicationUtils.getCurrentWorkspace().getActiveDocument();
         ApplicationUtils.getCurrentWorkspace().setActiveDocument(activeDocument);
         ApplicationUtils.getCurrentWorkspace().getDocumentList().getActiveDocument().getEventCards().update();
