@@ -14,7 +14,7 @@ public class TransitionUtils {
     private static TranslateTransition translateTransition = new TranslateTransition();
 
     public static void fadeOut(Node node, double millis) {
-        FadeTransition fadeTransition = new FadeTransition();
+        fadeTransition = new FadeTransition();
         fadeTransition.setDuration(Duration.millis(millis));
         fadeTransition.setNode(node);
         fadeTransition.setFromValue(1);
