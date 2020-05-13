@@ -22,6 +22,12 @@ public class SystemUtils {
     public static final int EVENT_CARD_PREF_WIDTH = 200;
     public static final double INTRO_DURATION = 650;
 
+    /* Side bar header constants */
+    public static final String EVENTCARD_DEMO_HEADER = "Event Card";
+    public static final String STORYLINE_DEMO_HEADER = "Storyline";
+    public static final String CHAPTER_DEMO_HEADER = "Chapter";
+    public static final String DOCUMENT_DEMO_HEADER = "Document";
+
     public static SVGPath getIconSVG(String path) {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         SVGPath svgPath = new SVGPath();
