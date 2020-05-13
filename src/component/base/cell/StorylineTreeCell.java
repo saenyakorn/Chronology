@@ -12,6 +12,7 @@ public class StorylineTreeCell extends CustomTreeCell<Storyline> {
 
     public StorylineTreeCell() {
         super();
+        svgIcon.getStyleClass().add("icon-24px");
     }
 
     @Override
