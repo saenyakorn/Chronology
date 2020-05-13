@@ -155,7 +155,7 @@ public class MainWindowController {
             try (FileReader file = new FileReader(selectedFile)) {
                 Object obj = parser.parse(file);
                 readJSONObject((JSONObject) obj);
-                ApplicationUtils.updateOnOpen();
+                ApplicationUtils.updateWorkspaceOnOpen();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {

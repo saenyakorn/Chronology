@@ -88,7 +88,7 @@ public class ApplicationUtils {
         ApplicationUtils.getCurrentWorkspace().getDocumentList().getActiveDocument().getEventCards().update();
     }
 
-    public static void updateOnOpen() {
+    public static void updateWorkspaceOnOpen() {
         Document firstDocument = ApplicationUtils.getCurrentWorkspace().getDocumentList().get(0);
         //basically rebind everything
         ApplicationUtils.getCurrentWorkspace().getSideBar().initBindings(firstDocument);
