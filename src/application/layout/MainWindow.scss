@@ -2,6 +2,8 @@
 
 @mixin hBox-needs-style {
   -fx-pref-height: $navigation-bar-size;
+  -fx-max-height: $navigation-bar-size;
+  -fx-min-height: $navigation-bar-size;
   -fx-alignment: center-left;
   -fx-background-color: $black;
   -fx-font-family: $font-regular;
