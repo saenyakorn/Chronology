@@ -25,8 +25,8 @@
 }
 
 .progress-bar {
-  -fx-border-radius: 100px;
-  -fx-background-radius: 100px;
+  -fx-border-radius: 100%;
+  -fx-background-radius: 100%;
   -fx-pref-width: 480px;
   -fx-pref-height: 10px;
   -fx-accent: $red;
