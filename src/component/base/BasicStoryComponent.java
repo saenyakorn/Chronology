@@ -32,40 +32,40 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
     public BasicStoryComponent() {
         componentId = UUID.randomUUID().toString();
         ApplicationUtils.putItemToCurrentHashMap(componentId, this);
-        setTitle("Title");
-        setDescription("Lorem ipsum dolor set amet, ego bir setaso de.");
-        setColor(GlobalColor.DEFAULT_COLOR);
-        setTimePeriod(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
+        title.set("Title");
+        description.set("Lorem ipsum dolor set amet, ego bir setaso de.");
+        color.setValue(GlobalColor.DEFAULT_COLOR);
+        timePeriod.setValue(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
     }
 
     @SuppressWarnings("unchecked")
     public BasicStoryComponent(String componentId) {
         this.componentId = componentId;
         //no put item because used to load a hashMap from file
-        setTitle("Title");
-        setDescription("Lorem ipsum dolor set amet, ego bir setaso de.");
-        setColor(GlobalColor.DEFAULT_COLOR);
-        setTimePeriod(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
+        title.set("Title");
+        description.set("Lorem ipsum dolor set amet, ego bir setaso de.");
+        color.setValue(GlobalColor.DEFAULT_COLOR);
+        timePeriod.setValue(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
     }
 
     @SuppressWarnings("unchecked")
     public BasicStoryComponent(String title, String description) {
         componentId = UUID.randomUUID().toString();
         ApplicationUtils.putItemToCurrentHashMap(componentId, this);
-        setTitle(title);
-        setDescription(description);
-        setColor(GlobalColor.DEFAULT_COLOR);
-        setTimePeriod(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
+        this.title.set(title);
+        this.description.set(description);
+        color.setValue(GlobalColor.DEFAULT_COLOR);
+        timePeriod.setValue(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
     }
 
     @SuppressWarnings("unchecked")
     public BasicStoryComponent(String title, String description, Color color, TimePeriod timePeriod) {
         componentId = UUID.randomUUID().toString();
         ApplicationUtils.putItemToCurrentHashMap(componentId, this);
-        setTitle(title);
-        setDescription(description);
-        setColor(color);
-        setTimePeriod(timePeriod);
+        this.title.set(title);
+        this.description.set(description);
+        this.color.setValue(color);
+        this.timePeriod.setValue(timePeriod);
     }
 
     public String getComponentId() {
