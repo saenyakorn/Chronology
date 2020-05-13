@@ -32,22 +32,16 @@ public class ApplicationUtils {
         return ApplicationUtils.currentWorkspace;
     }
 
+    public static void setCurrentWorkspace(Workspace currentWorkspace) {
+        ApplicationUtils.currentWorkspace = currentWorkspace;
+    }
+
     public static File getSavedFile() {
         return savedFile;
     }
 
     public static void setSavedFile(File savedFile) {
         ApplicationUtils.savedFile = savedFile;
-    }
-
-    public static void update() {
-        Document currentDocument = ApplicationUtils.getCurrentWorkspace().getActiveDocument();
-        ApplicationUtils.getCurrentWorkspace().setActiveDocument(currentDocument);
-        ApplicationUtils.getCurrentWorkspace().getDocumentList().getActiveDocument().getEventCards().update();
-    }
-
-    public static void setCurrentWorkspace(Workspace currentWorkspace) {
-        ApplicationUtils.currentWorkspace = currentWorkspace;
     }
 
     public static void putItemToCurrentHashMap(String key, BasicStoryComponent value) {
@@ -72,14 +66,16 @@ public class ApplicationUtils {
     }
 
     public static void newProject() {
-        // initialized application
         ApplicationUtils.initialize();
+        Document newDocument = new Document("New Document");
+        ApplicationUtils.getCurrentWorkspace().getSideBar().initBindings(newDocument);
+        ApplicationUtils.getCurrentWorkspace().addDocument(newDocument);
+    }
 
-        // add template structure
-        ApplicationUtils.getCurrentWorkspace().addDocument(new Document("New Document"));
-
-        // render side bar
-        ApplicationUtils.getCurrentWorkspace().getSideBar().renderSideBar(ApplicationUtils.getCurrentWorkspace().getActiveDocument());
+    public static void update() {
+        Document activeDocument = ApplicationUtils.getCurrentWorkspace().getActiveDocument();
+        ApplicationUtils.getCurrentWorkspace().setActiveDocument(activeDocument);
+        ApplicationUtils.getCurrentWorkspace().getDocumentList().getActiveDocument().getEventCards().update();
     }
 }
 
