@@ -27,7 +27,7 @@ public class NewStorylineDialog extends Dialog {
         System.out.println("Creating a new Storyline");
         Storyline newStoryline = new Storyline(title, description);
         ApplicationUtils.getCurrentWorkspace().getActiveDocument().addStoryLine(newStoryline);
-        ApplicationUtils.updateViewer();
+        ApplicationUtils.updateWorkspace();
         System.out.println("Done");
         this.close();
     }

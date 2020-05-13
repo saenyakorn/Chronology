@@ -27,13 +27,13 @@ public class Viewer extends ScrollPane {
     private void createStoryline() {
         Storyline newStoryline = new Storyline();
         ApplicationUtils.getCurrentWorkspace().getActiveDocument().addStoryLine(newStoryline);
-        ApplicationUtils.updateViewer();
+        ApplicationUtils.updateWorkspace();
     }
 
     private void createEventCard() {
         EventCard newEventCard = new EventCard();
         ApplicationUtils.getCurrentWorkspace().getActiveDocument().addEventCard(newEventCard);
-        ApplicationUtils.updateViewer();
+        ApplicationUtils.updateWorkspace();
     }
 
     private void initializeContextMenu() {

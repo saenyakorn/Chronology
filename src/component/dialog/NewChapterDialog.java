@@ -26,7 +26,7 @@ public class NewChapterDialog extends Dialog {
     private void AddNewChapter(String title, String description) {
         Chapter newChapter = new Chapter(title, description);
         ApplicationUtils.getCurrentWorkspace().getActiveDocument().addChapter(newChapter);
-        ApplicationUtils.updateViewer();
+        ApplicationUtils.updateWorkspace();
         this.close();
     }
 
