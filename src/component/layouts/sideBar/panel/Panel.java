@@ -1,4 +1,4 @@
-package component.layouts.sideBar.demo;
+package component.layouts.sideBar.panel;
 
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -8,7 +8,7 @@ import javafx.scene.control.TreeView;
 import javafx.scene.layout.VBox;
 import utils.SystemUtils;
 
-public abstract class Demo<T> extends VBox {
+public abstract class Panel<T> extends VBox {
 
     protected Label header = new Label();
     protected TreeView<T> treeView = new TreeView<>();
@@ -19,7 +19,7 @@ public abstract class Demo<T> extends VBox {
         }
     };
 
-    public Demo() {
+    public Panel() {
         getStylesheets().add(getClass().getResource("../SideBar.css").toExternalForm());
         treeView.setRoot(new TreeItem<>());
         treeView.setShowRoot(false);

@@ -1,12 +1,12 @@
-package component.layouts.sideBar.demo;
+package component.layouts.sideBar.panel;
 
 import component.base.cell.StorylineTreeCell;
 import component.components.storyline.Storyline;
 import utils.SystemUtils;
 
-public class StorylineDemo extends Demo<Storyline> {
+public class StorylinePanel extends Panel<Storyline> {
 
-    public StorylineDemo() {
+    public StorylinePanel() {
         setHeader(SystemUtils.STORYLINE_DEMO_HEADER);
         getTreeView().setCellFactory(param -> new StorylineTreeCell());
     }
