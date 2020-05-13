@@ -26,7 +26,7 @@ public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
         sideBar.setMaxSize(sideBar.getPrefWidth(), sideBar.getPrefHeight());
 
         // Added all components into HBox
-        this.getChildren().addAll(sideBar, viewer);
+        getChildren().addAll(sideBar, viewer);
     }
 
     public Viewer getViewer() {
@@ -46,7 +46,13 @@ public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
     }
 
     public void setActiveDocument(Document document) {
-        sideBar.renderSideBar(document);
+        Document previousActiveDocument = getActiveDocument();
+        if (previousActiveDocument != null) {
+            sideBar.clear(previousActiveDocument);
+        }
+        if (document != null) {
+            sideBar.initBindings(document);
+        }
     }
 
     public void addDocument(Document document) {
