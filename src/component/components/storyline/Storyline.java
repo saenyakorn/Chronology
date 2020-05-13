@@ -161,7 +161,7 @@ public class Storyline extends BasicStoryComponent {
         storylineTitle.setStyle("-fx-text-fill: " + GlobalColor.colorToHex(color) + ";");
         EventCardList eventCards = ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards();
         for (EventCard eventCard : eventCards) {
-            if(eventCard.getStoryline().equals(this)){
+            if (eventCard.getStoryline() == this) {
                 eventCard.setColor(color);
             }
         }
