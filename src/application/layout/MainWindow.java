@@ -2,6 +2,7 @@ package application.layout;
 
 import component.components.document.DocumentList;
 import component.dialog.*;
+import component.layouts.workspace.Workspace;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -72,6 +73,11 @@ public class MainWindow {
         Bindings.bindContent(tabContainer.getChildren(), documentList.tabsProperty());
 
         // TODO Rewrite this class more clearly. it work but hard for debugging.
+    }
+
+    public void bindDocumentTabs() {
+        DocumentList documentList = ApplicationUtils.getCurrentWorkspace().getDocumentList();
+        Bindings.bindContent(tabContainer.getChildren(), documentList.tabsProperty());
     }
 
     @FXML
@@ -148,13 +154,12 @@ public class MainWindow {
     }
 
     private void readFromFile(File selectedFile) {
-        ApplicationUtils.clear();
         if(selectedFile != null) {
             JSONParser parser = new JSONParser();
             try (FileReader file = new FileReader(selectedFile)) {
                 Object obj = parser.parse(file);
                 readJSONObject((JSONObject) obj);
-                ApplicationUtils.update();
+                ApplicationUtils.updateWholeMainWindow();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -167,7 +172,7 @@ public class MainWindow {
 
     @SuppressWarnings("unchecked")
     private void readJSONObject(JSONObject workspaceObject) {
-        ApplicationUtils.getCurrentWorkspace().readJSONObject(workspaceObject);
+        ApplicationUtils.setCurrentWorkspace((new Workspace()).readJSONObject(workspaceObject));
         System.out.println("Open file complete - Current workspace set to loaded workspace");
     }
 }

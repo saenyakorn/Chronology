@@ -193,7 +193,7 @@ public class Storyline extends BasicStoryComponent {
             if (item instanceof EventCard) {
                 EventCard eventCard = (EventCard) item;
                 eventCard.setStoryline(this);
-                ApplicationUtils.update();
+                ApplicationUtils.updateViewer();
             }
             event.consume();
         });

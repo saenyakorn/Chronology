@@ -136,7 +136,7 @@ public final class BasicStoryComponentTreeCell extends TreeCell<BasicStoryCompon
                 ApplicationUtils.getCurrentWorkspace().getActiveDocument().removeEventCard(eventCard);
                 eventCard.setChapter(target);
                 ApplicationUtils.getCurrentWorkspace().getActiveDocument().addEventCard(eventCard);
-                ApplicationUtils.update();
+                ApplicationUtils.updateViewer();
             }
             event.consume();
         });
