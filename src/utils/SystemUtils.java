@@ -17,6 +17,7 @@ public class SystemUtils {
     /* Application constants */
     public static final String APP_NAME = "Chronology";
     public static final int SIDEBAR_PREF_WIDTH = 200;
+    public static final int SIDEBAR_PREF_HEIGHT = 200;
     public static final int DIALOG_PREF_WIDTH = 300;
     public static final int DIALOG_PREF_HEIGHT = 400;
     public static final int EVENT_CARD_PREF_WIDTH = 200;
@@ -27,6 +28,15 @@ public class SystemUtils {
     public static final String STORYLINE_DEMO_HEADER = "Storyline";
     public static final String CHAPTER_DEMO_HEADER = "Chapter";
     public static final String DOCUMENT_DEMO_HEADER = "Document";
+
+    /* context menu word constants */
+    public static final String NEW_EVENT_CARD = "New event card";
+    public static final String NEW_STORYLINE = "New storyline";
+    public static final String NEW_DOCUMENT = "New document";
+    public static final String NEW_CHAPTER = "New chapter";
+    public static final String EDIT_DATA_TIME = "Edit date/time";
+    public static final String EDIT_COLOR = "Edit color";
+
 
     public static SVGPath getIconSVG(String path) {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
