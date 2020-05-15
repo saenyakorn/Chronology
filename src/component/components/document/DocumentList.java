@@ -64,6 +64,12 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
         documents.remove(document);
     }
 
+    public void removeAllDocuments() {
+        while(documents.size() > 0) {
+            removeDocument(documents.get(0));
+        }
+    }
+
     public int getSize() {
         return documents.size();
     }
@@ -109,7 +115,10 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
     @Override
     public DocumentList readJSONArray(JSONArray documentArray) {
         for (Object documentObject : documentArray) {
-            addDocument((new Document()).readJSONObject((JSONObject) documentObject));
+            Document readDocument = new Document();
+            addDocument(readDocument);
+            ApplicationUtils.getCurrentWorkspace().getSideBar().initBindings(readDocument);
+            readDocument.readJSONObject((JSONObject) documentObject);
         }
         return this;
     }

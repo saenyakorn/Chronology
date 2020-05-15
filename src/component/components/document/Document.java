@@ -117,9 +117,9 @@ public class Document extends VBox implements SavableAsJSONObject<Document> {
         JSONArray chapterArray = (JSONArray) documentObject.get("chapterList");
         JSONArray storylineArray = (JSONArray) documentObject.get("storylineList");
 
+        storylines.readJSONArray(storylineArray);
         eventCards.readJSONArray(eventCardArray);
         chapters.readJSONArray(chapterArray);
-        storylines.readJSONArray(storylineArray);
 
         return this;
     }

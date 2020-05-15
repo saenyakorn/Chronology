@@ -25,11 +25,11 @@ import java.util.Optional;
 
 public class EventCardTreeCell extends CustomTreeCell<EventCard> {
 
-    private final SVGPath svgIcon = SystemUtils.getIconSVG("event_card_icon_24px.svg");
+    private final SVGPath eventCardIcon = SystemUtils.getIconSVG("event_card_icon_24px.svg");
 
     public EventCardTreeCell() {
         super();
-        svgIcon.getStyleClass().add("icon-24px");
+        eventCardIcon.getStyleClass().add("component-icon");
     }
 
     @Override
@@ -55,13 +55,13 @@ public class EventCardTreeCell extends CustomTreeCell<EventCard> {
             tooltip.setHideDelay(new Duration(0));
             tooltip.setText("desc: " + item.getDescription());
             if (item.getStoryline() != null) {
-                svgIcon.setFill(item.getStoryline().getColor());
+                eventCardIcon.setFill(item.getStoryline().getColor());
             } else {
-                svgIcon.setFill(GlobalColor.DEFAULT_COLOR);
+                eventCardIcon.setFill(GlobalColor.DEFAULT_COLOR);
             }
             setTooltip(tooltip);
             setText(item.getTitle());
-            setGraphic(svgIcon);
+            setGraphic(eventCardIcon);
             setContextMenu(getCustomContextMenu());
         }
     }

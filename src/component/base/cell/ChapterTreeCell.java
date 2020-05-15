@@ -24,10 +24,11 @@ import java.util.Optional;
 
 public class ChapterTreeCell extends CustomTreeCell<Chapter> {
 
-    private final SVGPath svgIcon = SystemUtils.getIconSVG("chapter_icon_24px.svg");
+    private final SVGPath chapterIcon = SystemUtils.getIconSVG("chapter_icon_24px.svg");
 
     public ChapterTreeCell() {
         super();
+        chapterIcon.getStyleClass().add("component-icon");
     }
 
     @Override
@@ -52,10 +53,10 @@ public class ChapterTreeCell extends CustomTreeCell<Chapter> {
             tooltip.setShowDelay(new Duration(SystemUtils.TOOLTIP_SHOW_DELAY));
             tooltip.setHideDelay(new Duration(0));
             tooltip.setText("desc: " + item.getDescription());
-            svgIcon.setFill(item.getColor());
+            chapterIcon.setFill(item.getColor());
             setTooltip(tooltip);
             setText(item.getTitle());
-            setGraphic(svgIcon);
+            setGraphic(chapterIcon);
             setContextMenu(getCustomContextMenu());
         }
     }

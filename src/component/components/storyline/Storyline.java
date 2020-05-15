@@ -52,9 +52,7 @@ public class Storyline extends BasicStoryComponent {
 
     public Storyline(String componentID) {
         super(componentID);
-        loadFXML("Storyline.fxml");
-        initializeContextMenu();
-        setColor(RandomColor.getColor());
+        //does no fxml stuff until finished
     }
 
     public Storyline(String title, String description) {
@@ -68,14 +66,12 @@ public class Storyline extends BasicStoryComponent {
         super(title, description, color, timePeriod);
         loadFXML("Storyline.fxml");
         initializeContextMenu();
-        setColor(RandomColor.getColor());
     }
 
     public Storyline(String title, String description, Color color, TimePeriod timePeriod, EventCardList eventCards) {
         super(title, description, color, timePeriod);
         loadFXML("Storyline.fxml");
         initializeContextMenu();
-        setColor(RandomColor.getColor());
     }
 
     public Pane getDisplay() {
@@ -139,20 +135,17 @@ public class Storyline extends BasicStoryComponent {
         return storylineObject;
     }
 
-    private void initializeContextMenu() {
-        contextMenu.setAutoHide(true);
-        contextMenu.setConsumeAutoHidingEvents(true);
-        MenuItem colorMenuItem = new MenuItem(SystemUtils.EDIT_COLOR);
-        colorMenuItem.setOnAction((ActionEvent event) -> new SetColorDialog(this).show());
-        MenuItem eventCardMenuItem = new MenuItem(SystemUtils.NEW_EVENT_CARD);
-        eventCardMenuItem.setOnAction((ActionEvent event) -> {
-            EventCardList eventCards = ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards();
-            EventCard newEventCard = new EventCard();
-            newEventCard.setStoryline(this);
-            eventCards.addEventCard(newEventCard);
-            ApplicationUtils.updateWorkspace();
-        });
-        contextMenu.getItems().addAll(colorMenuItem, eventCardMenuItem);
+    public static Storyline readJSONObjectAsComponentID(JSONObject componentObject) {
+        //if not correct type, throw error?
+        Storyline readStoryline = (Storyline) ApplicationUtils.getValueFromCurrentHashMap((String) componentObject.get("componentID"));
+        readStoryline.initializeDisplayAfterRead();
+        return readStoryline;
+    }
+
+    private void initializeDisplayAfterRead() {
+        loadFXML("Storyline.fxml");
+        initializeContextMenu();
+        setColor(RandomColor.getColor());
     }
 
     @FXML
@@ -221,5 +214,20 @@ public class Storyline extends BasicStoryComponent {
 
     }
 
+    private void initializeContextMenu() {
+        contextMenu.setAutoHide(true);
+        contextMenu.setConsumeAutoHidingEvents(true);
+        MenuItem colorMenuItem = new MenuItem(SystemUtils.EDIT_COLOR);
+        colorMenuItem.setOnAction((ActionEvent event) -> new SetColorDialog(this).show());
+        MenuItem eventCardMenuItem = new MenuItem(SystemUtils.NEW_EVENT_CARD);
+        eventCardMenuItem.setOnAction((ActionEvent event) -> {
+            EventCardList eventCards = ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards();
+            EventCard newEventCard = new EventCard();
+            newEventCard.setStoryline(this);
+            eventCards.addEventCard(newEventCard);
+            ApplicationUtils.updateWorkspace();
+        });
+        contextMenu.getItems().addAll(colorMenuItem, eventCardMenuItem);
+    }
 
 }

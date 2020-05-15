@@ -1,10 +1,7 @@
 package utils;
 
 import component.base.BasicStoryComponent;
-import component.components.chapter.Chapter;
 import component.components.document.Document;
-import component.components.eventCard.EventCard;
-import component.components.storyline.Storyline;
 import component.layouts.workspace.Workspace;
 import org.json.simple.JSONObject;
 
@@ -21,19 +18,6 @@ public class ApplicationUtils {
         savedFile = null;
         Workspace workspace = new Workspace();
         setCurrentWorkspace(workspace);
-    }
-
-    public static void clear() {
-        //clear sidebar
-        Document activeDocument = ApplicationUtils.getCurrentWorkspace().getActiveDocument();
-        ApplicationUtils.getCurrentWorkspace().getSideBar().clear(activeDocument);
-        //document demo isn't cleared though
-
-        //clear document tabs
-        /*DocumentList documentList = ApplicationUtils.getCurrentWorkspace().getDocumentList();
-        Bindings.unbindContent(tabContainer.getChildren(), documentList.tabsProperty());*/
-
-        hashMap = new HashMap<>();
     }
 
     public static Workspace getCurrentWorkspace() {
@@ -70,10 +54,8 @@ public class ApplicationUtils {
     public static JSONObject getCurrentHashMapAsJSONObject() {
         JSONObject hashMapObject = new JSONObject();
         ApplicationUtils.hashMap.forEach((key, value) -> {
-            if (value instanceof EventCard || value instanceof Storyline || value instanceof Chapter) {
-                System.out.println("HashMap key: " + key + ", value = " + value.toString() + ", type = " + value.getClass().getName());
-                hashMapObject.put(key, value.writeJSONObject());
-            }
+            System.out.println("HashMap key: " + key + ", value = " + value.toString() + ", type = " + value.getClass().getName());
+            hashMapObject.put(key, value.writeJSONObject());
         });
         System.out.println();
         return hashMapObject;
@@ -86,6 +68,21 @@ public class ApplicationUtils {
         ApplicationUtils.getCurrentWorkspace().addDocument(newDocument);
     }
 
+    public static void clear() {
+        //unbind and clear sidebar listener
+        Document activeDocument = ApplicationUtils.getCurrentWorkspace().getActiveDocument();
+        if(activeDocument != null) {
+            ApplicationUtils.getCurrentWorkspace().getSideBar().clear(activeDocument);
+        }
+
+        //clear documents - will clear sidebar, tabs and viewer
+        ApplicationUtils.getCurrentWorkspace().getDocumentList().removeAllDocuments();
+
+        //init new workspace
+        setCurrentWorkspace(new Workspace());
+        hashMap = new HashMap<>();
+    }
+
     public static void updateWorkspace() {
         Document activeDocument = ApplicationUtils.getCurrentWorkspace().getActiveDocument();
         ApplicationUtils.getCurrentWorkspace().setActiveDocument(activeDocument);
@@ -93,9 +90,13 @@ public class ApplicationUtils {
     }
 
     public static void updateWorkspaceOnOpen() {
+        //rebind sidebar
         Document firstDocument = ApplicationUtils.getCurrentWorkspace().getDocumentList().get(0);
-        //basically rebind everything
-        ApplicationUtils.getCurrentWorkspace().getSideBar().initBindings(firstDocument);
+        System.out.println(firstDocument.toString());
+        ApplicationUtils.getCurrentWorkspace().setActiveDocument(firstDocument);
+
+        //rerender viewer
+        ApplicationUtils.updateWorkspace();
     }
 }
 

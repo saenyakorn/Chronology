@@ -1,7 +1,6 @@
 package component.components.storyline;
 
 import component.ability.SavableAsJSONArray;
-import component.base.BasicStoryComponent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.Pane;
@@ -67,7 +66,7 @@ public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray<St
     @Override
     public StorylineList readJSONArray(JSONArray storylineArray) {
         for (Object storylineObject : storylineArray) {
-            storylines.add((Storyline) BasicStoryComponent.readJSONObjectAsComponentID((JSONObject) storylineObject));
+            this.addStoryline(Storyline.readJSONObjectAsComponentID((JSONObject) storylineObject));
         }
         return this;
     }

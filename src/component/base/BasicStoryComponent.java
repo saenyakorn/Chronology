@@ -166,16 +166,12 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
 
     @Override
     public BasicStoryComponent readJSONObject(JSONObject componentObject) {
-        this.setTitle((String) componentObject.get("title"));
-        this.setDescription((String) componentObject.get("description"));
-        //System.out.println((String) componentObject.get("title") + (String) componentObject.get("Color"));
-        this.setColor(Color.web((String) componentObject.get("Color")));
-        this.setTimePeriod(TimePeriod.stringToTimePeriod((String) componentObject.get("TimePeriod")));
+        //DO NOT change to setter! Setter generates FXMLLoadException!
+        title.set((String) componentObject.get("title"));
+        description.set((String) componentObject.get("description"));
+        color.setValue(Color.web((String) componentObject.get("Color")));
+        timePeriod.setValue(TimePeriod.stringToTimePeriod((String) componentObject.get("TimePeriod")));
         return this;
-    }
-
-    public static BasicStoryComponent readJSONObjectAsComponentID(JSONObject componentObject) {
-        return ApplicationUtils.getValueFromCurrentHashMap((String) componentObject.get("componentID"));
     }
 
     protected void loadFXML(String link) {

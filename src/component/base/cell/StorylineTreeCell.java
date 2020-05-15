@@ -20,11 +20,11 @@ import java.util.Optional;
 
 public class StorylineTreeCell extends CustomTreeCell<Storyline> {
 
-    private final SVGPath svgIcon = SystemUtils.getIconSVG("storyline_icon_24px.svg");
+    private final SVGPath storylineIcon = SystemUtils.getIconSVG("storyline_icon_24px.svg");
 
     public StorylineTreeCell() {
         super();
-        svgIcon.getStyleClass().add("icon-24px");
+        storylineIcon.getStyleClass().add("component-icon");
     }
 
     @Override
@@ -49,10 +49,10 @@ public class StorylineTreeCell extends CustomTreeCell<Storyline> {
             tooltip.setShowDelay(new Duration(SystemUtils.TOOLTIP_SHOW_DELAY));
             tooltip.setHideDelay(new Duration(0));
             tooltip.setText("desc: " + item.getDescription());
-            svgIcon.setFill(item.getColor());
+            storylineIcon.setFill(item.getColor());
             setTooltip(tooltip);
             setText(item.getTitle());
-            setGraphic(svgIcon);
+            setGraphic(storylineIcon);
             setContextMenu(getCustomContextMenu());
         }
     }
