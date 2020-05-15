@@ -6,7 +6,7 @@ import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
 import component.components.timeModifier.TimePeriod;
-import component.dialog.SetColorDialog;
+import component.dialog.edit.SetColorDialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -163,6 +163,7 @@ public class Storyline extends BasicStoryComponent {
 
         // When Storyline get right click
         root.setOnContextMenuRequested((ContextMenuEvent event) -> {
+            contextMenu.hide();
             contextMenu.show(root, event.getScreenX(), event.getScreenY());
             event.consume();
         });
