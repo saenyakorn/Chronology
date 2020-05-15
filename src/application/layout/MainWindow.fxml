@@ -25,7 +25,6 @@
             <MenuItem text="Storyline" onAction="#handleNewStoryLineClick"/>
             <MenuItem text="Event Card" onAction="#handleNewEventCardClick"/>
             <MenuItem text="Chapter" onAction="#handleNewChapterClick"/>
-            <MenuItem text="Comment"/>
         </Menu>
     </MenuBar>
 
