@@ -2,7 +2,6 @@ package component.components.storyline;
 
 import component.ability.SavableAsJSONArray;
 import component.base.BasicStoryComponent;
-import component.components.eventCard.EventCard;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.Pane;
@@ -18,10 +17,6 @@ public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray<St
     public StorylineList() {
         storylines = FXCollections.observableArrayList();
         storylinePanes = FXCollections.observableArrayList();
-    }
-
-    private int sortByEventCardDate(EventCard item1, EventCard item2) {
-        return item1.compareTo(item2);
     }
 
     public ObservableList<Pane> getStorylinePanes() {

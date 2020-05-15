@@ -31,19 +31,25 @@ public class SystemUtils {
     public static final String DOCUMENT_DEMO_HEADER = "Documents";
 
     /* context menu word constants */
-    public static final String NEW_EVENT_CARD_TO = "Add event card to this";
-    public static final String NEW_EVENT_CARD = "New event card";
-    public static final String NEW_STORYLINE = "New storyline";
-    public static final String NEW_DOCUMENT = "New document";
-    public static final String NEW_CHAPTER = "New chapter";
-    public static final String EDIT_PROPERTY = "Properties...";
-    public static final String EDIT_TITLE = "Edit title";
-    public static final String EDIT_DESCRIPTION = "Edit description";
-    public static final String EDIT_DATA_TIME = "Edit date/time";
-    public static final String EDIT_COLOR = "Edit color";
-    public static final String MOVE_TO_STORYLINE = "Move to storyline...";
-    public static final String MOVE_TO_CHAPTER = "Move to chapter...";
-    public static final String GET_INFO = "Get Info";
+    public static final String NEW_EVENT_CARD_TO = "add event card to this";
+    public static final String NEW_EVENT_CARD = "new event card";
+    public static final String NEW_STORYLINE = "new storyline";
+    public static final String NEW_DOCUMENT = "new document";
+    public static final String NEW_CHAPTER = "new chapter";
+    public static final String EDIT_PROPERTY = "properties...";
+    public static final String EDIT_TITLE = "edit title";
+    public static final String EDIT_DESCRIPTION = "edit description";
+    public static final String EDIT_DATA_TIME = "edit date/time";
+    public static final String EDIT_COLOR = "edit color";
+    public static final String MOVE_TO_STORYLINE = "move to storyline...";
+    public static final String MOVE_TO_CHAPTER = "move to chapter...";
+    public static final String GET_INFO = "get Info";
+    public static final String REMOVE = "remove";
+
+    /* Alert text */
+    public static final String CONFIRM_REMOVE_TITLE = "remove";
+    public static final String CONFIRM_REMOVE_HEADER = "remove";
+    public static final String CONFIRM_REMOVE_CONTENT = "remove";
 
 
     public static SVGPath getIconSVG(String path) {

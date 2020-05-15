@@ -9,6 +9,8 @@ import component.dialog.edit.SetTitleDialog;
 import component.dialog.initialize.NewChapterDialog;
 import component.dialog.initialize.NewEventCardDialog;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.DragEvent;
@@ -17,6 +19,8 @@ import javafx.scene.shape.SVGPath;
 import javafx.util.Duration;
 import utils.ApplicationUtils;
 import utils.SystemUtils;
+
+import java.util.Optional;
 
 public class ChapterTreeCell extends CustomTreeCell<Chapter> {
 
@@ -98,9 +102,25 @@ public class ChapterTreeCell extends CustomTreeCell<Chapter> {
         addEventCardMenuItem.setOnAction((ActionEvent event) -> new NewEventCardDialog(getItem()).show());
         MenuItem newChapter = new MenuItem(SystemUtils.NEW_CHAPTER);
         newChapter.setOnAction((ActionEvent event) -> new NewChapterDialog().show());
-        getCustomContextMenu().getItems().addAll(newChapter, addEventCardMenuItem, editTitleMenuItem, editDescriptionMenuItem, editColorMenuItem);
+        MenuItem removeMenuItem = new MenuItem(SystemUtils.REMOVE);
+        removeMenuItem.setOnAction((ActionEvent event) -> removeItem());
+        getCustomContextMenu().getItems().addAll(newChapter, addEventCardMenuItem, editTitleMenuItem, editDescriptionMenuItem, editColorMenuItem, removeMenuItem);
         if (getItem() != null) {
             setContextMenu(getCustomContextMenu());
+        }
+    }
+
+    private void removeItem() {
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle(SystemUtils.CONFIRM_REMOVE_TITLE);
+        confirm.setHeaderText(SystemUtils.CONFIRM_REMOVE_HEADER);
+        confirm.setContentText(SystemUtils.CONFIRM_REMOVE_CONTENT);
+        confirm.setGraphic(null);
+        Optional<ButtonType> result = confirm.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            ApplicationUtils.getCurrentWorkspace().getActiveDocument().getChapters().removeChapter(getItem());
+        } else {
+            confirm.close();
         }
     }
 }

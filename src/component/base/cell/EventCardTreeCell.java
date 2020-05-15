@@ -7,6 +7,8 @@ import component.dialog.edit.SetTitleDialog;
 import component.dialog.initialize.NewEventCardDialog;
 import javafx.event.ActionEvent;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.ClipboardContent;
@@ -16,7 +18,10 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
 import javafx.util.Duration;
+import utils.ApplicationUtils;
 import utils.SystemUtils;
+
+import java.util.Optional;
 
 public class EventCardTreeCell extends CustomTreeCell<EventCard> {
 
@@ -93,9 +98,25 @@ public class EventCardTreeCell extends CustomTreeCell<EventCard> {
         editStoryline.setOnAction((ActionEvent event) -> new SetDescriptionDialog(getItem()).show());
         MenuItem newEventCardMenuItem = new MenuItem(SystemUtils.NEW_EVENT_CARD);
         newEventCardMenuItem.setOnAction((ActionEvent event) -> new NewEventCardDialog().show());
-        getCustomContextMenu().getItems().addAll(newEventCardMenuItem, editDateTimeMenuItem, editChapter, editStoryline);
+        MenuItem removeMenuItem = new MenuItem(SystemUtils.REMOVE);
+        removeMenuItem.setOnAction((ActionEvent event) -> removeItem());
+        getCustomContextMenu().getItems().addAll(newEventCardMenuItem, editDateTimeMenuItem, editChapter, editStoryline, removeMenuItem);
         if (getItem() != null) {
             setContextMenu(getCustomContextMenu());
+        }
+    }
+
+    private void removeItem() {
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle(SystemUtils.CONFIRM_REMOVE_TITLE);
+        confirm.setHeaderText(SystemUtils.CONFIRM_REMOVE_HEADER);
+        confirm.setContentText(SystemUtils.CONFIRM_REMOVE_CONTENT);
+        confirm.setGraphic(null);
+        Optional<ButtonType> result = confirm.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards().removeEventCard(getItem());
+        } else {
+            confirm.close();
         }
     }
 }
