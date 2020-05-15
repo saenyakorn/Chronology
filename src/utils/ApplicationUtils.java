@@ -23,19 +23,6 @@ public class ApplicationUtils {
         setCurrentWorkspace(workspace);
     }
 
-    public static void clear() {
-        //clear sidebar
-        Document activeDocument = ApplicationUtils.getCurrentWorkspace().getActiveDocument();
-        ApplicationUtils.getCurrentWorkspace().getSideBar().clear(activeDocument);
-        //document demo isn't cleared though
-
-        //clear document tabs
-        /*DocumentList documentList = ApplicationUtils.getCurrentWorkspace().getDocumentList();
-        Bindings.unbindContent(tabContainer.getChildren(), documentList.tabsProperty());*/
-
-        hashMap = new HashMap<>();
-    }
-
     public static Workspace getCurrentWorkspace() {
         return ApplicationUtils.currentWorkspace;
     }
@@ -82,6 +69,21 @@ public class ApplicationUtils {
         ApplicationUtils.getCurrentWorkspace().addDocument(newDocument);
     }
 
+    public static void clear() {
+        //unbind and clear sidebar listener
+        Document activeDocument = ApplicationUtils.getCurrentWorkspace().getActiveDocument();
+        if(activeDocument != null) {
+            ApplicationUtils.getCurrentWorkspace().getSideBar().clear(activeDocument);
+        }
+
+        //clear documents - will clear sidebar, tabs and viewer
+        ApplicationUtils.getCurrentWorkspace().getDocumentList().removeAllDocuments();
+
+        //init new workspace
+        setCurrentWorkspace(new Workspace());
+        hashMap = new HashMap<>();
+    }
+
     public static void updateWorkspace() {
         Document activeDocument = ApplicationUtils.getCurrentWorkspace().getActiveDocument();
         ApplicationUtils.getCurrentWorkspace().setActiveDocument(activeDocument);
@@ -89,9 +91,13 @@ public class ApplicationUtils {
     }
 
     public static void updateWorkspaceOnOpen() {
+        //rebind sidebar
         Document firstDocument = ApplicationUtils.getCurrentWorkspace().getDocumentList().get(0);
-        //basically rebind everything
-        ApplicationUtils.getCurrentWorkspace().getSideBar().initBindings(firstDocument);
+        System.out.println(firstDocument.toString());
+        ApplicationUtils.getCurrentWorkspace().setActiveDocument(firstDocument);
+
+        //rerender viewer
+        ApplicationUtils.updateWorkspace();
     }
 }
 

@@ -62,8 +62,6 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     public EventCard(String componentID) {
         super(componentID);
-        loadFXML("EventCard.fxml");
-        initializeContextMenu();
     }
 
     public EventCard(String title, String description) {
@@ -212,10 +210,23 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         String selfChapterID = (String) eventCardObject.get("selfChapter");
         String selfStorylineID = (String) eventCardObject.get("selfStoryline");
 
-        setChapter((Chapter) ApplicationUtils.getValueFromCurrentHashMap(selfChapterID));
-        setStoryline((Storyline) ApplicationUtils.getValueFromCurrentHashMap(selfStorylineID));
+        //DO NOT change to setter! Setter generates FXMLLoadException!
+        selfChapter.setValue((Chapter) ApplicationUtils.getValueFromCurrentHashMap(selfChapterID));
+        selfStoryline.setValue((Storyline) ApplicationUtils.getValueFromCurrentHashMap(selfStorylineID));
 
         return this;
+    }
+
+    public static EventCard readJSONObjectAsComponentID(JSONObject componentObject) {
+        //if not correct type, throw error?
+        EventCard readEventCard = (EventCard) ApplicationUtils.getValueFromCurrentHashMap((String) componentObject.get("componentID"));
+        readEventCard.initializeDisplayAfterRead();
+        return readEventCard;
+    }
+
+    private void initializeDisplayAfterRead() {
+        loadFXML("EventCard.fxml");
+        initializeContextMenu();
     }
 
     private void initializeContextMenu() {
@@ -241,6 +252,11 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
             chapterMarker.setStyle("-fx-background-color: white;");
         } else {
             setChapter(getChapter());
+        }
+
+        // if has Storyline set color to storyline color
+        if (getStoryline() != null) {
+            setStoryline(getStoryline());
         }
 
         // When Event Card get right click

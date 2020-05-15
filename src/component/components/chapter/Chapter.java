@@ -53,4 +53,14 @@ public class Chapter extends BasicStoryComponent {
         chapterObject.put("type", "Chapter");
         return chapterObject;
     }
+
+    public static Chapter readJSONObjectAsComponentID(JSONObject componentObject) {
+        Chapter readChapter = (Chapter) ApplicationUtils.getValueFromCurrentHashMap((String) componentObject.get("componentID"));
+        readChapter.initializeDisplayAfterRead();
+        return readChapter;
+    }
+
+    private void initializeDisplayAfterRead() {
+        setColor(getColor());
+    }
 }

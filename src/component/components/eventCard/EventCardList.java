@@ -1,7 +1,6 @@
 package component.components.eventCard;
 
 import component.ability.SavableAsJSONArray;
-import component.base.BasicStoryComponent;
 import component.components.storyline.Storyline;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
@@ -113,7 +112,7 @@ public class EventCardList implements Iterable<EventCard>, SavableAsJSONArray<Ev
     @Override
     public EventCardList readJSONArray(JSONArray eventCardArray) {
         for (Object eventCardObject : eventCardArray) {
-            eventCards.add((EventCard) BasicStoryComponent.readJSONObjectAsComponentID((JSONObject) eventCardObject));
+            this.addEventCard(EventCard.readJSONObjectAsComponentID((JSONObject) eventCardObject));
         }
         return this;
     }
