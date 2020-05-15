@@ -1,10 +1,7 @@
 package utils;
 
 import component.base.BasicStoryComponent;
-import component.components.chapter.Chapter;
 import component.components.document.Document;
-import component.components.eventCard.EventCard;
-import component.components.storyline.Storyline;
 import component.layouts.workspace.Workspace;
 import org.json.simple.JSONObject;
 
@@ -57,10 +54,8 @@ public class ApplicationUtils {
     public static JSONObject getCurrentHashMapAsJSONObject() {
         JSONObject hashMapObject = new JSONObject();
         ApplicationUtils.hashMap.forEach((key, value) -> {
-            if (value instanceof EventCard || value instanceof Storyline || value instanceof Chapter) {
-                System.out.println("HashMap key: " + key + ", value = " + value.toString() + ", type = " + value.getClass().getName());
-                hashMapObject.put(key, value.writeJSONObject());
-            }
+            System.out.println("HashMap key: " + key + ", value = " + value.toString() + ", type = " + value.getClass().getName());
+            hashMapObject.put(key, value.writeJSONObject());
         });
         System.out.println();
         return hashMapObject;

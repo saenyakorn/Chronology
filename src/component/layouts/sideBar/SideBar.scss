@@ -54,3 +54,7 @@
 .tree-view {
   @include white-background;
 }
+
+.component-icon {
+  @include icon-24px;
+}

@@ -20,7 +20,7 @@ public final class DocumentTreeCell extends CustomTreeCell<Document> {
         getStylesheets().add(getClass().getResource("TreeCell.css").toExternalForm());
         getStyleClass().add("tree-cell");
         initializeEventHandler();
-        documentIcon.getStyleClass().add("icon-24px");
+        documentIcon.getStyleClass().add("component-icon");
     }
 
     @Override
