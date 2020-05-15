@@ -48,6 +48,17 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
     }
 
     public void removeDocument(Document document) {
+        if (document == getDocumentFromTab(activeTab)) {
+            int index = documentCustomTabs.indexOf(activeTab);
+            System.out.println("index: " + index);
+            if (index == 0 && documentCustomTabs.size() >= 2) {
+                setActiveTab(documentCustomTabs.get(1));
+            } else if (index == 0) {
+                setActiveTab(null);
+            } else {
+                setActiveTab(documentCustomTabs.get(index - 1));
+            }
+        }
         documentCustomTabs.remove(documents.indexOf(document));
         documents.remove(document);
     }
@@ -70,12 +81,16 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
     }
 
     private void setActiveTab(DocumentCustomTab tab) {
-        tab.setActive(true);
-        if (activeTab != null) {
-            activeTab.setActive(false);
+        if (tab != null) {
+            tab.setActive(true);
+            if (activeTab != null) {
+                activeTab.setActive(false);
+            }
+            ApplicationUtils.getCurrentWorkspace().setActiveDocument(getDocumentFromTab(tab));
+            ApplicationUtils.getCurrentWorkspace().getViewer().setDocument(getDocumentFromTab(tab));
+        } else {
+            ApplicationUtils.getCurrentWorkspace().setActiveDocument(null);
         }
-        ApplicationUtils.getCurrentWorkspace().setActiveDocument(getDocumentFromTab(tab));
-        ApplicationUtils.getCurrentWorkspace().getViewer().setDocument(getDocumentFromTab(tab));
         activeTab = tab;
     }
 

@@ -52,6 +52,8 @@ public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
         }
         if (document != null) {
             sideBar.initBindings(document);
+        } else {
+            viewer.setContent(null);
         }
     }
 
@@ -98,7 +100,7 @@ public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
         hashMapObject.forEach((key, value) -> {
             String componentID = (String) key;
             JSONObject componentObject = (JSONObject) value;
-            if(!componentObject.get("type").equals("EventCard")){
+            if (!componentObject.get("type").equals("EventCard")) {
                 BasicStoryComponent component = BasicStoryComponent.JSONObjectToBasicStoryComponent(componentID, componentObject);
                 System.out.println("Populating hashMap - key: " + key + ", type: " + component.getClass().getName());
                 ApplicationUtils.putItemToCurrentHashMap(componentID, component.readJSONObject(componentObject));
@@ -107,7 +109,7 @@ public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
         hashMapObject.forEach((key, value) -> {
             String componentID = (String) key;
             JSONObject componentObject = (JSONObject) value;
-            if(componentObject.get("type").equals("EventCard")){
+            if (componentObject.get("type").equals("EventCard")) {
                 BasicStoryComponent component = BasicStoryComponent.JSONObjectToBasicStoryComponent(componentID, componentObject);
                 System.out.println("Populating hashMap - key: " + key + ", type: " + component.getClass().getName());
                 ApplicationUtils.putItemToCurrentHashMap(componentID, component.readJSONObject(componentObject));
