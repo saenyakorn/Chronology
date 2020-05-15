@@ -4,16 +4,43 @@
   -fx-background: $white;
 }
 
+@mixin icon-24px {
+  -fx-scale-x: 0.67;
+  -fx-scale-y: 0.67;
+}
+
 .body {
   -fx-padding: 0;
 }
 
-.heading {
+.header-container {
+  -fx-alignment: center;
   -fx-background-color: $light-gray;
-  -fx-pref-width: $side-bar-width;
-  -fx-padding: $padding-smaller;
-  -fx-font-family: $font-bold;
+
+  .heading {
+    -fx-background-color: $light-gray;
+    -fx-pref-width: $side-bar-width;
+    -fx-padding: $padding-smaller;
+    -fx-font-family: $font-bold;
+  }
+
+  .new-item-button {
+    -fx-background-color: transparent;
+
+    .icon {
+      -fx-fill: $dark-gray;
+      @include icon-24px;
+    }
+
+    &:hover {
+      .icon {
+        -fx-fill: $red;
+      }
+    }
+  }
+
 }
+
 
 .side-bar {
   @include white-background;
@@ -26,9 +53,4 @@
 
 .tree-view {
   @include white-background;
-}
-
-.icon-24px {
-  -fx-scale-x: 0.67;
-  -fx-scale-y: 0.67;
 }

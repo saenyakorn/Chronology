@@ -1,6 +1,7 @@
-package component.dialog;
+package component.dialog.initialize;
 
 import component.components.storyline.Storyline;
+import component.dialog.Dialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -20,7 +21,7 @@ public class NewStorylineDialog extends Dialog {
     Button cancelButton;
 
     public NewStorylineDialog() {
-        loadFXML("Create New Storyline", "NewStorylineDialog.fxml");
+        loadFXML("Create New Storyline", "NewStorylineDialog.fxml", "../Dialog.css");
     }
 
     private void AddNewStoryline(String title, String description) {
@@ -35,10 +36,10 @@ public class NewStorylineDialog extends Dialog {
     @FXML
     protected void initialize() {
         createButton.setDisable(true);
-        titleTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField, descriptionTextField));
-        descriptionTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField, descriptionTextField));
+        titleTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField));
+        descriptionTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField));
         createButton.setOnAction((ActionEvent e) -> {
-            if (!isSomeEmpty(titleTextField, descriptionTextField)) {
+            if (!isSomeEmpty(titleTextField)) {
                 AddNewStoryline(titleTextField.getText(), descriptionTextField.getText());
             }
         });

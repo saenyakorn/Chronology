@@ -1,9 +1,10 @@
-package component.dialog;
+package component.dialog.edit;
 
 import component.base.BasicStoryComponent;
 import component.components.timeModifier.PredefinedTimePeriod;
 import component.components.timeModifier.TimePeriod;
 import component.components.timeModifier.TimePeriodGenerator;
+import component.dialog.Dialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +15,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import jfxtras.scene.control.LocalDateTimeTextField;
-import utils.SystemUtils;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -50,7 +50,7 @@ public class SetTimePeriodDialog extends Dialog {
         try {
             Parent root = fxmlLoader.load();
             stage.setTitle("Set Event Date & Time");
-            stage.setScene(new Scene(root, SystemUtils.DIALOG_PREF_WIDTH * 2, SystemUtils.DIALOG_PREF_HEIGHT));
+            stage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
         }

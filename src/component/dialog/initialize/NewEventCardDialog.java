@@ -1,4 +1,4 @@
-package component.dialog;
+package component.dialog.initialize;
 
 import component.base.BasicStoryComponent;
 import component.base.BlankBasicStoryComponent;
@@ -10,13 +10,16 @@ import component.components.document.Document;
 import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
 import component.components.storyline.StorylineList;
+import component.dialog.Dialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import utils.ApplicationUtils;
 
 public class NewEventCardDialog extends Dialog {
@@ -30,32 +33,54 @@ public class NewEventCardDialog extends Dialog {
     @FXML
     Button cancelButton;
     @FXML
-    HBox comboContainer;
+    HBox extensionContainer;
 
     public NewEventCardDialog() {
-        loadFXML("Create New Event", "NewEventCardDialog.fxml");
+        loadFXML("Create New Event", "NewEventCardDialog.fxml", "../Dialog.css");
+        createChapterComboBox();
+        createStorylineComboBox();
+        createButton.setOnAction((ActionEvent e) -> {
+            if (!isSomeEmpty(titleTextField)) {
+                addNewEventCard(titleTextField.getText(), descriptionTextField.getText());
+            }
+        });
+    }
+
+    public NewEventCardDialog(BasicStoryComponent component) {
+        loadFXML("Create New Event", "NewEventCardDialog.fxml", "../Dialog.css");
+        createButton.setOnAction((ActionEvent e) -> {
+            if (!isSomeEmpty(titleTextField)) {
+                addNewEventCard(titleTextField.getText(), descriptionTextField.getText(), component);
+            }
+        });
     }
 
     public void addNewEventCard(String title, String description) {
         EventCard newEventCard = new EventCard(title, description);
         ApplicationUtils.getCurrentWorkspace().getActiveDocument().addEventCard(newEventCard);
         ApplicationUtils.updateWorkspace();
-        this.close();
+        close();
     }
+
+    public void addNewEventCard(String title, String description, BasicStoryComponent component) {
+        EventCard newEventCard = new EventCard(title, description);
+        ApplicationUtils.getCurrentWorkspace().getActiveDocument().addEventCard(newEventCard);
+        if (component instanceof Storyline) {
+            newEventCard.setStoryline((Storyline) component);
+        } else if (component instanceof Chapter) {
+            newEventCard.setChapter((Chapter) component);
+        }
+        ApplicationUtils.updateWorkspace();
+        close();
+    }
+
 
     @FXML
     protected void initialize() {
         createButton.setDisable(true);
-        titleTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField, descriptionTextField));
-        descriptionTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField, descriptionTextField));
-        createButton.setOnAction((ActionEvent e) -> {
-            if (!isSomeEmpty(titleTextField, descriptionTextField)) {
-                addNewEventCard(titleTextField.getText(), descriptionTextField.getText());
-            }
-        });
+        titleTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField));
+        descriptionTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField));
         cancelButton.setOnAction((ActionEvent e) -> stage.close());
-        createChapterComboBox();
-        createStorylineComboBox();
     }
 
     private void createChapterComboBox() {
@@ -69,7 +94,11 @@ public class NewEventCardDialog extends Dialog {
         chapterCombo.setCellFactory(params -> new ComboBoxListCell());
         chapterCombo.setButtonCell(new ComboBoxButtonCell());
         chapterCombo.getSelectionModel().selectFirst();
-        comboContainer.getChildren().add(chapterCombo);
+
+        VBox vBox = new VBox();
+        Label header = new Label("Select Chapter");
+        vBox.getChildren().addAll(header, chapterCombo);
+        extensionContainer.getChildren().add(vBox);
     }
 
     private void createStorylineComboBox() {
@@ -83,6 +112,10 @@ public class NewEventCardDialog extends Dialog {
         storylineCombo.setCellFactory(params -> new ComboBoxListCell());
         storylineCombo.setButtonCell(new ComboBoxButtonCell());
         storylineCombo.getSelectionModel().selectFirst();
-        comboContainer.getChildren().add(storylineCombo);
+
+        VBox vBox = new VBox();
+        Label header = new Label("Select Storyline");
+        vBox.getChildren().addAll(header, storylineCombo);
+        extensionContainer.getChildren().add(vBox);
     }
 }

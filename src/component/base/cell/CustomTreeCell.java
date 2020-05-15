@@ -1,14 +1,17 @@
 package component.base.cell;
 
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.TreeCell;
-import javafx.scene.input.ContextMenuEvent;
 
 public class CustomTreeCell<T> extends TreeCell<T> {
+
+    protected final ContextMenu contextMenu = new ContextMenu();
 
     public CustomTreeCell() {
         getStylesheets().add(getClass().getResource("TreeCell.css").toExternalForm());
         getStyleClass().add("tree-cell");
         initializeEventHandler();
+        initializeContextMenu();
     }
 
     @Override
@@ -31,10 +34,13 @@ public class CustomTreeCell<T> extends TreeCell<T> {
         return getItem() == null ? "" : getItem().toString();
     }
 
+    public ContextMenu getCustomContextMenu() {
+        return contextMenu;
+    }
+
     protected void initializeEventHandler() {
-        setOnContextMenuRequested((ContextMenuEvent event) -> {
-            System.out.println("wow");
-            event.consume();
-        });
+    }
+
+    protected void initializeContextMenu() {
     }
 }

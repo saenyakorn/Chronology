@@ -1,7 +1,7 @@
 package application.layout;
 
 import component.components.document.DocumentList;
-import component.dialog.*;
+import component.dialog.initialize.*;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

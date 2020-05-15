@@ -16,7 +16,7 @@
     <TextField fx:id="titleTextField"/>
     <Label text="Event Description: "/>
     <TextField fx:id="descriptionTextField"/>
-    <HBox fx:id="comboContainer"/>
+    <HBox fx:id="extensionContainer"/>
     <HBox alignment="BOTTOM_RIGHT" spacing="20">
         <Button fx:id="cancelButton" text="Cancel"/>
         <Button fx:id="createButton" text="Create"/>

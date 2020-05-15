@@ -5,8 +5,8 @@ import component.base.BasicStoryComponent;
 import component.components.chapter.Chapter;
 import component.components.storyline.Storyline;
 import component.components.timeModifier.TimePeriod;
-import component.dialog.SetColorDialog;
-import component.dialog.SetTimePeriodDialog;
+import component.dialog.edit.SetColorDialog;
+import component.dialog.edit.SetTimePeriodDialog;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
@@ -261,6 +261,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
         // When Event Card get right click
         root.setOnContextMenuRequested((ContextMenuEvent event) -> {
+            contextMenu.hide();
             contextMenu.show(root, event.getScreenX(), event.getScreenY());
             event.consume();
         });

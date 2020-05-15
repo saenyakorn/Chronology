@@ -2,19 +2,29 @@ package component.base.cell;
 
 import colors.GlobalColor;
 import component.components.eventCard.EventCard;
+import component.dialog.edit.SetDescriptionDialog;
+import component.dialog.edit.SetTitleDialog;
+import component.dialog.initialize.NewEventCardDialog;
+import javafx.event.ActionEvent;
 import javafx.scene.SnapshotParameters;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
+import javafx.util.Duration;
+import utils.ApplicationUtils;
 import utils.SystemUtils;
+
+import java.util.Optional;
 
 public class EventCardTreeCell extends CustomTreeCell<EventCard> {
 
-    private final TextField textField = new TextField();
     private final SVGPath svgIcon = SystemUtils.getIconSVG("event_card_icon_24px.svg");
 
     public EventCardTreeCell() {
@@ -38,24 +48,21 @@ public class EventCardTreeCell extends CustomTreeCell<EventCard> {
         if (empty || item == null) {
             setText(null);
             setGraphic(null);
+            setContextMenu(null);
         } else {
-            if (isEditing()) {
-                if (textField != null) {
-                    textField.setText(getString());
-                }
-                setText(null);
-                setGraphic(textField);
+            Tooltip tooltip = new Tooltip();
+            tooltip.setShowDelay(new Duration(SystemUtils.TOOLTIP_SHOW_DELAY));
+            tooltip.setHideDelay(new Duration(0));
+            tooltip.setText("desc: " + item.getDescription());
+            if (item.getStoryline() != null) {
+                svgIcon.setFill(item.getStoryline().getColor());
             } else {
-                setText(getString());
-                if (item instanceof EventCard) {
-                    if (item.getStoryline() != null) {
-                        svgIcon.setFill(item.getStoryline().getColor());
-                    } else {
-                        svgIcon.setFill(GlobalColor.DEFAULT_COLOR);
-                    }
-                    setGraphic(svgIcon);
-                }
+                svgIcon.setFill(GlobalColor.DEFAULT_COLOR);
             }
+            setTooltip(tooltip);
+            setText(item.getTitle());
+            setGraphic(svgIcon);
+            setContextMenu(getCustomContextMenu());
         }
     }
 
@@ -81,7 +88,35 @@ public class EventCardTreeCell extends CustomTreeCell<EventCard> {
         });
     }
 
-    private String getString() {
-        return getItem() == null ? "" : getItem().getTitle();
+    @Override
+    protected void initializeContextMenu() {
+        MenuItem editDateTimeMenuItem = new MenuItem(SystemUtils.EDIT_DATA_TIME);
+        editDateTimeMenuItem.setOnAction((ActionEvent event) -> new NewEventCardDialog().show());
+        MenuItem editChapter = new MenuItem(SystemUtils.MOVE_TO_STORYLINE);
+        editChapter.setOnAction((ActionEvent event) -> new SetTitleDialog(getItem()).show());
+        MenuItem editStoryline = new MenuItem(SystemUtils.MOVE_TO_CHAPTER);
+        editStoryline.setOnAction((ActionEvent event) -> new SetDescriptionDialog(getItem()).show());
+        MenuItem newEventCardMenuItem = new MenuItem(SystemUtils.NEW_EVENT_CARD);
+        newEventCardMenuItem.setOnAction((ActionEvent event) -> new NewEventCardDialog().show());
+        MenuItem removeMenuItem = new MenuItem(SystemUtils.REMOVE);
+        removeMenuItem.setOnAction((ActionEvent event) -> removeItem());
+        getCustomContextMenu().getItems().addAll(newEventCardMenuItem, editDateTimeMenuItem, editChapter, editStoryline, removeMenuItem);
+        if (getItem() != null) {
+            setContextMenu(getCustomContextMenu());
+        }
+    }
+
+    private void removeItem() {
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle(SystemUtils.CONFIRM_REMOVE_TITLE);
+        confirm.setHeaderText(SystemUtils.CONFIRM_REMOVE_HEADER);
+        confirm.setContentText(SystemUtils.CONFIRM_REMOVE_CONTENT);
+        confirm.setGraphic(null);
+        Optional<ButtonType> result = confirm.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards().removeEventCard(getItem());
+        } else {
+            confirm.close();
+        }
     }
 }

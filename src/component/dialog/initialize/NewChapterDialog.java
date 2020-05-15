@@ -1,6 +1,7 @@
-package component.dialog;
+package component.dialog.initialize;
 
 import component.components.chapter.Chapter;
+import component.dialog.Dialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -20,7 +21,7 @@ public class NewChapterDialog extends Dialog {
     Button cancelButton;
 
     public NewChapterDialog() {
-        loadFXML("Create New Storyline", "NewChapterDialog.fxml");
+        loadFXML("Create New Storyline", "NewChapterDialog.fxml", "../Dialog.css");
     }
 
     private void AddNewChapter(String title, String description) {
@@ -33,10 +34,10 @@ public class NewChapterDialog extends Dialog {
     @FXML
     protected void initialize() {
         createButton.setDisable(true);
-        titleTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField, descriptionTextField));
-        descriptionTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField, descriptionTextField));
+        titleTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField));
+        descriptionTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField));
         createButton.setOnAction((ActionEvent e) -> {
-            if (!isSomeEmpty(titleTextField, descriptionTextField)) {
+            if (!isSomeEmpty(titleTextField)) {
                 AddNewChapter(titleTextField.getText(), descriptionTextField.getText());
             }
         });

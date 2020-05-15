@@ -2,32 +2,47 @@ package component.layouts.sideBar.panel;
 
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Label;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.event.ActionEvent;
+import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.SVGPath;
 import utils.SystemUtils;
 
 public abstract class Panel<T> extends VBox {
 
     protected Label header = new Label();
     protected TreeView<T> treeView = new TreeView<>();
-
-    private ListChangeListener<T> listener = (ListChangeListener.Change<? extends T> change) -> {
+    private final ListChangeListener<T> listener = (ListChangeListener.Change<? extends T> change) -> {
         getTreeView().getRoot().getChildren().clear();
         for (T item : change.getList()) {
             addItem(item);
         }
     };
-
+    protected Button newItemButton = new Button();
+    protected ContextMenu contextMenu = new ContextMenu();
 
     public Panel() {
         getStylesheets().add(getClass().getResource("../SideBar.css").toExternalForm());
+        header.getStyleClass().add("heading");
+        contextMenu.setAutoHide(true);
+        contextMenu.setHideOnEscape(true);
         treeView.setRoot(new TreeItem<>());
         treeView.setShowRoot(false);
-        header.getStyleClass().add("heading");
+
+        SVGPath newItemButtonIcon = SystemUtils.getIconSVG("plus_icon_24px.svg");
+        newItemButtonIcon.getStyleClass().add("icon");
+        newItemButton.setGraphic(newItemButtonIcon);
+        newItemButton.getStyleClass().add("new-item-button");
+        newItemButton.setPrefHeight(header.getPrefHeight());
+        newItemButton.setPrefWidth(header.getPrefHeight());
+        newItemButton.setOnAction((ActionEvent event) -> onButtonClick());
+
+        HBox hBox = new HBox();
+        hBox.getStyleClass().add("header-container");
+        hBox.getChildren().addAll(header, newItemButton);
+        getChildren().addAll(hBox, treeView);
         setMaxHeight(SystemUtils.SIDEBAR_PREF_HEIGHT);
-        getChildren().addAll(header, treeView);
     }
 
     public Label getHeader() {
@@ -40,6 +55,10 @@ public abstract class Panel<T> extends VBox {
 
     public TreeView<T> getTreeView() {
         return treeView;
+    }
+
+    public Button getButton() {
+        return newItemButton;
     }
 
     public void binding(ObservableList<T> list) {
@@ -63,4 +82,6 @@ public abstract class Panel<T> extends VBox {
             addItem(item);
         }
     }
+
+    public abstract void onButtonClick();
 }
