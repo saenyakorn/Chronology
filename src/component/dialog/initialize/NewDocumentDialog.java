@@ -1,6 +1,7 @@
-package component.dialog;
+package component.dialog.initialize;
 
 import component.components.document.Document;
+import component.dialog.Dialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,7 +18,7 @@ public class NewDocumentDialog extends Dialog {
     private Button cancelButton;
 
     public NewDocumentDialog() {
-        loadFXML("Create New Document", "NewDocumentDialog.fxml");
+        loadFXML("Create New Document", "NewDocumentDialog.fxml", "../Dialog.css");
     }
 
     private void addNewDocument(String name) {

@@ -1,5 +1,6 @@
-package component.dialog;
+package component.dialog.initialize;
 
+import component.dialog.Dialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,7 +19,7 @@ public class NewProjectDialog extends Dialog {
 
 
     public NewProjectDialog() {
-        loadFXML("Create New Storyline", "NewStorylineDialog.fxml");
+        loadFXML("Create New Storyline", "NewStorylineDialog.fxml", "../Dialog.css");
     }
 
     private void createNewProject() {
