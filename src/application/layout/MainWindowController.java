@@ -68,10 +68,14 @@ public class MainWindowController {
         hamburgerContainer.getChildren().add(hamburgerIcon);
 
         // binding tabContainer with documentList
-        DocumentList documentList = ApplicationUtils.getCurrentWorkspace().getDocumentList();
-        Bindings.bindContent(tabContainer.getChildren(), documentList.tabsProperty());
+        bindTabContainer();
 
         // TODO Rewrite this class more clearly. it work but hard for debugging.
+    }
+
+    public void bindTabContainer() {
+        DocumentList documentList = ApplicationUtils.getCurrentWorkspace().getDocumentList();
+        Bindings.bindContent(tabContainer.getChildren(), documentList.tabsProperty());
     }
 
     @FXML
@@ -149,12 +153,23 @@ public class MainWindowController {
 
     private void readFromFile(File selectedFile) {
         if(selectedFile != null) {
+            //clear previous workspace and create a new one
             ApplicationUtils.clear();
+
+            //bind tab container to this workspace
+            bindTabContainer();
+
+            //read file
             JSONParser parser = new JSONParser();
             try (FileReader file = new FileReader(selectedFile)) {
                 Object obj = parser.parse(file);
                 readJSONObject((JSONObject) obj);
+
+                //update the workspace and add it to root
                 ApplicationUtils.updateWorkspaceOnOpen();
+                root.getChildren().remove(root.getChildren().size() - 1);
+                root.getChildren().add(ApplicationUtils.getCurrentWorkspace());
+
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -170,4 +185,5 @@ public class MainWindowController {
         ApplicationUtils.getCurrentWorkspace().readJSONObject(workspaceObject);
         System.out.println("Open file complete - Current workspace set to loaded workspace");
     }
+
 }

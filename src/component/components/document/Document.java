@@ -14,7 +14,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class Document extends VBox implements SavableAsJSONObject<Document> {
-    private final SimpleStringProperty name = new SimpleStringProperty("");
+    private final SimpleStringProperty name = new SimpleStringProperty("New Document");
     private EventCardList eventCards = new EventCardList();
     private ChapterList chapters = new ChapterList();
     private StorylineList storylines = new StorylineList();
