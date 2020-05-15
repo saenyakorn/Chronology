@@ -52,6 +52,8 @@ public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
         }
         if (document != null) {
             sideBar.initBindings(document);
+        } else {
+            viewer.setContent(null);
         }
     }
 

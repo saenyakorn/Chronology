@@ -54,8 +54,7 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
             if (index == 0 && documentCustomTabs.size() >= 2) {
                 setActiveTab(documentCustomTabs.get(1));
             } else if (index == 0) {
-                System.out.println("wowza");
-                ApplicationUtils.newProject();
+                setActiveTab(null);
             } else {
                 setActiveTab(documentCustomTabs.get(index - 1));
             }
@@ -89,6 +88,8 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
             }
             ApplicationUtils.getCurrentWorkspace().setActiveDocument(getDocumentFromTab(tab));
             ApplicationUtils.getCurrentWorkspace().getViewer().setDocument(getDocumentFromTab(tab));
+        } else {
+            ApplicationUtils.getCurrentWorkspace().setActiveDocument(null);
         }
         activeTab = tab;
     }
