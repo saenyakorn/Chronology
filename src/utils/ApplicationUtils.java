@@ -54,6 +54,10 @@ public class ApplicationUtils {
         ApplicationUtils.savedFile = savedFile;
     }
 
+    public static void removeItemToCurrentHashMap(String key) {
+        ApplicationUtils.hashMap.remove(key);
+    }
+
     public static void putItemToCurrentHashMap(String key, BasicStoryComponent value) {
         ApplicationUtils.hashMap.put(key, value);
     }
