@@ -10,6 +10,7 @@ import component.dialog.edit.SetTimePeriodDialog;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.ContextMenu;
@@ -266,6 +267,13 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
             event.consume();
         });
 
+        // Hide context menu when click other
+        root.addEventHandler(MouseEvent.MOUSE_PRESSED, (MouseEvent event) -> {
+            if (contextMenu.isShowing()) {
+                contextMenu.hide();
+            }
+        });
+
         // When Event Card is dragged
         root.setOnDragDetected((MouseEvent event) -> {
             Dragboard dragboard = root.startDragAndDrop(TransferMode.MOVE);
@@ -279,6 +287,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         });
 
         // When Click the card title to change text
+        cardTitle.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
         cardTitleContainer.setOnMouseClicked((MouseEvent event) -> cardTitle.setDisable(false));
         cardTitleContainer.setOnMouseExited((MouseEvent event) -> {
             if (!getTitle().equals(cardTitle.getText())) {
@@ -287,8 +296,10 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
             }
             cardTitle.setDisable(true);
         });
+        cardTitleContainer.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
 
         // When Click the card description to change text
+        cardDescription.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
         cardDescriptionContainer.setOnMouseClicked((MouseEvent event) -> cardDescription.setDisable(false));
         cardDescriptionContainer.setOnMouseExited((MouseEvent event) -> {
             if (!getDescription().equals(cardDescription.getText())) {
@@ -297,5 +308,6 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
             }
             cardDescription.setDisable(true);
         });
+        cardDescriptionContainer.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
     }
 }
