@@ -34,6 +34,7 @@ public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray<St
     public void removeStoryline(Storyline storyline) {
         if (storylines.contains(storyline)) {
             storylines.remove(storyline);
+            storylinePanes.remove(storyline.getDisplay());
         } else {
             System.out.println("This storyline does not exist");
         }
