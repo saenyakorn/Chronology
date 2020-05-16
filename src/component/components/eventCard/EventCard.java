@@ -281,9 +281,14 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         storylineMenuItem.setOnAction((ActionEvent event) -> new SetStorylineDialog(this).show());
 
         MenuItem removeMenuItem = new MenuItem(SystemUtils.REMOVE);
-        removeMenuItem.setOnAction((ActionEvent event) -> ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards().removeEventCard(this));
+        removeMenuItem.setOnAction((ActionEvent event) -> onRemoveItem());
 
         contextMenu.getItems().addAll(setTitleMenuItem, setDescriptionMenuItem, timePeriodMenuItem, colorMenuItem, chapterMenuItem, storylineMenuItem, removeMenuItem);
+    }
+
+    @Override
+    public void removeItem() {
+        ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards().removeEventCard(this);
     }
 
     @FXML

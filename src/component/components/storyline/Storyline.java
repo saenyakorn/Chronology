@@ -258,9 +258,13 @@ public class Storyline extends BasicStoryComponent {
         });
 
         MenuItem removeMenuItem = new MenuItem(SystemUtils.REMOVE);
-        removeMenuItem.setOnAction((ActionEvent event) -> ApplicationUtils.getCurrentWorkspace().getActiveDocument().getStorylines().removeStoryline(this));
+        removeMenuItem.setOnAction((ActionEvent event) -> onRemoveItem());
 
         contextMenu.getItems().addAll(setTitleMenuItem, setDescriptionMenuItem, timePeriodMenuItem, colorMenuItem, eventCardMenuItem, removeMenuItem);
     }
 
+    @Override
+    public void removeItem() {
+        ApplicationUtils.getCurrentWorkspace().getActiveDocument().getStorylines().removeStoryline(this);
+    }
 }
