@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -22,103 +21,167 @@ import utils.SystemUtils;
 
 import java.io.*;
 
+/**
+ * Controller class for Main. Handles initialization of the main window's FXML and clicks on the app's menu bar.
+ */
 public class MainWindowController {
 
+    /**
+     * OS of system running the app.
+     */
     private final String os = System.getProperty("os.name");
+    /**
+     * The fileChooser for this window.
+     * @see FileChooser
+     */
     private final FileChooser fileChooser = new FileChooser();
 
+    /**
+     * The root node of the window.
+     */
     @FXML
     private VBox root;
+    /**
+     * The menu bar.
+     */
     @FXML
     private MenuBar menuBar;
-    @FXML
-    private MenuItem saveMenu;
+    /**
+     * The document tab bar.
+     */
     @FXML
     private HBox tabContainer;
+    /**
+     * The hamburger button.
+     */
     @FXML
     private HBox hamburgerContainer;
+    /**
+     * The add tab button.
+     */
     @FXML
     private Button addTabButton;
 
+    /**
+     * FXML initialize method, called after MainWindow.fxml finishes loading.
+     * Does the following:
+     * <ol>
+     *     <li>Creates a default new project.</li>
+     *     <li>Adds a VBox containing the workspace to the scene graph.</li>
+     *     <li>Setups menu bar property for MacOS.</li>
+     *     <li>Setups the file chooser.</li>
+     *     <li>Setups the add tab button and hamburger button.</li>
+     *     <li>Binds tabContainer HBox with the current documentList.</li>
+     * </ol>
+     */
     @FXML
     public void initialize() {
-        // new project
         ApplicationUtils.newProject();
 
-        // vBox contain workspace
         root.getChildren().add(ApplicationUtils.getCurrentWorkspace());
         VBox.setVgrow(root.getChildren().get(root.getChildren().size() - 1), Priority.ALWAYS);
 
-        // setup menu bar property
         if (os != null && os.startsWith("Mac"))
             menuBar.useSystemMenuBarProperty().set(true);
 
-        // setup file chooser
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON file", "*.json"));
 
-        // add tab button setUp
         SVGPath plusIcon = SystemUtils.getIconSVG("plus_icon_24px.svg");
         plusIcon.getStyleClass().add("icon-24px");
         addTabButton.setGraphic(plusIcon);
         addTabButton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
-        // hamburger setUp
         SVGPath hamburgerIcon = SystemUtils.getIconSVG("hamburger_icon_24px.svg");
         hamburgerIcon.getStyleClass().add("hamburger-button");
         hamburgerContainer.getChildren().add(hamburgerIcon);
 
-        // binding tabContainer with documentList
         bindTabContainer();
-
-        // TODO Rewrite this class more clearly. it work but hard for debugging.
     }
 
+    /**
+     * Binds tabContainer HBox with the current documentList.
+     */
     public void bindTabContainer() {
         DocumentList documentList = ApplicationUtils.getCurrentWorkspace().getDocumentList();
         Bindings.bindContent(tabContainer.getChildren(), documentList.tabsProperty());
     }
 
+    /**
+     * Handler for when the new project option on the menu bar is clicked. Shows a NewProjectDialog.
+     * @param event the click event.
+     * @see NewProjectDialog
+     */
     @FXML
     protected void handleNewProjectClick(ActionEvent event) {
         NewProjectDialog dialog = new NewProjectDialog();
         dialog.show();
     }
 
+    /**
+     * Handler for when the new document option on the menu bar is clicked. Shows a NewDocumentDialog.
+     * @param event the click event.
+     * @see NewDocumentDialog
+     */
     @FXML
     protected void handleNewDocumentClick(ActionEvent event) {
         NewDocumentDialog dialog = new NewDocumentDialog();
         dialog.show();
     }
 
+    /**
+     * Handler for when the new storyline option on the menu bar is clicked. Shows a NewStorylineDialog.
+     * @param event the click event.
+     * @see NewStorylineDialog
+     */
     @FXML
     protected void handleNewStoryLineClick(ActionEvent event) {
         NewStorylineDialog dialog = new NewStorylineDialog();
         dialog.show();
     }
 
+    /**
+     * Handler for when the new event card option on the menu bar is clicked. Shows a NewEventCardDialog.
+     * @param event the click event.
+     * @see NewEventCardDialog
+     */
     @FXML
     protected void handleNewEventCardClick(ActionEvent event) {
         NewEventCardDialog dialog = new NewEventCardDialog();
         dialog.show();
     }
 
+    /**
+     * Handler for when the new chapter option on the menu bar is clicked. Shows a NewChapterDialog.
+     * @param event the click event.
+     * @see NewChapterDialog
+     */
     @FXML
     protected void handleNewChapterClick(ActionEvent event) {
         NewChapterDialog dialog = new NewChapterDialog();
         dialog.show();
     }
 
+    /**
+     * Handler for when the save option on the menu bar is clicked. If file already has a saved directory, the save data will be overwritten. Otherwise an alert will appear.
+     * @param event the click event.
+     * @see MainWindowController#writeToFile(File)
+     */
     @FXML
     protected void handleSaveClick(ActionEvent event) {
         if(ApplicationUtils.getSavedFile() != null) {
             writeToFile(ApplicationUtils.getSavedFile());
-            //TODO : Display "Saved"! somewhere on UI
+            //TODO : Alert "Saved"!
         } else {
             System.out.println("Save not available!");
         }
         //TODO : Disable this option if savedFile is null
     }
 
+    /**
+     * Handler for when the save as option on the menu bar is clicked. Opens up a fileChooser so the user can select a save directory before saving.
+     * @param event the click event.
+     * @see MainWindowController#writeToFile(File)
+     */
     @FXML
     protected void handleSaveAsClick(ActionEvent event) {
         File selectedFile = fileChooser.showSaveDialog(root.getScene().getWindow());
@@ -126,6 +189,11 @@ public class MainWindowController {
         writeToFile(selectedFile);
     }
 
+    /**
+     * Handler for when the open option on the menu bar is clicked. Opens up a fileChooser so the user can select a directory to open a file from.
+     * @param event the click event.
+     * @see MainWindowController#readFromFile(File)
+     */
     @FXML
     protected void handleOpenClick(ActionEvent event) {
         File selectedFile = fileChooser.showOpenDialog(root.getScene().getWindow());
@@ -133,11 +201,19 @@ public class MainWindowController {
         readFromFile(selectedFile);
     }
 
+    /**
+     * Handler for when the hamburger button is clicked.
+     */
     @FXML
     protected void toggleMenuView() {
 
     }
 
+    /**
+     * Writes the necessary workspace data into a .json file.
+     * @param selectedFile file selected from fileChooser by user.
+     * @see component.ability.Savable
+     */
     private void writeToFile(File selectedFile) {
         if(selectedFile != null) {
             try {
@@ -151,21 +227,29 @@ public class MainWindowController {
         }
     }
 
+    /**
+     * Prepares the workspace for file opening, then reads data from File specified by the selectedFile parameter. Type of file must be .json.
+     * The whole process is as follows:
+     * <ol>
+     *     <li>Clears the previous workspace and creates a new one.</li>
+     *     <li>Binds tabContainer HBox to this new workspace's documentList.</li>
+     *     <li>Reads the file, loads data into workspace.</li>
+     *     <li>Updates the loaded workspace and adds it to root.</li>
+     * </ol>
+     * @param selectedFile file selected from fileChooser by user.
+     * @see component.ability.Savable
+     * @see MainWindowController#readJSONObject(JSONObject)
+     */
     private void readFromFile(File selectedFile) {
         if(selectedFile != null) {
-            //clear previous workspace and create a new one
             ApplicationUtils.clear();
-
-            //bind tab container to this workspace
             bindTabContainer();
 
-            //read file
             JSONParser parser = new JSONParser();
             try (FileReader file = new FileReader(selectedFile)) {
                 Object obj = parser.parse(file);
                 readJSONObject((JSONObject) obj);
 
-                //update the workspace and add it to root
                 ApplicationUtils.updateWorkspaceOnOpen();
                 root.getChildren().remove(root.getChildren().size() - 1);
                 root.getChildren().add(ApplicationUtils.getCurrentWorkspace());
@@ -180,6 +264,10 @@ public class MainWindowController {
         }
     }
 
+    /**
+     * Parses data in the workspaceObject parameter into the current Workspace.
+     * @param workspaceObject JSONObject of the workspace
+     */
     @SuppressWarnings("unchecked")
     private void readJSONObject(JSONObject workspaceObject) {
         ApplicationUtils.getCurrentWorkspace().readJSONObject(workspaceObject);
