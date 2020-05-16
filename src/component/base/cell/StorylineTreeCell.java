@@ -1,5 +1,7 @@
 package component.base.cell;
 
+import component.base.BasicStoryComponent;
+import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
 import component.dialog.edit.SetColorDialog;
 import component.dialog.edit.SetDescriptionDialog;
@@ -7,8 +9,6 @@ import component.dialog.edit.SetTitleDialog;
 import component.dialog.initialize.NewEventCardDialog;
 import component.dialog.initialize.NewStorylineDialog;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tooltip;
 import javafx.scene.shape.SVGPath;
@@ -16,15 +16,15 @@ import javafx.util.Duration;
 import utils.ApplicationUtils;
 import utils.SystemUtils;
 
-import java.util.Optional;
+public class StorylineTreeCell extends CustomTreeCell<BasicStoryComponent> {
 
-public class StorylineTreeCell extends CustomTreeCell<Storyline> {
-
+    private final SVGPath eventCardIcon = SystemUtils.getIconSVG("event_card_icon_24px.svg");
     private final SVGPath storylineIcon = SystemUtils.getIconSVG("storyline_icon_24px.svg");
 
     public StorylineTreeCell() {
         super();
-        storylineIcon.getStyleClass().add("component-icon");
+        eventCardIcon.getStyleClass().add("icon-24px");
+        storylineIcon.getStyleClass().add("icon-24px");
     }
 
     @Override
@@ -38,7 +38,7 @@ public class StorylineTreeCell extends CustomTreeCell<Storyline> {
     }
 
     @Override
-    public void updateItem(Storyline item, boolean empty) {
+    public void updateItem(BasicStoryComponent item, boolean empty) {
         super.updateItem(item, empty);
         if (empty || item == null) {
             setText(null);
@@ -49,11 +49,16 @@ public class StorylineTreeCell extends CustomTreeCell<Storyline> {
             tooltip.setShowDelay(new Duration(SystemUtils.TOOLTIP_SHOW_DELAY));
             tooltip.setHideDelay(new Duration(0));
             tooltip.setText("desc: " + item.getDescription());
-            storylineIcon.setFill(item.getColor());
             setTooltip(tooltip);
             setText(item.getTitle());
-            setGraphic(storylineIcon);
             setContextMenu(getCustomContextMenu());
+            if (item instanceof Storyline) {
+                storylineIcon.setFill(item.getColor());
+                setGraphic(storylineIcon);
+            } else if (item instanceof EventCard) {
+                eventCardIcon.setFill(item.getColor());
+                setGraphic(eventCardIcon);
+            }
         }
     }
 
@@ -80,24 +85,19 @@ public class StorylineTreeCell extends CustomTreeCell<Storyline> {
         MenuItem newStoryline = new MenuItem(SystemUtils.NEW_STORYLINE);
         newStoryline.setOnAction((ActionEvent event) -> new NewStorylineDialog().show());
         MenuItem removeMenuItem = new MenuItem(SystemUtils.REMOVE);
-        removeMenuItem.setOnAction((ActionEvent event) -> removeItem());
+        removeMenuItem.setOnAction((ActionEvent event) -> onRemoveItem());
         getCustomContextMenu().getItems().addAll(newStoryline, addEventCardMenuItem, editTitleMenuItem, editDescriptionMenuItem, editColorMenuItem, removeMenuItem);
         if (getItem() != null) {
             setContextMenu(getCustomContextMenu());
         }
     }
 
-    private void removeItem() {
-        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
-        confirm.setTitle(SystemUtils.CONFIRM_REMOVE_TITLE);
-        confirm.setHeaderText(SystemUtils.CONFIRM_REMOVE_HEADER);
-        confirm.setContentText(SystemUtils.CONFIRM_REMOVE_CONTENT);
-        confirm.setGraphic(null);
-        Optional<ButtonType> result = confirm.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            ApplicationUtils.getCurrentWorkspace().getActiveDocument().getStorylines().removeStoryline(getItem());
-        } else {
-            confirm.close();
+    @Override
+    public void removeItem() {
+        if (getItem() instanceof Storyline) {
+            ApplicationUtils.getCurrentWorkspace().getActiveDocument().getStorylines().removeStoryline((Storyline) getItem());
+        } else if (getItem() instanceof EventCard) {
+            ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards().removeEventCard((EventCard) getItem());
         }
     }
 }
