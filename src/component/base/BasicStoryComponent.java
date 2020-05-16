@@ -196,4 +196,8 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         }
     }
 
+    public int eventCardsInComponent() {
+        return 1;
+    }
+
 }

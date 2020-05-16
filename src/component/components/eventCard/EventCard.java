@@ -140,10 +140,11 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     public void setTimePeriodAndDisplay(TimePeriod timePeriod) {
         setTimePeriod(timePeriod);
         if (storylineProperty().getValue() != null) {
-            setSelfComponentTimePeriod(timePeriod, storylineProperty().getValue());
+            setSelfComponentTimePeriod(timePeriod, getStoryline());
         }
-        if (chapterProperty().getValue() != null)
-            setSelfComponentTimePeriod(timePeriod, chapterProperty().getValue());
+        if (chapterProperty().getValue() != null) {
+            setSelfComponentTimePeriod(timePeriod, getChapter());
+        }
 
         date.setText(timePeriod.getBeginDateTime().toLocalDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
         time.setText(timePeriod.getBeginDateTime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
@@ -153,14 +154,21 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         LocalDateTime newBeginDateTime = timePeriod.getBeginDateTime();
         LocalDateTime newEndDateTime = timePeriod.getEndDateTime();
 
-        if (newBeginDateTime.isBefore(component.getTimePeriod().getBeginDateTime())) {
+        if (component.eventCardsInComponent() == 1) {
             component.getTimePeriod().setBeginDateTime(newBeginDateTime);
             System.out.println("Storyline BeginDateTime set to " + component.getTimePeriod().getBeginDateTime());
-
-        }
-        if (newEndDateTime.isAfter(component.getTimePeriod().getEndDateTime())) {
             component.getTimePeriod().setEndDateTime(newEndDateTime);
             System.out.println("Storyline EndDateTime set to " + component.getTimePeriod().getEndDateTime());
+        } else {
+            if (newBeginDateTime.isBefore(component.getTimePeriod().getBeginDateTime())) {
+                component.getTimePeriod().setBeginDateTime(newBeginDateTime);
+                System.out.println("Storyline BeginDateTime set to " + component.getTimePeriod().getBeginDateTime());
+
+            }
+            if (newEndDateTime.isAfter(component.getTimePeriod().getEndDateTime())) {
+                component.getTimePeriod().setEndDateTime(newEndDateTime);
+                System.out.println("Storyline EndDateTime set to " + component.getTimePeriod().getEndDateTime());
+            }
         }
     }
 

@@ -36,10 +36,22 @@ public class Chapter extends BasicStoryComponent {
         setColor(color);
         EventCardList eventCards = ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards();
         for (EventCard eventCard : eventCards) {
-            if(eventCard.getChapter().equals(this)){
+            if(eventCard.getChapter() == this){
                 eventCard.setChapterColor(color);
             }
         }
+    }
+
+    @Override
+    public int eventCardsInComponent() {
+        EventCardList eventCards = ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards();
+        int count = 0;
+        for (EventCard eventCard : eventCards) {
+            if (eventCard.getChapter() == this) {
+                count += 1;
+            }
+        }
+        return count;
     }
 
     @Override
