@@ -123,21 +123,26 @@
   .extension {
     -fx-alignment: center;
     -fx-pref-width: 400px;
-    -fx-spacing: 100px;
+    -fx-spacing: 10px;
     @include default-combo-box;
 
-    .combo-box-container {
+    .combo-box {
       -fx-spacing: 10px;
       -fx-alignment: center;
+      -fx-max-width: 120px;
     }
 
     .combo-box-container {
       -fx-spacing: 10px;
-      -fx-alignment: center;
+      -fx-pref-width: 300px;
+      -fx-alignment: center-left;
     }
 
     .combo-box-header {
       @include default-label;
+      .text {
+        -fx-font-size: 12px;
+      }
     }
   }
 

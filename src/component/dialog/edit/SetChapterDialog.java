@@ -28,9 +28,9 @@ public class SetChapterDialog extends Dialog {
     private final ComboBox<BasicStoryComponent> chapterCombo = new ComboBox<>();
 
 
-    @FXML private HBox extensionContainer;
-    @FXML private Button setButton;
-    @FXML private Button cancelButton;
+    @FXML  HBox extensionContainer;
+    @FXML  Button setButton;
+    @FXML  Button cancelButton;
 
     public SetChapterDialog(EventCard component) {
         this.component = component;

@@ -13,13 +13,13 @@ import utils.SystemUtils;
 public class NewChapterDialog extends Dialog {
 
     @FXML
-    private TextField titleTextField;
+     TextField titleTextField;
     @FXML
-    private TextField descriptionTextField;
+     TextField descriptionTextField;
     @FXML
-    private Button createButton;
+     Button createButton;
     @FXML
-    private Button cancelButton;
+     Button cancelButton;
 
     public NewChapterDialog() {
         setTitle(SystemUtils.NEW_CHAPTER);

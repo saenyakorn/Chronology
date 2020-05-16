@@ -22,23 +22,23 @@ public class SetTimePeriodDialog extends Dialog {
     private boolean isCustomMode;
     private ToggleGroup predefinedTimePeriods;
 
-    @FXML private VBox predefinedMode;
-    @FXML private DatePicker predefinedModeDatePicker;
-    @FXML private HBox predefinedModeToggleGroup;
-    @FXML private RadioButton dawnChoice;
-    @FXML private RadioButton morningChoice;
-    @FXML private RadioButton middayChoice;
-    @FXML private RadioButton afternoonChoice;
-    @FXML private RadioButton eveningChoice;
-    @FXML private RadioButton nightChoice;
+    @FXML  VBox predefinedMode;
+    @FXML  DatePicker predefinedModeDatePicker;
+    @FXML  HBox predefinedModeToggleGroup;
+    @FXML  RadioButton dawnChoice;
+    @FXML  RadioButton morningChoice;
+    @FXML  RadioButton middayChoice;
+    @FXML  RadioButton afternoonChoice;
+    @FXML  RadioButton eveningChoice;
+    @FXML  RadioButton nightChoice;
 
-    @FXML private CheckBox customModeToggle;
-    @FXML private VBox customMode;
-    @FXML private LocalDateTimeTextField customModeBeginDatePicker;
-    @FXML private LocalDateTimeTextField customModeEndDatePicker;
+    @FXML  CheckBox customModeToggle;
+    @FXML  VBox customMode;
+    @FXML LocalDateTimeTextField customModeBeginDatePicker;
+    @FXML  LocalDateTimeTextField customModeEndDatePicker;
 
-    @FXML private Button setButton;
-    @FXML private Button cancelButton;
+    @FXML  Button setButton;
+    @FXML  Button cancelButton;
 
     public SetTimePeriodDialog(BasicStoryComponent component) {
         this.component = component;

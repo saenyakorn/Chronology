@@ -11,9 +11,9 @@ import utils.SystemUtils;
 public class SetColorDialog extends Dialog {
     private final BasicStoryComponent component;
 
-    @FXML private ColorPicker colorPicker;
-    @FXML private Button setButton;
-    @FXML private Button cancelButton;
+    @FXML  ColorPicker colorPicker;
+    @FXML  Button setButton;
+    @FXML  Button cancelButton;
 
     public SetColorDialog(BasicStoryComponent component) {
         this.component = component;

@@ -12,11 +12,11 @@ import utils.SystemUtils;
 
 public class NewDocumentDialog extends Dialog {
     @FXML
-    private TextField docNameTextField;
+     TextField docNameTextField;
     @FXML
-    private Button createButton;
+     Button createButton;
     @FXML
-    private Button cancelButton;
+     Button cancelButton;
 
     public NewDocumentDialog() {
         setTitle(SystemUtils.NEW_DOCUMENT);
