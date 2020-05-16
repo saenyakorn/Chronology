@@ -18,27 +18,35 @@ import javafx.util.Duration;
 import utils.ApplicationUtils;
 import utils.SystemUtils;
 
+/**
+ * An instance of CustomTreeCell that contains a chapter.
+ */
 public class ChapterTreeCell extends CustomTreeCell<BasicStoryComponent> {
 
+    /**
+     * Event card icon SVG.
+     */
     private final SVGPath eventCardIcon = SystemUtils.getIconSVG("event_card_icon_24px.svg");
+    /**
+     * Chapter icon SVG.
+     */
     private final SVGPath chapterIcon = SystemUtils.getIconSVG("chapter_icon_24px.svg");
 
+    /**
+     * Constructor for ChapterTreeCell.
+     */
     public ChapterTreeCell() {
         super();
         chapterIcon.getStyleClass().add("icon-24px");
         eventCardIcon.getStyleClass().add("icon-24px");
     }
 
-    @Override
-    public void startEdit() {
-        super.startEdit();
-    }
-
-    @Override
-    public void cancelEdit() {
-        super.cancelEdit();
-    }
-
+    /**
+     * Defines the look of the cell on update. Icon is set to an icon of corresponding type, and color of icon will depend on the component's color.
+     * A tooltip showing the component's description is also initialized.
+     * @param item the item contained within cell.
+     * @param empty whether or not cell is empty.
+     */
     @Override
     public void updateItem(BasicStoryComponent item, boolean empty) {
         super.updateItem(item, empty);
@@ -64,11 +72,18 @@ public class ChapterTreeCell extends CustomTreeCell<BasicStoryComponent> {
         }
     }
 
+    /**
+     * Overrides toString method.
+     * @return title.
+     */
     @Override
     public String toString() {
         return super.toString();
     }
 
+    /**
+     * Initializes event handler. Event cards will be able to be dragged onto the viewer.
+     */
     @Override
     protected void initializeEventHandler() {
         super.initializeEventHandler();
@@ -91,6 +106,9 @@ public class ChapterTreeCell extends CustomTreeCell<BasicStoryComponent> {
         });
     }
 
+    /**
+     * Initializes context menu.
+     */
     @Override
     protected void initializeContextMenu() {
 
@@ -112,6 +130,9 @@ public class ChapterTreeCell extends CustomTreeCell<BasicStoryComponent> {
         }
     }
 
+    /**
+     * Removes component from the workspace.
+     */
     @Override
     public void removeItem() {
         if (getItem() instanceof Chapter) {

@@ -11,18 +11,32 @@ import javafx.scene.control.TreeItem;
 import utils.ApplicationUtils;
 import utils.SystemUtils;
 
+/**
+ * An instance of panel that contains a document TreeView.
+ */
 public class ChapterPanel extends Panel<BasicStoryComponent> {
 
+    /**
+     * Constructor for DocumentPanel. Sets the header text and cell factory.
+     */
     public ChapterPanel() {
         setHeader(SystemUtils.CHAPTER_PANEL_HEADER);
         getTreeView().setCellFactory(param -> new ChapterTreeCell());
     }
 
+    /**
+     * Shows a NewChapterDialog when button is clicked.
+     * @see NewChapterDialog
+     */
     @Override
     public void onButtonClick() {
         new NewChapterDialog().show();
     }
 
+    /**
+     * Adds a chapter to this panel's TreeView, and renders all event cards in the chapter as leaf nodes.
+     * @param item the item, preferably a chapter, to be added.
+     */
     @Override
     public void addItem(BasicStoryComponent item) {
         EventCardList eventCards = ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards();

@@ -16,27 +16,35 @@ import javafx.util.Duration;
 import utils.ApplicationUtils;
 import utils.SystemUtils;
 
+/**
+ * An instance of CustomTreeCell that contains a storyline.
+ */
 public class StorylineTreeCell extends CustomTreeCell<BasicStoryComponent> {
 
+    /**
+     * Event card icon SVG.
+     */
     private final SVGPath eventCardIcon = SystemUtils.getIconSVG("event_card_icon_24px.svg");
+    /**
+     * Storyline icon SVG.
+     */
     private final SVGPath storylineIcon = SystemUtils.getIconSVG("storyline_icon_24px.svg");
 
+    /**
+     * Constructor for StorylineTreeCell.
+     */
     public StorylineTreeCell() {
         super();
         eventCardIcon.getStyleClass().add("icon-24px");
         storylineIcon.getStyleClass().add("icon-24px");
     }
 
-    @Override
-    public void startEdit() {
-        super.startEdit();
-    }
-
-    @Override
-    public void cancelEdit() {
-        super.cancelEdit();
-    }
-
+    /**
+     * Defines the look of the cell on update. Icon is set to an icon of corresponding type, and color of icon will depend on the component's color.
+     * A tooltip showing the component's description is also initialized.
+     * @param item the item contained within cell.
+     * @param empty whether or not cell is empty.
+     */
     @Override
     public void updateItem(BasicStoryComponent item, boolean empty) {
         super.updateItem(item, empty);
@@ -62,16 +70,26 @@ public class StorylineTreeCell extends CustomTreeCell<BasicStoryComponent> {
         }
     }
 
+    /**
+     * Overrides toString method.
+     * @return title.
+     */
     @Override
     public String toString() {
         return super.toString();
     }
 
+    /**
+     * Initializes event handler.
+     */
     @Override
     protected void initializeEventHandler() {
         super.initializeEventHandler();
     }
 
+    /**
+     * Initializes context menu.
+     */
     @Override
     protected void initializeContextMenu() {
         MenuItem editColorMenuItem = new MenuItem(SystemUtils.EDIT_COLOR);
@@ -92,6 +110,9 @@ public class StorylineTreeCell extends CustomTreeCell<BasicStoryComponent> {
         }
     }
 
+    /**
+     * Removes component from the workspace.
+     */
     @Override
     public void removeItem() {
         if (getItem() instanceof Storyline) {

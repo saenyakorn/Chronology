@@ -18,25 +18,30 @@ import javafx.util.Duration;
 import utils.ApplicationUtils;
 import utils.SystemUtils;
 
+/**
+ * An instance of CustomTreeCell that contains an event card.
+ */
 public class EventCardTreeCell extends CustomTreeCell<EventCard> {
 
+    /**
+     * Event card icon SVG.
+     */
     private final SVGPath eventCardIcon = SystemUtils.getIconSVG("event_card_icon_24px.svg");
 
+    /**
+     * Constructor for EventCardTreeCell.
+     */
     public EventCardTreeCell() {
         super();
         eventCardIcon.getStyleClass().add("icon-24px");
     }
 
-    @Override
-    public void startEdit() {
-        super.startEdit();
-    }
-
-    @Override
-    public void cancelEdit() {
-        super.cancelEdit();
-    }
-
+    /**
+     * Defines the look of the cell on update. Icon is set to eventCardIcon, and color of icon will depend on its storyline color.
+     * A tooltip showing the event card description is also initialized.
+     * @param item the item contained within cell.
+     * @param empty whether or not cell is empty.
+     */
     @Override
     public void updateItem(EventCard item, boolean empty) {
         super.updateItem(item, empty);
@@ -61,11 +66,18 @@ public class EventCardTreeCell extends CustomTreeCell<EventCard> {
         }
     }
 
+    /**
+     * Overrides toString method.
+     * @return title.
+     */
     @Override
     public String toString() {
         return super.toString();
     }
 
+    /**
+     * Initializes event handler. Event cards will be able to be dragged onto the viewer.
+     */
     @Override
     protected void initializeEventHandler() {
         super.initializeEventHandler();
@@ -83,6 +95,9 @@ public class EventCardTreeCell extends CustomTreeCell<EventCard> {
         });
     }
 
+    /**
+     * Initializes context menu.
+     */
     @Override
     protected void initializeContextMenu() {
         MenuItem editTitleMenuItem = new MenuItem(SystemUtils.EDIT_TITLE);
@@ -105,6 +120,9 @@ public class EventCardTreeCell extends CustomTreeCell<EventCard> {
         }
     }
 
+    /**
+     * Removes event card from the workspace.
+     */
     @Override
     public void removeItem() {
         ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards().removeEventCard(getItem());

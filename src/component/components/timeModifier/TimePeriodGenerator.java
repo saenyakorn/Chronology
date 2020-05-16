@@ -4,8 +4,16 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+/**
+ * Generates a TimePeriod from a PredefinedTimePeriod.
+ */
 public class TimePeriodGenerator {
 
+    /**
+     * Gets beginTime of PredefinedTimePeriod.
+     * @param predefinedTimePeriod the PredefinedTimePeriod to be converted.
+     * @return beginTime of PredefinedTimePeriod.
+     */
     private static LocalTime getBeginTimeOfDay(PredefinedTimePeriod predefinedTimePeriod) {
         LocalTime time;
         switch (predefinedTimePeriod) {
@@ -33,6 +41,11 @@ public class TimePeriodGenerator {
         return time;
     }
 
+    /**
+     * Gets endTime of PredefinedTimePeriod.
+     * @param predefinedTimePeriod the PredefinedTimePeriod to be converted.
+     * @return beginTime of PredefinedTimePeriod.
+     */
     private static LocalTime getEndTimeOfDay(PredefinedTimePeriod predefinedTimePeriod) {
         LocalTime time;
         switch (predefinedTimePeriod) {
@@ -60,6 +73,12 @@ public class TimePeriodGenerator {
         return time;
     }
 
+    /**
+     * Converts a PredefinedTimePeriod to a TimePeriod.
+     * @param localDate the date this TimePeriod will be set in.
+     * @param predefinedTimePeriod the PredefinedTimePeriod to be converted.
+     * @return the converted TimePeriod.
+     */
     public static TimePeriod getTimePeriodFromPeriod(LocalDate localDate, PredefinedTimePeriod predefinedTimePeriod) {
         LocalTime beginTime = getBeginTimeOfDay(predefinedTimePeriod);
         LocalTime endTime = getEndTimeOfDay(predefinedTimePeriod);
