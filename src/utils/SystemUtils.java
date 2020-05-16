@@ -29,16 +29,17 @@ public class SystemUtils {
     public static final double TOOLTIP_SHOW_DELAY = 200;
 
     /* Side bar header constants */
-    public static final String EVENT_CARD_DEMO_HEADER = "Event Cards";
-    public static final String STORYLINE_DEMO_HEADER = "Storylines";
-    public static final String CHAPTER_DEMO_HEADER = "Chapters";
-    public static final String DOCUMENT_DEMO_HEADER = "Documents";
+    public static final String EVENT_CARD_PANEL_HEADER = "Events";
+    public static final String STORYLINE_PANEL_HEADER = "Storylines";
+    public static final String CHAPTER_PANEL_HEADER = "Chapters";
+    public static final String DOCUMENT_PANEL_HEADER = "Documents";
 
     /* context menu word constants */
     public static final String NEW_EVENT_CARD_TO = "Add Event Card to this";
     public static final String NEW_EVENT_CARD = "New Event Card";
     public static final String NEW_STORYLINE = "New Storyline";
     public static final String NEW_DOCUMENT = "New Document";
+    public static final String NEW_PROJECT = "New Project";
     public static final String NEW_CHAPTER = "New Chapter";
     public static final String EDIT_PROPERTY = "Properties...";
     public static final String EDIT_TITLE = "Edit Title";
