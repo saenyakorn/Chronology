@@ -42,7 +42,7 @@ public class ChapterTreeCell extends CustomTreeCell<Chapter> {
     }
 
     @Override
-    protected void updateItem(Chapter item, boolean empty) {
+    public void updateItem(Chapter item, boolean empty) {
         super.updateItem(item, empty);
         if (empty || item == null) {
             setText(null);

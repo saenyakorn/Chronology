@@ -25,7 +25,7 @@ public class CustomTreeCell<T> extends TreeCell<T> {
     }
 
     @Override
-    protected void updateItem(T item, boolean empty) {
+    public void updateItem(T item, boolean empty) {
         super.updateItem(item, empty);
     }
 
