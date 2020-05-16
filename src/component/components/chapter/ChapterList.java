@@ -8,31 +8,52 @@ import org.json.simple.JSONObject;
 
 import java.util.Iterator;
 
+/**
+ * An ObservableList of Chapters.
+ */
 public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray<ChapterList> {
 
+    /**
+     * ObservableList of Chapters.
+     */
     private final ObservableList<Chapter> chapters;
 
+    /**
+     * Constructor for ChapterList.
+     */
     public ChapterList() {
         chapters = FXCollections.observableArrayList();
     }
 
-    public void addChapter(Chapter chapter) {
-        chapters.add(chapter);
-    }
-
+    /**
+     * Getter for chapters.
+     * @return this chapterList's ObservableList
+     */
     public ObservableList<Chapter> getChapters() {
         return chapters;
     }
 
+    /**
+     * Gets ObservableList size.
+     * @return list size.
+     */
     public int size() {
         return chapters.size();
     }
 
+    /**
+     * Gets ObservableList's iterator.
+     * @return the list's iterator.
+     */
     @Override
     public Iterator<Chapter> iterator() {
         return chapters.iterator();
     }
 
+    /**
+     * Overrides toString method.
+     * @return title.
+     */
     @Override
     public String toString() {
         String content = "";
@@ -42,11 +63,27 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray<Chapte
         return content;
     }
 
+    /**
+     * Gets the JSON array in string format.
+     * @return the JSON array converted to a string.
+     */
     @Override
     public String getJSONString() {
         return this.writeJSONArray().toJSONString();
     }
 
+    /**
+     * Adds a chapter to chapterList.
+     * @param chapter the chapter to be added.
+     */
+    public void addChapter(Chapter chapter) {
+        chapters.add(chapter);
+    }
+
+    /**
+     * Removes a chapter to chapterList.
+     * @param chapter the chapter to be removed.
+     */
     public void removeChapter(Chapter chapter) {
         if (chapters.contains(chapter)) {
             chapters.remove(chapter);
@@ -55,6 +92,10 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray<Chapte
         }
     }
 
+    /**
+     * Converts a chapterList into a JSONArray.
+     * @return the passed chapterList, in JSONArray form.
+     */
     @Override
     @SuppressWarnings("unchecked")
     public JSONArray writeJSONArray() {
@@ -65,6 +106,11 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray<Chapte
         return chapterArray;
     }
 
+    /**
+     * Loads data in the JSONArray into a chapterList.
+     * @param chapterArray the JSONArray that is to be read.
+     * @return a chapterList with data loaded from the chapterArray parameter.
+     */
     @Override
     public ChapterList readJSONArray(JSONArray chapterArray) {
         for (Object chapterObject : chapterArray) {

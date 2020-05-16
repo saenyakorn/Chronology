@@ -72,7 +72,7 @@ public abstract class Panel<T> extends VBox {
     }
 
     /**
-     * Getter for header parameter.
+     * Getter for header.
      * @return this panel's header.
      */
     public Label getHeader() {

@@ -7,10 +7,19 @@ import javafx.scene.shape.SVGPath;
 import utils.ApplicationUtils;
 import utils.SystemUtils;
 
+/**
+ * An instance of CustomTreeCell that contains a document.
+ */
 public final class DocumentTreeCell extends CustomTreeCell<Document> {
 
+    /**
+     * Document icon SVG.
+     */
     private final SVGPath documentIcon = SystemUtils.getIconSVG("check_icon_24px.svg");
 
+    /**
+     * Constructor for DocumentTreeCell.
+     */
     public DocumentTreeCell() {
         super();
         getStylesheets().add(getClass().getResource("TreeCell.css").toExternalForm());
@@ -19,16 +28,11 @@ public final class DocumentTreeCell extends CustomTreeCell<Document> {
         documentIcon.getStyleClass().add("icon-24px");
     }
 
-    @Override
-    public void startEdit() {
-        super.startEdit();
-    }
-
-    @Override
-    public void cancelEdit() {
-        super.cancelEdit();
-    }
-
+    /**
+     * Defines the look of the cell on update. Icon is set to documentIcon, and will only be visible when the document is active.
+     * @param item the item contained within cell.
+     * @param empty whether or not cell is empty.
+     */
     @Override
     public void updateItem(Document item, boolean empty) {
         super.updateItem(item, empty);
@@ -43,6 +47,9 @@ public final class DocumentTreeCell extends CustomTreeCell<Document> {
         }
     }
 
+    /**
+     * Initializes event handler. Active document will be set by clicking on a corresponding DocumentTreeCell.
+     */
     @Override
     protected void initializeEventHandler() {
         super.initializeEventHandler();

@@ -8,10 +8,20 @@ import utils.SystemUtils;
 
 import java.util.Optional;
 
+/**
+ * A customized TreeCell class for the sidebar.
+ * @param <T> the type of item the TreeCell will contain.
+ */
 public class CustomTreeCell<T> extends TreeCell<T> {
 
+    /**
+     * The context menu shown in TreeCell area
+     */
     protected final ContextMenu contextMenu = new ContextMenu();
 
+    /**
+     * Constructor for CustomTreeCell.
+     */
     public CustomTreeCell() {
         getStylesheets().add(getClass().getResource("TreeCell.css").toExternalForm());
         getStyleClass().add("tree-cell");
@@ -19,36 +29,48 @@ public class CustomTreeCell<T> extends TreeCell<T> {
         initializeContextMenu();
     }
 
-    @Override
-    public void startEdit() {
-        super.startEdit();
-    }
-
-    @Override
-    public void cancelEdit() {
-        super.cancelEdit();
-    }
-
+    /**
+     * Defines the look of the cell on update.
+     * @param item the item contained within cell.
+     * @param empty whether or not cell is empty.
+     */
     @Override
     public void updateItem(T item, boolean empty) {
         super.updateItem(item, empty);
     }
 
+    /**
+     * Overrides toString method.
+     * @return title.
+     */
     @Override
     public String toString() {
         return getItem() == null ? "" : getItem().toString();
     }
 
+    /**
+     * Getter for context menu.
+     * @return this TreeCell's context menu.
+     */
     public ContextMenu getCustomContextMenu() {
         return contextMenu;
     }
 
+    /**
+     * Initializes event handler. Implementation is done be subclasses.
+     */
     protected void initializeEventHandler() {
     }
 
+    /**
+     * Initializes context menu. Implementation is done be subclasses.
+     */
     protected void initializeContextMenu() {
     }
 
+    /**
+     * Defines what happens when cell is remove. An alert prompt user to confirm permanent remove.
+     */
     public void onRemoveItem() {
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
         confirm.setTitle(SystemUtils.CONFIRM_REMOVE_TITLE);
@@ -63,6 +85,9 @@ public class CustomTreeCell<T> extends TreeCell<T> {
         }
     }
 
+    /**
+     * Removes TreeCell. Implementation is done be subclasses.
+     */
     public void removeItem() {
     }
 }

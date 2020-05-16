@@ -11,6 +11,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ *
+ */
 public class TimePeriod implements Observable, Comparable<TimePeriod> {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
     private final Property<LocalDateTime> beginDateTime;
