@@ -13,7 +13,6 @@ public class Chapter extends BasicStoryComponent {
 
     public Chapter() {
         setColorAndDisplay(RandomColor.getColor());
-
     }
 
     public Chapter(String componentID) {
@@ -22,10 +21,12 @@ public class Chapter extends BasicStoryComponent {
 
     public Chapter(String title, String description) {
         super(title, description);
+        setColorAndDisplay(RandomColor.getColor());
     }
 
     public Chapter(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
+        setColorAndDisplay(RandomColor.getColor());
     }
 
     @Override

@@ -1,10 +1,12 @@
 package component.components.chapter;
 
 import component.ability.SavableAsJSONArray;
+import component.components.eventCard.EventCard;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import utils.ApplicationUtils;
 
 import java.util.Iterator;
 
@@ -50,6 +52,12 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray<Chapte
     public void removeChapter(Chapter chapter) {
         if (chapters.contains(chapter)) {
             chapters.remove(chapter);
+            for (EventCard eventCard : ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards()) {
+                if (eventCard.getChapter() == chapter) {
+                    System.out.println("set null");
+                    eventCard.setChapterAndDisplay(null);
+                }
+            }
         } else {
             System.out.println("This event card does not exist");
         }

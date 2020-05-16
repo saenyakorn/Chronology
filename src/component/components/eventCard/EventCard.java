@@ -192,6 +192,9 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
             setChapterColor(chapter.getColor());
             setSelfComponentTimePeriod(getTimePeriod(), chapter);
             chapterTitle.setText(chapter.getTitle());
+        } else {
+            chapterTitle.setText(null);
+            chapterTitleContainer.setStyle("-fx-background-color: white;");
         }
     }
 
