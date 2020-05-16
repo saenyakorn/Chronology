@@ -12,39 +12,73 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import utils.ApplicationUtils;
 
+/**
+ * The main area of a project. Consists of a sidebar and a viewer.
+ */
 public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
+
+    /**
+     * List of all documents in this workspace.
+     */
     private final DocumentList documents = new DocumentList();
+    /**
+     * This workspace's viewer.
+     */
     private final Viewer viewer = new Viewer();
+    /**
+     * This workspace's sidebar.
+     */
     private final SideBar sideBar = new SideBar();
 
+    /**
+     * Constructor for a Workspace. Configures the viewer and sidebar size, and adds them to the scene graph.
+     */
     public Workspace() {
-        // Set Style
         HBox.setHgrow(viewer, Priority.ALWAYS);
         viewer.setMinSize(viewer.getPrefWidth(), viewer.getPrefHeight());
         viewer.setMaxSize(viewer.getPrefWidth(), viewer.getPrefHeight());
         sideBar.setMinSize(sideBar.getPrefWidth(), sideBar.getPrefHeight());
         sideBar.setMaxSize(sideBar.getPrefWidth(), sideBar.getPrefHeight());
 
-        // Added all components into HBox
         getChildren().addAll(sideBar, viewer);
     }
 
+    /**
+     * Getter for viewer.
+     * @return this workspace's viewer.
+     */
     public Viewer getViewer() {
         return viewer;
     }
 
+    /**
+     * Getter for sidebar.
+     * @return this workspace's sidebar.
+     */
     public SideBar getSideBar() {
         return sideBar;
     }
 
+    /**
+     * Getter for documentList.
+     * @return this workspace's documentList.
+     */
     public DocumentList getDocumentList() {
         return documents;
     }
 
+    /**
+     * Gets the currently active document.
+     * @return the current active document.
+     */
     public Document getActiveDocument() {
         return documents.getActiveDocument();
     }
 
+    /**
+     * Sets the active document to another document specified by the document parameter.
+     * @param document the document to be set as active.
+     */
     public void setActiveDocument(Document document) {
         Document previousActiveDocument = getActiveDocument();
         if (previousActiveDocument != null) {
@@ -59,24 +93,44 @@ public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
         viewer.setContent(document);
     }
 
+    /**
+     * Adds a document to the workspace's documentList.
+     * @param document the document to be added.
+     */
     public void addDocument(Document document) {
         documents.addDocument(document);
     }
 
+    /**
+     * Removes a document from the workspace's documentList.
+     * @param document the document to be removed.
+     */
     public void removeDocument(Document document) {
         documents.removeDocument(document);
     }
 
+    /**
+     * Overrides toString method
+     * @return "Workspace" string
+     */
     @Override
     public String toString() {
         return "Workspace";
     }
 
+    /**
+     * Gets the workspace in JSON string format.
+     * @return the workspace JSONObject converted to a string.
+     */
     @Override
     public String getJSONString() {
         return this.writeJSONObject().toJSONString();
     }
 
+    /**
+     * Converts workspace to a JSONObject.
+     * @return workspace in JSONObject form.
+     */
     @Override
     @SuppressWarnings("unchecked")
     public JSONObject writeJSONObject() {
@@ -86,6 +140,11 @@ public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
         return workspaceObject;
     }
 
+    /**
+     * Loads data in the JSONObject into a Workspace.
+     * @param workspaceObject the JSONObject that is to be read.
+     * @return a Workspace with data loaded from the workspaceObject parameter.
+     */
     @Override
     public Workspace readJSONObject(JSONObject workspaceObject) {
         JSONObject hashMapObject = (JSONObject) workspaceObject.get("hashMap");
