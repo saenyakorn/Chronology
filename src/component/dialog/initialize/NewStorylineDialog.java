@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import utils.ApplicationUtils;
+import utils.SystemUtils;
 
 public class NewStorylineDialog extends Dialog {
 
@@ -21,7 +22,8 @@ public class NewStorylineDialog extends Dialog {
     Button cancelButton;
 
     public NewStorylineDialog() {
-        loadFXML("Create New Storyline", "NewStorylineDialog.fxml", "../Dialog.css");
+        setTitle(SystemUtils.NEW_STORYLINE);
+        loadFXML("NewStorylineDialog.fxml", "../Dialog.css");
     }
 
     private void AddNewStoryline(String title, String description) {

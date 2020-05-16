@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import utils.ApplicationUtils;
+import utils.SystemUtils;
 
 public class SetTitleDialog extends Dialog {
     BasicStoryComponent component;
@@ -21,10 +22,11 @@ public class SetTitleDialog extends Dialog {
 
     public SetTitleDialog(BasicStoryComponent component) {
         this.component = component;
-        loadFXML("Edit title", "SetTitleDialog.fxml", "../Dialog.css");
+        setTitle(SystemUtils.EDIT_TITLE);
+        loadFXML("SetTitleDialog.fxml", "../Dialog.css");
     }
 
-    private void setTitle(String text) {
+    private void setTitleToComponent(String text) {
         component.setTitleAndDisplay(text);
         ApplicationUtils.updateWorkspace();
         close();
@@ -36,7 +38,7 @@ public class SetTitleDialog extends Dialog {
         textField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, textField));
         createButton.setOnAction((ActionEvent e) -> {
             if (!isSomeEmpty(textField)) {
-                setTitle(textField.getText());
+                setTitleToComponent(textField.getText());
             }
         });
         cancelButton.setOnAction((ActionEvent e) -> stage.close());

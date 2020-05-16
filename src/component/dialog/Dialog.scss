@@ -1,15 +1,212 @@
 @import "../../application/StylingConstants.scss";
 
-.dialog_body {
-  -fx-background-color: $white;
+@mixin default-body {
+  -fx-pref-width: 400px;
+  -fx-pref-height: 300px;
+  -fx-padding: 40px 60px;
+  -fx-spacing: $spacing * 4;
+  -fx-background-color: $light-gray;
+  -fx-effect: $drop-shadow;
+}
 
-  .dialog_title {
-    -fx-font-size: 1.2em;
-  }
+@mixin default-header {
+  -fx-font-size: 24px;
+  -fx-text-alignment: center;
+  -fx-padding: $spacing 0 $spacing*2 0;
+  -fx-font-weight: bold;
+}
 
-  .dialog_button {
-    -fx-background-color: $orange;
-    -fx-padding: 10px 20px;
+@mixin default-label {
+  -fx-alignment: center-left;
+  .text {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
   }
 }
 
+@mixin default-textfield {
+  -fx-font-size: 14px;
+  -fx-background-radius: 0;
+  -fx-border-radius: 0;
+  -fx-background-color: $white;
+  -fx-fill: $dark-gray;
+}
+
+@mixin default-button {
+  -fx-font-size: 14px;
+  -fx-border-radius: 0;
+  -fx-background-radius: 0;
+  -fx-background-color: $dark-gray;
+  -fx-text-fill: $white;
+  -fx-fill: $dark-gray;
+  &:hover {
+    -fx-background-color: $black;
+  }
+}
+
+@mixin default-container {
+  -fx-alignment: center-left;
+  -fx-spacing: $spacing*3;
+}
+
+@mixin default-combo-box {
+
+  .combo-box {
+    -fx-pref-width: 150px;
+    -fx-border-width: 1.2px;
+    -fx-border-color: $dark-gray;
+    -fx-background-color: $white;
+  }
+
+  .combo-box-popup .list-view .list-cell {
+    -fx-background-color: $white;
+    -fx-text-fill: $dark-gray;
+  }
+
+  .combo-box-popup .list-view .list-cell:focused {
+    -fx-background-color: $sky-blue_20;
+    -fx-text-fill: $dark-gray;
+  }
+}
+
+// ---------------------------------------------------------------------------------------------------------
+
+.new-storyline-body {
+  @include default-body;
+
+  .header {
+    @include default-header;
+  }
+
+  .container {
+    @include default-container;
+
+    .label {
+      @include default-label;
+    }
+
+    .textfield {
+      @include default-textfield;
+    }
+  }
+
+  .cancel-button {
+    @include default-button;
+  }
+
+  .create-button {
+    @include default-button;
+  }
+}
+
+// ---------------------------------------------------------------------------------------------------------
+
+.new-event-card-body {
+  @include default-body;
+
+  .header {
+    @include default-header;
+  }
+
+  .container {
+    @include default-container;
+
+    .label {
+      @include default-label;
+    }
+
+    .textfield {
+      @include default-textfield;
+    }
+  }
+
+  .extension {
+    -fx-alignment: center;
+    -fx-pref-width: 400px;
+    -fx-spacing: 100px;
+    @include default-combo-box;
+
+    .combo-box-container {
+      -fx-spacing: 10px;
+      -fx-alignment: center;
+    }
+
+    .combo-box-container {
+      -fx-spacing: 10px;
+      -fx-alignment: center;
+    }
+
+    .combo-box-header {
+      @include default-label;
+    }
+  }
+
+  .cancel-button {
+    @include default-button;
+  }
+
+  .create-button {
+    @include default-button;
+  }
+}
+
+// ---------------------------------------------------------------------------------------------------------
+
+.new-document-body {
+  @include default-body;
+  -fx-pref-height: 100px;
+
+  .header {
+    @include default-header;
+  }
+
+  .container {
+    @include default-container;
+
+    .label {
+      @include default-label;
+    }
+
+    .textfield {
+      @include default-textfield;
+    }
+  }
+
+  .cancel-button {
+    @include default-button;
+  }
+
+  .create-button {
+    @include default-button;
+  }
+}
+
+// ---------------------------------------------------------------------------------------------------------
+
+.new-chapter-body {
+  @include default-body;
+
+  .header {
+    @include default-header;
+  }
+
+  .container {
+    @include default-container;
+
+    .label {
+      @include default-label;
+    }
+
+    .textfield {
+      @include default-textfield;
+    }
+  }
+
+  .cancel-button {
+    @include default-button;
+  }
+
+  .create-button {
+    @include default-button;
+  }
+}

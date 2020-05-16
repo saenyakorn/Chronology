@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import utils.ApplicationUtils;
+import utils.SystemUtils;
 
 public class NewDocumentDialog extends Dialog {
     @FXML
@@ -18,7 +19,8 @@ public class NewDocumentDialog extends Dialog {
     private Button cancelButton;
 
     public NewDocumentDialog() {
-        loadFXML("Create New Document", "NewDocumentDialog.fxml", "../Dialog.css");
+        setTitle(SystemUtils.NEW_DOCUMENT);
+        loadFXML("NewDocumentDialog.fxml", "../Dialog.css");
     }
 
     private void addNewDocument(String name) {

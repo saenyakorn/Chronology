@@ -7,16 +7,13 @@ import component.components.timeModifier.TimePeriodGenerator;
 import component.dialog.Dialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import jfxtras.scene.control.LocalDateTimeTextField;
+import utils.SystemUtils;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -45,15 +42,8 @@ public class SetTimePeriodDialog extends Dialog {
 
     public SetTimePeriodDialog(BasicStoryComponent component) {
         this.component = component;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SetTimePeriodDialog.fxml"));
-        fxmlLoader.setController(this);
-        try {
-            Parent root = fxmlLoader.load();
-            stage.setTitle("Set Event Date & Time");
-            stage.setScene(new Scene(root));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        setTitle(SystemUtils.EDIT_DATA_TIME);
+        loadFXML("SetTimePeriodDialog.fxml", "../Dialog.css");
     }
 
     private void setToggleGroup() {

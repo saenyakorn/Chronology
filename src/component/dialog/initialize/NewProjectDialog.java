@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import utils.ApplicationUtils;
+import utils.SystemUtils;
 
 public class NewProjectDialog extends Dialog {
 
@@ -19,7 +20,8 @@ public class NewProjectDialog extends Dialog {
 
 
     public NewProjectDialog() {
-        loadFXML("Create New Storyline", "NewStorylineDialog.fxml", "../Dialog.css");
+        setTitle(SystemUtils.NEW_PROJECT);
+        loadFXML("NewStorylineDialog.fxml", "../Dialog.css");
     }
 
     private void createNewProject() {
