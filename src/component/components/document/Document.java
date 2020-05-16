@@ -12,9 +12,10 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.layout.VBox;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import utils.SystemUtils;
 
 public class Document extends VBox implements SavableAsJSONObject<Document> {
-    private final SimpleStringProperty name = new SimpleStringProperty("New Document");
+    private final SimpleStringProperty name = new SimpleStringProperty(SystemUtils.DEFAULT_DOCUMENT_TITLE);
     private EventCardList eventCards = new EventCardList();
     private ChapterList chapters = new ChapterList();
     private StorylineList storylines = new StorylineList();

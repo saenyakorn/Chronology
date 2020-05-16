@@ -83,7 +83,7 @@ public class ChapterTreeCell extends CustomTreeCell<BasicStoryComponent> {
             if (item instanceof EventCard) {
                 Chapter target = (Chapter) getItem();
                 EventCard eventCard = (EventCard) item;
-                eventCard.setChapter(target);
+                eventCard.setChapterAndDisplay(target);
                 ApplicationUtils.updateWorkspace();
             }
             event.consume();

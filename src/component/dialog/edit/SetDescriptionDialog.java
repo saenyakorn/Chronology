@@ -25,8 +25,8 @@ public class SetDescriptionDialog extends Dialog {
         loadFXML("Edit description", "SetDescriptionDialog.fxml", "../Dialog.css");
     }
 
-    private void SetString(String text) {
-        component.setDescription(text);
+    private void setString(String text) {
+        component.setDescriptionAndDisplay(text);
         ApplicationUtils.updateWorkspace();
         close();
     }
@@ -37,7 +37,7 @@ public class SetDescriptionDialog extends Dialog {
         textField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, textField));
         createButton.setOnAction((ActionEvent e) -> {
             if (!isSomeEmpty(textField)) {
-                SetString(textField.getText());
+                setString(textField.getText());
             }
         });
         cancelButton.setOnAction((ActionEvent e) -> stage.close());

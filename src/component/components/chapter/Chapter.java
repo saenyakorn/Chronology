@@ -11,7 +11,7 @@ import utils.ApplicationUtils;
 public class Chapter extends BasicStoryComponent {
 
     public Chapter() {
-
+        super();
     }
 
     public Chapter(String componentID) {
@@ -26,24 +26,32 @@ public class Chapter extends BasicStoryComponent {
         super(title, description, color, timePeriod);
     }
 
-    public Chapter(String title, String description, Color color, TimePeriod timePeriod, EventCardList eventCards) {
-        super(title, description, color, timePeriod);
-    }
-
     @Override
     public String toString() {
         return getTitle();
     }
 
     @Override
-    public void setColor(Color color) {
-        super.setColor(color);
+    public void setColorAndDisplay(Color color) {
+        setColor(color);
         EventCardList eventCards = ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards();
         for (EventCard eventCard : eventCards) {
-            if(eventCard.getChapter().equals(this)){
+            if (eventCard.getChapter() == this) {
                 eventCard.setChapterColor(color);
             }
         }
+    }
+
+    @Override
+    public int eventCardsInComponent() {
+        EventCardList eventCards = ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards();
+        int count = 0;
+        for (EventCard eventCard : eventCards) {
+            if (eventCard.getChapter() == this) {
+                count += 1;
+            }
+        }
+        return count;
     }
 
     @Override
@@ -61,6 +69,6 @@ public class Chapter extends BasicStoryComponent {
     }
 
     private void initializeDisplayAfterRead() {
-        setColor(getColor());
+        setColorAndDisplay(getColor());
     }
 }
