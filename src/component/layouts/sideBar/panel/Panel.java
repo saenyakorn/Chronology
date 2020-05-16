@@ -12,15 +12,10 @@ import utils.SystemUtils;
 public abstract class Panel<T> extends VBox {
 
     protected Label header = new Label();
-    protected TreeView<T> treeView = new TreeView<>();
-    private final ListChangeListener<T> listener = (ListChangeListener.Change<? extends T> change) -> {
-        getTreeView().getRoot().getChildren().clear();
-        for (T item : change.getList()) {
-            addItem(item);
-        }
-    };
     protected Button newItemButton = new Button();
+    protected TreeView<T> treeView = new TreeView<>();
     protected ContextMenu contextMenu = new ContextMenu();
+    private final ListChangeListener<T> listener = (ListChangeListener.Change<? extends T> change) -> onChange(change);
 
     public Panel() {
         getStylesheets().add(getClass().getResource("../SideBar.css").toExternalForm());
@@ -83,5 +78,11 @@ public abstract class Panel<T> extends VBox {
         }
     }
 
+    public void onChange(ListChangeListener.Change<? extends T> change) {
+        ObservableList<T> list = (ObservableList<T>) change.getList();
+        setAllItem(list);
+    }
+
     public abstract void onButtonClick();
+
 }
