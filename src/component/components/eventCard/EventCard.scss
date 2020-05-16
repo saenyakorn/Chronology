@@ -1,9 +1,5 @@
 @import "../../../application/StylingConstants.scss";
 
-StackPane {
-  -fx-padding: $padding-larger;
-}
-
 .date-time-container {
   -fx-padding: $padding-smaller;
   -fx-spacing: $spacing*6;
@@ -68,8 +64,16 @@ StackPane {
   -fx-background-color: transparent, $white, transparent, $white;
 }
 
-.chapter-marker {
+.chapter-title-container {
   -fx-background-radius: 0 0 $border-radius $border-radius;
+  -fx-background-color: $white;
 }
 
+.chapter-title {
+  -fx-padding: 10 0 10 0;
+}
+
+StackPane {
+  -fx-padding: $padding-larger;
+}
 

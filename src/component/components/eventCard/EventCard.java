@@ -5,6 +5,7 @@ import component.base.BasicStoryComponent;
 import component.components.chapter.Chapter;
 import component.components.storyline.Storyline;
 import component.components.timeModifier.TimePeriod;
+import component.dialog.edit.SetChapterDialog;
 import component.dialog.edit.SetColorDialog;
 import component.dialog.edit.SetTimePeriodDialog;
 import javafx.beans.property.Property;
@@ -53,7 +54,9 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     @FXML
     private StackPane cardDescriptionContainer;
     @FXML
-    private StackPane chapterMarker;
+    private StackPane chapterTitleContainer;
+    @FXML
+    private TextField chapterTitle;
 
     public EventCard() {
         loadFXML("EventCard.fxml");
@@ -61,7 +64,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     }
 
     public EventCard(String componentID) {
-        super();
+        super(componentID);
     }
 
     public EventCard(String title, String description) {
@@ -113,7 +116,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     }
 
     public void setChapterColor(Color color) {
-        chapterMarker.setStyle("-fx-background-color: " + GlobalColor.colorToHex(color) + ";");
+        chapterTitleContainer.setStyle("-fx-background-color: " + GlobalColor.colorToHex(color) + ";");
     }
 
     @Override
@@ -249,9 +252,11 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         contextMenu.setConsumeAutoHidingEvents(true);
         MenuItem timePeriodMenuItem = new MenuItem(SystemUtils.EDIT_DATA_TIME);
         MenuItem colorMenuItem = new MenuItem(SystemUtils.EDIT_COLOR);
+        MenuItem chapterMenuItem = new MenuItem(SystemUtils.MOVE_TO_CHAPTER);
         timePeriodMenuItem.setOnAction((ActionEvent event) -> new SetTimePeriodDialog(this).show());
-        colorMenuItem.setOnAction((ActionEvent event) -> new SetColorDialog(storylineProperty().getValue()).show());
-        contextMenu.getItems().addAll(timePeriodMenuItem, colorMenuItem);
+        colorMenuItem.setOnAction((ActionEvent event) -> new SetColorDialog(getStoryline()).show());
+        chapterMenuItem.setOnAction((ActionEvent event) -> new SetChapterDialog(this).show());
+        contextMenu.getItems().addAll(timePeriodMenuItem, colorMenuItem, chapterMenuItem);
     }
 
     @FXML
@@ -262,9 +267,10 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         setTimePeriodAndDisplay(getTimePeriod());
         setDescriptionAndDisplay(getDescription());
 
-        // if notHasChapter set bottom color to white else set bottom color according to chapter color
+        // if notHasChapter set bottom color to white
+        // else set bottom color according to chapter color
         if (getChapter() == null) {
-            chapterMarker.setStyle("-fx-background-color: white;");
+            chapterTitleContainer.setStyle("-fx-background-color: white;");
         } else {
             setChapterAndDisplay(getChapter());
         }

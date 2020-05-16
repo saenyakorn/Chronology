@@ -26,7 +26,9 @@
                 <TextArea fx:id="cardDescription" styleClass="card-description" prefWidth="170" disable="true"
                           wrapText="true"/>
             </StackPane>
-            <StackPane fx:id="chapterMarker" styleClass="chapter-marker" prefWidth="200.0" prefHeight="15.0"/>
+            <StackPane fx:id="chapterTitleContainer" styleClass="chapter-title-container" prefWidth="200.0" prefHeight="15.0">
+                <TextField fx:id="chapterTitle" styleClass="chapter-title" prefWidth="170" prefHeight="5" disable="true"/>
+            </StackPane>
         </VBox>
     </VBox>
 
