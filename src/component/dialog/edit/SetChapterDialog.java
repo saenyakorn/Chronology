@@ -72,6 +72,7 @@ public class SetChapterDialog extends Dialog {
             } else {
                 component.setChapterAndDisplay((Chapter) chapterCombo.getValue());
             }
+            ApplicationUtils.updateWorkspace();
             stage.close();
         });
         cancelButton.setOnAction((ActionEvent e) -> stage.close());

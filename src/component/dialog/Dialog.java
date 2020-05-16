@@ -19,7 +19,6 @@ public abstract class Dialog {
     public Dialog() {
         stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
-        stage.initStyle(StageStyle.UTILITY);
         stage.setAlwaysOnTop(true);
         if (os != null && os.startsWith("Mac")) {
             stage.initStyle(StageStyle.UNDECORATED);
