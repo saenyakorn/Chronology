@@ -41,25 +41,24 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
 
         // Creating Custom Document Tab
         DocumentCustomTab tab = new DocumentCustomTab(document.getName());
-        tab.setOnMouseClicked((MouseEvent event) -> setActiveTab(tab));
+        tab.setOnMouseClicked((MouseEvent event) -> ApplicationUtils.getCurrentWorkspace().setActiveDocument(document));
         tab.setOnCloseRequest(() -> removeDocument(document));
         documentCustomTabs.add(tab);
-        setActiveTab(tab);
+        ApplicationUtils.getCurrentWorkspace().setActiveDocument(document);
     }
 
     public void removeDocument(Document document) {
         if (document == getDocumentFromTab(activeTab)) {
             int index = documentCustomTabs.indexOf(activeTab);
-            System.out.println("index: " + index);
             if (index == 0 && documentCustomTabs.size() >= 2) {
-                setActiveTab(documentCustomTabs.get(1));
+                ApplicationUtils.getCurrentWorkspace().setActiveDocument(documents.get(1));
             } else if (index == 0) {
-                setActiveTab(null);
+                ApplicationUtils.getCurrentWorkspace().setActiveDocument(null);
             } else {
-                setActiveTab(documentCustomTabs.get(index - 1));
+                ApplicationUtils.getCurrentWorkspace().setActiveDocument(documents.get(index - 1));
             }
         }
-        documentCustomTabs.remove(documents.indexOf(document));
+        documentCustomTabs.remove(getTabFromDocument(document));
         documents.remove(document);
     }
 
@@ -80,21 +79,21 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
         return getDocumentFromTab(activeTab);
     }
 
-    private void setActiveTab(DocumentCustomTab tab) {
+    public void setActiveTab(DocumentCustomTab tab) {
         if (tab != null) {
             tab.setActive(true);
             if (activeTab != null) {
                 activeTab.setActive(false);
             }
-            ApplicationUtils.getCurrentWorkspace().setActiveDocument(getDocumentFromTab(tab));
-            ApplicationUtils.getCurrentWorkspace().getViewer().setDocument(getDocumentFromTab(tab));
-        } else {
-            ApplicationUtils.getCurrentWorkspace().setActiveDocument(null);
         }
         activeTab = tab;
     }
 
-    private Document getDocumentFromTab(DocumentCustomTab tab) {
+    public DocumentCustomTab getTabFromDocument(Document document) {
+        return documentCustomTabs.get(documents.indexOf(document));
+    }
+
+    public Document getDocumentFromTab(DocumentCustomTab tab) {
         return documents.get(documentCustomTabs.indexOf(tab));
     }
 

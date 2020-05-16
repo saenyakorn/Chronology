@@ -52,21 +52,15 @@ public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
         }
         if (document != null) {
             sideBar.initBindings(document);
+            documents.setActiveTab(documents.getTabFromDocument(document));
         } else {
-            viewer.setContent(null);
+            documents.setActiveTab(null);
         }
+        viewer.setContent(document);
     }
 
     public void addDocument(Document document) {
         documents.addDocument(document);
-    }
-
-    public void addAllDocument(Document... args) {
-        for (Document document : args) {
-            documents.addDocument(document);
-        }
-        Document currentDocument = this.getActiveDocument();
-        setActiveDocument(currentDocument);
     }
 
     public void removeDocument(Document document) {
@@ -75,7 +69,7 @@ public class Workspace extends HBox implements SavableAsJSONObject<Workspace> {
 
     @Override
     public String toString() {
-        return "Workspace: " + getId();
+        return "Workspace";
     }
 
     @Override
