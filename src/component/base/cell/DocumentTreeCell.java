@@ -2,6 +2,9 @@ package component.base.cell;
 
 import colors.GlobalColor;
 import component.components.document.Document;
+import component.dialog.edit.SetNameDialog;
+import javafx.event.ActionEvent;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.SVGPath;
 import utils.ApplicationUtils;
@@ -24,7 +27,6 @@ public final class DocumentTreeCell extends CustomTreeCell<Document> {
         super();
         getStylesheets().add(getClass().getResource("TreeCell.css").toExternalForm());
         getStyleClass().add("tree-cell");
-        initializeEventHandler();
         documentIcon.getStyleClass().add("icon-24px");
     }
 
@@ -39,11 +41,13 @@ public final class DocumentTreeCell extends CustomTreeCell<Document> {
         if (empty || item == null) {
             setText(null);
             setGraphic(null);
+            setContextMenu(null);
         } else {
-            setText(getItem().getName());
             documentIcon.setFill(GlobalColor.DEFAULT_COLOR);
-            setGraphic(documentIcon);
             documentIcon.setVisible(item == ApplicationUtils.getCurrentWorkspace().getActiveDocument());
+            setGraphic(documentIcon);
+            setText(getItem().getName());
+            setContextMenu(getCustomContextMenu());
         }
     }
 
@@ -53,6 +57,14 @@ public final class DocumentTreeCell extends CustomTreeCell<Document> {
     @Override
     protected void initializeEventHandler() {
         super.initializeEventHandler();
+        MenuItem editNameMenuItem = new MenuItem(SystemUtils.EDIT_NAME);
+        editNameMenuItem.setOnAction((ActionEvent event) -> new SetNameDialog(getItem()).show());
+        MenuItem removeMenuItem = new MenuItem(SystemUtils.REMOVE);
+        removeMenuItem.setOnAction((ActionEvent event) -> onRemoveItem());
+        getCustomContextMenu().getItems().addAll(editNameMenuItem, removeMenuItem);
+        if (getItem() != null) {
+            setContextMenu(getCustomContextMenu());
+        }
         setOnMouseClicked((MouseEvent event) -> {
             if (getItem() != null && getItem() != ApplicationUtils.getCurrentWorkspace().getActiveDocument()) {
                 ApplicationUtils.getCurrentWorkspace().setActiveDocument(getItem());
@@ -60,4 +72,8 @@ public final class DocumentTreeCell extends CustomTreeCell<Document> {
         });
     }
 
+    @Override
+    public void removeItem() {
+        ApplicationUtils.getCurrentWorkspace().removeDocument(getItem());
+    }
 }

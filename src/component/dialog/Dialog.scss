@@ -186,7 +186,7 @@
 
 // ---------------------------------------------------------------------------------------------------------
 
-.set-title-body, .set-description-body, .set-color-body {
+.set-title-body, .set-description-body, .set-name-body, .set-color-body {
   @include default-body;
   -fx-pref-height: 100px;
 

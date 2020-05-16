@@ -64,18 +64,24 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
     }
 
     public void removeDocument(Document document) {
-        if (document == getDocumentFromTab(activeTab)) {
-            int index = documentCustomTabs.indexOf(activeTab);
-            if (index == 0 && documentCustomTabs.size() >= 2) {
-                ApplicationUtils.getCurrentWorkspace().setActiveDocument(documents.get(1));
-            } else if (index == 0) {
-                ApplicationUtils.getCurrentWorkspace().setActiveDocument(null);
-            } else {
-                ApplicationUtils.getCurrentWorkspace().setActiveDocument(documents.get(index - 1));
+        if(documents.contains(document)) {
+            if (document == getDocumentFromTab(activeTab)) {
+                int index = documentCustomTabs.indexOf(activeTab);
+                if (index == 0 && documentCustomTabs.size() >= 2) {
+                    ApplicationUtils.getCurrentWorkspace().setActiveDocument(documents.get(1));
+                } else if (index == 0) {
+                    ApplicationUtils.getCurrentWorkspace().setActiveDocument(null);
+                } else {
+                    ApplicationUtils.getCurrentWorkspace().setActiveDocument(documents.get(index - 1));
+                }
             }
+            documentCustomTabs.remove(getTabFromDocument(document));
+            documents.remove(document);
+            document = null;
+        } else {
+            System.out.println("This document does not exist");
         }
-        documentCustomTabs.remove(getTabFromDocument(document));
-        documents.remove(document);
+
     }
 
     public void removeAllDocuments() {

@@ -11,12 +11,15 @@ import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Color;
 import org.json.simple.JSONObject;
 import utils.ApplicationUtils;
 import utils.SystemUtils;
 
 import java.io.IOException;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -328,6 +331,23 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+    }
+
+    public void onRemoveItem() {
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle(SystemUtils.CONFIRM_REMOVE_TITLE);
+        confirm.setHeaderText(SystemUtils.CONFIRM_REMOVE_HEADER);
+        confirm.setContentText(SystemUtils.CONFIRM_REMOVE_CONTENT);
+        confirm.setGraphic(null);
+        Optional<ButtonType> result = confirm.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            removeItem();
+        } else {
+            confirm.close();
+        }
+    }
+
+    public void removeItem() {
     }
 
     /**

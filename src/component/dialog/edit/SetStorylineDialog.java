@@ -4,7 +4,6 @@ import component.base.BasicStoryComponent;
 import component.base.BlankBasicStoryComponent;
 import component.base.cell.ComboBoxButtonCell;
 import component.base.cell.ComboBoxListCell;
-import component.components.chapter.Chapter;
 import component.components.document.Document;
 import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
@@ -22,7 +21,6 @@ import utils.ApplicationUtils;
 
 public class SetStorylineDialog extends Dialog {
     private final EventCard component;
-    private final ComboBox<BasicStoryComponent> chapterCombo = new ComboBox<>();
     private final ComboBox<BasicStoryComponent> storylineCombo = new ComboBox<>();
 
     @FXML
@@ -70,11 +68,12 @@ public class SetStorylineDialog extends Dialog {
             y = event.getSceneY();
         });
         setButton.setOnAction((ActionEvent e) -> {
-            if (chapterCombo.getValue() instanceof BlankBasicStoryComponent) {
-                component.setChapterAndDisplay(null);
+            if (storylineCombo.getValue() instanceof BlankBasicStoryComponent) {
+                component.setStorylineAndDisplay(null);
             } else {
-                component.setChapterAndDisplay((Chapter) chapterCombo.getValue());
+                component.setStorylineAndDisplay((Storyline) storylineCombo.getValue());
             }
+            ApplicationUtils.updateWorkspace();
             stage.close();
         });
         cancelButton.setOnAction((ActionEvent e) -> stage.close());

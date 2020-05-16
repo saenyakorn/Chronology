@@ -103,6 +103,10 @@ public class SystemUtils {
      */
     public static final String EDIT_PROPERTY = "Properties...";
     /**
+     * Context menu text for <i>Edit Name</i> option.
+     */
+    public static final String EDIT_NAME = "Edit Name";
+    /**
      * Context menu text for <i>Edit Title</i> option.
      */
     public static final String EDIT_TITLE = "Edit Title";

@@ -5,9 +5,7 @@ import component.base.BasicStoryComponent;
 import component.components.chapter.Chapter;
 import component.components.storyline.Storyline;
 import component.components.timeModifier.TimePeriod;
-import component.dialog.edit.SetChapterDialog;
-import component.dialog.edit.SetColorDialog;
-import component.dialog.edit.SetTimePeriodDialog;
+import component.dialog.edit.*;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
@@ -192,6 +190,9 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
             setChapterColor(chapter.getColor());
             setSelfComponentTimePeriod(getTimePeriod(), chapter);
             chapterTitle.setText(chapter.getTitle());
+        } else {
+            chapterTitle.setText(null);
+            chapterTitleContainer.setStyle("-fx-background-color: white;");
         }
     }
 
@@ -260,13 +261,34 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     private void initializeContextMenu() {
         contextMenu.setAutoHide(true);
         contextMenu.setConsumeAutoHidingEvents(true);
+
+        MenuItem setTitleMenuItem = new MenuItem(SystemUtils.EDIT_TITLE);
+        setTitleMenuItem.setOnAction((ActionEvent event) -> new SetTitleDialog(this).show());
+
+        MenuItem setDescriptionMenuItem = new MenuItem(SystemUtils.EDIT_DESCRIPTION);
+        setDescriptionMenuItem.setOnAction((ActionEvent event) -> new SetDescriptionDialog(this).show());
+
         MenuItem timePeriodMenuItem = new MenuItem(SystemUtils.EDIT_DATA_TIME);
-        MenuItem colorMenuItem = new MenuItem(SystemUtils.EDIT_COLOR);
-        MenuItem chapterMenuItem = new MenuItem(SystemUtils.MOVE_TO_CHAPTER);
         timePeriodMenuItem.setOnAction((ActionEvent event) -> new SetTimePeriodDialog(this).show());
+
+        MenuItem colorMenuItem = new MenuItem(SystemUtils.EDIT_COLOR);
         colorMenuItem.setOnAction((ActionEvent event) -> new SetColorDialog(getStoryline()).show());
+
+        MenuItem chapterMenuItem = new MenuItem(SystemUtils.MOVE_TO_CHAPTER);
         chapterMenuItem.setOnAction((ActionEvent event) -> new SetChapterDialog(this).show());
-        contextMenu.getItems().addAll(timePeriodMenuItem, colorMenuItem, chapterMenuItem);
+
+        MenuItem storylineMenuItem = new MenuItem(SystemUtils.MOVE_TO_STORYLINE);
+        storylineMenuItem.setOnAction((ActionEvent event) -> new SetStorylineDialog(this).show());
+
+        MenuItem removeMenuItem = new MenuItem(SystemUtils.REMOVE);
+        removeMenuItem.setOnAction((ActionEvent event) -> onRemoveItem());
+
+        contextMenu.getItems().addAll(setTitleMenuItem, setDescriptionMenuItem, timePeriodMenuItem, colorMenuItem, chapterMenuItem, storylineMenuItem, removeMenuItem);
+    }
+
+    @Override
+    public void removeItem() {
+        ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards().removeEventCard(this);
     }
 
     @FXML
@@ -328,7 +350,6 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
             }
             cardTitle.setDisable(true);
         });
-        cardTitleContainer.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
 
         // Click the card description to change text
         cardDescription.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
@@ -340,12 +361,11 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
             }
             cardDescription.setDisable(true);
         });
-        cardDescriptionContainer.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
 
         // Click the chapter title to change text
         chapterTitle.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
         chapterTitleContainer.setOnMouseClicked((MouseEvent event) -> {
-            if(getChapter() != null)
+            if (getChapter() != null)
                 chapterTitle.setDisable(false);
         });
         chapterTitleContainer.setOnMouseExited((MouseEvent event) -> {

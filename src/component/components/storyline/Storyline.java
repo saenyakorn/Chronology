@@ -7,6 +7,9 @@ import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
 import component.components.timeModifier.TimePeriod;
 import component.dialog.edit.SetColorDialog;
+import component.dialog.edit.SetDescriptionDialog;
+import component.dialog.edit.SetTimePeriodDialog;
+import component.dialog.edit.SetTitleDialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -184,7 +187,6 @@ public class Storyline extends BasicStoryComponent {
             }
             storylineTitle.setDisable(true);
         });
-        storylineTitleContainer.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
 
         // When Storyline get drag over
         root.setOnDragOver((DragEvent event) -> {
@@ -233,8 +235,19 @@ public class Storyline extends BasicStoryComponent {
     private void initializeContextMenu() {
         contextMenu.setAutoHide(true);
         contextMenu.setConsumeAutoHidingEvents(true);
+
+        MenuItem setTitleMenuItem = new MenuItem(SystemUtils.EDIT_TITLE);
+        setTitleMenuItem.setOnAction((ActionEvent event) -> new SetTitleDialog(this).show());
+
+        MenuItem setDescriptionMenuItem = new MenuItem(SystemUtils.EDIT_DESCRIPTION);
+        setDescriptionMenuItem.setOnAction((ActionEvent event) -> new SetDescriptionDialog(this).show());
+
+        MenuItem timePeriodMenuItem = new MenuItem(SystemUtils.EDIT_DATA_TIME);
+        timePeriodMenuItem.setOnAction((ActionEvent event) -> new SetTimePeriodDialog(this).show());
+
         MenuItem colorMenuItem = new MenuItem(SystemUtils.EDIT_COLOR);
         colorMenuItem.setOnAction((ActionEvent event) -> new SetColorDialog(this).show());
+
         MenuItem eventCardMenuItem = new MenuItem(SystemUtils.NEW_EVENT_CARD);
         eventCardMenuItem.setOnAction((ActionEvent event) -> {
             EventCardList eventCards = ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards();
@@ -243,7 +256,15 @@ public class Storyline extends BasicStoryComponent {
             eventCards.addEventCard(newEventCard);
             ApplicationUtils.updateWorkspace();
         });
-        contextMenu.getItems().addAll(colorMenuItem, eventCardMenuItem);
+
+        MenuItem removeMenuItem = new MenuItem(SystemUtils.REMOVE);
+        removeMenuItem.setOnAction((ActionEvent event) -> onRemoveItem());
+
+        contextMenu.getItems().addAll(setTitleMenuItem, setDescriptionMenuItem, timePeriodMenuItem, colorMenuItem, eventCardMenuItem, removeMenuItem);
     }
 
+    @Override
+    public void removeItem() {
+        ApplicationUtils.getCurrentWorkspace().getActiveDocument().getStorylines().removeStoryline(this);
+    }
 }
