@@ -19,12 +19,12 @@ public class IntroScreen {
     private ProgressBar progressBar;
 
     /**
-     * The root node of the screen.
+     * Root node of the screen.
      */
     @FXML
     private VBox root;
     /**
-     * The app name text shown on the intro screen.
+     * App name text shown on the intro screen.
      */
     @FXML
     private Text header;
@@ -64,7 +64,7 @@ public class IntroScreen {
     }
 
     /**
-     * Method to convert a value into progress on the progress bar
+     * Converts a value into progress on the progress bar
      * @param value the value passed to the method
      * @return progress time to update in progress bar
      */

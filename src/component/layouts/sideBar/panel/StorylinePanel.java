@@ -14,7 +14,7 @@ import utils.SystemUtils;
 public class StorylinePanel extends Panel<BasicStoryComponent> {
 
     public StorylinePanel() {
-        setHeader(SystemUtils.STORYLINE_DEMO_HEADER);
+        setHeader(SystemUtils.STORYLINE_PANEL_HEADER);
         getTreeView().setCellFactory(param -> new StorylineTreeCell());
     }
 

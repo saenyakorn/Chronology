@@ -14,7 +14,7 @@ import utils.SystemUtils;
 public class ChapterPanel extends Panel<BasicStoryComponent> {
 
     public ChapterPanel() {
-        setHeader(SystemUtils.CHAPTER_DEMO_HEADER);
+        setHeader(SystemUtils.CHAPTER_PANEL_HEADER);
         getTreeView().setCellFactory(param -> new ChapterTreeCell());
     }
 

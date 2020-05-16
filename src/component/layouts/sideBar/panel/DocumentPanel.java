@@ -8,7 +8,7 @@ import utils.SystemUtils;
 public class DocumentPanel extends Panel<Document> {
 
     public DocumentPanel() {
-        setHeader(SystemUtils.DOCUMENT_DEMO_HEADER);
+        setHeader(SystemUtils.DOCUMENT_PANEL_HEADER);
         getTreeView().setCellFactory(params -> new DocumentTreeCell());
     }
 

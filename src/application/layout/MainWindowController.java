@@ -37,27 +37,27 @@ public class MainWindowController {
     private final FileChooser fileChooser = new FileChooser();
 
     /**
-     * The root node of the window.
+     * Root node of the window.
      */
     @FXML
     private VBox root;
     /**
-     * The menu bar.
+     * Menu bar.
      */
     @FXML
     private MenuBar menuBar;
     /**
-     * The document tab bar.
+     * Document tab bar.
      */
     @FXML
     private HBox tabContainer;
     /**
-     * The hamburger button.
+     * Hamburger button.
      */
     @FXML
     private HBox hamburgerContainer;
     /**
-     * The add tab button.
+     * Add tab button.
      */
     @FXML
     private Button addTabButton;
@@ -71,7 +71,7 @@ public class MainWindowController {
      *     <li>Setups menu bar property for MacOS.</li>
      *     <li>Setups the file chooser.</li>
      *     <li>Setups the add tab button and hamburger button.</li>
-     *     <li>Binds tabContainer HBox with the current documentList.</li>
+     *     <li>Binds tabContainer HBox with the current DocumentList.</li>
      * </ol>
      */
     @FXML
@@ -99,7 +99,7 @@ public class MainWindowController {
     }
 
     /**
-     * Binds tabContainer HBox with the current documentList.
+     * Binds tabContainer HBox with the current DocumentList.
      */
     public void bindTabContainer() {
         DocumentList documentList = ApplicationUtils.getCurrentWorkspace().getDocumentList();
@@ -234,7 +234,8 @@ public class MainWindowController {
      *     <li>Clears the previous workspace and creates a new one.</li>
      *     <li>Binds tabContainer HBox to this new workspace's documentList.</li>
      *     <li>Reads the file, loads data into workspace.</li>
-     *     <li>Updates the loaded workspace and adds it to root.</li>
+     *     <li>Sets the first document as active.</li>
+     *     <li>Adds loaded workspace to root.</li>
      * </ol>
      * @param selectedFile file selected from fileChooser by user.
      * @see component.ability.Savable
@@ -250,7 +251,7 @@ public class MainWindowController {
                 Object obj = parser.parse(file);
                 readJSONObject((JSONObject) obj);
 
-                ApplicationUtils.updateWorkspaceOnOpen();
+                ApplicationUtils.setFirstDocumentAsActive();
                 root.getChildren().remove(root.getChildren().size() - 1);
                 root.getChildren().add(ApplicationUtils.getCurrentWorkspace());
 

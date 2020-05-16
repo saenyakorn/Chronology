@@ -8,7 +8,7 @@ import utils.SystemUtils;
 public class EventCardPanel extends Panel<EventCard> {
 
     public EventCardPanel() {
-        setHeader(SystemUtils.EVENT_CARD_DEMO_HEADER);
+        setHeader(SystemUtils.EVENT_CARD_PANEL_HEADER);
         getTreeView().setCellFactory(param -> new EventCardTreeCell());
     }
 
