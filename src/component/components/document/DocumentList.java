@@ -3,12 +3,16 @@ package component.components.document;
 import component.ability.SavableAsJSONArray;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import utils.ApplicationUtils;
+import utils.SystemUtils;
 
 import java.util.Iterator;
+import java.util.Optional;
 
 public class DocumentList implements Iterable<Document>, SavableAsJSONArray<DocumentList> {
 
@@ -42,7 +46,19 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
         // Creating Custom Document Tab
         DocumentCustomTab tab = new DocumentCustomTab(document.getName());
         tab.setOnMouseClicked((MouseEvent event) -> ApplicationUtils.getCurrentWorkspace().setActiveDocument(document));
-        tab.setOnCloseRequest(() -> removeDocument(document));
+        tab.setOnCloseRequest(() -> {
+            Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+            confirm.setTitle(SystemUtils.CONFIRM_REMOVE_TITLE);
+            confirm.setHeaderText(SystemUtils.CONFIRM_REMOVE_HEADER);
+            confirm.setContentText(SystemUtils.CONFIRM_REMOVE_CONTENT);
+            confirm.setGraphic(null);
+            Optional<ButtonType> result = confirm.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                removeDocument(document);
+            } else {
+                confirm.close();
+            }
+        });
         documentCustomTabs.add(tab);
         ApplicationUtils.getCurrentWorkspace().setActiveDocument(document);
     }
