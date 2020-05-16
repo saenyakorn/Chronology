@@ -1,5 +1,6 @@
 package component.layouts.viewer;
 
+import component.components.chapter.Chapter;
 import component.components.document.Document;
 import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
@@ -36,11 +37,19 @@ public class Viewer extends ScrollPane {
         ApplicationUtils.updateWorkspace();
     }
 
+    private void createChapter() {
+        Chapter newChapter = new Chapter();
+        ApplicationUtils.getCurrentWorkspace().getActiveDocument().addChapter(newChapter);
+        ApplicationUtils.updateWorkspace();
+    }
+
     private void initializeContextMenu() {
         MenuItem storylineMenuItem = new MenuItem(SystemUtils.NEW_STORYLINE);
         storylineMenuItem.setOnAction((ActionEvent innerEvent) -> createStoryline());
         MenuItem eventCardMenuitem = new MenuItem(SystemUtils.NEW_EVENT_CARD);
         eventCardMenuitem.setOnAction((ActionEvent innerEvent) -> createEventCard());
-        contextMenu.getItems().addAll(eventCardMenuitem, storylineMenuItem);
+        MenuItem chapterMenuitem = new MenuItem(SystemUtils.NEW_CHAPTER);
+        chapterMenuitem.setOnAction((ActionEvent innerEvent) -> createChapter());
+        contextMenu.getItems().addAll(storylineMenuItem, eventCardMenuitem, chapterMenuitem);
     }
 }

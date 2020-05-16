@@ -1,5 +1,6 @@
 package component.components.chapter;
 
+import colors.RandomColor;
 import component.base.BasicStoryComponent;
 import component.components.eventCard.EventCard;
 import component.components.eventCard.EventCardList;
@@ -11,7 +12,8 @@ import utils.ApplicationUtils;
 public class Chapter extends BasicStoryComponent {
 
     public Chapter() {
-        super();
+        setColorAndDisplay(RandomColor.getColor());
+
     }
 
     public Chapter(String componentID) {

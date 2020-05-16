@@ -8,15 +8,31 @@ import javafx.scene.text.Text;
 import utils.SystemUtils;
 import utils.TransitionUtils;
 
+/**
+ * Intro screen displayed on app launch.
+ */
 public class IntroScreen {
 
+    /**
+     * The progress bar shown on the intro screen.
+     */
     private ProgressBar progressBar;
 
+    /**
+     * The root node of the screen.
+     */
     @FXML
     private VBox root;
+    /**
+     * The app name text shown on the intro screen.
+     */
     @FXML
     private Text header;
 
+    /**
+     * FXML initialize method, called after IntroScreen.fxml finishes loading.
+     * Sets the text and css styles.
+     */
     @FXML
     protected void initialize() {
         progressBar = new ProgressBar();
@@ -26,6 +42,10 @@ public class IntroScreen {
         new Thread(() -> simulateProgress(0)).start();
     }
 
+    /**
+     * Simulates loading on the progress bar.
+     * @param initValue the initial value
+     */
     private void simulateProgress(double initValue) {
         double value = initValue;
         try {
@@ -43,6 +63,11 @@ public class IntroScreen {
         }
     }
 
+    /**
+     * Method to convert a value into progress on the progress bar
+     * @param value the value passed to the method
+     * @return progress time to update in progress bar
+     */
     private long getProgressTime(double value) {
         if (value < 0.5) {
             return 3;

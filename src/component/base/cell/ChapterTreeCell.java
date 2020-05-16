@@ -26,6 +26,7 @@ public class ChapterTreeCell extends CustomTreeCell<BasicStoryComponent> {
     public ChapterTreeCell() {
         super();
         chapterIcon.getStyleClass().add("icon-24px");
+        eventCardIcon.getStyleClass().add("icon-24px");
     }
 
     @Override

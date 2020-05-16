@@ -9,14 +9,25 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import utils.SystemUtils;
 
+/**
+ * The main class. Launches the JavaFX application.
+ * @see application.layout.MainWindowController
+ */
 public class Main extends Application {
 
-    private final String os = System.getProperty("os.name");
-
+    /**
+     * Main method.
+     * @param args arguments.
+     */
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+     * Start method. Initializes the main window, then shows the intro screen followed by main window.
+     * @param mainWindow the application's main stage.
+     * @see application.layout.IntroScreen
+     */
     @Override
     public void start(Stage mainWindow) {
         try {
