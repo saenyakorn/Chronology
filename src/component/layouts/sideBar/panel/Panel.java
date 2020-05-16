@@ -56,12 +56,12 @@ public abstract class Panel<T> extends VBox {
         return newItemButton;
     }
 
-    public void binding(ObservableList<T> list) {
+    public void binding(ObservableList<? extends T> list) {
         list.addListener(listener);
         setAllItem(list);
     }
 
-    public void unbinding(ObservableList<T> list) {
+    public void unbinding(ObservableList<? extends T> list) {
         treeView.getRoot().getChildren().clear();
         list.removeListener(listener);
     }
@@ -71,7 +71,7 @@ public abstract class Panel<T> extends VBox {
         treeView.getRoot().getChildren().add(treeItem);
     }
 
-    public void setAllItem(ObservableList<T> items) {
+    public void setAllItem(ObservableList<? extends T> items) {
         getTreeView().getRoot().getChildren().clear();
         for (T item : items) {
             addItem(item);
@@ -79,8 +79,7 @@ public abstract class Panel<T> extends VBox {
     }
 
     public void onChange(ListChangeListener.Change<? extends T> change) {
-        ObservableList<T> list = (ObservableList<T>) change.getList();
-        setAllItem(list);
+        setAllItem(change.getList());
     }
 
     public abstract void onButtonClick();
