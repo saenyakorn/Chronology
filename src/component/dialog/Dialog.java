@@ -12,6 +12,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public abstract class Dialog {
+    protected double x, y;
     protected Stage stage;
     private final String os = System.getProperty("os.name");
 
@@ -22,8 +23,6 @@ public abstract class Dialog {
         stage.setAlwaysOnTop(true);
         if (os != null && os.startsWith("Mac")) {
             stage.initStyle(StageStyle.UNDECORATED);
-        } else {
-            stage.initStyle(StageStyle.TRANSPARENT);
         }
     }
 

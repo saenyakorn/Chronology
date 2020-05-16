@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" spacing="20">
-    <padding>
-        <Insets topRightBottomLeft="50"/>
-    </padding>
+<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx" styleClass="move-to-chapter-body" fx:id="root">
 
-    <Text text="Move to Chapter" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
-    <HBox fx:id="extensionContainer"/>
+    <VBox alignment="BASELINE_CENTER">
+        <Text text="Move to Chapter" styleClass="header"/>
+    </VBox>
+
+    <VBox fx:id="extensionContainer" styleClass="extension"/>
+
     <HBox alignment="BOTTOM_RIGHT" spacing="20">
-        <Button fx:id="cancelButton" text="Cancel"/>
-        <Button fx:id="setButton" text="Set"/>
+        <Button fx:id="cancelButton" text="Cancel" styleClass="cancel-button"/>
+        <Button fx:id="setButton" text="Set" styleClass="set-button"/>
     </HBox>
 
 </VBox>

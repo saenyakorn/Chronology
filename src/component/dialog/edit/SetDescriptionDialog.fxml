@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx" spacing="20">
-    <padding>
-        <Insets topRightBottomLeft="50"/>
-    </padding>
+<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx" styleClass="set-description-body" fx:id="root">
 
-    <Text style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
-    <TextField fx:id="textField"/>
+    <VBox alignment="BASELINE_CENTER">
+        <Text text="Edit Description" styleClass="header"/>
+    </VBox>
+
+    <VBox styleClass="container">
+        <TextField fx:id="textField" styleClass="textfield"/>
+    </VBox>
+
     <HBox alignment="BOTTOM_RIGHT" spacing="20">
-        <Button fx:id="cancelButton" text="Cancel"/>
-        <Button fx:id="setButton" text="Set"/>
+        <Button fx:id="cancelButton" text="Cancel" styleClass="cancel-button"/>
+        <Button fx:id="setButton" text="Set" styleClass="set-button"/>
     </HBox>
+
 
 </VBox>

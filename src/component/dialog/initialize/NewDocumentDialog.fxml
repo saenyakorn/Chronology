@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
-<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx" styleClass="new-document-body">
+<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx" styleClass="new-document-body" fx:id="root">
 
     <VBox alignment="BASELINE_CENTER">
         <Text text="New Document" styleClass="header"/>

@@ -162,7 +162,6 @@ public class Storyline extends BasicStoryComponent {
 
         // When Storyline get right click
         root.setOnContextMenuRequested((ContextMenuEvent event) -> {
-            contextMenu.hide();
             contextMenu.show(root, event.getScreenX(), event.getScreenY());
             event.consume();
         });
@@ -172,6 +171,7 @@ public class Storyline extends BasicStoryComponent {
             if (contextMenu.isShowing()) {
                 contextMenu.hide();
             }
+            event.consume();
         });
 
         // When click the storyline title to change text

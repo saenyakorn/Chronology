@@ -7,17 +7,21 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import utils.ApplicationUtils;
 import utils.SystemUtils;
 
 public class SetDescriptionDialog extends Dialog {
+    private final BasicStoryComponent component;
 
-    BasicStoryComponent component;
-
+    @FXML
+    VBox root;
     @FXML
     TextField textField;
     @FXML
-    Button createButton;
+    Button setButton;
     @FXML
     Button cancelButton;
 
@@ -35,9 +39,18 @@ public class SetDescriptionDialog extends Dialog {
 
     @FXML
     protected void initialize() {
-        createButton.setDisable(true);
-        textField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, textField));
-        createButton.setOnAction((ActionEvent e) -> {
+        setButton.setDisable(true);
+        root.setOnMouseDragged((MouseEvent event) -> {
+            Stage stage = (Stage) root.getScene().getWindow();
+            stage.setX(event.getScreenX() - x);
+            stage.setY(event.getScreenY() - y);
+        });
+        root.setOnMousePressed((MouseEvent event) -> {
+            x = event.getSceneX();
+            y = event.getSceneY();
+        });
+        textField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(setButton, textField));
+        setButton.setOnAction((ActionEvent e) -> {
             if (!isSomeEmpty(textField)) {
                 setString(textField.getText());
             }

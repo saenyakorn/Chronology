@@ -18,13 +18,17 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import utils.ApplicationUtils;
 import utils.SystemUtils;
 
 public class NewEventCardDialog extends Dialog {
 
+    @FXML
+    VBox root;
     @FXML
     TextField titleTextField;
     @FXML
@@ -92,6 +96,15 @@ public class NewEventCardDialog extends Dialog {
     @FXML
     protected void initialize() {
         createButton.setDisable(true);
+        root.setOnMouseDragged((MouseEvent event) -> {
+            Stage stage = (Stage) root.getScene().getWindow();
+            stage.setX(event.getScreenX() - x);
+            stage.setY(event.getScreenY() - y);
+        });
+        root.setOnMousePressed((MouseEvent event) -> {
+            x = event.getSceneX();
+            y = event.getSceneY();
+        });
         titleTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField));
         descriptionTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField));
         cancelButton.setOnAction((ActionEvent e) -> stage.close());

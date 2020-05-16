@@ -2,8 +2,7 @@ package component.base.cell;
 
 import colors.GlobalColor;
 import component.components.eventCard.EventCard;
-import component.dialog.edit.SetDescriptionDialog;
-import component.dialog.edit.SetTitleDialog;
+import component.dialog.edit.*;
 import component.dialog.initialize.NewEventCardDialog;
 import javafx.event.ActionEvent;
 import javafx.scene.SnapshotParameters;
@@ -86,17 +85,21 @@ public class EventCardTreeCell extends CustomTreeCell<EventCard> {
 
     @Override
     protected void initializeContextMenu() {
+        MenuItem editTitleMenuItem = new MenuItem(SystemUtils.EDIT_TITLE);
+        editTitleMenuItem.setOnAction((ActionEvent event) -> new SetTitleDialog(getItem()).show());
+        MenuItem editDescriptionMenuItem = new MenuItem(SystemUtils.EDIT_DESCRIPTION);
+        editDescriptionMenuItem.setOnAction((ActionEvent event) -> new SetDescriptionDialog(getItem()).show());
         MenuItem editDateTimeMenuItem = new MenuItem(SystemUtils.EDIT_DATA_TIME);
-        editDateTimeMenuItem.setOnAction((ActionEvent event) -> new NewEventCardDialog().show());
+        editDateTimeMenuItem.setOnAction((ActionEvent event) -> new SetTimePeriodDialog(getItem()).show());
         MenuItem editChapter = new MenuItem(SystemUtils.MOVE_TO_STORYLINE);
-        editChapter.setOnAction((ActionEvent event) -> new SetTitleDialog(getItem()).show());
+        editChapter.setOnAction((ActionEvent event) -> new SetStorylineDialog(getItem()).show());
         MenuItem editStoryline = new MenuItem(SystemUtils.MOVE_TO_CHAPTER);
-        editStoryline.setOnAction((ActionEvent event) -> new SetDescriptionDialog(getItem()).show());
+        editStoryline.setOnAction((ActionEvent event) -> new SetChapterDialog(getItem()).show());
         MenuItem newEventCardMenuItem = new MenuItem(SystemUtils.NEW_EVENT_CARD);
         newEventCardMenuItem.setOnAction((ActionEvent event) -> new NewEventCardDialog().show());
         MenuItem removeMenuItem = new MenuItem(SystemUtils.REMOVE);
         removeMenuItem.setOnAction((ActionEvent event) -> onRemoveItem());
-        getCustomContextMenu().getItems().addAll(newEventCardMenuItem, editDateTimeMenuItem, editChapter, editStoryline, removeMenuItem);
+        getCustomContextMenu().getItems().addAll(newEventCardMenuItem, editTitleMenuItem, editDescriptionMenuItem, editDateTimeMenuItem, editChapter, editStoryline, removeMenuItem);
         if (getItem() != null) {
             setContextMenu(getCustomContextMenu());
         }
