@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
-<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx" spacing="20" maxWidth="Infinity"
-      maxHeight="Infinity">
-    <padding>
-        <Insets topRightBottomLeft="50"/>
-    </padding>
+<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx" styleClass="new-event-card-body">
 
-    <Text text="Create New Event" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
-    <Label text="Event Title: "/>
-    <TextField fx:id="titleTextField"/>
-    <Label text="Event Description: "/>
-    <TextField fx:id="descriptionTextField"/>
-    <HBox fx:id="extensionContainer"/>
+    <VBox alignment="BASELINE_CENTER">
+        <Text text="New Event" styleClass="header"/>
+    </VBox>
+
+    <VBox styleClass="container">
+        <VBox spacing="12">
+            <Label text="title " styleClass="label"/>
+            <TextField fx:id="titleTextField" styleClass="textfield"/>
+        </VBox>
+        <VBox spacing="12">
+            <Label text="description " styleClass="label"/>
+            <TextField fx:id="descriptionTextField" styleClass="textfield"/>
+        </VBox>
+    </VBox>
+
+    <HBox fx:id="extensionContainer" styleClass="extension"/>
+
     <HBox alignment="BOTTOM_RIGHT" spacing="20">
-        <Button fx:id="cancelButton" text="Cancel"/>
-        <Button fx:id="createButton" text="Create"/>
+        <Button fx:id="cancelButton" text="Cancel" styleClass="cancel-button"/>
+        <Button fx:id="createButton" text="Create" styleClass="create-button"/>
     </HBox>
 </VBox>

@@ -4,32 +4,21 @@ import component.base.BasicStoryComponent;
 import component.dialog.Dialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
-
-import java.io.IOException;
+import utils.SystemUtils;
 
 public class SetColorDialog extends Dialog {
     private final BasicStoryComponent component;
 
-    @FXML private ColorPicker colorPicker;
-    @FXML private Button setButton;
-    @FXML private Button cancelButton;
+    @FXML  ColorPicker colorPicker;
+    @FXML  Button setButton;
+    @FXML  Button cancelButton;
 
     public SetColorDialog(BasicStoryComponent component) {
         this.component = component;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SetColorDialog.fxml"));
-        fxmlLoader.setController(this);
-        try {
-            Parent root = fxmlLoader.load();
-            stage.setTitle("Set Color");
-            stage.setScene(new Scene(root));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        setTitle(SystemUtils.EDIT_COLOR);
+        loadFXML("SetColorDialog.fxml", "../Dialog.css");
     }
 
     @FXML

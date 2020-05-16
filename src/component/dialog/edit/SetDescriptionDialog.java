@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import utils.ApplicationUtils;
+import utils.SystemUtils;
 
 public class SetDescriptionDialog extends Dialog {
 
@@ -22,7 +23,8 @@ public class SetDescriptionDialog extends Dialog {
 
     public SetDescriptionDialog(BasicStoryComponent component) {
         this.component = component;
-        loadFXML("Edit description", "SetDescriptionDialog.fxml", "../Dialog.css");
+        setTitle(SystemUtils.EDIT_DESCRIPTION);
+        loadFXML("SetDescriptionDialog.fxml", "../Dialog.css");
     }
 
     private void setString(String text) {

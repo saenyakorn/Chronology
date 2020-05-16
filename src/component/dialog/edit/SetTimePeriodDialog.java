@@ -7,16 +7,13 @@ import component.components.timeModifier.TimePeriodGenerator;
 import component.dialog.Dialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import jfxtras.scene.control.LocalDateTimeTextField;
+import utils.SystemUtils;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -25,35 +22,28 @@ public class SetTimePeriodDialog extends Dialog {
     private boolean isCustomMode;
     private ToggleGroup predefinedTimePeriods;
 
-    @FXML private VBox predefinedMode;
-    @FXML private DatePicker predefinedModeDatePicker;
-    @FXML private HBox predefinedModeToggleGroup;
-    @FXML private RadioButton dawnChoice;
-    @FXML private RadioButton morningChoice;
-    @FXML private RadioButton middayChoice;
-    @FXML private RadioButton afternoonChoice;
-    @FXML private RadioButton eveningChoice;
-    @FXML private RadioButton nightChoice;
+    @FXML  VBox predefinedMode;
+    @FXML  DatePicker predefinedModeDatePicker;
+    @FXML  HBox predefinedModeToggleGroup;
+    @FXML  RadioButton dawnChoice;
+    @FXML  RadioButton morningChoice;
+    @FXML  RadioButton middayChoice;
+    @FXML  RadioButton afternoonChoice;
+    @FXML  RadioButton eveningChoice;
+    @FXML  RadioButton nightChoice;
 
-    @FXML private CheckBox customModeToggle;
-    @FXML private VBox customMode;
-    @FXML private LocalDateTimeTextField customModeBeginDatePicker;
-    @FXML private LocalDateTimeTextField customModeEndDatePicker;
+    @FXML  CheckBox customModeToggle;
+    @FXML  VBox customMode;
+    @FXML LocalDateTimeTextField customModeBeginDatePicker;
+    @FXML  LocalDateTimeTextField customModeEndDatePicker;
 
-    @FXML private Button setButton;
-    @FXML private Button cancelButton;
+    @FXML  Button setButton;
+    @FXML  Button cancelButton;
 
     public SetTimePeriodDialog(BasicStoryComponent component) {
         this.component = component;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SetTimePeriodDialog.fxml"));
-        fxmlLoader.setController(this);
-        try {
-            Parent root = fxmlLoader.load();
-            stage.setTitle("Set Event Date & Time");
-            stage.setScene(new Scene(root));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        setTitle(SystemUtils.EDIT_DATA_TIME);
+        loadFXML("SetTimePeriodDialog.fxml", "../Dialog.css");
     }
 
     private void setToggleGroup() {

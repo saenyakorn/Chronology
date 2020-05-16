@@ -91,6 +91,10 @@ public class SystemUtils {
      */
     public static final String NEW_DOCUMENT = "New Document";
     /**
+     * Context menu text for <i>New Project</i> option.
+     */
+    public static final String NEW_PROJECT = "New Project";
+    /**
      * Context menu text for <i>New Chapter</i> option.
      */
     public static final String NEW_CHAPTER = "New Chapter";

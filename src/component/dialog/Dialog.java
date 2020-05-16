@@ -13,26 +13,34 @@ import java.io.IOException;
 
 public abstract class Dialog {
     protected Stage stage;
+    private final String os = System.getProperty("os.name");
 
     public Dialog() {
         stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initStyle(StageStyle.UTILITY);
         stage.setAlwaysOnTop(true);
-        // TODO STYLE DIALOG
+        if (os != null && os.startsWith("Mac")) {
+            stage.initStyle(StageStyle.UNDECORATED);
+        } else {
+            stage.initStyle(StageStyle.TRANSPARENT);
+        }
     }
 
-    public void loadFXML(String title, String FXMLPath, String CSSPath) {
+    public void loadFXML(String FXMLPath, String CSSPath) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath));
         fxmlLoader.setController(this);
         try {
             Parent root = fxmlLoader.load();
             root.getStylesheets().add(getClass().getResource(CSSPath).toExternalForm());
-            stage.setTitle(title);
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setTitle(String title) {
+        stage.setTitle(title);
     }
 
     public void show() {
