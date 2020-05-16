@@ -69,7 +69,7 @@ public class CustomTreeCell<T> extends TreeCell<T> {
     }
 
     /**
-     * Defines what happens when cell is remove. An alert prompt user to confirm permanent remove.
+     * Defines what happens when cell is removed. An alert prompt user to confirm permanent remove.
      */
     public void onRemoveItem() {
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);

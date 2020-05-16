@@ -333,6 +333,9 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         }
     }
 
+    /**
+     * Defines what happens when component is removed. An alert prompt user to confirm permanent remove.
+     */
     public void onRemoveItem() {
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
         confirm.setTitle(SystemUtils.CONFIRM_REMOVE_TITLE);
@@ -347,6 +350,9 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         }
     }
 
+    /**
+     * Removes a component. Implementation is done be subclasses.
+     */
     public void removeItem() {
     }
 
