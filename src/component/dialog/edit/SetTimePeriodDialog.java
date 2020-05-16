@@ -115,12 +115,12 @@ public class SetTimePeriodDialog extends Dialog {
                 if(isCustomMode){
                     LocalDateTime beginDateTime = customModeBeginDatePicker.getLocalDateTime();
                     LocalDateTime endDateTime = customModeEndDatePicker.getLocalDateTime();
-                    component.setTimePeriod(new TimePeriod(beginDateTime, endDateTime));
+                    component.setTimePeriodAndDisplay(new TimePeriod(beginDateTime, endDateTime));
                     System.out.println("Custom date time set");
                 }
                 else {
                     LocalDate date = predefinedModeDatePicker.getValue();
-                    component.setTimePeriod(TimePeriodGenerator.getTimePeriodFromPeriod(date, getSelectedPredefinedTimePeriod()));
+                    component.setTimePeriodAndDisplay(TimePeriodGenerator.getTimePeriodFromPeriod(date, getSelectedPredefinedTimePeriod()));
                     System.out.println("Predefined date time set");
                 }
                 stage.close();

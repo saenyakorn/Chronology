@@ -24,8 +24,8 @@ public class SetTitleDialog extends Dialog {
         loadFXML("Edit title", "SetTitleDialog.fxml", "../Dialog.css");
     }
 
-    private void SetTitle(String text) {
-        component.setTitle(text);
+    private void setTitle(String text) {
+        component.setTitleAndDisplay(text);
         ApplicationUtils.updateWorkspace();
         close();
     }
@@ -36,7 +36,7 @@ public class SetTitleDialog extends Dialog {
         textField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, textField));
         createButton.setOnAction((ActionEvent e) -> {
             if (!isSomeEmpty(textField)) {
-                SetTitle(textField.getText());
+                setTitle(textField.getText());
             }
         });
         cancelButton.setOnAction((ActionEvent e) -> stage.close());

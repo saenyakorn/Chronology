@@ -35,12 +35,9 @@ public class SetColorDialog extends Dialog {
     @FXML
     public void initialize() {
         colorPicker.setValue(component.getColor());
-        System.out.println("Setting color of " + component.toString());
 
         setButton.setOnAction((ActionEvent e) -> {
-            component.setColor(colorPicker.getValue());
-            System.out.println("Color picked is " + colorPicker.getValue().toString());
-            System.out.println("Color set to " + component.getColor().toString());
+            component.setColorAndDisplay(colorPicker.getValue());
             stage.close();
         });
         cancelButton.setOnAction((ActionEvent e) -> stage.close());

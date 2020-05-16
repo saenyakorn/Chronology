@@ -47,28 +47,21 @@ public class Storyline extends BasicStoryComponent {
     public Storyline() {
         loadFXML("Storyline.fxml");
         initializeContextMenu();
-        setColor(RandomColor.getColor());
+        setColorAndDisplay(RandomColor.getColor());
     }
 
     public Storyline(String componentID) {
         super(componentID);
-        //does no fxml stuff until finished
     }
 
     public Storyline(String title, String description) {
         super(title, description);
         loadFXML("Storyline.fxml");
         initializeContextMenu();
-        setColor(RandomColor.getColor());
+        setColorAndDisplay(RandomColor.getColor());
     }
 
     public Storyline(String title, String description, Color color, TimePeriod timePeriod) {
-        super(title, description, color, timePeriod);
-        loadFXML("Storyline.fxml");
-        initializeContextMenu();
-    }
-
-    public Storyline(String title, String description, Color color, TimePeriod timePeriod, EventCardList eventCards) {
         super(title, description, color, timePeriod);
         loadFXML("Storyline.fxml");
         initializeContextMenu();
@@ -99,20 +92,20 @@ public class Storyline extends BasicStoryComponent {
     }
 
     @Override
-    public void setTitle(String title) {
-        super.setTitle(title);
+    public void setTitleAndDisplay(String title) {
+        setTitle(title);
         storylineTitle.setText(title);
     }
 
     @Override
-    public void setColor(Color color) {
-        super.setColor(color);
+    public void setColorAndDisplay(Color color) {
+        setColor(color);
         line.setStroke(color);
         storylineTitle.setStyle("-fx-text-fill: " + GlobalColor.colorToHex(color) + ";");
         EventCardList eventCards = ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards();
         for (EventCard eventCard : eventCards) {
             if (eventCard.getStoryline() == this) {
-                eventCard.setColor(color);
+                eventCard.setColorAndDisplay(color);
             }
         }
     }
@@ -145,14 +138,13 @@ public class Storyline extends BasicStoryComponent {
     private void initializeDisplayAfterRead() {
         loadFXML("Storyline.fxml");
         initializeContextMenu();
-        setColor(RandomColor.getColor());
     }
 
     @FXML
     public void initialize() {
         // toggle override setter
-        setTitle(getTitle());
-        setColor(getColor());
+        setTitleAndDisplay(getTitle());
+        setColorAndDisplay(getColor());
 
         // When Storyline get right click
         root.setOnContextMenuRequested((ContextMenuEvent event) -> {
@@ -165,7 +157,7 @@ public class Storyline extends BasicStoryComponent {
         storylineTitleContainer.setOnMouseClicked((MouseEvent event) -> storylineTitle.setDisable(false));
         storylineTitleContainer.setOnMouseExited((MouseEvent event) -> {
             if (!title.equals(storylineTitle.getText())) {
-                setTitle(storylineTitle.getText());
+                setTitleAndDisplay(storylineTitle.getText());
                 System.out.println("Storyline title set to " + title);
             }
             storylineTitle.setDisable(true);
@@ -186,7 +178,7 @@ public class Storyline extends BasicStoryComponent {
             BasicStoryComponent item = ApplicationUtils.getValueFromCurrentHashMap(itemId);
             if (item instanceof EventCard) {
                 EventCard eventCard = (EventCard) item;
-                eventCard.setStoryline(this);
+                eventCard.setStorylineAndDisplay(this);
                 ApplicationUtils.updateWorkspace();
             }
             event.consume();
@@ -223,7 +215,7 @@ public class Storyline extends BasicStoryComponent {
         eventCardMenuItem.setOnAction((ActionEvent event) -> {
             EventCardList eventCards = ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards();
             EventCard newEventCard = new EventCard();
-            newEventCard.setStoryline(this);
+            newEventCard.setStorylineAndDisplay(this);
             eventCards.addEventCard(newEventCard);
             ApplicationUtils.updateWorkspace();
         });

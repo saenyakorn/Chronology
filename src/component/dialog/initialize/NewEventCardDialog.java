@@ -66,9 +66,9 @@ public class NewEventCardDialog extends Dialog {
         EventCard newEventCard = new EventCard(title, description);
         ApplicationUtils.getCurrentWorkspace().getActiveDocument().addEventCard(newEventCard);
         if (component instanceof Storyline) {
-            newEventCard.setStoryline((Storyline) component);
+            newEventCard.setStorylineAndDisplay((Storyline) component);
         } else if (component instanceof Chapter) {
-            newEventCard.setChapter((Chapter) component);
+            newEventCard.setChapterAndDisplay((Chapter) component);
         }
         ApplicationUtils.updateWorkspace();
         close();

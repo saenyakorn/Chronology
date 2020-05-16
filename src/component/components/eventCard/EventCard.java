@@ -61,7 +61,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     }
 
     public EventCard(String componentID) {
-        super(componentID);
+        super();
     }
 
     public EventCard(String title, String description) {
@@ -98,10 +98,6 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     public void setStoryline(Storyline storyline) {
         this.selfStoryline.setValue(storyline);
-        if (storyline != null) {
-            setColor(storyline.getColor());
-            setSelfComponentTimePeriod(getTimePeriod(), storyline);
-        }
     }
 
     public Property<Chapter> chapterProperty() {
@@ -114,10 +110,6 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     public void setChapter(Chapter chapter) {
         this.selfChapter.setValue(chapter);
-        if (chapter != null) {
-            setChapterColor(chapter.getColor());
-            setSelfComponentTimePeriod(getTimePeriod(), chapter);
-        }
     }
 
     public void setChapterColor(Color color) {
@@ -125,28 +117,28 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     }
 
     @Override
-    public void setTitle(String title) {
-        super.setTitle(title);
+    public void setTitleAndDisplay(String title) {
+        setTitle(title);
         cardTitle.setText(title);
     }
 
     @Override
-    public void setDescription(String description) {
-        super.setDescription(description);
+    public void setDescriptionAndDisplay(String description) {
+        setDescription(description);
         cardDescription.setText(description);
     }
 
     @Override
-    public void setColor(Color color) {
-        super.setColor(color);
+    public void setColorAndDisplay(Color color) {
+        setColor(color);
         date.setFill(color);
         time.setFill(color);
         cardTitleContainer.setStyle("-fx-background-color: " + GlobalColor.colorToHex(color) + ";");
     }
 
     @Override
-    public void setTimePeriod(TimePeriod timePeriod) {
-        super.setTimePeriod(timePeriod);
+    public void setTimePeriodAndDisplay(TimePeriod timePeriod) {
+        setTimePeriod(timePeriod);
         if (storylineProperty().getValue() != null) {
             setSelfComponentTimePeriod(timePeriod, storylineProperty().getValue());
         }
@@ -169,6 +161,22 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         if (newEndDateTime.isAfter(component.getTimePeriod().getEndDateTime())) {
             component.getTimePeriod().setEndDateTime(newEndDateTime);
             System.out.println("Storyline EndDateTime set to " + component.getTimePeriod().getEndDateTime());
+        }
+    }
+
+    public void setStorylineAndDisplay(Storyline storyline) {
+        setStoryline(storyline);
+        if (storyline != null) {
+            setColorAndDisplay(storyline.getColor());
+            setSelfComponentTimePeriod(getTimePeriod(), storyline);
+        }
+    }
+
+    public void setChapterAndDisplay(Chapter chapter) {
+        setChapter(chapter);
+        if (chapter != null) {
+            setChapterColor(chapter.getColor());
+            setSelfComponentTimePeriod(getTimePeriod(), chapter);
         }
     }
 
@@ -210,9 +218,8 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         String selfChapterID = (String) eventCardObject.get("selfChapter");
         String selfStorylineID = (String) eventCardObject.get("selfStoryline");
 
-        //DO NOT change to setter! Setter generates FXMLLoadException!
-        selfChapter.setValue((Chapter) ApplicationUtils.getValueFromCurrentHashMap(selfChapterID));
-        selfStoryline.setValue((Storyline) ApplicationUtils.getValueFromCurrentHashMap(selfStorylineID));
+        setChapter((Chapter) ApplicationUtils.getValueFromCurrentHashMap(selfChapterID));
+        setStoryline((Storyline) ApplicationUtils.getValueFromCurrentHashMap(selfStorylineID));
 
         return this;
     }
@@ -242,21 +249,21 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     @FXML
     public void initialize() {
         // toggle override setter
-        setTitle(getTitle());
-        setColor(getColor());
-        setTimePeriod(getTimePeriod());
-        setDescription(getDescription());
+        setTitleAndDisplay(getTitle());
+        setColorAndDisplay(getColor());
+        setTimePeriodAndDisplay(getTimePeriod());
+        setDescriptionAndDisplay(getDescription());
 
         // if notHasChapter set bottom color to white else set bottom color according to chapter color
         if (getChapter() == null) {
             chapterMarker.setStyle("-fx-background-color: white;");
         } else {
-            setChapter(getChapter());
+            setChapterAndDisplay(getChapter());
         }
 
         // if has Storyline set color to storyline color
         if (getStoryline() != null) {
-            setStoryline(getStoryline());
+            setStorylineAndDisplay(getStoryline());
         }
 
         // When Event Card get right click
@@ -282,7 +289,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         cardTitleContainer.setOnMouseClicked((MouseEvent event) -> cardTitle.setDisable(false));
         cardTitleContainer.setOnMouseExited((MouseEvent event) -> {
             if (!getTitle().equals(cardTitle.getText())) {
-                setTitle(cardTitle.getText());
+                setTitleAndDisplay(cardTitle.getText());
                 System.out.println("Card title set to " + getTitle());
             }
             cardTitle.setDisable(true);
@@ -292,7 +299,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         cardDescriptionContainer.setOnMouseClicked((MouseEvent event) -> cardDescription.setDisable(false));
         cardDescriptionContainer.setOnMouseExited((MouseEvent event) -> {
             if (!getDescription().equals(cardDescription.getText())) {
-                setDescription(cardDescription.getText());
+                setDescriptionAndDisplay(cardDescription.getText());
                 System.out.println("Card description set to " + getDescription());
             }
             cardDescription.setDisable(true);

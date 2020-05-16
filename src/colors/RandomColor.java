@@ -29,7 +29,7 @@ public final class RandomColor {
     }
 
     public static void removeUsedColor(Color color) {
-        if (!color.equals(GlobalColor.DEFAULT_COLOR)) {
+        if ((color != null) && !color.equals(GlobalColor.DEFAULT_COLOR)) {
             usedColor.remove(color);
         }
     }

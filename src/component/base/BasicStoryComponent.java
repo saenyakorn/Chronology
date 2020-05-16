@@ -32,40 +32,37 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
     public BasicStoryComponent() {
         componentId = UUID.randomUUID().toString();
         ApplicationUtils.putItemToCurrentHashMap(componentId, this);
-        title.set("Title");
-        description.set("Lorem ipsum dolor set amet, ego bir setaso de.");
-        color.setValue(GlobalColor.DEFAULT_COLOR);
-        timePeriod.setValue(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
+        setTitle("Title");
+        setDescription("Lorem ipsum dolor set amet, ego bir setaso de.");
+        setColor(GlobalColor.DEFAULT_COLOR);
+        setTimePeriod(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
     }
 
-    @SuppressWarnings("unchecked")
-    public BasicStoryComponent(String componentId) {
-        this.componentId = componentId;
-        //no put item because used to load a hashMap from file
-        title.set("Title");
-        description.set("Lorem ipsum dolor set amet, ego bir setaso de.");
-        color.setValue(GlobalColor.DEFAULT_COLOR);
-        timePeriod.setValue(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
+    public BasicStoryComponent(String componentID) {
+        this.componentId = componentID;
+        setTitle("Title");
+        setDescription("Lorem ipsum dolor set amet, ego bir setaso de.");
+        setColor(GlobalColor.DEFAULT_COLOR);
+        setTimePeriod(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
     }
 
     @SuppressWarnings("unchecked")
     public BasicStoryComponent(String title, String description) {
         componentId = UUID.randomUUID().toString();
         ApplicationUtils.putItemToCurrentHashMap(componentId, this);
-        this.title.set(title);
-        this.description.set(description);
-        color.setValue(GlobalColor.DEFAULT_COLOR);
-        timePeriod.setValue(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
+        setTitle(title);
+        setDescription(description);
+        setColor(GlobalColor.DEFAULT_COLOR);
+        setTimePeriod(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
     }
 
-    @SuppressWarnings("unchecked")
     public BasicStoryComponent(String title, String description, Color color, TimePeriod timePeriod) {
         componentId = UUID.randomUUID().toString();
         ApplicationUtils.putItemToCurrentHashMap(componentId, this);
-        this.title.set(title);
-        this.description.set(description);
-        this.color.setValue(color);
-        this.timePeriod.setValue(timePeriod);
+        setTitle(title);
+        setDescription(description);
+        setColor(color);
+        setTimePeriod(timePeriod);
     }
 
     public String getComponentId() {
@@ -84,6 +81,10 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         this.title.set(title);
     }
 
+    public void setTitleAndDisplay(String title) {
+        setTitle(title);
+    }
+
     public SimpleStringProperty descriptionProperty() {
         return description;
     }
@@ -94,6 +95,10 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
 
     public void setDescription(String description) {
         this.description.set(description);
+    }
+
+    public void setDescriptionAndDisplay(String description) {
+        setDescription(description);
     }
 
     public Property<Color> colorProperty() {
@@ -110,6 +115,10 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         RandomColor.addUsedColor(color);
     }
 
+    public void setColorAndDisplay(Color color) {
+        setColor(color);
+    }
+
     public Property<TimePeriod> timePeriodProperty() {
         return timePeriod;
     }
@@ -120,6 +129,10 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
 
     public void setTimePeriod(TimePeriod timePeriod) {
         this.timePeriod.setValue(timePeriod);
+    }
+
+    public void setTimePeriodAndDisplay(TimePeriod timePeriod) {
+        setTimePeriod(timePeriod);
     }
 
     @Override
@@ -166,11 +179,10 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
 
     @Override
     public BasicStoryComponent readJSONObject(JSONObject componentObject) {
-        //DO NOT change to setter! Setter generates FXMLLoadException!
-        title.set((String) componentObject.get("title"));
-        description.set((String) componentObject.get("description"));
-        color.setValue(Color.web((String) componentObject.get("Color")));
-        timePeriod.setValue(TimePeriod.stringToTimePeriod((String) componentObject.get("TimePeriod")));
+        setTitle((String) componentObject.get("title"));
+        setDescription((String) componentObject.get("description"));
+        setColor(Color.web((String) componentObject.get("Color")));
+        setTimePeriod(TimePeriod.stringToTimePeriod((String) componentObject.get("TimePeriod")));
         return this;
     }
 
