@@ -12,10 +12,10 @@ import utils.SystemUtils;
 
 public class SideBar extends ScrollPane {
 
-    private final DocumentPanel documentDemo = new DocumentPanel();
-    private final EventCardPanel eventCardDemo = new EventCardPanel();
-    private final ChapterPanel chapterDemo = new ChapterPanel();
-    private final StorylinePanel storylineDemo = new StorylinePanel();
+    private final DocumentPanel documentPanel = new DocumentPanel();
+    private final EventCardPanel eventCardPanel = new EventCardPanel();
+    private final ChapterPanel chapterPanel = new ChapterPanel();
+    private final StorylinePanel storylinePanel = new StorylinePanel();
 
     public SideBar() {
         // load css file
@@ -26,7 +26,7 @@ public class SideBar extends ScrollPane {
         VBox vBox = new VBox();
         vBox.setMaxHeight(Double.POSITIVE_INFINITY);
         vBox.getStyleClass().add("v-box");
-        vBox.getChildren().addAll(documentDemo, eventCardDemo, chapterDemo, storylineDemo);
+        vBox.getChildren().addAll(documentPanel, eventCardPanel, chapterPanel, storylinePanel);
 
         // scroll pane setting
         getStyleClass().add("side-bar");
@@ -36,17 +36,17 @@ public class SideBar extends ScrollPane {
     }
 
     public void initBindings(Document activeDocument) {
-        documentDemo.binding(ApplicationUtils.getCurrentWorkspace().getDocumentList().listProperty());
-        eventCardDemo.binding(activeDocument.getEventCards().getEventCards());
-        storylineDemo.binding(activeDocument.getStorylines().getStorylines());
-        chapterDemo.binding(activeDocument.getChapters().getChapters());
+        documentPanel.binding(ApplicationUtils.getCurrentWorkspace().getDocumentList().listProperty());
+        eventCardPanel.binding(activeDocument.getEventCards().getEventCards());
+        storylinePanel.binding(activeDocument.getStorylines().getStorylines());
+        chapterPanel.binding(activeDocument.getChapters().getChapters());
     }
 
     public void clear(Document document) {
-        documentDemo.unbinding(ApplicationUtils.getCurrentWorkspace().getDocumentList().listProperty());
-        eventCardDemo.unbinding(document.getEventCards().getEventCards());
-        storylineDemo.unbinding(document.getStorylines().getStorylines());
-        chapterDemo.unbinding(document.getChapters().getChapters());
+        documentPanel.unbinding(ApplicationUtils.getCurrentWorkspace().getDocumentList().listProperty());
+        eventCardPanel.unbinding(document.getEventCards().getEventCards());
+        storylinePanel.unbinding(document.getStorylines().getStorylines());
+        chapterPanel.unbinding(document.getChapters().getChapters());
     }
 
 }
