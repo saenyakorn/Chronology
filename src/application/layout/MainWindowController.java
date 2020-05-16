@@ -241,8 +241,8 @@ public class MainWindowController {
      * @see component.ability.Savable
      * @see MainWindowController#readJSONObject(JSONObject)
      */
-    private void readFromFile(File selectedFile) {
-        if(selectedFile != null) {
+    public void readFromFile(File selectedFile) {
+        if (selectedFile != null) {
             ApplicationUtils.clear();
             bindTabContainer();
 

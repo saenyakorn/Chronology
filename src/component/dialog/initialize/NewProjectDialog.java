@@ -1,11 +1,11 @@
 package component.dialog.initialize;
 
+import application.Main;
 import component.dialog.Dialog;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -17,8 +17,6 @@ public class NewProjectDialog extends Dialog {
     @FXML
     VBox root;
     @FXML
-    TextField nameTextField;
-    @FXML
     Button createButton;
     @FXML
     Button cancelButton;
@@ -26,19 +24,19 @@ public class NewProjectDialog extends Dialog {
 
     public NewProjectDialog() {
         setTitle(SystemUtils.NEW_PROJECT);
-        loadFXML("NewStorylineDialog.fxml", "../Dialog.css");
+        loadFXML("NewProjectDialog.fxml", "../Dialog.css");
     }
 
     private void createNewProject() {
         System.out.println("Creating a new project");
-        ApplicationUtils.newProject();
-        System.out.println("Done");
-        this.close();
+        Stage primaryStage = (Stage) ApplicationUtils.getCurrentWorkspace().getActiveDocument().getScene().getWindow();
+        primaryStage.close();
+        Platform.runLater(() -> new Main().start(new Stage()));
+        close();
     }
 
     @FXML
     protected void initialize() {
-        createButton.setDisable(true);
         root.setOnMouseDragged((MouseEvent event) -> {
             Stage stage = (Stage) root.getScene().getWindow();
             stage.setX(event.getScreenX() - x);
@@ -48,11 +46,8 @@ public class NewProjectDialog extends Dialog {
             x = event.getSceneX();
             y = event.getSceneY();
         });
-        nameTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, nameTextField));
         createButton.setOnAction((ActionEvent e) -> {
-            if (!isSomeEmpty(nameTextField)) {
-                createNewProject();
-            }
+            createNewProject();
         });
         cancelButton.setOnAction((ActionEvent e) -> stage.close());
     }

@@ -2,21 +2,23 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx" styleClass="new-project-body" fx:id="root">
+<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx" alignment="CENTER"
+      styleClass="new-project-body" fx:id="root">
 
-    <Text text="Create New Storyline" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
-    <VBox styleClass="container">
-        <Label text="Project Name: " styleClass="label"/>
-        <TextField fx:id="nameTextField" styleClass="textfield"/>
+    <VBox alignment="BASELINE_CENTER">
+        <Text text="New Project" styleClass="header"/>
     </VBox>
 
-    <HBox alignment="BOTTOM_RIGHT" spacing="20">
+    <VBox alignment="CENTER" styleClass="container">
+        <Label text="new project will take some time to restart the app"/>
+    </VBox>
+
+    <HBox alignment="CENTER" spacing="50">
         <Button fx:id="cancelButton" text="Cancel" styleClass="cancel-button"/>
-        <Button fx:id="createButton" text="Create" styleClass="create-button"/>
+        <Button fx:id="createButton" text="New" styleClass="create-button"/>
     </HBox>
 
 </VBox>
