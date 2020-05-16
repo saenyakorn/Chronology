@@ -1,5 +1,8 @@
 package utils;
 
+import component.components.timeModifier.PredefinedTimePeriod;
+import component.components.timeModifier.TimePeriod;
+import component.components.timeModifier.TimePeriodGenerator;
 import javafx.scene.shape.SVGPath;
 import org.xml.sax.SAXException;
 
@@ -11,6 +14,7 @@ import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class SystemUtils {
 
@@ -31,26 +35,31 @@ public class SystemUtils {
     public static final String DOCUMENT_DEMO_HEADER = "Documents";
 
     /* context menu word constants */
-    public static final String NEW_EVENT_CARD_TO = "add event card to this";
-    public static final String NEW_EVENT_CARD = "new event card";
-    public static final String NEW_STORYLINE = "new storyline";
-    public static final String NEW_DOCUMENT = "new document";
-    public static final String NEW_CHAPTER = "new chapter";
-    public static final String EDIT_PROPERTY = "properties...";
-    public static final String EDIT_TITLE = "edit title";
-    public static final String EDIT_DESCRIPTION = "edit description";
-    public static final String EDIT_DATA_TIME = "edit date/time";
-    public static final String EDIT_COLOR = "edit color";
-    public static final String MOVE_TO_STORYLINE = "move to storyline...";
-    public static final String MOVE_TO_CHAPTER = "move to chapter...";
-    public static final String GET_INFO = "get Info";
-    public static final String REMOVE = "remove";
+    public static final String NEW_EVENT_CARD_TO = "Add Event Card to this";
+    public static final String NEW_EVENT_CARD = "New Event Card";
+    public static final String NEW_STORYLINE = "New Storyline";
+    public static final String NEW_DOCUMENT = "New Document";
+    public static final String NEW_CHAPTER = "New Chapter";
+    public static final String EDIT_PROPERTY = "Properties...";
+    public static final String EDIT_TITLE = "Edit Title";
+    public static final String EDIT_DESCRIPTION = "Edit Description";
+    public static final String EDIT_DATA_TIME = "Edit Date/Time";
+    public static final String EDIT_COLOR = "Edit Color";
+    public static final String MOVE_TO_STORYLINE = "Move to Storyline...";
+    public static final String MOVE_TO_CHAPTER = "Move to Chapter...";
+    public static final String GET_INFO = "Get Info";
+    public static final String REMOVE = "Remove";
 
     /* Alert text */
     public static final String CONFIRM_REMOVE_TITLE = "remove";
     public static final String CONFIRM_REMOVE_HEADER = "remove";
     public static final String CONFIRM_REMOVE_CONTENT = "remove";
 
+    /* Constructor default values */
+    public static final String DEFAULT_TITLE = "Title";
+    public static final String DEFAULT_DESCRIPTION = "Lorem ipsum dolor set amet, ego bir setaso de.";
+    public static final TimePeriod DEFAULT_TIME_PERIOD = TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY);
+    public static final String DEFAULT_DOCUMENT_TITLE = "New Document";
 
     public static SVGPath getIconSVG(String path) {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
