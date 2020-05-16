@@ -26,8 +26,6 @@ public class ApplicationUtils {
 
     public static void setCurrentWorkspace(Workspace currentWorkspace) {
         ApplicationUtils.currentWorkspace = currentWorkspace;
-        // TODO : Problem is that document tabProperty has to be rebinded
-
     }
 
     public static File getSavedFile() {
@@ -75,7 +73,7 @@ public class ApplicationUtils {
             ApplicationUtils.getCurrentWorkspace().getSideBar().clear(activeDocument);
         }
 
-        //clear documents - will clear sidebar, tabs and viewer
+        //remove all documents - will clear sidebar, tabs and viewer
         ApplicationUtils.getCurrentWorkspace().getDocumentList().removeAllDocuments();
 
         //init new workspace
@@ -96,7 +94,7 @@ public class ApplicationUtils {
         ApplicationUtils.getCurrentWorkspace().setActiveDocument(firstDocument);
 
         //rerender viewer
-        ApplicationUtils.updateWorkspace();
+        //ApplicationUtils.updateWorkspace();
     }
 }
 
