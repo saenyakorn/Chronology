@@ -10,6 +10,7 @@ import component.dialog.edit.SetColorDialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
@@ -165,7 +166,15 @@ public class Storyline extends BasicStoryComponent {
             event.consume();
         });
 
+        // Hide context menu when click other
+        root.addEventHandler(MouseEvent.MOUSE_PRESSED, (MouseEvent event) -> {
+            if (contextMenu.isShowing()) {
+                contextMenu.hide();
+            }
+        });
+
         // When click the storyline title to change text
+        storylineTitle.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
         storylineTitleContainer.setOnMouseClicked((MouseEvent event) -> storylineTitle.setDisable(false));
         storylineTitleContainer.setOnMouseExited((MouseEvent event) -> {
             if (!title.equals(storylineTitle.getText())) {
@@ -174,7 +183,7 @@ public class Storyline extends BasicStoryComponent {
             }
             storylineTitle.setDisable(true);
         });
-        modifyStorylineStructure();
+        storylineTitleContainer.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
 
         // When Storyline get drag over
         root.setOnDragOver((DragEvent event) -> {
@@ -195,6 +204,8 @@ public class Storyline extends BasicStoryComponent {
             }
             event.consume();
         });
+
+        modifyStorylineStructure();
     }
 
     public void modifyStorylineStructure() {

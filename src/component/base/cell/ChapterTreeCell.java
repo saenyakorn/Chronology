@@ -9,8 +9,6 @@ import component.dialog.edit.SetTitleDialog;
 import component.dialog.initialize.NewChapterDialog;
 import component.dialog.initialize.NewEventCardDialog;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.DragEvent;
@@ -20,15 +18,14 @@ import javafx.util.Duration;
 import utils.ApplicationUtils;
 import utils.SystemUtils;
 
-import java.util.Optional;
+public class ChapterTreeCell extends CustomTreeCell<BasicStoryComponent> {
 
-public class ChapterTreeCell extends CustomTreeCell<Chapter> {
-
+    private final SVGPath eventCardIcon = SystemUtils.getIconSVG("event_card_icon_24px.svg");
     private final SVGPath chapterIcon = SystemUtils.getIconSVG("chapter_icon_24px.svg");
 
     public ChapterTreeCell() {
         super();
-        chapterIcon.getStyleClass().add("component-icon");
+        chapterIcon.getStyleClass().add("icon-24px");
     }
 
     @Override
@@ -42,7 +39,7 @@ public class ChapterTreeCell extends CustomTreeCell<Chapter> {
     }
 
     @Override
-    public void updateItem(Chapter item, boolean empty) {
+    public void updateItem(BasicStoryComponent item, boolean empty) {
         super.updateItem(item, empty);
         if (empty || item == null) {
             setText(null);
@@ -53,11 +50,16 @@ public class ChapterTreeCell extends CustomTreeCell<Chapter> {
             tooltip.setShowDelay(new Duration(SystemUtils.TOOLTIP_SHOW_DELAY));
             tooltip.setHideDelay(new Duration(0));
             tooltip.setText("desc: " + item.getDescription());
-            chapterIcon.setFill(item.getColor());
             setTooltip(tooltip);
             setText(item.getTitle());
-            setGraphic(chapterIcon);
             setContextMenu(getCustomContextMenu());
+            if (item instanceof Chapter) {
+                chapterIcon.setFill(item.getColor());
+                setGraphic(chapterIcon);
+            } else if (item instanceof EventCard) {
+                eventCardIcon.setFill(item.getColor());
+                setGraphic(eventCardIcon);
+            }
         }
     }
 
@@ -79,11 +81,9 @@ public class ChapterTreeCell extends CustomTreeCell<Chapter> {
             String itemId = event.getDragboard().getString();
             BasicStoryComponent item = ApplicationUtils.getValueFromCurrentHashMap(itemId);
             if (item instanceof EventCard) {
-                Chapter target = getItem();
+                Chapter target = (Chapter) getItem();
                 EventCard eventCard = (EventCard) item;
-                ApplicationUtils.getCurrentWorkspace().getActiveDocument().removeEventCard(eventCard);
                 eventCard.setChapterAndDisplay(target);
-                ApplicationUtils.getCurrentWorkspace().getActiveDocument().addEventCard(eventCard);
                 ApplicationUtils.updateWorkspace();
             }
             event.consume();
@@ -104,24 +104,19 @@ public class ChapterTreeCell extends CustomTreeCell<Chapter> {
         MenuItem newChapter = new MenuItem(SystemUtils.NEW_CHAPTER);
         newChapter.setOnAction((ActionEvent event) -> new NewChapterDialog().show());
         MenuItem removeMenuItem = new MenuItem(SystemUtils.REMOVE);
-        removeMenuItem.setOnAction((ActionEvent event) -> removeItem());
+        removeMenuItem.setOnAction((ActionEvent event) -> onRemoveItem());
         getCustomContextMenu().getItems().addAll(newChapter, addEventCardMenuItem, editTitleMenuItem, editDescriptionMenuItem, editColorMenuItem, removeMenuItem);
         if (getItem() != null) {
             setContextMenu(getCustomContextMenu());
         }
     }
 
-    private void removeItem() {
-        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
-        confirm.setTitle(SystemUtils.CONFIRM_REMOVE_TITLE);
-        confirm.setHeaderText(SystemUtils.CONFIRM_REMOVE_HEADER);
-        confirm.setContentText(SystemUtils.CONFIRM_REMOVE_CONTENT);
-        confirm.setGraphic(null);
-        Optional<ButtonType> result = confirm.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            ApplicationUtils.getCurrentWorkspace().getActiveDocument().getChapters().removeChapter(getItem());
-        } else {
-            confirm.close();
+    @Override
+    public void removeItem() {
+        if (getItem() instanceof Chapter) {
+            ApplicationUtils.getCurrentWorkspace().getActiveDocument().getChapters().removeChapter((Chapter) getItem());
+        } else if (getItem() instanceof EventCard) {
+            ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards().removeEventCard((EventCard) getItem());
         }
     }
 }
