@@ -38,7 +38,7 @@ public class StorylineTreeCell extends CustomTreeCell<Storyline> {
     }
 
     @Override
-    protected void updateItem(Storyline item, boolean empty) {
+    public void updateItem(Storyline item, boolean empty) {
         super.updateItem(item, empty);
         if (empty || item == null) {
             setText(null);

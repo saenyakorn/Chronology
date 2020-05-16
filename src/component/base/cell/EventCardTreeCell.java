@@ -43,7 +43,7 @@ public class EventCardTreeCell extends CustomTreeCell<EventCard> {
     }
 
     @Override
-    protected void updateItem(EventCard item, boolean empty) {
+    public void updateItem(EventCard item, boolean empty) {
         super.updateItem(item, empty);
         if (empty || item == null) {
             setText(null);
