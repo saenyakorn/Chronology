@@ -9,14 +9,14 @@ import utils.SystemUtils;
 
 public final class DocumentTreeCell extends CustomTreeCell<Document> {
 
-    private final SVGPath documentIcon = SystemUtils.getIconSVG("document_icon_24px.svg");
+    private final SVGPath documentIcon = SystemUtils.getIconSVG("check_icon_24px.svg");
 
     public DocumentTreeCell() {
         super();
         getStylesheets().add(getClass().getResource("TreeCell.css").toExternalForm());
         getStyleClass().add("tree-cell");
         initializeEventHandler();
-        documentIcon.getStyleClass().add("component-icon");
+        documentIcon.getStyleClass().add("icon-24px");
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class DocumentTreeCell extends CustomTreeCell<Document> {
     }
 
     @Override
-    protected void updateItem(Document item, boolean empty) {
+    public void updateItem(Document item, boolean empty) {
         super.updateItem(item, empty);
         if (empty || item == null) {
             setText(null);
@@ -39,6 +39,7 @@ public final class DocumentTreeCell extends CustomTreeCell<Document> {
             setText(getItem().getName());
             documentIcon.setFill(GlobalColor.DEFAULT_COLOR);
             setGraphic(documentIcon);
+            documentIcon.setVisible(item == ApplicationUtils.getCurrentWorkspace().getActiveDocument());
         }
     }
 
@@ -46,7 +47,7 @@ public final class DocumentTreeCell extends CustomTreeCell<Document> {
     protected void initializeEventHandler() {
         super.initializeEventHandler();
         setOnMouseClicked((MouseEvent event) -> {
-            if (getItem() != ApplicationUtils.getCurrentWorkspace().getActiveDocument()) {
+            if (getItem() != null && getItem() != ApplicationUtils.getCurrentWorkspace().getActiveDocument()) {
                 ApplicationUtils.getCurrentWorkspace().setActiveDocument(getItem());
             }
         });
