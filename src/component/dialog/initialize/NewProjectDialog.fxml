@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx" styleClass="new-project-body">
+<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx" styleClass="new-project-body" fx:id="root">
 
     <Text text="Create New Storyline" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
     <VBox styleClass="container">

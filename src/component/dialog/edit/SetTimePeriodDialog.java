@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import jfxtras.scene.control.LocalDateTimeTextField;
 import utils.SystemUtils;
 
@@ -22,6 +23,8 @@ public class SetTimePeriodDialog extends Dialog {
     private boolean isCustomMode;
     private ToggleGroup predefinedTimePeriods;
 
+    @FXML
+    VBox root;
     @FXML
     VBox predefinedMode;
     @FXML
@@ -113,6 +116,16 @@ public class SetTimePeriodDialog extends Dialog {
         customMode.setOnMouseExited((MouseEvent e) -> disableButton(setButton));
 
         System.out.println("Setting TimePeriod of " + component.toString());
+
+        root.setOnMouseDragged((MouseEvent event) -> {
+            Stage stage = (Stage) root.getScene().getWindow();
+            stage.setX(event.getScreenX() - x);
+            stage.setY(event.getScreenY() - y);
+        });
+        root.setOnMousePressed((MouseEvent event) -> {
+            x = event.getSceneX();
+            y = event.getSceneY();
+        });
 
         setButton.setOnAction((ActionEvent e) -> {
             if (!isSomeEmpty()) {

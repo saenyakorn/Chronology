@@ -14,14 +14,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import utils.ApplicationUtils;
 
 public class SetStorylineDialog extends Dialog {
     private final EventCard component;
     private final ComboBox<BasicStoryComponent> chapterCombo = new ComboBox<>();
     private final ComboBox<BasicStoryComponent> storylineCombo = new ComboBox<>();
+
+    @FXML
+    VBox root;
     @FXML
     HBox extensionContainer;
     @FXML
@@ -55,6 +60,15 @@ public class SetStorylineDialog extends Dialog {
     @FXML
     public void initialize() {
         createStorylineComboBox();
+        root.setOnMouseDragged((MouseEvent event) -> {
+            Stage stage = (Stage) root.getScene().getWindow();
+            stage.setX(event.getScreenX() - x);
+            stage.setY(event.getScreenY() - y);
+        });
+        root.setOnMousePressed((MouseEvent event) -> {
+            x = event.getSceneX();
+            y = event.getSceneY();
+        });
         setButton.setOnAction((ActionEvent e) -> {
             if (chapterCombo.getValue() instanceof BlankBasicStoryComponent) {
                 component.setChapterAndDisplay(null);

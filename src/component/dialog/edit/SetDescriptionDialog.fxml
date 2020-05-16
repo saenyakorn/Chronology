@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx" styleClass="set-description-body">
+<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx" styleClass="set-description-body" fx:id="root">
 
     <VBox alignment="BASELINE_CENTER">
         <Text text="Edit Description" styleClass="header"/>
