@@ -11,13 +11,12 @@ import utils.ApplicationUtils;
 import utils.SystemUtils;
 
 public class SetDescriptionDialog extends Dialog {
-
-    BasicStoryComponent component;
+    private final BasicStoryComponent component;
 
     @FXML
     TextField textField;
     @FXML
-    Button createButton;
+    Button setButton;
     @FXML
     Button cancelButton;
 
@@ -35,9 +34,9 @@ public class SetDescriptionDialog extends Dialog {
 
     @FXML
     protected void initialize() {
-        createButton.setDisable(true);
-        textField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, textField));
-        createButton.setOnAction((ActionEvent e) -> {
+        setButton.setDisable(true);
+        textField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(setButton, textField));
+        setButton.setOnAction((ActionEvent e) -> {
             if (!isSomeEmpty(textField)) {
                 setString(textField.getText());
             }

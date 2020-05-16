@@ -22,23 +22,38 @@ public class SetTimePeriodDialog extends Dialog {
     private boolean isCustomMode;
     private ToggleGroup predefinedTimePeriods;
 
-    @FXML  VBox predefinedMode;
-    @FXML  DatePicker predefinedModeDatePicker;
-    @FXML  HBox predefinedModeToggleGroup;
-    @FXML  RadioButton dawnChoice;
-    @FXML  RadioButton morningChoice;
-    @FXML  RadioButton middayChoice;
-    @FXML  RadioButton afternoonChoice;
-    @FXML  RadioButton eveningChoice;
-    @FXML  RadioButton nightChoice;
+    @FXML
+    VBox predefinedMode;
+    @FXML
+    DatePicker predefinedModeDatePicker;
+    @FXML
+    HBox predefinedModeToggleGroup;
+    @FXML
+    RadioButton dawnChoice;
+    @FXML
+    RadioButton morningChoice;
+    @FXML
+    RadioButton middayChoice;
+    @FXML
+    RadioButton afternoonChoice;
+    @FXML
+    RadioButton eveningChoice;
+    @FXML
+    RadioButton nightChoice;
 
-    @FXML  CheckBox customModeToggle;
-    @FXML  VBox customMode;
-    @FXML LocalDateTimeTextField customModeBeginDatePicker;
-    @FXML  LocalDateTimeTextField customModeEndDatePicker;
+    @FXML
+    CheckBox customModeToggle;
+    @FXML
+    VBox customMode;
+    @FXML
+    LocalDateTimeTextField customModeBeginDatePicker;
+    @FXML
+    LocalDateTimeTextField customModeEndDatePicker;
 
-    @FXML  Button setButton;
-    @FXML  Button cancelButton;
+    @FXML
+    Button setButton;
+    @FXML
+    Button cancelButton;
 
     public SetTimePeriodDialog(BasicStoryComponent component) {
         this.component = component;
@@ -75,12 +90,11 @@ public class SetTimePeriodDialog extends Dialog {
     }
 
     private void toggleCustomMode() {
-        if(customModeToggle.isSelected()){
+        if (customModeToggle.isSelected()) {
             predefinedMode.setDisable(true);
             customMode.setDisable(false);
             isCustomMode = true;
-        }
-        else {
+        } else {
             predefinedMode.setDisable(false);
             customMode.setDisable(true);
             isCustomMode = false;
@@ -101,14 +115,13 @@ public class SetTimePeriodDialog extends Dialog {
         System.out.println("Setting TimePeriod of " + component.toString());
 
         setButton.setOnAction((ActionEvent e) -> {
-            if(!isSomeEmpty()){
-                if(isCustomMode){
+            if (!isSomeEmpty()) {
+                if (isCustomMode) {
                     LocalDateTime beginDateTime = customModeBeginDatePicker.getLocalDateTime();
                     LocalDateTime endDateTime = customModeEndDatePicker.getLocalDateTime();
                     component.setTimePeriodAndDisplay(new TimePeriod(beginDateTime, endDateTime));
                     System.out.println("Custom date time set");
-                }
-                else {
+                } else {
                     LocalDate date = predefinedModeDatePicker.getValue();
                     component.setTimePeriodAndDisplay(TimePeriodGenerator.getTimePeriodFromPeriod(date, getSelectedPredefinedTimePeriod()));
                     System.out.println("Predefined date time set");
@@ -121,10 +134,9 @@ public class SetTimePeriodDialog extends Dialog {
 
     private boolean isSomeEmpty() {
         boolean isSomeEmpty;
-        if(isCustomMode) {
+        if (isCustomMode) {
             isSomeEmpty = customModeBeginDatePicker.getLocalDateTime() == null || customModeEndDatePicker.getLocalDateTime() == null;
-        }
-        else {
+        } else {
             isSomeEmpty = predefinedModeDatePicker.getValue() == null || getSelectedPredefinedTimePeriod() == null;
         }
         return isSomeEmpty;
@@ -133,7 +145,7 @@ public class SetTimePeriodDialog extends Dialog {
     private void disableButton(Button button) {
         if (isSomeEmpty()) {
             button.setDisable(true);
-        } else if(isCustomMode) {
+        } else if (isCustomMode) {
             LocalDateTime beginDateTime = customModeBeginDatePicker.getLocalDateTime();
             LocalDateTime endDateTime = customModeEndDatePicker.getLocalDateTime();
             setButton.setDisable(endDateTime.isBefore(beginDateTime));

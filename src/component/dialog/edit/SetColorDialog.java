@@ -6,14 +6,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
+import utils.ApplicationUtils;
 import utils.SystemUtils;
 
 public class SetColorDialog extends Dialog {
     private final BasicStoryComponent component;
 
-    @FXML  ColorPicker colorPicker;
-    @FXML  Button setButton;
-    @FXML  Button cancelButton;
+    @FXML
+    ColorPicker colorPicker;
+    @FXML
+    Button setButton;
+    @FXML
+    Button cancelButton;
 
     public SetColorDialog(BasicStoryComponent component) {
         this.component = component;
@@ -27,6 +31,7 @@ public class SetColorDialog extends Dialog {
 
         setButton.setOnAction((ActionEvent e) -> {
             component.setColorAndDisplay(colorPicker.getValue());
+            ApplicationUtils.updateWorkspace();
             stage.close();
         });
         cancelButton.setOnAction((ActionEvent e) -> stage.close());

@@ -294,7 +294,6 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
         // When Event Card get right click
         root.setOnContextMenuRequested((ContextMenuEvent event) -> {
-            contextMenu.hide();
             contextMenu.show(root, event.getScreenX(), event.getScreenY());
             event.consume();
         });
@@ -304,6 +303,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
             if (contextMenu.isShowing()) {
                 contextMenu.hide();
             }
+            event.consume();
         });
 
         // When Event Card is dragged
