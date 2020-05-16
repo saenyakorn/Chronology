@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -124,6 +125,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     public void setTitleAndDisplay(String title) {
         setTitle(title);
         cardTitle.setText(title);
+        ApplicationUtils.updateWorkspace();
     }
 
     @Override
@@ -189,7 +191,14 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         if (chapter != null) {
             setChapterColor(chapter.getColor());
             setSelfComponentTimePeriod(getTimePeriod(), chapter);
+            chapterTitle.setText(chapter.getTitle());
         }
+    }
+
+    public void setChapterTitleAndDisplay(String title) {
+        getChapter().setTitle(title);
+        chapterTitle.setText(title);
+        ApplicationUtils.updateWorkspace();
     }
 
     @Override
@@ -276,6 +285,8 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
             setChapterAndDisplay(getChapter());
         }
 
+        chapterTitle.setPrefHeight(Region.USE_COMPUTED_SIZE);
+
         // if has Storyline set color to storyline color
         if (getStoryline() != null) {
             setStorylineAndDisplay(getStoryline());
@@ -307,7 +318,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
             event.consume();
         });
 
-        // When Click the card title to change text
+        // Click the card title to change text
         cardTitle.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
         cardTitleContainer.setOnMouseClicked((MouseEvent event) -> cardTitle.setDisable(false));
         cardTitleContainer.setOnMouseExited((MouseEvent event) -> {
@@ -319,7 +330,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
         });
         cardTitleContainer.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
 
-        // When Click the card description to change text
+        // Click the card description to change text
         cardDescription.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
         cardDescriptionContainer.setOnMouseClicked((MouseEvent event) -> cardDescription.setDisable(false));
         cardDescriptionContainer.setOnMouseExited((MouseEvent event) -> {
@@ -330,5 +341,20 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
             cardDescription.setDisable(true);
         });
         cardDescriptionContainer.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
+
+        // Click the chapter title to change text
+        chapterTitle.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
+        chapterTitleContainer.setOnMouseClicked((MouseEvent event) -> {
+            if(getChapter() != null)
+                chapterTitle.setDisable(false);
+        });
+        chapterTitleContainer.setOnMouseExited((MouseEvent event) -> {
+            if ((getChapter() != null) && !getChapter().getTitle().equals(chapterTitle.getText())) {
+                setChapterTitleAndDisplay(chapterTitle.getText());
+                System.out.println("Chapter name set to " + getChapter().getTitle());
+            }
+            chapterTitle.setDisable(true);
+        });
+        chapterTitleContainer.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
     }
 }

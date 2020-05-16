@@ -96,6 +96,7 @@ public class Storyline extends BasicStoryComponent {
     public void setTitleAndDisplay(String title) {
         setTitle(title);
         storylineTitle.setText(title);
+        ApplicationUtils.updateWorkspace();
     }
 
     @Override
