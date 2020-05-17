@@ -69,3 +69,6 @@ output.json
 #Eclipse files
 .classpath
 .project
+
+# Javadoc
+/javadoc
