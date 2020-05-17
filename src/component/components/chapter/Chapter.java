@@ -11,18 +11,19 @@ import utils.ApplicationUtils;
 
 /**
  * An instance of BasicStoryComponent. A chapter is similar to a marker that can be set to any event card, one chapter per event card.
+ * @see ChapterList
  */
 public class Chapter extends BasicStoryComponent {
 
     /**
-     * No-arg constructor of Chapter.
+     * No-arg constructor of Chapter. All fields are set to default values.
      */
     public Chapter() {
         setColorAndDisplay(RandomColor.getColor());
     }
 
     /**
-     * Constructor for Chapter that requires componentID. All parameters are set to default values. Used to populate HashMap during file opening process.
+     * Constructor for Chapter that requires componentID. All fields are set to default values. Used to populate HashMap during file opening process.
      * @param componentID this chapter's unique ID.
      */
     public Chapter(String componentID) {
@@ -30,7 +31,7 @@ public class Chapter extends BasicStoryComponent {
     }
 
     /**
-     * Constructor for Chapter that requires title and description. Remaining parameters are set to default values.
+     * Constructor for Chapter that requires title and description. Remaining fields are set to default values.
      * @param title this chapter's title.
      * @param description this chapter's description.
      */
@@ -40,7 +41,7 @@ public class Chapter extends BasicStoryComponent {
     }
 
     /**
-     * Constructor for BasicStoryComponent that requires all parameters.
+     * Constructor for Chapter that requires all fields.
      * @param title this chapter's title.
      * @param description this chapter's description.
      * @param color this chapter's Color.
@@ -79,8 +80,8 @@ public class Chapter extends BasicStoryComponent {
     }
 
     /**
-     * Counts number of event cards in the component.
-     * @return number of event cards in component
+     * Counts number of event cards in this chapter.
+     * @return number of event cards in this chapter.
      */
     @Override
     public int eventCardsInComponent() {

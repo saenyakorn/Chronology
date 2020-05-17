@@ -14,30 +14,57 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import utils.ApplicationUtils;
 
+/**
+ * A dialog called on an event card. Sets the storyline of the event card to the selected storyline.
+ */
 public class SetStorylineDialog extends Dialog {
+    /**
+     * The event card whose storyline will be set.
+     */
     private final EventCard component;
+    /**
+     * Combo box shown on this dialog.
+     */
     private final ComboBox<BasicStoryComponent> storylineCombo = new ComboBox<>();
 
+    /**
+     * Root node.
+     */
     @FXML
     VBox root;
+    /**
+     * Container for combo box.
+     */
     @FXML
-    HBox extensionContainer;
+    VBox extensionContainer;
+    /**
+     * Set (confirm) button.
+     */
     @FXML
     Button setButton;
+    /**
+     * Cancel (close) button.
+     */
     @FXML
     Button cancelButton;
 
+    /**
+     * Constructor for SetStorylineDialog.
+     * @param component the event card whose storyline will be set.
+     */
     public SetStorylineDialog(EventCard component) {
         this.component = component;
         setTitle("Move to Storyline");
         loadFXML("SetStorylineDialog.fxml", "../Dialog.css");
     }
 
+    /**
+     * Initializes combo box.
+     */
     private void createStorylineComboBox() {
         Document document = ApplicationUtils.getCurrentWorkspace().getActiveDocument();
         StorylineList storylines = document.getStorylines();
@@ -55,6 +82,15 @@ public class SetStorylineDialog extends Dialog {
         extensionContainer.getChildren().add(vBox);
     }
 
+    /**
+     * FXML initialize method, called after SetStorylineDialog.fxml finishes loading.
+     * Does the following:
+     * <ol>
+     *     <li>Initializes combo box.</li>
+     *     <li>Setups dialog to be able to be dragged and clicked.</li>
+     *     <li>Setups set button and cancel button.</li>
+     * </ol>
+     */
     @FXML
     public void initialize() {
         createStorylineComboBox();

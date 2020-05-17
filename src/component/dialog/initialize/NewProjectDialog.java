@@ -12,21 +12,38 @@ import javafx.stage.Stage;
 import utils.ApplicationUtils;
 import utils.SystemUtils;
 
+/**
+ * A dialog called on when creating a new project. App is restart.
+ */
 public class NewProjectDialog extends Dialog {
 
+    /**
+     * Root node.
+     */
     @FXML
     VBox root;
+    /**
+     * Create (confirm) button.
+     */
     @FXML
     Button createButton;
+    /**
+     * Cancel (close) button.
+     */
     @FXML
     Button cancelButton;
 
-
+    /**
+     * Constructor for NewProjectDialog.
+     */
     public NewProjectDialog() {
         setTitle(SystemUtils.NEW_PROJECT);
         loadFXML("NewProjectDialog.fxml", "../Dialog.css");
     }
 
+    /**
+     * Creates a new project by closing the window and restarting the app.
+     */
     private void createNewProject() {
         System.out.println("Creating a new project");
         Stage primaryStage = (Stage) ApplicationUtils.getCurrentWorkspace().getActiveDocument().getScene().getWindow();
@@ -35,6 +52,14 @@ public class NewProjectDialog extends Dialog {
         close();
     }
 
+    /**
+     * FXML initialize method, called after NewChapterDialog.fxml finishes loading.
+     * Does the following:
+     * <ol>
+     *     <li>Setups dialog to be able to be dragged and clicked.</li>
+     *     <li>Setups create button and cancel button.</li>
+     * </ol>
+     */
     @FXML
     protected void initialize() {
         root.setOnMouseDragged((MouseEvent event) -> {

@@ -12,6 +12,7 @@ import java.util.Iterator;
 
 /**
  * An ObservableList of Chapters.
+ * @see Chapter
  */
 public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray<ChapterList> {
 
