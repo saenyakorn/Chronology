@@ -65,24 +65,25 @@ public class ChapterTreeCell extends CustomTreeCell<BasicStoryComponent> {
             setTooltip(tooltip);
             setText(item.getTitle());
             setContextMenu(getCustomContextMenu());
-            if (item instanceof Chapter) {
-                chapterIcon.setFill(item.getColor());
-                setGraphic(chapterIcon);
-            } else if (item instanceof EventCard) {
-                eventCardIcon.setFill(item.getColor());
-                setGraphic(eventCardIcon);
-            } else {
-                try {
+            try {
+                if (item instanceof Chapter) {
+                    chapterIcon.setFill(item.getColor());
+                    setGraphic(chapterIcon);
+                } else if (item instanceof EventCard) {
+                    eventCardIcon.setFill(item.getColor());
+                    setGraphic(eventCardIcon);
+                } else {
                     throw new TypeNotMatchException("Item should be Storyline or EventCard");
-                } catch (TypeNotMatchException e) {
-                    e.printStackTrace();
                 }
+            } catch (TypeNotMatchException e) {
+                e.printStackTrace();
             }
         }
     }
 
     /**
      * Overrides toString method.
+     *
      * @return title.
      */
     @Override
@@ -181,16 +182,16 @@ public class ChapterTreeCell extends CustomTreeCell<BasicStoryComponent> {
      */
     @Override
     public void removeItem() {
-        if (getItem() instanceof Chapter) {
-            ApplicationUtils.getCurrentWorkspace().getActiveDocument().removeChapter((Chapter) getItem());
-        } else if (getItem() instanceof EventCard) {
-            ApplicationUtils.getCurrentWorkspace().getActiveDocument().removeEventCard((EventCard) getItem());
-        } else {
-            try {
+        try {
+            if (getItem() instanceof Chapter) {
+                ApplicationUtils.getCurrentWorkspace().getActiveDocument().removeChapter((Chapter) getItem());
+            } else if (getItem() instanceof EventCard) {
+                ApplicationUtils.getCurrentWorkspace().getActiveDocument().removeEventCard((EventCard) getItem());
+            } else {
                 throw new TypeNotMatchException("Removed item should be Chapter or EventCard");
-            } catch (TypeNotMatchException e) {
-                e.printStackTrace();
             }
+        } catch (TypeNotMatchException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -64,24 +64,25 @@ public class StorylineTreeCell extends CustomTreeCell<BasicStoryComponent> {
             setTooltip(tooltip);
             setText(item.getTitle());
             setContextMenu(getCustomContextMenu());
-            if (item instanceof Storyline) {
-                storylineIcon.setFill(item.getColor());
-                setGraphic(storylineIcon);
-            } else if (item instanceof EventCard) {
-                eventCardIcon.setFill(item.getColor());
-                setGraphic(eventCardIcon);
-            } else {
-                try {
+            try {
+                if (item instanceof Storyline) {
+                    storylineIcon.setFill(item.getColor());
+                    setGraphic(storylineIcon);
+                } else if (item instanceof EventCard) {
+                    eventCardIcon.setFill(item.getColor());
+                    setGraphic(eventCardIcon);
+                } else {
                     throw new TypeNotMatchException("Item should be Storyline or EventCard");
-                } catch (TypeNotMatchException e) {
-                    e.printStackTrace();
                 }
+            } catch (TypeNotMatchException e) {
+                e.printStackTrace();
             }
         }
     }
 
     /**
      * Overrides toString method.
+     *
      * @return title.
      */
     @Override
@@ -104,23 +105,23 @@ public class StorylineTreeCell extends CustomTreeCell<BasicStoryComponent> {
             }
         });
         setOnDragDropped((DragEvent event) -> {
-            if (getItem() != null && getItem() instanceof Storyline) {
-                String itemId = event.getDragboard().getString();
-                BasicStoryComponent item = ApplicationUtils.getValueFromCurrentHashMap(itemId);
-                if (item instanceof EventCard) {
-                    Storyline target = (Storyline) getItem();
-                    EventCard eventCard = (EventCard) item;
-                    eventCard.setStorylineAndDisplay(target);
-                    ApplicationUtils.updateWorkspace();
-                } else {
-                    try {
+            try {
+                if (getItem() != null && getItem() instanceof Storyline) {
+                    String itemId = event.getDragboard().getString();
+                    BasicStoryComponent item = ApplicationUtils.getValueFromCurrentHashMap(itemId);
+                    if (item instanceof EventCard) {
+                        Storyline target = (Storyline) getItem();
+                        EventCard eventCard = (EventCard) item;
+                        eventCard.setStorylineAndDisplay(target);
+                        ApplicationUtils.updateWorkspace();
+                    } else {
                         throw new TypeNotMatchException("Dropped item should be EventCard");
-                    } catch (TypeNotMatchException e) {
-                        e.printStackTrace();
                     }
                 }
-                event.consume();
+            } catch (TypeNotMatchException e) {
+                e.printStackTrace();
             }
+            event.consume();
         });
     }
 
@@ -166,16 +167,16 @@ public class StorylineTreeCell extends CustomTreeCell<BasicStoryComponent> {
      */
     @Override
     public void removeItem() {
-        if (getItem() instanceof Storyline) {
-            ApplicationUtils.getCurrentWorkspace().getActiveDocument().removeStoryline((Storyline) getItem());
-        } else if (getItem() instanceof EventCard) {
-            ApplicationUtils.getCurrentWorkspace().getActiveDocument().removeEventCard((EventCard) getItem());
-        } else {
-            try {
+        try {
+            if (getItem() instanceof Storyline) {
+                ApplicationUtils.getCurrentWorkspace().getActiveDocument().removeStoryline((Storyline) getItem());
+            } else if (getItem() instanceof EventCard) {
+                ApplicationUtils.getCurrentWorkspace().getActiveDocument().removeEventCard((EventCard) getItem());
+            } else {
                 throw new TypeNotMatchException("Removed item should be Storyline or EventCard");
-            } catch (TypeNotMatchException e) {
-                e.printStackTrace();
             }
+        } catch (TypeNotMatchException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -11,6 +11,7 @@ import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
 import component.components.storyline.StorylineList;
 import component.dialog.Dialog;
+import exception.TypeNotMatchException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -104,10 +105,16 @@ public class NewEventCardDialog extends Dialog {
     public void addNewEventCard(String title, String description, BasicStoryComponent component) {
         EventCard newEventCard = new EventCard(title, description);
         if (component != null) {
-            if (component instanceof Storyline) {
-                newEventCard.setStorylineAndDisplay((Storyline) component);
-            } else if (component instanceof Chapter) {
-                newEventCard.setChapterAndDisplay((Chapter) component);
+            try {
+                if (component instanceof Storyline) {
+                    newEventCard.setStorylineAndDisplay((Storyline) component);
+                } else if (component instanceof Chapter) {
+                    newEventCard.setChapterAndDisplay((Chapter) component);
+                } else {
+                    throw new TypeNotMatchException("Component should be Storyline or Chapter");
+                }
+            } catch (TypeNotMatchException e) {
+                e.printStackTrace();
             }
         } else {
             BasicStoryComponent selectedStoryline = storylineCombo.getValue();
