@@ -149,11 +149,23 @@ public class SystemUtils {
     /**
      * Header text for remove alert.
      */
-    public static final String CONFIRM_REMOVE_HEADER = "Remove Item";
+    public static final String CONFIRM_REMOVE_HEADER = "Are you sure you want to remove this?";
     /**
      * Content text for remove alert.
      */
-    public static final String CONFIRM_REMOVE_CONTENT = "Are you sure to remove this item";
+    public static final String CONFIRM_REMOVE_CONTENT = "This cannot be undone.";
+    /**
+     * Title text for saved alert.
+     */
+    public static final String SAVED_TITLE = "Saved";
+    /**
+     * Header text for saved alert.
+     */
+    public static final String SAVED_HEADER = "Saved!";
+    /**
+     * Content text for saved alert.
+     */
+    public static final String SAVED_CONTENT = "Your file has been saved to ";
 
     /* Constructor default values */
     /**

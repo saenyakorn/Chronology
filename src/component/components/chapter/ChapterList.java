@@ -84,7 +84,8 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray<Chapte
     }
 
     /**
-     * Removes a chapter to chapterList.
+     * Removes a chapter from chapterList. Event cards in chapter will not be deleted.
+     *
      * @param chapter the chapter to be removed.
      */
     public void removeChapter(Chapter chapter) {
@@ -92,7 +93,6 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray<Chapte
             chapters.remove(chapter);
             for (EventCard eventCard : ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards()) {
                 if (eventCard.getChapter() == chapter) {
-                    System.out.println("set null");
                     eventCard.setChapterAndDisplay(null);
                 }
             }

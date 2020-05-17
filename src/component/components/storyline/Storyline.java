@@ -8,7 +8,6 @@ import component.components.eventCard.EventCardList;
 import component.components.timeModifier.TimePeriod;
 import component.dialog.edit.SetColorDialog;
 import component.dialog.edit.SetDescriptionDialog;
-import component.dialog.edit.SetTimePeriodDialog;
 import component.dialog.edit.SetTitleDialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -406,6 +405,6 @@ public class Storyline extends BasicStoryComponent {
      */
     @Override
     public void removeItem() {
-        ApplicationUtils.getCurrentWorkspace().getActiveDocument().getStorylines().removeStoryline(this);
+        ApplicationUtils.getCurrentWorkspace().getActiveDocument().removeStoryline(this);
     }
 }

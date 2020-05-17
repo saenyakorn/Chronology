@@ -5,11 +5,10 @@ import component.dialog.initialize.*;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.MenuBar;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.SVGPath;
 import javafx.stage.FileChooser;
@@ -20,6 +19,7 @@ import utils.ApplicationUtils;
 import utils.SystemUtils;
 
 import java.io.*;
+import java.util.Optional;
 
 /**
  * Controller class for Main. Handles initialization of the main window's FXML and clicks on the app's menu bar.
@@ -170,11 +170,11 @@ public class MainWindowController {
     protected void handleSaveClick(ActionEvent event) {
         if(ApplicationUtils.getSavedFile() != null) {
             writeToFile(ApplicationUtils.getSavedFile());
-            //TODO : Alert "Saved"!
         } else {
-            System.out.println("Save not available!");
+            File selectedFile = fileChooser.showSaveDialog(root.getScene().getWindow());
+            ApplicationUtils.setSavedFile(selectedFile);
+            writeToFile(selectedFile);
         }
-        //TODO : Disable this option if savedFile is null
     }
 
     /**
@@ -220,7 +220,7 @@ public class MainWindowController {
                 FileWriter file = new FileWriter(selectedFile);
                 file.write(ApplicationUtils.getCurrentWorkspace().getJSONString());
                 file.flush();
-                System.out.println("File saved to " + ApplicationUtils.getSavedFile());
+                showSavedAlert();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -267,12 +267,26 @@ public class MainWindowController {
 
     /**
      * Parses data in the workspaceObject parameter into the current Workspace.
+     *
      * @param workspaceObject JSONObject of the workspace
      */
     @SuppressWarnings("unchecked")
     private void readJSONObject(JSONObject workspaceObject) {
         ApplicationUtils.getCurrentWorkspace().readJSONObject(workspaceObject);
         System.out.println("Open file complete - Current workspace set to loaded workspace");
+    }
+
+    /**
+     * Shows an information alert that the file has been saved.
+     */
+    private void showSavedAlert() {
+        Alert saved = new Alert(Alert.AlertType.INFORMATION);
+        saved.setTitle(SystemUtils.SAVED_TITLE);
+        saved.setHeaderText(SystemUtils.SAVED_HEADER);
+        saved.setContentText(SystemUtils.SAVED_CONTENT + ApplicationUtils.getSavedFile().toString() + ".");
+        saved.setGraphic(null);
+        saved.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+        Optional<ButtonType> result = saved.showAndWait();
     }
 
 }

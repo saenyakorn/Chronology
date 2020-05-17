@@ -82,7 +82,6 @@ public class StorylineTreeCell extends CustomTreeCell<BasicStoryComponent> {
 
     /**
      * Overrides toString method.
-     *
      * @return title.
      */
     @Override
@@ -168,9 +167,9 @@ public class StorylineTreeCell extends CustomTreeCell<BasicStoryComponent> {
     @Override
     public void removeItem() {
         if (getItem() instanceof Storyline) {
-            ApplicationUtils.getCurrentWorkspace().getActiveDocument().getStorylines().removeStoryline((Storyline) getItem());
+            ApplicationUtils.getCurrentWorkspace().getActiveDocument().removeStoryline((Storyline) getItem());
         } else if (getItem() instanceof EventCard) {
-            ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards().removeEventCard((EventCard) getItem());
+            ApplicationUtils.getCurrentWorkspace().getActiveDocument().removeEventCard((EventCard) getItem());
         } else {
             try {
                 throw new TypeNotMatchException("Removed item should be Storyline or EventCard");

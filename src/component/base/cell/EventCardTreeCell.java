@@ -71,7 +71,6 @@ public class EventCardTreeCell extends CustomTreeCell<EventCard> {
 
     /**
      * Overrides toString method.
-     *
      * @return title.
      */
     @Override
@@ -145,6 +144,6 @@ public class EventCardTreeCell extends CustomTreeCell<EventCard> {
      */
     @Override
     public void removeItem() {
-        ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards().removeEventCard(getItem());
+        ApplicationUtils.getCurrentWorkspace().getActiveDocument().removeEventCard(getItem());
     }
 }
