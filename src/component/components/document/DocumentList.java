@@ -95,7 +95,7 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
         DocumentCustomTab tab = new DocumentCustomTab(document.getName());
         tab.setOnMouseClicked((MouseEvent event) -> ApplicationUtils.getCurrentWorkspace().setActiveDocument(document));
         tab.setOnCloseRequest(() -> {
-            Alert confirm = SystemUtils.getCustomConfirmation(SystemUtils.CONFIRM_REMOVE_TITLE, SystemUtils.CONFIRM_REMOVE_CONTENT, SystemUtils.CONFIRM_REMOVE_CONTENT);
+            Alert confirm = SystemUtils.getCustomConfirmation(SystemUtils.CONFIRM_REMOVE_TITLE, SystemUtils.CONFIRM_REMOVE_HEADER, SystemUtils.CONFIRM_REMOVE_CONTENT);
             Optional<ButtonType> result = confirm.showAndWait();
             if (result.get() == ButtonType.OK) {
                 removeDocument(document);
