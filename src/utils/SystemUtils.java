@@ -149,11 +149,11 @@ public class SystemUtils {
     /**
      * Header text for remove alert.
      */
-    public static final String CONFIRM_REMOVE_HEADER = "Are you sure you want to remove this?";
+    public static final String CONFIRM_REMOVE_HEADER = "Remove Item";
     /**
      * Content text for remove alert.
      */
-    public static final String CONFIRM_REMOVE_CONTENT = "This cannot be undone.";
+    public static final String CONFIRM_REMOVE_CONTENT = "This cannot be undo. Are you sure you want to remove this?";
     /**
      * Title text for saved alert.
      */
@@ -207,15 +207,27 @@ public class SystemUtils {
         return svgPath;
     }
 
-    public static Alert getCustomConfirmation(String title, String header, String content) {
+    public static Alert getCustomConfirmationAlert(String title, String header, String content) {
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
         confirm.setTitle(title);
         confirm.setHeaderText(header);
         confirm.setContentText(content);
         confirm.setGraphic(null);
         DialogPane dialogPane = confirm.getDialogPane();
-        //dialogPane.getStylesheets().add(confirm.getClass().getResource("test.css").toExternalForm());
+        dialogPane.getStylesheets().add(SystemUtils.class.getResource("../component/dialog/Dialog.css").toExternalForm());
         dialogPane.getStyleClass().add("my-dialog");
         return confirm;
+    }
+
+    public static Alert getCustomInformationAlert(String title, String header, String content) {
+        Alert information = new Alert(Alert.AlertType.INFORMATION);
+        information.setTitle(title);
+        information.setHeaderText(header);
+        information.setContentText(content);
+        information.setGraphic(null);
+        DialogPane dialogPane = information.getDialogPane();
+        dialogPane.getStylesheets().add(SystemUtils.class.getResource("../component/dialog/Dialog.css").toExternalForm());
+        dialogPane.getStyleClass().add("my-dialog");
+        return information;
     }
 }

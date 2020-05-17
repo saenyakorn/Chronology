@@ -72,7 +72,7 @@ public class CustomTreeCell<T> extends TreeCell<T> {
      * Defines what happens when cell is removed. An alert prompt user to confirm permanent remove.
      */
     public void onRemoveItem() {
-        Alert confirm = SystemUtils.getCustomConfirmation(SystemUtils.CONFIRM_REMOVE_TITLE, SystemUtils.CONFIRM_REMOVE_HEADER, SystemUtils.CONFIRM_REMOVE_CONTENT);
+        Alert confirm = SystemUtils.getCustomConfirmationAlert(SystemUtils.CONFIRM_REMOVE_TITLE, SystemUtils.CONFIRM_REMOVE_HEADER, SystemUtils.CONFIRM_REMOVE_CONTENT);
         Optional<ButtonType> result = confirm.showAndWait();
         if (result.get() == ButtonType.OK) {
             removeItem();
