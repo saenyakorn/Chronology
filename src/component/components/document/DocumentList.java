@@ -1,7 +1,9 @@
 package component.components.document;
 
 import component.ability.SavableAsJSONArray;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -16,6 +18,7 @@ import java.util.Optional;
 
 /**
  * An ObservableList of Documents.
+ *
  * @see Document
  */
 public class DocumentList implements Iterable<Document>, SavableAsJSONArray<DocumentList> {
@@ -23,7 +26,7 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
     /**
      * ObservableList of Documents.
      */
-    private final ObservableList<Document> documents = FXCollections.observableArrayList();
+    private final ObservableList<Document> documents = FXCollections.observableArrayList(document -> new Observable[]{document.nameProperty()});
     /**
      * ObservableList of DocumentCustomTabs for each document.
      */
@@ -38,10 +41,16 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
      */
     public DocumentList() {
         super();
+        documents.addListener((ListChangeListener.Change<? extends Document> change) -> {
+            for (int i = 0; i < change.getList().size(); i++) {
+                documentCustomTabs.get(i).setTabText(documents.get(i).getName());
+            }
+        });
     }
 
     /**
      * Getter for this documentList's ObservableList of documents.
+     *
      * @return the property of this documentList's ObservableList of documents.
      */
     public ObservableList<Document> listProperty() {
@@ -50,6 +59,7 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
 
     /**
      * Getter for this documentList's ObservableList of tabs.
+     *
      * @return the property of this documentList's ObservableList of tabs.
      */
     public ObservableList<DocumentCustomTab> tabsProperty() {
@@ -58,6 +68,7 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
 
     /**
      * Gets index of document in list.
+     *
      * @param document the document to be found.
      * @return index of specified document.
      */
@@ -67,6 +78,7 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
 
     /**
      * Gets a document from documentList. An invalid index returns null.
+     *
      * @param index index of document to get.
      * @return document at specified index.
      */
@@ -76,19 +88,14 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
 
     /**
      * Adds a document to this documentList, creates a tab for the document, and sets the document as active.
+     *
      * @param document the document to be added.
      */
     public void addDocument(Document document) {
-        documents.add(document);
-
         DocumentCustomTab tab = new DocumentCustomTab(document.getName());
         tab.setOnMouseClicked((MouseEvent event) -> ApplicationUtils.getCurrentWorkspace().setActiveDocument(document));
         tab.setOnCloseRequest(() -> {
-            Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
-            confirm.setTitle(SystemUtils.CONFIRM_REMOVE_TITLE);
-            confirm.setHeaderText(SystemUtils.CONFIRM_REMOVE_HEADER);
-            confirm.setContentText(SystemUtils.CONFIRM_REMOVE_CONTENT);
-            confirm.setGraphic(null);
+            Alert confirm = SystemUtils.getCustomConfirmation(SystemUtils.CONFIRM_REMOVE_TITLE, SystemUtils.CONFIRM_REMOVE_HEADER, SystemUtils.CONFIRM_REMOVE_CONTENT);
             Optional<ButtonType> result = confirm.showAndWait();
             if (result.get() == ButtonType.OK) {
                 removeDocument(document);
@@ -97,15 +104,17 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
             }
         });
         documentCustomTabs.add(tab);
+        documents.add(document);
         ApplicationUtils.getCurrentWorkspace().setActiveDocument(document);
     }
 
     /**
      * Removes a document from this documentList.
+     *
      * @param document the document to be removed.
      */
     public void removeDocument(Document document) {
-        if(documents.contains(document)) {
+        if (documents.contains(document)) {
             if (document == getDocumentFromTab(activeTab)) {
                 int index = documentCustomTabs.indexOf(activeTab);
                 if (index == 0 && documentCustomTabs.size() >= 2) {
@@ -129,13 +138,14 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
      * Removes all documents from this documentList.
      */
     public void removeAllDocuments() {
-        while(documents.size() > 0) {
+        while (documents.size() > 0) {
             removeDocument(documents.get(0));
         }
     }
 
     /**
      * Gets the size of this documentList.
+     *
      * @return this documentList's size.
      */
     public int getSize() {
@@ -144,6 +154,7 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
 
     /**
      * Gets the active document.
+     *
      * @return the active document.
      */
     public Document getActiveDocument() {
@@ -155,6 +166,7 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
 
     /**
      * Sets the active tab.
+     *
      * @param tab the tab to be set as active.
      */
     public void setActiveTab(DocumentCustomTab tab) {
@@ -169,6 +181,7 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
 
     /**
      * Gets the corresponding tab of a specified document.
+     *
      * @param document the document whose tab is requested.
      * @return the tab corresponding to the specified document.
      */
@@ -178,6 +191,7 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
 
     /**
      * Gets the corresponding document of a specified tab.
+     *
      * @param tab the tab whose document is requested.
      * @return the document corresponding to the specified tab.
      */
@@ -187,6 +201,7 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
 
     /**
      * Gets the JSON array in string format.
+     *
      * @return the JSON array converted to a string.
      */
     @Override
@@ -196,6 +211,7 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
 
     /**
      * Converts a documentList into a JSONArray.
+     *
      * @return the passed documentList, in JSONArray form.
      */
     @Override
@@ -210,6 +226,7 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
 
     /**
      * Loads data in the JSONArray into a documentList.
+     *
      * @param documentArray the JSONArray that is to be read.
      * @return a documentList with data loaded from the documentArray parameter.
      */
@@ -227,6 +244,7 @@ public class DocumentList implements Iterable<Document>, SavableAsJSONArray<Docu
 
     /**
      * Gets ObservableList's iterator.
+     *
      * @return the list's iterator.
      */
     @Override

@@ -62,6 +62,7 @@ public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray<St
 
     /**
      * Removes a storyline from this storylineList. Event cards in chapter will not be deleted.
+     *
      * @param storyline the storyline to be removed.
      */
     public void removeStoryline(Storyline storyline) {

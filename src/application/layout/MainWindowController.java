@@ -267,6 +267,7 @@ public class MainWindowController {
 
     /**
      * Parses data in the workspaceObject parameter into the current Workspace.
+     *
      * @param workspaceObject JSONObject of the workspace
      */
     @SuppressWarnings("unchecked")

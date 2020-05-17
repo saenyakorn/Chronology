@@ -85,6 +85,7 @@ public class ChapterList implements Iterable<Chapter>, SavableAsJSONArray<Chapte
 
     /**
      * Removes a chapter from chapterList. Event cards in chapter will not be deleted.
+     *
      * @param chapter the chapter to be removed.
      */
     public void removeChapter(Chapter chapter) {

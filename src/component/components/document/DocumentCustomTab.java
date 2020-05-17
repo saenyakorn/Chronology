@@ -35,6 +35,7 @@ public class DocumentCustomTab extends HBox {
 
     /**
      * Constructor for DocumentCustomTab that requires document name as text.
+     *
      * @param text the document's name.
      */
     public DocumentCustomTab(String text) {
@@ -43,7 +44,17 @@ public class DocumentCustomTab extends HBox {
     }
 
     /**
+     * Setter for text in label.
+     *
+     * @param text the String value to be set.
+     */
+    public void setTabText(String text) {
+        label.setText(text);
+    }
+
+    /**
      * Getter for active.
+     *
      * @return whether or not this document is active.
      */
     public boolean isActive() {

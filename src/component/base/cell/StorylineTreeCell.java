@@ -45,7 +45,8 @@ public class StorylineTreeCell extends CustomTreeCell<BasicStoryComponent> {
     /**
      * Defines the look of the cell on update. Icon is set to an icon of corresponding type, and color of icon will depend on the component's color.
      * A tooltip showing the component's description is also initialized.
-     * @param item the item contained within cell.
+     *
+     * @param item  the item contained within cell.
      * @param empty whether or not cell is empty.
      */
     @Override

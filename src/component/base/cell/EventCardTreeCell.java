@@ -39,7 +39,8 @@ public class EventCardTreeCell extends CustomTreeCell<EventCard> {
     /**
      * Defines the look of the cell on update. Icon is set to eventCardIcon, and color of icon will depend on its storyline color.
      * A tooltip showing the event card description is also initialized.
-     * @param item the item contained within cell.
+     *
+     * @param item  the item contained within cell.
      * @param empty whether or not cell is empty.
      */
     @Override

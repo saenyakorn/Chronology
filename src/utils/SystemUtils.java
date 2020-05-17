@@ -3,6 +3,8 @@ package utils;
 import component.components.timeModifier.PredefinedTimePeriod;
 import component.components.timeModifier.TimePeriod;
 import component.components.timeModifier.TimePeriodGenerator;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DialogPane;
 import javafx.scene.shape.SVGPath;
 import org.xml.sax.SAXException;
 
@@ -203,5 +205,17 @@ public class SystemUtils {
             e.printStackTrace();
         }
         return svgPath;
+    }
+
+    public static Alert getCustomConfirmation(String title, String header, String content) {
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle(title);
+        confirm.setHeaderText(header);
+        confirm.setContentText(content);
+        confirm.setGraphic(null);
+        DialogPane dialogPane = confirm.getDialogPane();
+        //dialogPane.getStylesheets().add(confirm.getClass().getResource("test.css").toExternalForm());
+        dialogPane.getStyleClass().add("my-dialog");
+        return confirm;
     }
 }
