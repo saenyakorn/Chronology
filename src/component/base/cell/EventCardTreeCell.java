@@ -53,7 +53,9 @@ public class EventCardTreeCell extends CustomTreeCell<EventCard> {
             Tooltip tooltip = new Tooltip();
             tooltip.setShowDelay(new Duration(SystemUtils.TOOLTIP_SHOW_DELAY));
             tooltip.setHideDelay(new Duration(0));
-            tooltip.setText("desc: " + item.getDescription());
+            tooltip.setText("Desc: " + item.getDescription() + "\n" +
+                    "Chapter: " + (getItem().getChapter() == null ? "none" : getItem().getChapter()) + "\n" +
+                    "Storyline: " + (getItem().getStoryline() == null ? "none" : getItem().getStoryline()));
             if (item.getStoryline() != null) {
                 eventCardIcon.setFill(item.getStoryline().getColor());
             } else {
@@ -96,24 +98,40 @@ public class EventCardTreeCell extends CustomTreeCell<EventCard> {
     }
 
     /**
-     * Initializes context menu.
+     * Initializes context menu. There are 7 context menus.
+     * <ol>
+     *     <li><i>New Event Card</i> to create a new event card.</li>
+     *     <li><i>Edit Title Menu</i> to edit the event card's title.</li>
+     *     <li><i>Edit Description Menu</i> to edit the event card's description.</li>
+     *     <li><i>Edit Date and Time Menu</i> to edit the event card's time period.</li>
+     *     <li><i>Move to Chapter</i> to edit the event card's time period.</li>
+     *     <li><i>Move to Storyline</i> to edit the event card's time period.</li>
+     *     <li><i>Remove</i> to remove this event card.</li>
+     * </ol>
      */
     @Override
     protected void initializeContextMenu() {
-        MenuItem editTitleMenuItem = new MenuItem(SystemUtils.EDIT_TITLE);
-        editTitleMenuItem.setOnAction((ActionEvent event) -> new SetTitleDialog(getItem()).show());
-        MenuItem editDescriptionMenuItem = new MenuItem(SystemUtils.EDIT_DESCRIPTION);
-        editDescriptionMenuItem.setOnAction((ActionEvent event) -> new SetDescriptionDialog(getItem()).show());
-        MenuItem editDateTimeMenuItem = new MenuItem(SystemUtils.EDIT_DATA_TIME);
-        editDateTimeMenuItem.setOnAction((ActionEvent event) -> new SetTimePeriodDialog(getItem()).show());
-        MenuItem editChapter = new MenuItem(SystemUtils.MOVE_TO_STORYLINE);
-        editChapter.setOnAction((ActionEvent event) -> new SetStorylineDialog(getItem()).show());
-        MenuItem editStoryline = new MenuItem(SystemUtils.MOVE_TO_CHAPTER);
-        editStoryline.setOnAction((ActionEvent event) -> new SetChapterDialog(getItem()).show());
         MenuItem newEventCardMenuItem = new MenuItem(SystemUtils.NEW_EVENT_CARD);
         newEventCardMenuItem.setOnAction((ActionEvent event) -> new NewEventCardDialog().show());
+
+        MenuItem editTitleMenuItem = new MenuItem(SystemUtils.EDIT_TITLE);
+        editTitleMenuItem.setOnAction((ActionEvent event) -> new SetTitleDialog(getItem()).show());
+
+        MenuItem editDescriptionMenuItem = new MenuItem(SystemUtils.EDIT_DESCRIPTION);
+        editDescriptionMenuItem.setOnAction((ActionEvent event) -> new SetDescriptionDialog(getItem()).show());
+
+        MenuItem editDateTimeMenuItem = new MenuItem(SystemUtils.EDIT_DATA_TIME);
+        editDateTimeMenuItem.setOnAction((ActionEvent event) -> new SetTimePeriodDialog(getItem()).show());
+
+        MenuItem editStoryline = new MenuItem(SystemUtils.MOVE_TO_CHAPTER);
+        editStoryline.setOnAction((ActionEvent event) -> new SetChapterDialog(getItem()).show());
+
+        MenuItem editChapter = new MenuItem(SystemUtils.MOVE_TO_STORYLINE);
+        editChapter.setOnAction((ActionEvent event) -> new SetStorylineDialog(getItem()).show());
+
         MenuItem removeMenuItem = new MenuItem(SystemUtils.REMOVE);
         removeMenuItem.setOnAction((ActionEvent event) -> onRemoveItem());
+
         getCustomContextMenu().getItems().addAll(newEventCardMenuItem, editTitleMenuItem, editDescriptionMenuItem, editDateTimeMenuItem, editChapter, editStoryline, removeMenuItem);
         if (getItem() != null) {
             setContextMenu(getCustomContextMenu());
