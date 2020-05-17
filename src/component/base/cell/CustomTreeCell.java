@@ -12,7 +12,7 @@ import java.util.Optional;
  * A customized TreeCell class for the sidebar.
  * @param <T> the type of item the TreeCell will contain.
  */
-public class CustomTreeCell<T> extends TreeCell<T> {
+public abstract class CustomTreeCell<T> extends TreeCell<T> {
 
     /**
      * The context menu shown in TreeCell area

@@ -183,6 +183,7 @@ public class SystemUtils {
 
     /**
      * Converts .svg file to SVGPath object.
+     *
      * @param path path to .svg resource
      * @return an SVGPath with same image as the specified .svg
      * @see SVGPath
