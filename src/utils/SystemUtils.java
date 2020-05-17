@@ -190,7 +190,7 @@ public class SystemUtils {
     public static SVGPath getIconSVG(String path) {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         SVGPath svgPath = new SVGPath();
-        path = "file:res/icon/" + path;
+        path = ClassLoader.getSystemResource("icon/" + path).toExternalForm();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
             org.w3c.dom.Document document = builder.parse(path);
