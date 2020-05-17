@@ -30,6 +30,8 @@ import utils.SystemUtils;
  */
 public class NewEventCardDialog extends Dialog {
 
+    private BasicStoryComponent component = null;
+
     /**
      * Chapter combo box shown on this dialog.
      */
@@ -76,14 +78,9 @@ public class NewEventCardDialog extends Dialog {
      */
     public NewEventCardDialog() {
         setTitle(SystemUtils.NEW_EVENT_CARD);
-        loadFXML("NewEventCardDialog.fxml", "../Dialog.css");
         createChapterComboBox();
         createStorylineComboBox();
-        createButton.setOnAction((ActionEvent e) -> {
-            if (!isSomeEmpty(titleTextField)) {
-                addNewEventCard(titleTextField.getText(), descriptionTextField.getText());
-            }
-        });
+        loadFXML("NewEventCardDialog.fxml", "../Dialog.css");
     }
 
     /**
@@ -91,49 +88,37 @@ public class NewEventCardDialog extends Dialog {
      * Create button is set up here, to specifically call the preferred method in this case.
      */
     public NewEventCardDialog(BasicStoryComponent component) {
+        this.component = component;
         setTitle(SystemUtils.NEW_EVENT_CARD);
         loadFXML("NewEventCardDialog.fxml", "../Dialog.css");
-        createButton.setOnAction((ActionEvent e) -> {
-            if (!isSomeEmpty(titleTextField)) {
-                addNewEventCard(titleTextField.getText(), descriptionTextField.getText(), component);
-            }
-        });
-    }
-
-    /**
-     * Adds a new event card to the document, with values according to user input.
-     * @param title title of event card.
-     * @param description description of event card.
-     */
-    public void addNewEventCard(String title, String description) {
-        EventCard newEventCard = new EventCard(title, description);
-        BasicStoryComponent selectedStoryline = storylineCombo.getValue();
-        if (selectedStoryline instanceof Storyline) {
-            newEventCard.setStoryline((Storyline) selectedStoryline);
-        }
-        BasicStoryComponent selectedChapter = chapterCombo.getValue();
-        if (selectedChapter instanceof Chapter) {
-            newEventCard.setChapter((Chapter) selectedChapter);
-        }
-        ApplicationUtils.getCurrentWorkspace().getActiveDocument().addEventCard(newEventCard);
-        ApplicationUtils.updateWorkspace();
-        close();
     }
 
     /**
      * Adds a new event card to the specified component, with values according to user input.
-     * @param title title of event card.
+     *
+     * @param title       title of event card.
      * @param description description of event card.
-     * @param component component that the event card will be added to.
+     * @param component   component that the event card will be added to.
      */
     public void addNewEventCard(String title, String description, BasicStoryComponent component) {
         EventCard newEventCard = new EventCard(title, description);
-        ApplicationUtils.getCurrentWorkspace().getActiveDocument().addEventCard(newEventCard);
-        if (component instanceof Storyline) {
-            newEventCard.setStorylineAndDisplay((Storyline) component);
-        } else if (component instanceof Chapter) {
-            newEventCard.setChapterAndDisplay((Chapter) component);
+        if (component != null) {
+            if (component != null && component instanceof Storyline) {
+                newEventCard.setStorylineAndDisplay((Storyline) component);
+            } else if (component != null && component instanceof Chapter) {
+                newEventCard.setChapterAndDisplay((Chapter) component);
+            }
+        } else {
+            BasicStoryComponent selectedStoryline = storylineCombo.getValue();
+            if (selectedStoryline instanceof Storyline) {
+                newEventCard.setStoryline((Storyline) selectedStoryline);
+            }
+            BasicStoryComponent selectedChapter = chapterCombo.getValue();
+            if (selectedChapter instanceof Chapter) {
+                newEventCard.setChapter((Chapter) selectedChapter);
+            }
         }
+        ApplicationUtils.getCurrentWorkspace().getActiveDocument().addEventCard(newEventCard);
         ApplicationUtils.updateWorkspace();
         close();
     }
@@ -143,6 +128,7 @@ public class NewEventCardDialog extends Dialog {
      * Does the following:
      * <ol>
      *     <li>Setups dialog to be able to be dragged and clicked.</li>
+     *     <li>Setups create button on click action.</li>
      *     <li>Disables create button, and sets it to be enabled when the text field is filled.</li>
      *     <li>Setups cancel button.</li>
      * </ol>
@@ -157,6 +143,11 @@ public class NewEventCardDialog extends Dialog {
         root.setOnMousePressed((MouseEvent event) -> {
             x = event.getSceneX();
             y = event.getSceneY();
+        });
+        createButton.setOnAction((ActionEvent e) -> {
+            if (!isSomeEmpty(titleTextField)) {
+                addNewEventCard(titleTextField.getText(), descriptionTextField.getText(), component);
+            }
         });
         createButton.setDisable(true);
         titleTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField));
