@@ -13,7 +13,7 @@
 
     <VBox styleClass="container">
         <VBox spacing="12">
-            <Label text="name" styleClass="label"/>
+            <Label text="Name" styleClass="label"/>
             <TextField fx:id="docNameTextField" styleClass="textfield"/>
         </VBox>
     </VBox>

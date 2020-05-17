@@ -1,21 +1,24 @@
 package component.dialog.initialize;
 
+import colors.GlobalColor;
 import component.components.storyline.Storyline;
 import component.dialog.Dialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import utils.ApplicationUtils;
 import utils.SystemUtils;
 
 /**
  * A dialog called on when creating a new storyline. User is required to input a title.
- * A description can also be input, but is optional.
+ * A description and color can also be input, but are optional.
  */
 public class NewStorylineDialog extends Dialog {
 
@@ -34,6 +37,11 @@ public class NewStorylineDialog extends Dialog {
      */
     @FXML
     TextField descriptionTextField;
+    /**
+     * Color picker to input color.
+     */
+    @FXML
+    ColorPicker colorPicker;
     /**
      * Create (confirm) button.
      */
@@ -57,13 +65,12 @@ public class NewStorylineDialog extends Dialog {
      * Adds a new storyline to the document.
      * @param title title of storyline.
      * @param description description of storyline.
+     * @param color color of chapter. Default value is red from the default palette.
      */
-    private void AddNewStoryline(String title, String description) {
-        System.out.println("Creating a new Storyline");
-        Storyline newStoryline = new Storyline(title, description);
+    private void AddNewStoryline(String title, String description, Color color) {
+        Storyline newStoryline = new Storyline(title, description, color, SystemUtils.DEFAULT_TIME_PERIOD);
         ApplicationUtils.getCurrentWorkspace().getActiveDocument().addStoryLine(newStoryline);
         ApplicationUtils.updateWorkspace();
-        System.out.println("Done");
         this.close();
     }
 
@@ -71,6 +78,7 @@ public class NewStorylineDialog extends Dialog {
      * FXML initialize method, called after NewStorylineDialog.fxml finishes loading.
      * Does the following:
      * <ol>
+     *     <li>Configures color picker.</li>
      *     <li>Setups dialog to be able to be dragged and clicked.</li>
      *     <li>Disables create button, and sets it to be enabled when the required field is filled.</li>
      *     <li>Setups create button and cancel button.</li>
@@ -78,6 +86,7 @@ public class NewStorylineDialog extends Dialog {
      */
     @FXML
     protected void initialize() {
+        colorPicker.setValue(GlobalColor.RED);
         root.setOnMouseDragged((MouseEvent event) -> {
             Stage stage = (Stage) root.getScene().getWindow();
             stage.setX(event.getScreenX() - x);
@@ -92,7 +101,7 @@ public class NewStorylineDialog extends Dialog {
         descriptionTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField));
         createButton.setOnAction((ActionEvent e) -> {
             if (!isSomeEmpty(titleTextField)) {
-                AddNewStoryline(titleTextField.getText(), descriptionTextField.getText());
+                AddNewStoryline(titleTextField.getText(), descriptionTextField.getText(), colorPicker.getValue());
             }
         });
         cancelButton.setOnAction((ActionEvent e) -> stage.close());

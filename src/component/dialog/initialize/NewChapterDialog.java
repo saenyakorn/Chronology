@@ -1,21 +1,24 @@
 package component.dialog.initialize;
 
+import colors.GlobalColor;
 import component.components.chapter.Chapter;
 import component.dialog.Dialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import utils.ApplicationUtils;
 import utils.SystemUtils;
 
 /**
  * A dialog called on when creating a new chapter. User is required to input a title.
- * A description can also be input, but is optional.
+ * A description and color can also be input, but are optional.
  */
 public class NewChapterDialog extends Dialog {
 
@@ -34,6 +37,11 @@ public class NewChapterDialog extends Dialog {
      */
     @FXML
     TextField descriptionTextField;
+    /**
+     * Color picker to input color.
+     */
+    @FXML
+    ColorPicker colorPicker;
     /**
      * Create (confirm) button.
      */
@@ -57,9 +65,10 @@ public class NewChapterDialog extends Dialog {
      * Adds a new chapter to the document.
      * @param title title of chapter.
      * @param description description of chapter.
+     * @param color color of chapter. Default value is lime green from the default palette.
      */
-    private void AddNewChapter(String title, String description) {
-        Chapter newChapter = new Chapter(title, description);
+    private void AddNewChapter(String title, String description, Color color) {
+        Chapter newChapter = new Chapter(title, description, color, SystemUtils.DEFAULT_TIME_PERIOD);
         ApplicationUtils.getCurrentWorkspace().getActiveDocument().addChapter(newChapter);
         ApplicationUtils.updateWorkspace();
         close();
@@ -69,6 +78,7 @@ public class NewChapterDialog extends Dialog {
      * FXML initialize method, called after NewChapterDialog.fxml finishes loading.
      * Does the following:
      * <ol>
+     *     <li>Configures color picker.</li>
      *     <li>Setups dialog to be able to be dragged and clicked.</li>
      *     <li>Disables create button, and sets it to be enabled when the required field is filled.</li>
      *     <li>Setups create button and cancel button.</li>
@@ -76,6 +86,7 @@ public class NewChapterDialog extends Dialog {
      */
     @FXML
     protected void initialize() {
+        colorPicker.setValue(GlobalColor.LIME);
         root.setOnMouseDragged((MouseEvent event) -> {
             Stage stage = (Stage) root.getScene().getWindow();
             stage.setX(event.getScreenX() - x);
@@ -90,7 +101,7 @@ public class NewChapterDialog extends Dialog {
         descriptionTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField));
         createButton.setOnAction((ActionEvent e) -> {
             if (!isSomeEmpty(titleTextField)) {
-                AddNewChapter(titleTextField.getText(), descriptionTextField.getText());
+                AddNewChapter(titleTextField.getText(), descriptionTextField.getText(), colorPicker.getValue());
             }
         });
         cancelButton.setOnAction((ActionEvent e) -> stage.close());

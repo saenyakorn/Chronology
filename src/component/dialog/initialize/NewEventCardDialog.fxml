@@ -11,11 +11,11 @@
 
     <VBox styleClass="container">
         <VBox spacing="12">
-            <Label text="title " styleClass="label"/>
+            <Label text="Title " styleClass="label"/>
             <TextField fx:id="titleTextField" styleClass="textfield"/>
         </VBox>
         <VBox spacing="12">
-            <Label text="description " styleClass="label"/>
+            <Label text="Description " styleClass="label"/>
             <TextField fx:id="descriptionTextField" styleClass="textfield"/>
         </VBox>
     </VBox>
