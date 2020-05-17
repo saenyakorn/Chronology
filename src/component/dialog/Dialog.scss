@@ -1,6 +1,7 @@
 @import "../../application/StylingConstants.scss";
 
 @mixin default-body {
+  -fx-font-family: Sarabun;
   -fx-pref-width: 400px;
   -fx-pref-height: 500px;
   -fx-padding: 40px 60px;
@@ -10,21 +11,22 @@
 }
 
 @mixin default-header {
+  -fx-font-family: "Sarabun ExtraBold";
   -fx-font-size: 22px;
   -fx-text-alignment: center;
   -fx-padding: $spacing 0 $spacing*2 0;
-  -fx-font-weight: bold;
 }
 
 @mixin default-label {
   -fx-alignment: center-left;
   .text {
+    -fx-font-family: "Sarabun ExtraBold";
     -fx-font-size: 14px;
-    -fx-font-weight: bold;
   }
 }
 
 @mixin default-textfield {
+  -fx-font-family: Sarabun;
   -fx-font-size: 14px;
   -fx-background-radius: 0;
   -fx-border-radius: 0;
@@ -33,6 +35,7 @@
 }
 
 @mixin default-button {
+  -fx-font-family: "Sarabun ExtraBold";
   -fx-min-width: 60px;
   -fx-font-size: 14px;
   -fx-border-radius: 0;
