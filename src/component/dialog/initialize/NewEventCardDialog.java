@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import utils.ApplicationUtils;
@@ -70,7 +71,7 @@ public class NewEventCardDialog extends Dialog {
      * Container for combo box.
      */
     @FXML
-    VBox extensionContainer;
+    HBox extensionContainer;
 
     /**
      * No-arg constructor for NewEventCardDialog. Is initialized from menu bar or sidebar context menu.
