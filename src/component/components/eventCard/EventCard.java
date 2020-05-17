@@ -386,9 +386,10 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     /**
      * Defines how eventCards are to be compared. EventCards are compared by comparing their timePeriods.
+     *
      * @param o the other eventCard compared to this eventCard.
      * @return the result of comparing their timePeriods.
-     * @throws IllegalArgumentException
+     * @throws IllegalArgumentException Illegal argument used to invoke a method.
      */
     @Override
     public int compareTo(EventCard o) throws IllegalArgumentException {

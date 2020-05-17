@@ -85,6 +85,8 @@ public class NewEventCardDialog extends Dialog {
 
     /**
      * Constructor for NewEventCardDialog that requires a component. Is initialized from context menu of a storyline or chapter.
+     *
+     * @param component use for setChapter() if component instance of Chapter or use for setStoryline() if component instance of Storyline
      */
     public NewEventCardDialog(BasicStoryComponent component) {
         this.component = component;
