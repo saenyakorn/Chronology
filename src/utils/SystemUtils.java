@@ -207,11 +207,11 @@ public class SystemUtils {
         return svgPath;
     }
 
-    public static Alert getCustomConfirmation() {
+    public static Alert getCustomConfirmation(String title, String header, String content) {
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
-        confirm.setTitle(SystemUtils.CONFIRM_REMOVE_TITLE);
-        confirm.setHeaderText(SystemUtils.CONFIRM_REMOVE_HEADER);
-        confirm.setContentText(SystemUtils.CONFIRM_REMOVE_CONTENT);
+        confirm.setTitle(title);
+        confirm.setHeaderText(header);
+        confirm.setContentText(content);
         confirm.setGraphic(null);
         DialogPane dialogPane = confirm.getDialogPane();
         //dialogPane.getStylesheets().add(confirm.getClass().getResource("test.css").toExternalForm());
