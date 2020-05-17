@@ -27,7 +27,7 @@ public class TransitionUtils {
     }
 
     /**
-     * An interface to be implemented in order to pass functions as a parameter
+     * An interface to be implemented in order to pass functions as a parameter.
      */
     public interface TakeAction {
         void action();

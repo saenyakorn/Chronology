@@ -32,32 +32,71 @@ import org.json.simple.JSONObject;
 import utils.ApplicationUtils;
 import utils.SystemUtils;
 
+/**
+ * An instance of BasicStoryComponent. A storyline is a timeline containing event cards.
+ * @see StorylineList
+ */
 public class Storyline extends BasicStoryComponent {
-    private int minIndex = Integer.MAX_VALUE;
-    private int maxIndex = Integer.MIN_VALUE;
+    /**
+     * The context menu shown in storyline area.
+     */
     private final ContextMenu contextMenu = new ContextMenu();
-
+    /**
+     * The min index of event cards in this storyline.
+     */
+    private int minIndex = Integer.MAX_VALUE;
+    /**
+     * The max index of event cards in this storyline.
+     */
+    private int maxIndex = Integer.MIN_VALUE;
+    /**
+     * Root node.
+     */
     @FXML
     private Pane root;
+    /**
+     * Displayed line.
+     */
     @FXML
     private Line line;
+    /**
+     * Where storyline's title is displayed.
+     */
     @FXML
     private TextField storylineTitle;
+    /**
+     * Area containing storyline's title.
+     */
     @FXML
     private HBox storylineTitleContainer;
+    /**
+     * Area containing event cards in this storyline.
+     */
     @FXML
     private GridPane eventCardContainer;
 
+    /**
+     * No-arg constructor of Storyline. All fields are set to default values.
+     */
     public Storyline() {
         loadFXML("Storyline.fxml");
         initializeContextMenu();
         setColorAndDisplay(RandomColor.getColor());
     }
 
+    /**
+     * Constructor for Storyline that requires componentID. All fields are set to default values. Used to populate HashMap during file opening process.
+     * @param componentID this storyline's unique ID.
+     */
     public Storyline(String componentID) {
         super(componentID);
     }
 
+    /**
+     * Constructor for Storyline that requires title and description. Remaining fields are set to default values.
+     * @param title this storyline's title.
+     * @param description this storyline's description.
+     */
     public Storyline(String title, String description) {
         super(title, description);
         loadFXML("Storyline.fxml");
@@ -65,36 +104,86 @@ public class Storyline extends BasicStoryComponent {
         setColorAndDisplay(RandomColor.getColor());
     }
 
+    /**
+     * Constructor for Storyline that requires all fields.
+     * @param title this storyline's title.
+     * @param description this storyline's description.
+     * @param color this storyline's Color.
+     * @param timePeriod this storyline's TimePeriod.
+     */
     public Storyline(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
         loadFXML("Storyline.fxml");
         initializeContextMenu();
     }
 
+    /**
+     * Loads data in the JSONObject into a storyline.
+     * @param componentObject the JSONObject that is to be read.
+     * @return a storyline with data loaded from the componentObject parameter.
+     */
+    public static Storyline readJSONObjectAsComponentID(JSONObject componentObject) {
+        //if not correct type, throw error?
+        Storyline readStoryline = (Storyline) ApplicationUtils.getValueFromCurrentHashMap((String) componentObject.get("componentID"));
+        readStoryline.initializeDisplayAfterRead();
+        return readStoryline;
+    }
+
+    /**
+     * Gets the root node of this storyline.
+     * @return the root node.
+     */
     public Pane getDisplay() {
         return root;
     }
 
+    /**
+     * Getter for eventCardContainer.
+     * @return this storyline's eventCardContainer.
+     */
     public GridPane getContainer() {
         return eventCardContainer;
     }
 
+    /**
+     * Getter for minIndex.
+     * @return this storyline's minIndex.
+     */
     public int getMinIndex() {
         return minIndex == Integer.MAX_VALUE ? 0 : minIndex;
     }
 
+    /**
+     * Setter for minIndex.
+     * @param minIndex the index to be set as min.
+     */
     public void setMinIndex(int minIndex) {
         this.minIndex = minIndex < this.minIndex ? minIndex : this.minIndex;
     }
 
+    /**
+     * Getter for maxIndex.
+     * @return this storyline's maxIndex.
+     */
     public int getMaxIndex() {
         return maxIndex == Integer.MIN_VALUE ? 0 : maxIndex;
     }
 
+    /**
+     * Setter for maxIndex.
+     * @param maxIndex the index to be set as max.
+     */
     public void setMaxIndex(int maxIndex) {
         this.maxIndex = maxIndex > this.maxIndex ? maxIndex : this.maxIndex;
     }
 
+    /**
+     * Sets title value and everything related to display of storyline's title. This consists of:
+     * <ul>
+     *     <li>Text on storylineTitle.</li>
+     * </ul>
+     * @param title the title to be set.
+     */
     @Override
     public void setTitleAndDisplay(String title) {
         setTitle(title);
@@ -102,6 +191,15 @@ public class Storyline extends BasicStoryComponent {
         ApplicationUtils.updateWorkspace();
     }
 
+    /**
+     * Sets color value and everything related to display of storyline's color. This consists of:
+     * <ul>
+     *     <li>Color of line.</li>
+     *     <li>Color of title text.</li>
+     *     <li>Color of all event cards in this storyline.</li>
+     * </ul>
+     * @param color the color to be set.
+     */
     @Override
     public void setColorAndDisplay(Color color) {
         setColor(color);
@@ -115,16 +213,27 @@ public class Storyline extends BasicStoryComponent {
         }
     }
 
+    /**
+     * Overrides toString method.
+     * @return title.
+     */
     @Override
     public String toString() {
         return getTitle();
     }
 
+    /**
+     * Resets maxIndex and minIndex to beginning values.
+     */
     public void resetMinMaxIndex() {
         minIndex = Integer.MAX_VALUE;
         maxIndex = Integer.MIN_VALUE;
     }
 
+    /**
+     * Counts number of event cards in this storyline.
+     * @return number of event cards this storyline.
+     */
     @Override
     public int eventCardsInComponent() {
         EventCardList eventCards = ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards();
@@ -137,6 +246,10 @@ public class Storyline extends BasicStoryComponent {
         return count;
     }
 
+    /**
+     * Converts a storyline into a JSONObject.
+     * @return the passed storyline, in JSONObject form.
+     */
     @Override
     @SuppressWarnings("unchecked")
     public JSONObject writeJSONObject() {
@@ -145,31 +258,36 @@ public class Storyline extends BasicStoryComponent {
         return storylineObject;
     }
 
-    public static Storyline readJSONObjectAsComponentID(JSONObject componentObject) {
-        //if not correct type, throw error?
-        Storyline readStoryline = (Storyline) ApplicationUtils.getValueFromCurrentHashMap((String) componentObject.get("componentID"));
-        readStoryline.initializeDisplayAfterRead();
-        return readStoryline;
-    }
-
+    /**
+     * Initializes everything related to this storyline's display, after storyline data is completely read from opened file.
+     */
     private void initializeDisplayAfterRead() {
         loadFXML("Storyline.fxml");
         initializeContextMenu();
     }
 
+    /**
+     * FXML initialize method, called after Storyline.fxml finishes loading.
+     * Does the following:
+     * <ol>
+     *     <li>Sets display of all fields.</li>
+     *     <li>Setups context menu to display when right clicked, and hide when clicked elsewhere.</li>
+     *     <li>Setups event card to be able to be added to this storyline by drag-drop.</li>
+     *     <li>Setups title to be editable when clicked.</li>
+     *     <li>Setups column constraints of the eventCardContainer.</li>
+     *     <li>Setups length of line.</li>
+     * </ol>
+     */
     @FXML
     public void initialize() {
-        // toggle override setter
         setTitleAndDisplay(getTitle());
         setColorAndDisplay(getColor());
 
-        // When Storyline get right click
         root.setOnContextMenuRequested((ContextMenuEvent event) -> {
             contextMenu.show(root, event.getScreenX(), event.getScreenY());
             event.consume();
         });
 
-        // Hide context menu when click other
         root.addEventHandler(MouseEvent.MOUSE_PRESSED, (MouseEvent event) -> {
             if (contextMenu.isShowing()) {
                 contextMenu.hide();
@@ -177,26 +295,6 @@ public class Storyline extends BasicStoryComponent {
             event.consume();
         });
 
-        // When click the storyline title to change text
-        storylineTitle.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
-        storylineTitleContainer.setOnMouseClicked((MouseEvent event) -> storylineTitle.setDisable(false));
-        storylineTitleContainer.setOnMouseExited((MouseEvent event) -> {
-            if (!title.equals(storylineTitle.getText())) {
-                setTitleAndDisplay(storylineTitle.getText());
-                System.out.println("Storyline title set to " + title);
-            }
-            storylineTitle.setDisable(true);
-        });
-
-        // When Storyline get drag over
-        root.setOnDragOver((DragEvent event) -> {
-            if (event.getDragboard().hasString()) {
-                event.acceptTransferModes(TransferMode.MOVE);
-            }
-            event.consume();
-        });
-
-        // When dragged item (Event Card) is dropped to storyline
         root.setOnDragDropped((DragEvent event) -> {
             String itemId = event.getDragboard().getString();
             BasicStoryComponent item = ApplicationUtils.getValueFromCurrentHashMap(itemId);
@@ -208,11 +306,30 @@ public class Storyline extends BasicStoryComponent {
             event.consume();
         });
 
+        storylineTitle.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
+        storylineTitleContainer.setOnMouseClicked((MouseEvent event) -> storylineTitle.setDisable(false));
+        storylineTitleContainer.setOnMouseExited((MouseEvent event) -> {
+            if (!title.equals(storylineTitle.getText())) {
+                setTitleAndDisplay(storylineTitle.getText());
+                System.out.println("Storyline title set to " + title);
+            }
+            storylineTitle.setDisable(true);
+        });
+
+        root.setOnDragOver((DragEvent event) -> {
+            if (event.getDragboard().hasString()) {
+                event.acceptTransferModes(TransferMode.MOVE);
+            }
+            event.consume();
+        });
+
         modifyStorylineStructure();
     }
 
+    /**
+     * Setups column constraints of the eventCardContainer, and length of line.
+     */
     public void modifyStorylineStructure() {
-        // setup all column constraint
         int gapSize = 30;
         int columnSize = SystemUtils.EVENT_CARD_PREF_WIDTH + gapSize;
         ObservableList<ColumnConstraints> columnConstraints = FXCollections.observableArrayList();
@@ -221,9 +338,7 @@ public class Storyline extends BasicStoryComponent {
         }
         eventCardContainer.getColumnConstraints().setAll(columnConstraints);
 
-        // setup line width
         if (eventCardContainer.getChildren().size() > 0) {
-            // line.setStartX(columnSize * getMinIndex() + columnSize - gapSize);
             line.setEndX(columnSize * getMaxIndex() + columnSize * 2);
         } else {
             line.setStartX(0);
@@ -232,6 +347,9 @@ public class Storyline extends BasicStoryComponent {
 
     }
 
+    /**
+     * Initializes context menu.
+     */
     private void initializeContextMenu() {
         contextMenu.setAutoHide(true);
         contextMenu.setConsumeAutoHidingEvents(true);
@@ -263,6 +381,9 @@ public class Storyline extends BasicStoryComponent {
         contextMenu.getItems().addAll(setTitleMenuItem, setDescriptionMenuItem, timePeriodMenuItem, colorMenuItem, eventCardMenuItem, removeMenuItem);
     }
 
+    /**
+     * Removes this storyline from the document.
+     */
     @Override
     public void removeItem() {
         ApplicationUtils.getCurrentWorkspace().getActiveDocument().getStorylines().removeStoryline(this);

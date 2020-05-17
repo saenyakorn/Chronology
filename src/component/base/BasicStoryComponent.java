@@ -24,6 +24,9 @@ import java.util.UUID;
 
 /**
  * Base class of story components.
+ * @see EventCard
+ * @see Storyline
+ * @see Chapter
  */
 public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicStoryComponent> {
     /**
@@ -48,7 +51,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
     protected Property<TimePeriod> timePeriod = new SimpleObjectProperty<>();
 
     /**
-     * No-arg constructor for BasicStoryComponent. All parameters are set to default values.
+     * No-arg constructor for BasicStoryComponent. All fields are set to default values.
      */
     @SuppressWarnings("unchecked")
     public BasicStoryComponent() {
@@ -61,7 +64,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
     }
 
     /**
-     * Constructor for BasicStoryComponent that requires componentID. All parameters are set to default values. Used to populate HashMap during file opening process.
+     * Constructor for BasicStoryComponent that requires componentID. All fields are set to default values. Used to populate HashMap during file opening process.
      * @param componentID this component's unique ID.
      */
     public BasicStoryComponent(String componentID) {
@@ -73,7 +76,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
     }
 
     /**
-     * Constructor for BasicStoryComponent that requires title and description. Remaining parameters are set to default values.
+     * Constructor for BasicStoryComponent that requires title and description. Remaining fields are set to default values.
      * @param title this component's title.
      * @param description this component's description.
      */
@@ -88,7 +91,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
     }
 
     /**
-     * Constructor for BasicStoryComponent that requires all parameters.
+     * Constructor for BasicStoryComponent that requires all fields.
      * @param title this component's title.
      * @param description this component's description.
      * @param color this component's Color.
@@ -235,7 +238,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
 
     /**
      * Sets timePeriod value and everything related to display of component's color.
-     * @param timePeriod the color to be set.
+     * @param timePeriod the timePeriod to be set.
      */
     public void setTimePeriodAndDisplay(TimePeriod timePeriod) {
         setTimePeriod(timePeriod);
@@ -321,7 +324,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
 
     /**
      * Loads the FXML of the component from the link specified.
-     * @param link link to the FXML file.
+     * @param link link to FXML file.
      */
     protected void loadFXML(String link) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(link));

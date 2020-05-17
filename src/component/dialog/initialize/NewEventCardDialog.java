@@ -19,30 +19,61 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import utils.ApplicationUtils;
 import utils.SystemUtils;
 
+/**
+ * A dialog called on when creating a new event card. User is required to input a title.
+ * A description, storyline, and chapter can also be input, but are optional.
+ */
 public class NewEventCardDialog extends Dialog {
 
-    @FXML
-    VBox root;
-    @FXML
-    TextField titleTextField;
-    @FXML
-    TextField descriptionTextField;
-    @FXML
-    Button createButton;
-    @FXML
-    Button cancelButton;
-    @FXML
-    HBox extensionContainer;
-
+    /**
+     * Chapter combo box shown on this dialog.
+     */
     private final ComboBox<BasicStoryComponent> chapterCombo = new ComboBox<>();
+    /**
+     * Storyline combo box shown on this dialog.
+     */
     private final ComboBox<BasicStoryComponent> storylineCombo = new ComboBox<>();
 
+    /**
+     * Root node.
+     */
+    @FXML
+    VBox root;
+    /**
+     * Text field to input title.
+     */
+    @FXML
+    TextField titleTextField;
+    /**
+     * Text field to input description.
+     */
+    @FXML
+    TextField descriptionTextField;
+    /**
+     * Create (confirm) button.
+     */
+    @FXML
+    Button createButton;
+    /**
+     * Cancel (close) button.
+     */
+    @FXML
+    Button cancelButton;
+    /**
+     * Container for combo box.
+     */
+    @FXML
+    VBox extensionContainer;
+
+    /**
+     * No-arg constructor for NewEventCardDialog. Is initialized from menu bar or sidebar context menu.
+     * Create button is set up here, to specifically call the preferred method in this case.
+     */
     public NewEventCardDialog() {
         setTitle(SystemUtils.NEW_EVENT_CARD);
         loadFXML("NewEventCardDialog.fxml", "../Dialog.css");
@@ -55,6 +86,10 @@ public class NewEventCardDialog extends Dialog {
         });
     }
 
+    /**
+     * Constructor for NewEventCardDialog that requires a component. Is initialized from context menu of a storyline or chapter.
+     * Create button is set up here, to specifically call the preferred method in this case.
+     */
     public NewEventCardDialog(BasicStoryComponent component) {
         setTitle(SystemUtils.NEW_EVENT_CARD);
         loadFXML("NewEventCardDialog.fxml", "../Dialog.css");
@@ -65,6 +100,11 @@ public class NewEventCardDialog extends Dialog {
         });
     }
 
+    /**
+     * Adds a new event card to the document, with values according to user input.
+     * @param title title of event card.
+     * @param description description of event card.
+     */
     public void addNewEventCard(String title, String description) {
         EventCard newEventCard = new EventCard(title, description);
         BasicStoryComponent selectedStoryline = storylineCombo.getValue();
@@ -80,6 +120,12 @@ public class NewEventCardDialog extends Dialog {
         close();
     }
 
+    /**
+     * Adds a new event card to the specified component, with values according to user input.
+     * @param title title of event card.
+     * @param description description of event card.
+     * @param component component that the event card will be added to.
+     */
     public void addNewEventCard(String title, String description, BasicStoryComponent component) {
         EventCard newEventCard = new EventCard(title, description);
         ApplicationUtils.getCurrentWorkspace().getActiveDocument().addEventCard(newEventCard);
@@ -92,10 +138,17 @@ public class NewEventCardDialog extends Dialog {
         close();
     }
 
-
+    /**
+     * FXML initialize method, called after NewEventCardDialog.fxml finishes loading.
+     * Does the following:
+     * <ol>
+     *     <li>Setups dialog to be able to be dragged and clicked.</li>
+     *     <li>Disables create button, and sets it to be enabled when the text field is filled.</li>
+     *     <li>Setups cancel button.</li>
+     * </ol>
+     */
     @FXML
     protected void initialize() {
-        createButton.setDisable(true);
         root.setOnMouseDragged((MouseEvent event) -> {
             Stage stage = (Stage) root.getScene().getWindow();
             stage.setX(event.getScreenX() - x);
@@ -105,11 +158,15 @@ public class NewEventCardDialog extends Dialog {
             x = event.getSceneX();
             y = event.getSceneY();
         });
+        createButton.setDisable(true);
         titleTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField));
         descriptionTextField.setOnKeyReleased((KeyEvent event) -> disableButtonWhenTextFieldEmpty(createButton, titleTextField));
         cancelButton.setOnAction((ActionEvent e) -> stage.close());
     }
 
+    /**
+     * Initializes chapter combo box.
+     */
     private void createChapterComboBox() {
         Document document = ApplicationUtils.getCurrentWorkspace().getActiveDocument();
         ChapterList chapters = document.getChapters();
@@ -129,6 +186,9 @@ public class NewEventCardDialog extends Dialog {
         extensionContainer.getChildren().add(vBox);
     }
 
+    /**
+     * Initializes storyline combo box.
+     */
     private void createStorylineComboBox() {
         Document document = ApplicationUtils.getCurrentWorkspace().getActiveDocument();
         StorylineList storylines = document.getStorylines();
