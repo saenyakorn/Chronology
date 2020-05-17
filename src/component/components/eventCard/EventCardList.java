@@ -87,8 +87,10 @@ public class EventCardList implements Iterable<EventCard>, SavableAsJSONArray<Ev
      */
     public void removeEventCard(EventCard eventCard) {
         if (eventCards.contains(eventCard)) {
-            Storyline storyline = eventCard.getStoryline();
-            storyline.getContainer().getChildren().remove(eventCard.getDisplay());
+            if (eventCard.getStoryline() != null) {
+                Storyline storyline = eventCard.getStoryline();
+                storyline.getContainer().getChildren().remove(eventCard.getDisplay());
+            }
             eventCards.remove(eventCard);
         } else {
             System.out.println("This event card does not exist");
