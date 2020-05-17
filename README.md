@@ -29,5 +29,4 @@ _(Created as end-of-term assignment for 2110215 PROG METH course, Academic Year 
 Currently under development, please wait a little longer!
 
 ## Usage
-When the app is opened, a new project will be initialized with one empty document.
-Start creating, or open a file from the `Menu > Open` menu.
+Please view full guide in project report: https://docs.google.com/document/d/1zvO2xRvUixVaHdnJgo1K5mitnjTlQNSftcyJAPXwWVE/edit?usp=sharing
