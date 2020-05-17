@@ -9,8 +9,9 @@ public class BlankBasicStoryComponent extends BasicStoryComponent {
 
     /**
      * Constructor for BlankBasicStoryComponent that requires title and description.
-     * @param title
-     * @param description
+     *
+     * @param title       this component's title.
+     * @param description this component's description.
      */
     public BlankBasicStoryComponent(String title, String description) {
         setTitle(title);

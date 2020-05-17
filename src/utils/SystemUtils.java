@@ -207,6 +207,14 @@ public class SystemUtils {
         return svgPath;
     }
 
+    /**
+     * Gets Alert dialog type confirmation with custom style
+     *
+     * @param title   the dialog's title
+     * @param header  the dialog's header
+     * @param content the dialog's content
+     * @return a custom confirmation alert dialog
+     */
     public static Alert getCustomConfirmationAlert(String title, String header, String content) {
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
         confirm.setTitle(title);
@@ -219,6 +227,14 @@ public class SystemUtils {
         return confirm;
     }
 
+    /**
+     * Gets Alert dialog type information with custom style
+     *
+     * @param title   the dialog's title
+     * @param header  the dialog's header
+     * @param content the dialog's content
+     * @return a custom confirmation alert dialog
+     */
     public static Alert getCustomInformationAlert(String title, String header, String content) {
         Alert information = new Alert(Alert.AlertType.INFORMATION);
         information.setTitle(title);

@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import utils.ApplicationUtils;
@@ -70,7 +71,7 @@ public class NewEventCardDialog extends Dialog {
      * Container for combo box.
      */
     @FXML
-    VBox extensionContainer;
+    HBox extensionContainer;
 
     /**
      * No-arg constructor for NewEventCardDialog. Is initialized from menu bar or sidebar context menu.
@@ -85,6 +86,8 @@ public class NewEventCardDialog extends Dialog {
 
     /**
      * Constructor for NewEventCardDialog that requires a component. Is initialized from context menu of a storyline or chapter.
+     *
+     * @param component use for setChapter() if component instance of Chapter or use for setStoryline() if component instance of Storyline
      */
     public NewEventCardDialog(BasicStoryComponent component) {
         this.component = component;
@@ -101,9 +104,9 @@ public class NewEventCardDialog extends Dialog {
     public void addNewEventCard(String title, String description, BasicStoryComponent component) {
         EventCard newEventCard = new EventCard(title, description);
         if (component != null) {
-            if (component != null && component instanceof Storyline) {
+            if (component instanceof Storyline) {
                 newEventCard.setStorylineAndDisplay((Storyline) component);
-            } else if (component != null && component instanceof Chapter) {
+            } else if (component instanceof Chapter) {
                 newEventCard.setChapterAndDisplay((Chapter) component);
             }
         } else {
