@@ -77,8 +77,6 @@ public class NewEventCardDialog extends Dialog {
     public NewEventCardDialog() {
         setTitle(SystemUtils.NEW_EVENT_CARD);
         loadFXML("NewEventCardDialog.fxml", "../Dialog.css");
-        createChapterComboBox();
-        createStorylineComboBox();
         createButton.setOnAction((ActionEvent e) -> {
             if (!isSomeEmpty(titleTextField)) {
                 addNewEventCard(titleTextField.getText(), descriptionTextField.getText());
@@ -93,6 +91,8 @@ public class NewEventCardDialog extends Dialog {
     public NewEventCardDialog(BasicStoryComponent component) {
         setTitle(SystemUtils.NEW_EVENT_CARD);
         loadFXML("NewEventCardDialog.fxml", "../Dialog.css");
+        createChapterComboBox();
+        createStorylineComboBox();
         createButton.setOnAction((ActionEvent e) -> {
             if (!isSomeEmpty(titleTextField)) {
                 addNewEventCard(titleTextField.getText(), descriptionTextField.getText(), component);
@@ -142,6 +142,7 @@ public class NewEventCardDialog extends Dialog {
      * FXML initialize method, called after NewEventCardDialog.fxml finishes loading.
      * Does the following:
      * <ol>
+     *     <li>Initializes combo box.</li>
      *     <li>Setups dialog to be able to be dragged and clicked.</li>
      *     <li>Disables create button, and sets it to be enabled when the text field is filled.</li>
      *     <li>Setups cancel button.</li>
