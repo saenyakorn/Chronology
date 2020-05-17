@@ -74,7 +74,7 @@ public class NewEventCardDialog extends Dialog {
 
     /**
      * No-arg constructor for NewEventCardDialog. Is initialized from menu bar or sidebar context menu.
-     * Create button is set up here, to specifically call the preferred method in this case.
+     * Combo box is set up here.
      */
     public NewEventCardDialog() {
         setTitle(SystemUtils.NEW_EVENT_CARD);
@@ -85,7 +85,6 @@ public class NewEventCardDialog extends Dialog {
 
     /**
      * Constructor for NewEventCardDialog that requires a component. Is initialized from context menu of a storyline or chapter.
-     * Create button is set up here, to specifically call the preferred method in this case.
      */
     public NewEventCardDialog(BasicStoryComponent component) {
         this.component = component;
@@ -95,7 +94,6 @@ public class NewEventCardDialog extends Dialog {
 
     /**
      * Adds a new event card to the specified component, with values according to user input.
-     *
      * @param title       title of event card.
      * @param description description of event card.
      * @param component   component that the event card will be added to.

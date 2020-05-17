@@ -20,7 +20,7 @@
             <MenuItem text="Save" onAction="#handleSaveClick" fx:id="saveMenu"/>
             <MenuItem text="Save as..." onAction="#handleSaveAsClick"/>
         </Menu>
-        <Menu text="Object">
+        <Menu text="New Component">
             <MenuItem text="Document" onAction="#handleNewDocumentClick"/>
             <MenuItem text="Storyline" onAction="#handleNewStoryLineClick"/>
             <MenuItem text="Event Card" onAction="#handleNewEventCardClick"/>

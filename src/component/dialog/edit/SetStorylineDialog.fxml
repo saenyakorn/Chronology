@@ -10,7 +10,7 @@
         <Text text="Move to Storyline" styleClass="header"/>
     </VBox>
 
-    <HBox fx:id="extensionContainer" styleClass="extension"/>
+    <VBox fx:id="extensionContainer" styleClass="extension"/>
 
     <HBox alignment="BOTTOM_RIGHT" spacing="20">
         <Button fx:id="cancelButton" text="Cancel" styleClass="cancel-button"/>
