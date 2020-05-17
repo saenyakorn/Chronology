@@ -86,7 +86,7 @@ public class DocumentCustomTab extends HBox {
      * Initializes the look of this tab.
      */
     private void initializeFXComponent() {
-        getStylesheets().add(getClass().getResource("Document.css").toExternalForm());
+        getStylesheets().add(ClassLoader.getSystemResource("component/components/document/Document.css").toExternalForm());
         getChildren().addAll(label, closeButton);
         getStyleClass().add("document-tab-container");
         label.getStyleClass().add("document-tab-text");

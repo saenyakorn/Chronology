@@ -36,7 +36,7 @@ public class SideBar extends ScrollPane {
      * Constructor for a Sidebar. Css style is loaded, then VBox container and scroll pane are configured.
      */
     public SideBar() {
-        getStylesheets().add(getClass().getResource("SideBar.css").toExternalForm());
+        getStylesheets().add(ClassLoader.getSystemResource("component/layouts/sideBar/SideBar.css").toExternalForm());
         getStyleClass().add("body");
 
         VBox vBox = new VBox();

@@ -25,7 +25,7 @@ public final class DocumentTreeCell extends CustomTreeCell<Document> {
      */
     public DocumentTreeCell() {
         super();
-        getStylesheets().add(getClass().getResource("TreeCell.css").toExternalForm());
+        getStylesheets().add(ClassLoader.getSystemResource("component/base/cell/TreeCell.css").toExternalForm());
         getStyleClass().add("tree-cell");
         documentIcon.getStyleClass().add("icon-24px");
     }
