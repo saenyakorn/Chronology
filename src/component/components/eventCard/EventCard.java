@@ -6,6 +6,7 @@ import component.components.chapter.Chapter;
 import component.components.storyline.Storyline;
 import component.components.timeModifier.TimePeriod;
 import component.dialog.edit.*;
+import exception.TypeNotMatchException;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
@@ -33,6 +34,7 @@ import java.time.format.FormatStyle;
 
 /**
  * An instance of BasicStoryComponent. An event card represents an event or scene in the story.
+ *
  * @see EventCardList
  */
 public class EventCard extends BasicStoryComponent implements Comparable<EventCard> {
@@ -114,6 +116,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     /**
      * Constructor for EventCard that requires componentID. All fields are set to default values. Used to populate HashMap during file opening process.
+     *
      * @param componentID this eventCard's unique ID.
      */
     public EventCard(String componentID) {
@@ -122,7 +125,8 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     /**
      * Constructor for EventCard that requires title and description. Remaining fields are set to default values.
-     * @param title this eventCard's title.
+     *
+     * @param title       this eventCard's title.
      * @param description this eventCard's description.
      */
     public EventCard(String title, String description) {
@@ -133,10 +137,11 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     /**
      * Constructor for Chapter that requires all fields.
-     * @param title this eventCard's title.
+     *
+     * @param title       this eventCard's title.
      * @param description this eventCard's description.
-     * @param color this eventCard's Color.
-     * @param timePeriod this eventCard's TimePeriod.
+     * @param color       this eventCard's Color.
+     * @param timePeriod  this eventCard's TimePeriod.
      */
     public EventCard(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
@@ -146,6 +151,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     /**
      * Accepts a JSONObject with a componentID field, and gets an eventCard from that componentID.
+     *
      * @param componentObject the JSONObject that is to be read.
      * @return an eventCard with data loaded from the eventCard referenced by the JSONObject's componentID.
      */
@@ -158,6 +164,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     /**
      * Gets the root node of this event card.
+     *
      * @return the root node.
      */
     public Pane getDisplay() {
@@ -166,6 +173,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     /**
      * Getter for index.
+     *
      * @return this eventCard's index.
      */
     public int getIndex() {
@@ -174,6 +182,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     /**
      * Setter for index.
+     *
      * @param index the index to be set.
      */
     public void setIndex(int index) {
@@ -182,6 +191,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     /**
      * Getter for storylineProperty.
+     *
      * @return this eventCard's storylineProperty.
      */
     public Property<Storyline> storylineProperty() {
@@ -190,6 +200,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     /**
      * Getter for storyline.
+     *
      * @return this eventCard's storyline.
      */
     public Storyline getStoryline() {
@@ -198,6 +209,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     /**
      * Setter for storyline.
+     *
      * @param storyline the storyline to be set.
      */
     public void setStoryline(Storyline storyline) {
@@ -206,6 +218,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     /**
      * Getter for chapterProperty.
+     *
      * @return this eventCard's chapterProperty.
      */
     public Property<Chapter> chapterProperty() {
@@ -214,6 +227,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     /**
      * Getter for chapter.
+     *
      * @return this eventCard's chapter.
      */
     public Chapter getChapter() {
@@ -222,6 +236,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     /**
      * Setter for chapter.
+     *
      * @param chapter the chapter to be set.
      */
     public void setChapter(Chapter chapter) {
@@ -230,6 +245,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     /**
      * Sets the chapter color displayed on this event card.
+     *
      * @param color the color to be set.
      */
     public void setChapterColor(Color color) {
@@ -241,6 +257,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
      * <ul>
      *     <li>Text on cardTitle.</li>
      * </ul>
+     *
      * @param title the title to be set.
      */
     @Override
@@ -255,6 +272,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
      * <ul>
      *     <li>Text on cardDescription.</li>
      * </ul>
+     *
      * @param description the description to be set.
      */
     @Override
@@ -269,6 +287,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
      *     <li>Color of date and time text.</li>
      *     <li>Color of cardTitleContainer.</li>
      * </ul>
+     *
      * @param color the color to be set.
      */
     @Override
@@ -285,6 +304,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
      *     <li>Text displaying date and time.</li>
      * </ul>
      * The timePeriod of chapter and storyline is also reset accordingly.
+     *
      * @param timePeriod the timePeriod to be set.
      */
     @Override
@@ -303,8 +323,9 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     /**
      * Resets timePeriod of chapter and storyline this event card is in. according to the event card's timePeriod.
+     *
      * @param timePeriod the timePeriod to be set.
-     * @param component the component whose timePeriod is to be reset.
+     * @param component  the component whose timePeriod is to be reset.
      */
     public void setSelfComponentTimePeriod(TimePeriod timePeriod, BasicStoryComponent component) {
         LocalDateTime newBeginDateTime = timePeriod.getBeginDateTime();
@@ -333,6 +354,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
      * <ul>
      *     <li>Color of this event card.</li>
      * </ul>
+     *
      * @param storyline the storyline to be set.
      */
     public void setStorylineAndDisplay(Storyline storyline) {
@@ -348,6 +370,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
      * <ul>
      *     <li>Color of this event card's chapterTitleContainer. If null, color is set to white.</li>
      * </ul>
+     *
      * @param chapter the chapter to be set.
      */
     public void setChapterAndDisplay(Chapter chapter) {
@@ -367,6 +390,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
      * <ul>
      *     <li>Text on chapterTitle.</li>
      * </ul>
+     *
      * @param title the title to be set.
      */
     public void setChapterTitleAndDisplay(String title) {
@@ -377,6 +401,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     /**
      * Overrides toString method.
+     *
      * @return title.
      */
     @Override
@@ -398,6 +423,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     /**
      * Converts an eventCard into a JSONObject.
+     *
      * @return the passed eventCard, in JSONObject form.
      */
     @Override
@@ -424,6 +450,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
 
     /**
      * Loads data in the JSONObject into an eventCard.
+     *
      * @param eventCardObject the JSONObject that is to be read.
      * @return an eventCard with data loaded from the eventCardObject parameter.
      */
@@ -543,6 +570,29 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
             ClipboardContent clipboardContent = new ClipboardContent();
             clipboardContent.putString(getComponentId());
             dragboard.setContent(clipboardContent);
+            event.consume();
+        });
+
+        root.setOnDragOver((DragEvent event) -> {
+            if (event.getDragboard().hasString()) {
+                event.acceptTransferModes(TransferMode.MOVE);
+            }
+            event.consume();
+        });
+        root.setOnDragDropped((DragEvent event) -> {
+            try {
+                String itemId = event.getDragboard().getString();
+                BasicStoryComponent item = ApplicationUtils.getValueFromCurrentHashMap(itemId);
+                if (item instanceof Chapter) {
+                    Chapter chapter = (Chapter) item;
+                    setChapterAndDisplay(chapter);
+                    ApplicationUtils.updateWorkspace();
+                } else {
+                    throw new TypeNotMatchException("Dropped item should be Chapter");
+                }
+            } catch (TypeNotMatchException e) {
+                e.printStackTrace();
+            }
             event.consume();
         });
 
