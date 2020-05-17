@@ -136,9 +136,9 @@ public class ChapterTreeCell extends CustomTreeCell<BasicStoryComponent> {
     @Override
     public void removeItem() {
         if (getItem() instanceof Chapter) {
-            ApplicationUtils.getCurrentWorkspace().getActiveDocument().getChapters().removeChapter((Chapter) getItem());
+            ApplicationUtils.getCurrentWorkspace().getActiveDocument().removeChapter((Chapter) getItem());
         } else if (getItem() instanceof EventCard) {
-            ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards().removeEventCard((EventCard) getItem());
+            ApplicationUtils.getCurrentWorkspace().getActiveDocument().removeEventCard((EventCard) getItem());
         }
     }
 }

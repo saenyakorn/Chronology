@@ -386,6 +386,6 @@ public class Storyline extends BasicStoryComponent {
      */
     @Override
     public void removeItem() {
-        ApplicationUtils.getCurrentWorkspace().getActiveDocument().getStorylines().removeStoryline(this);
+        ApplicationUtils.getCurrentWorkspace().getActiveDocument().removeStoryline(this);
     }
 }

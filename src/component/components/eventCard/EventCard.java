@@ -482,7 +482,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
      */
     @Override
     public void removeItem() {
-        ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards().removeEventCard(this);
+        ApplicationUtils.getCurrentWorkspace().getActiveDocument().removeEventCard(this);
     }
 
     /**
