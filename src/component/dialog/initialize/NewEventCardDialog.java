@@ -104,19 +104,19 @@ public class NewEventCardDialog extends Dialog {
     public void addNewEventCard(String title, String description, BasicStoryComponent component) {
         EventCard newEventCard = new EventCard(title, description);
         if (component != null) {
-            if (component != null && component instanceof Storyline) {
+            if (component instanceof Storyline) {
                 newEventCard.setStorylineAndDisplay((Storyline) component);
-            } else if (component != null && component instanceof Chapter) {
+            } else if (component instanceof Chapter) {
                 newEventCard.setChapterAndDisplay((Chapter) component);
             }
         } else {
             BasicStoryComponent selectedStoryline = storylineCombo.getValue();
             if (selectedStoryline instanceof Storyline) {
-                newEventCard.setStoryline((Storyline) selectedStoryline);
+                newEventCard.setStorylineAndDisplay((Storyline) selectedStoryline);
             }
             BasicStoryComponent selectedChapter = chapterCombo.getValue();
             if (selectedChapter instanceof Chapter) {
-                newEventCard.setChapter((Chapter) selectedChapter);
+                newEventCard.setChapterAndDisplay((Chapter) selectedChapter);
             }
         }
         ApplicationUtils.getCurrentWorkspace().getActiveDocument().addEventCard(newEventCard);
