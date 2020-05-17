@@ -3,6 +3,8 @@ package utils;
 import component.components.timeModifier.PredefinedTimePeriod;
 import component.components.timeModifier.TimePeriod;
 import component.components.timeModifier.TimePeriodGenerator;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DialogPane;
 import javafx.scene.shape.SVGPath;
 import org.xml.sax.SAXException;
 
@@ -143,15 +145,15 @@ public class SystemUtils {
     /**
      * Title text for remove alert.
      */
-    public static final String CONFIRM_REMOVE_TITLE = "remove";
+    public static final String CONFIRM_REMOVE_TITLE = "Remove";
     /**
      * Header text for remove alert.
      */
-    public static final String CONFIRM_REMOVE_HEADER = "remove";
+    public static final String CONFIRM_REMOVE_HEADER = "Remove Item";
     /**
      * Content text for remove alert.
      */
-    public static final String CONFIRM_REMOVE_CONTENT = "remove";
+    public static final String CONFIRM_REMOVE_CONTENT = "Are you sure to remove this item";
 
     /* Constructor default values */
     /**
@@ -191,5 +193,17 @@ public class SystemUtils {
             e.printStackTrace();
         }
         return svgPath;
+    }
+
+    public static Alert getCustomConfirmation() {
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle(SystemUtils.CONFIRM_REMOVE_TITLE);
+        confirm.setHeaderText(SystemUtils.CONFIRM_REMOVE_HEADER);
+        confirm.setContentText(SystemUtils.CONFIRM_REMOVE_CONTENT);
+        confirm.setGraphic(null);
+        DialogPane dialogPane = confirm.getDialogPane();
+        //dialogPane.getStylesheets().add(confirm.getClass().getResource("test.css").toExternalForm());
+        dialogPane.getStyleClass().add("my-dialog");
+        return confirm;
     }
 }

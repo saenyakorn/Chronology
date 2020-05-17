@@ -328,3 +328,18 @@
     @include default-button;
   }
 }
+
+// ---------------------------------------------------------------------------------------------------------
+
+.my-dialog {
+  -fx-background-color: #f9d900;
+}
+
+.my-dialog > *.button-bar > *.container {
+  -fx-background-color: #a9e200;
+}
+
+.my-dialog > *.label.content {
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+}
