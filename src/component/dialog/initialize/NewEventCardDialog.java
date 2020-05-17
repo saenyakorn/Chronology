@@ -109,11 +109,11 @@ public class NewEventCardDialog extends Dialog {
         } else {
             BasicStoryComponent selectedStoryline = storylineCombo.getValue();
             if (selectedStoryline instanceof Storyline) {
-                newEventCard.setStoryline((Storyline) selectedStoryline);
+                newEventCard.setStorylineAndDisplay((Storyline) selectedStoryline);
             }
             BasicStoryComponent selectedChapter = chapterCombo.getValue();
             if (selectedChapter instanceof Chapter) {
-                newEventCard.setChapter((Chapter) selectedChapter);
+                newEventCard.setChapterAndDisplay((Chapter) selectedChapter);
             }
         }
         ApplicationUtils.getCurrentWorkspace().getActiveDocument().addEventCard(newEventCard);

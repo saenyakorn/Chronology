@@ -347,6 +347,7 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
      * Sets chapter value and everything related to display of event card's chapter. This consists of:
      * <ul>
      *     <li>Color of this event card's chapterTitleContainer. If null, color is set to white.</li>
+     *     <li>Text of this event card's chapterTitle.</li>
      * </ul>
      * @param chapter the chapter to be set.
      */
