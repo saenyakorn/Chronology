@@ -1,11 +1,14 @@
 package component.components.storyline;
 
 import component.ability.SavableAsJSONArray;
+import component.components.eventCard.EventCard;
+import component.components.eventCard.EventCardList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.Pane;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import utils.ApplicationUtils;
 
 import java.util.Iterator;
 
@@ -58,13 +61,19 @@ public class StorylineList implements Iterable<Storyline>, SavableAsJSONArray<St
     }
 
     /**
-     * Removes a storyline from this storylineList.
+     * Removes a storyline from this storylineList. Event cards in chapter will not be deleted.
      * @param storyline the storyline to be removed.
      */
     public void removeStoryline(Storyline storyline) {
         if (storylines.contains(storyline)) {
             storylines.remove(storyline);
             storylinePanes.remove(storyline.getDisplay());
+            EventCardList eventCards = ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards();
+            for (EventCard eventCard : eventCards) {
+                if (eventCard.getStoryline() == storyline) {
+                    eventCard.setStoryline(null);
+                }
+            }
         } else {
             System.out.println("This storyline does not exist");
         }
