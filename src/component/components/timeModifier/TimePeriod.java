@@ -78,7 +78,7 @@ public class TimePeriod implements Observable, Comparable<TimePeriod> {
         } else if (isAfter(o)) {
             return -1;
         } else {
-            return 0;
+            return -1;
         }
     }
 
