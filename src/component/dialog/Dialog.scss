@@ -122,6 +122,13 @@
     .textfield {
       @include default-textfield;
     }
+
+    .color-picker {
+      -fx-pref-width: 300px;
+      -fx-min-height: 30px;
+      -fx-background-color: $white;
+      -fx-effect: dropshadow(gaussian, rgba(28, 28, 28, 0.05), 20, 0, 0, 10);
+    }
   }
 
   .cancel-button, .create-button, .set-button {
