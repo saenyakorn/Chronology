@@ -345,10 +345,12 @@
   & > .content.label {
     -fx-padding: 15px 20px 15px 20px;
     -fx-alignment: center;
+    -fx-wrap-text: true;
 
     .text {
       -fx-fill: $dark-gray;
       -fx-font-size: 13px;
+      -fx-wrap-text: true;
     }
   }
 
@@ -364,11 +366,13 @@
       -fx-alignment: center;
       -fx-text-alignment: center;
       -fx-background-color: $light-gray;
+      -fx-wrap-text: true;
 
       .text {
         -fx-text-fill: $dark-gray;
         -fx-font-size: 16px;
         -fx-font-weight: bold;
+        -fx-wrap-text: true;
       }
     }
   }
