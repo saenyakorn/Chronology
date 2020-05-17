@@ -20,7 +20,7 @@
         </VBox>
     </VBox>
 
-    <VBox fx:id="extensionContainer" styleClass="extension"/>
+    <HBox fx:id="extensionContainer" styleClass="extension"/>
 
     <HBox alignment="BOTTOM_RIGHT" spacing="20">
         <Button fx:id="cancelButton" text="Cancel" styleClass="cancel-button"/>
