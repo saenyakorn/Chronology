@@ -23,7 +23,7 @@ public class CustomTreeCell<T> extends TreeCell<T> {
      * Constructor for CustomTreeCell.
      */
     public CustomTreeCell() {
-        getStylesheets().add(getClass().getResource("TreeCell.css").toExternalForm());
+        getStylesheets().add(ClassLoader.getSystemResource("component/base/cell/TreeCell.css").toExternalForm());
         getStyleClass().add("tree-cell");
         initializeEventHandler();
         initializeContextMenu();

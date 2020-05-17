@@ -20,7 +20,7 @@ public final class ComboBoxListCell extends ListCell<BasicStoryComponent> {
     public ComboBoxListCell() {
         super();
         label = new Label();
-        getStylesheets().add(getClass().getResource("TreeCell.css").toExternalForm());
+        getStylesheets().add(ClassLoader.getSystemResource("component/base/cell/TreeCell.css").toExternalForm());
         getStyleClass().add("list-cell");
     }
 

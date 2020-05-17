@@ -40,7 +40,7 @@ public class Document extends VBox implements SavableAsJSONObject<Document> {
      * No-arg constructor for Document. Binds the storylineList to this documentVBox.
      */
     public Document() {
-        getStylesheets().add(getClass().getResource("Document.css").toExternalForm());
+        getStylesheets().add(ClassLoader.getSystemResource("component/components/document/Document.css").toExternalForm());
         getStyleClass().add("document");
         Bindings.bindContent(getChildren(), storylines.getStorylinePanes());
     }
@@ -50,7 +50,7 @@ public class Document extends VBox implements SavableAsJSONObject<Document> {
      * @param name this document's name.
      */
     public Document(String name) {
-        getStylesheets().add(getClass().getResource("Document.css").toExternalForm());
+        getStylesheets().add(ClassLoader.getSystemResource("component/components/document/Document.css").toExternalForm());
         getStyleClass().add("document");
         setName(name);
         Bindings.bindContent(getChildren(), storylines.getStorylinePanes());
@@ -64,7 +64,7 @@ public class Document extends VBox implements SavableAsJSONObject<Document> {
      * @param storylines this document's storylineList.
      */
     public Document(String name, EventCardList eventCards, ChapterList chapters, StorylineList storylines) {
-        getStylesheets().add(getClass().getResource("Document.css").toExternalForm());
+        getStylesheets().add(ClassLoader.getSystemResource("component/components/document/Document.css").toExternalForm());
         getStyleClass().add("document");
         setName(name);
         this.eventCards = eventCards;
