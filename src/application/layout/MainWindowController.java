@@ -280,13 +280,14 @@ public class MainWindowController {
      * Shows an information alert that the file has been saved.
      */
     private void showSavedAlert() {
-        Alert saved = new Alert(Alert.AlertType.INFORMATION);
-        saved.setTitle(SystemUtils.SAVED_TITLE);
-        saved.setHeaderText(SystemUtils.SAVED_HEADER);
-        saved.setContentText(SystemUtils.SAVED_CONTENT + ApplicationUtils.getSavedFile().toString() + ".");
-        saved.setGraphic(null);
+        Alert saved = SystemUtils.getCustomInformationAlert(SystemUtils.SAVED_TITLE, SystemUtils.SAVED_HEADER, SystemUtils.SAVED_CONTENT);
         saved.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         Optional<ButtonType> result = saved.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            saved.close();
+        } else {
+            saved.close();
+        }
     }
 
 }

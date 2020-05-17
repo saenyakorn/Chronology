@@ -78,9 +78,9 @@ public class NewEventCardDialog extends Dialog {
      */
     public NewEventCardDialog() {
         setTitle(SystemUtils.NEW_EVENT_CARD);
+        loadFXML("NewEventCardDialog.fxml", "../Dialog.css");
         createChapterComboBox();
         createStorylineComboBox();
-        loadFXML("NewEventCardDialog.fxml", "../Dialog.css");
     }
 
     /**
