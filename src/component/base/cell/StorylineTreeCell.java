@@ -133,7 +133,7 @@ public class StorylineTreeCell extends CustomTreeCell<BasicStoryComponent> {
      *     <li><i>Edit Title Menu</i> to edit the storyline's title.</li>
      *     <li><i>Edit Description Menu</i> to edit the storyline's description.</li>
      *     <li><i>Edit Color Menu</i> to edit the storyline's color.</li>
-     *     <li><i>Remove</i> to remove this storyline.</li>
+     *     <li><i>Remove Menu</i> to remove this storyline.</li>
      * </ol>
      */
     @Override

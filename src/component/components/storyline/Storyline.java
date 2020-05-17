@@ -34,6 +34,7 @@ import utils.SystemUtils;
 
 /**
  * An instance of BasicStoryComponent. A storyline is a timeline containing event cards.
+ *
  * @see StorylineList
  */
 public class Storyline extends BasicStoryComponent {
@@ -86,6 +87,7 @@ public class Storyline extends BasicStoryComponent {
 
     /**
      * Constructor for Storyline that requires componentID. All fields are set to default values. Used to populate HashMap during file opening process.
+     *
      * @param componentID this storyline's unique ID.
      */
     public Storyline(String componentID) {
@@ -94,7 +96,8 @@ public class Storyline extends BasicStoryComponent {
 
     /**
      * Constructor for Storyline that requires title and description. Remaining fields are set to default values.
-     * @param title this storyline's title.
+     *
+     * @param title       this storyline's title.
      * @param description this storyline's description.
      */
     public Storyline(String title, String description) {
@@ -106,10 +109,11 @@ public class Storyline extends BasicStoryComponent {
 
     /**
      * Constructor for Storyline that requires all fields.
-     * @param title this storyline's title.
+     *
+     * @param title       this storyline's title.
      * @param description this storyline's description.
-     * @param color this storyline's Color.
-     * @param timePeriod this storyline's TimePeriod.
+     * @param color       this storyline's Color.
+     * @param timePeriod  this storyline's TimePeriod.
      */
     public Storyline(String title, String description, Color color, TimePeriod timePeriod) {
         super(title, description, color, timePeriod);
@@ -119,6 +123,7 @@ public class Storyline extends BasicStoryComponent {
 
     /**
      * Loads data in the JSONObject into a storyline.
+     *
      * @param componentObject the JSONObject that is to be read.
      * @return a storyline with data loaded from the componentObject parameter.
      */
@@ -131,6 +136,7 @@ public class Storyline extends BasicStoryComponent {
 
     /**
      * Gets the root node of this storyline.
+     *
      * @return the root node.
      */
     public Pane getDisplay() {
@@ -139,6 +145,7 @@ public class Storyline extends BasicStoryComponent {
 
     /**
      * Getter for eventCardContainer.
+     *
      * @return this storyline's eventCardContainer.
      */
     public GridPane getContainer() {
@@ -147,6 +154,7 @@ public class Storyline extends BasicStoryComponent {
 
     /**
      * Getter for minIndex.
+     *
      * @return this storyline's minIndex.
      */
     public int getMinIndex() {
@@ -155,6 +163,7 @@ public class Storyline extends BasicStoryComponent {
 
     /**
      * Setter for minIndex.
+     *
      * @param minIndex the index to be set as min.
      */
     public void setMinIndex(int minIndex) {
@@ -163,6 +172,7 @@ public class Storyline extends BasicStoryComponent {
 
     /**
      * Getter for maxIndex.
+     *
      * @return this storyline's maxIndex.
      */
     public int getMaxIndex() {
@@ -171,6 +181,7 @@ public class Storyline extends BasicStoryComponent {
 
     /**
      * Setter for maxIndex.
+     *
      * @param maxIndex the index to be set as max.
      */
     public void setMaxIndex(int maxIndex) {
@@ -182,6 +193,7 @@ public class Storyline extends BasicStoryComponent {
      * <ul>
      *     <li>Text on storylineTitle.</li>
      * </ul>
+     *
      * @param title the title to be set.
      */
     @Override
@@ -198,6 +210,7 @@ public class Storyline extends BasicStoryComponent {
      *     <li>Color of title text.</li>
      *     <li>Color of all event cards in this storyline.</li>
      * </ul>
+     *
      * @param color the color to be set.
      */
     @Override
@@ -215,6 +228,7 @@ public class Storyline extends BasicStoryComponent {
 
     /**
      * Overrides toString method.
+     *
      * @return title.
      */
     @Override
@@ -232,6 +246,7 @@ public class Storyline extends BasicStoryComponent {
 
     /**
      * Counts number of event cards in this storyline.
+     *
      * @return number of event cards this storyline.
      */
     @Override
@@ -248,6 +263,7 @@ public class Storyline extends BasicStoryComponent {
 
     /**
      * Converts a storyline into a JSONObject.
+     *
      * @return the passed storyline, in JSONObject form.
      */
     @Override
@@ -348,26 +364,21 @@ public class Storyline extends BasicStoryComponent {
     }
 
     /**
-     * Initializes context menu.
+     * Initializes context menu. There are 5 context menus.
+     * <ol>
+     *     <li><i>New Event Card Menu</i> to create new a event card, then set storyline to caller's getItem(), which is the Storyline.</li>
+     *     <li><i>Edit Title Menu</i> to edit the storyline's title.</li>
+     *     <li><i>Edit Description Menu</i> to edit the storyline's description.</li>
+     *     <li><i>Edit Color Menu</i> to edit the storyline's color.</li>
+     *     <li><i>Remove Menu</i> to remove this storyline.</li>
+     * </ol>
      */
     private void initializeContextMenu() {
         contextMenu.setAutoHide(true);
         contextMenu.setConsumeAutoHidingEvents(true);
 
-        MenuItem setTitleMenuItem = new MenuItem(SystemUtils.EDIT_TITLE);
-        setTitleMenuItem.setOnAction((ActionEvent event) -> new SetTitleDialog(this).show());
-
-        MenuItem setDescriptionMenuItem = new MenuItem(SystemUtils.EDIT_DESCRIPTION);
-        setDescriptionMenuItem.setOnAction((ActionEvent event) -> new SetDescriptionDialog(this).show());
-
-        MenuItem timePeriodMenuItem = new MenuItem(SystemUtils.EDIT_DATA_TIME);
-        timePeriodMenuItem.setOnAction((ActionEvent event) -> new SetTimePeriodDialog(this).show());
-
-        MenuItem colorMenuItem = new MenuItem(SystemUtils.EDIT_COLOR);
-        colorMenuItem.setOnAction((ActionEvent event) -> new SetColorDialog(this).show());
-
-        MenuItem eventCardMenuItem = new MenuItem(SystemUtils.NEW_EVENT_CARD);
-        eventCardMenuItem.setOnAction((ActionEvent event) -> {
+        MenuItem newEventCardMenuItem = new MenuItem(SystemUtils.NEW_EVENT_CARD);
+        newEventCardMenuItem.setOnAction((ActionEvent event) -> {
             EventCardList eventCards = ApplicationUtils.getCurrentWorkspace().getActiveDocument().getEventCards();
             EventCard newEventCard = new EventCard();
             newEventCard.setStorylineAndDisplay(this);
@@ -375,10 +386,19 @@ public class Storyline extends BasicStoryComponent {
             ApplicationUtils.updateWorkspace();
         });
 
+        MenuItem editTitleMenuItem = new MenuItem(SystemUtils.EDIT_TITLE);
+        editTitleMenuItem.setOnAction((ActionEvent event) -> new SetTitleDialog(this).show());
+
+        MenuItem editDescriptionMenuItem = new MenuItem(SystemUtils.EDIT_DESCRIPTION);
+        editDescriptionMenuItem.setOnAction((ActionEvent event) -> new SetDescriptionDialog(this).show());
+
+        MenuItem editColorMenuItem = new MenuItem(SystemUtils.EDIT_COLOR);
+        editColorMenuItem.setOnAction((ActionEvent event) -> new SetColorDialog(this).show());
+
         MenuItem removeMenuItem = new MenuItem(SystemUtils.REMOVE);
         removeMenuItem.setOnAction((ActionEvent event) -> onRemoveItem());
 
-        contextMenu.getItems().addAll(setTitleMenuItem, setDescriptionMenuItem, timePeriodMenuItem, colorMenuItem, eventCardMenuItem, removeMenuItem);
+        contextMenu.getItems().addAll(newEventCardMenuItem, editTitleMenuItem, editDescriptionMenuItem, editColorMenuItem, removeMenuItem);
     }
 
     /**

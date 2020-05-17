@@ -148,7 +148,7 @@ public class ChapterTreeCell extends CustomTreeCell<BasicStoryComponent> {
      *     <li><i>Edit Title Menu</i> to edit the chapter's title.</li>
      *     <li><i>Edit Description Menu</i> to edit the chapter's description.</li>
      *     <li><i>Edit Color Menu</i> to edit the chapter's color.</li>
-     *     <li><i>Remove</i> to remove this chapter.</li>
+     *     <li><i>Remove Menu</i> to remove this chapter.</li>
      * </ol>
      */
     @Override

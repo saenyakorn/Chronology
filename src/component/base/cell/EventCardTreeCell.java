@@ -108,7 +108,7 @@ public class EventCardTreeCell extends CustomTreeCell<EventCard> {
      *     <li><i>Edit Date and Time Menu</i> to edit the event card's time period.</li>
      *     <li><i>Move to Chapter</i> to edit the event card's time period.</li>
      *     <li><i>Move to Storyline</i> to edit the event card's time period.</li>
-     *     <li><i>Remove</i> to remove this event card.</li>
+     *     <li><i>Remove Menu</i> to remove this event card.</li>
      * </ol>
      */
     @Override
