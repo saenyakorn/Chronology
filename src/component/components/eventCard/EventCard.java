@@ -447,34 +447,43 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     }
 
     /**
-     * Initializes context menu.
+     * Initializes context menu. There are 7 context menus.
+     * <ol>
+     *     <li><i>Edit Title Menu</i> to edit the event card's title.</li>
+     *     <li><i>Edit Description Menu</i> to edit the event card's description.</li>
+     *     <li><i>Edit Date and Time Menu</i> to edit the event card's time period.</li>
+     *     <li><i>Edit Color</i> to edit the its Storyline color.</li>
+     *     <li><i>Move to Chapter</i> to edit the event card's time period.</li>
+     *     <li><i>Move to Storyline</i> to edit the event card's time period.</li>
+     *     <li><i>Remove Menu</i> to remove this event card.</li>
+     * </ol>
      */
     private void initializeContextMenu() {
         contextMenu.setAutoHide(true);
         contextMenu.setConsumeAutoHidingEvents(true);
 
-        MenuItem setTitleMenuItem = new MenuItem(SystemUtils.EDIT_TITLE);
-        setTitleMenuItem.setOnAction((ActionEvent event) -> new SetTitleDialog(this).show());
+        MenuItem editTitleMenuItem = new MenuItem(SystemUtils.EDIT_TITLE);
+        editTitleMenuItem.setOnAction((ActionEvent event) -> new SetTitleDialog(this).show());
 
-        MenuItem setDescriptionMenuItem = new MenuItem(SystemUtils.EDIT_DESCRIPTION);
-        setDescriptionMenuItem.setOnAction((ActionEvent event) -> new SetDescriptionDialog(this).show());
+        MenuItem editDescriptionMenuItem = new MenuItem(SystemUtils.EDIT_DESCRIPTION);
+        editDescriptionMenuItem.setOnAction((ActionEvent event) -> new SetDescriptionDialog(this).show());
 
-        MenuItem timePeriodMenuItem = new MenuItem(SystemUtils.EDIT_DATA_TIME);
-        timePeriodMenuItem.setOnAction((ActionEvent event) -> new SetTimePeriodDialog(this).show());
+        MenuItem editTimePeriodMenuItem = new MenuItem(SystemUtils.EDIT_DATA_TIME);
+        editTimePeriodMenuItem.setOnAction((ActionEvent event) -> new SetTimePeriodDialog(this).show());
 
-        MenuItem colorMenuItem = new MenuItem(SystemUtils.EDIT_COLOR);
-        colorMenuItem.setOnAction((ActionEvent event) -> new SetColorDialog(getStoryline()).show());
+        MenuItem editColorMenuItem = new MenuItem(SystemUtils.EDIT_COLOR);
+        editColorMenuItem.setOnAction((ActionEvent event) -> new SetColorDialog(getStoryline()).show());
 
-        MenuItem chapterMenuItem = new MenuItem(SystemUtils.MOVE_TO_CHAPTER);
-        chapterMenuItem.setOnAction((ActionEvent event) -> new SetChapterDialog(this).show());
+        MenuItem editChapterMenuItem = new MenuItem(SystemUtils.MOVE_TO_CHAPTER);
+        editChapterMenuItem.setOnAction((ActionEvent event) -> new SetChapterDialog(this).show());
 
-        MenuItem storylineMenuItem = new MenuItem(SystemUtils.MOVE_TO_STORYLINE);
-        storylineMenuItem.setOnAction((ActionEvent event) -> new SetStorylineDialog(this).show());
+        MenuItem editStorylineMenuItem = new MenuItem(SystemUtils.MOVE_TO_STORYLINE);
+        editStorylineMenuItem.setOnAction((ActionEvent event) -> new SetStorylineDialog(this).show());
 
         MenuItem removeMenuItem = new MenuItem(SystemUtils.REMOVE);
         removeMenuItem.setOnAction((ActionEvent event) -> onRemoveItem());
 
-        contextMenu.getItems().addAll(setTitleMenuItem, setDescriptionMenuItem, timePeriodMenuItem, colorMenuItem, chapterMenuItem, storylineMenuItem, removeMenuItem);
+        contextMenu.getItems().addAll(editTitleMenuItem, editDescriptionMenuItem, editTimePeriodMenuItem, editColorMenuItem, editChapterMenuItem, editStorylineMenuItem, removeMenuItem);
     }
 
     /**
