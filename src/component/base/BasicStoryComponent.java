@@ -6,7 +6,9 @@ import component.ability.SavableAsJSONObject;
 import component.components.chapter.Chapter;
 import component.components.eventCard.EventCard;
 import component.components.storyline.Storyline;
+import component.components.timeModifier.PredefinedTimePeriod;
 import component.components.timeModifier.TimePeriod;
+import component.components.timeModifier.TimePeriodGenerator;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -19,6 +21,7 @@ import utils.ApplicationUtils;
 import utils.SystemUtils;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -61,7 +64,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         setTitle(SystemUtils.DEFAULT_TITLE);
         setDescription(SystemUtils.DEFAULT_DESCRIPTION);
         setColor(GlobalColor.DEFAULT_COLOR);
-        setTimePeriod(SystemUtils.DEFAULT_TIME_PERIOD);
+        setTimePeriod(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
     }
 
     /**
@@ -74,7 +77,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         setTitle(SystemUtils.DEFAULT_TITLE);
         setDescription(SystemUtils.DEFAULT_DESCRIPTION);
         setColor(GlobalColor.DEFAULT_COLOR);
-        setTimePeriod(SystemUtils.DEFAULT_TIME_PERIOD);
+        setTimePeriod(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
     }
 
     /**
@@ -90,7 +93,7 @@ public abstract class BasicStoryComponent implements SavableAsJSONObject<BasicSt
         setTitle(title);
         setDescription(description);
         setColor(GlobalColor.DEFAULT_COLOR);
-        setTimePeriod(SystemUtils.DEFAULT_TIME_PERIOD);
+        setTimePeriod(TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
     }
 
     /**

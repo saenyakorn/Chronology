@@ -177,10 +177,6 @@ public class SystemUtils {
      */
     public static final String DEFAULT_DESCRIPTION = "Lorem ipsum dolor set amet, ego bir setaso de.";
     /**
-     * Default component timePeriod.
-     */
-    public static final TimePeriod DEFAULT_TIME_PERIOD = TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY);
-    /**
      * Default document title.
      */
     public static final String DEFAULT_DOCUMENT_TITLE = "New Document";

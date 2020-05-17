@@ -2,6 +2,8 @@ package component.dialog.initialize;
 
 import colors.GlobalColor;
 import component.components.chapter.Chapter;
+import component.components.timeModifier.PredefinedTimePeriod;
+import component.components.timeModifier.TimePeriodGenerator;
 import component.dialog.Dialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +17,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import utils.ApplicationUtils;
 import utils.SystemUtils;
+
+import java.time.LocalDate;
 
 /**
  * A dialog called on when creating a new chapter. User is required to input a title.
@@ -68,7 +72,7 @@ public class NewChapterDialog extends Dialog {
      * @param color color of chapter. Default value is lime green from the default palette.
      */
     private void AddNewChapter(String title, String description, Color color) {
-        Chapter newChapter = new Chapter(title, description, color, SystemUtils.DEFAULT_TIME_PERIOD);
+        Chapter newChapter = new Chapter(title, description, color, TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
         ApplicationUtils.getCurrentWorkspace().getActiveDocument().addChapter(newChapter);
         ApplicationUtils.updateWorkspace();
         close();

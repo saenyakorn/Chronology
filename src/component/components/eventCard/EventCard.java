@@ -310,10 +310,10 @@ public class EventCard extends BasicStoryComponent implements Comparable<EventCa
     @Override
     public void setTimePeriodAndDisplay(TimePeriod timePeriod) {
         setTimePeriod(timePeriod);
-        if (storylineProperty().getValue() != null) {
+        if (getStoryline() != null) {
             setSelfComponentTimePeriod(timePeriod, getStoryline());
         }
-        if (chapterProperty().getValue() != null) {
+        if (getChapter() != null) {
             setSelfComponentTimePeriod(timePeriod, getChapter());
         }
 

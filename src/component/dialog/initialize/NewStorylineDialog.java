@@ -2,6 +2,8 @@ package component.dialog.initialize;
 
 import colors.GlobalColor;
 import component.components.storyline.Storyline;
+import component.components.timeModifier.PredefinedTimePeriod;
+import component.components.timeModifier.TimePeriodGenerator;
 import component.dialog.Dialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +17,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import utils.ApplicationUtils;
 import utils.SystemUtils;
+
+import java.time.LocalDate;
 
 /**
  * A dialog called on when creating a new storyline. User is required to input a title.
@@ -68,7 +72,7 @@ public class NewStorylineDialog extends Dialog {
      * @param color color of chapter. Default value is red from the default palette.
      */
     private void AddNewStoryline(String title, String description, Color color) {
-        Storyline newStoryline = new Storyline(title, description, color, SystemUtils.DEFAULT_TIME_PERIOD);
+        Storyline newStoryline = new Storyline(title, description, color, TimePeriodGenerator.getTimePeriodFromPeriod(LocalDate.EPOCH, PredefinedTimePeriod.MIDDAY));
         ApplicationUtils.getCurrentWorkspace().getActiveDocument().addStoryLine(newStoryline);
         ApplicationUtils.updateWorkspace();
         this.close();
