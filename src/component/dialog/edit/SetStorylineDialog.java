@@ -59,7 +59,7 @@ public class SetStorylineDialog extends Dialog {
     public SetStorylineDialog(EventCard component) {
         this.component = component;
         setTitle("Move to Storyline");
-        loadFXML("SetStorylineDialog.fxml", "../Dialog.css");
+        loadFXML("SetStorylineDialog.fxml", "Dialog.css");
     }
 
     /**

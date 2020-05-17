@@ -50,7 +50,7 @@ public class SetDescriptionDialog extends Dialog {
     public SetDescriptionDialog(BasicStoryComponent component) {
         this.component = component;
         setTitle(SystemUtils.EDIT_DESCRIPTION);
-        loadFXML("SetDescriptionDialog.fxml", "../Dialog.css");
+        loadFXML("SetDescriptionDialog.fxml", "Dialog.css");
     }
 
     /**

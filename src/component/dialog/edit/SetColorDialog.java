@@ -49,7 +49,7 @@ public class SetColorDialog extends Dialog {
     public SetColorDialog(BasicStoryComponent component) {
         this.component = component;
         setTitle(SystemUtils.EDIT_COLOR);
-        loadFXML("SetColorDialog.fxml", "../Dialog.css");
+        loadFXML("SetColorDialog.fxml", "Dialog.css");
     }
 
     /**

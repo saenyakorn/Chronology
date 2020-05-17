@@ -59,7 +59,7 @@ public class SetChapterDialog extends Dialog {
     public SetChapterDialog(EventCard component) {
         this.component = component;
         setTitle("Move to Chapter");
-        loadFXML("SetChapterDialog.fxml", "../Dialog.css");
+        loadFXML("SetChapterDialog.fxml", "Dialog.css");
     }
 
     /**

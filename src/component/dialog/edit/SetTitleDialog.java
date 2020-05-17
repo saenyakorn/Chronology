@@ -50,7 +50,7 @@ public class SetTitleDialog extends Dialog {
     public SetTitleDialog(BasicStoryComponent component) {
         this.component = component;
         setTitle(SystemUtils.EDIT_TITLE);
-        loadFXML("SetTitleDialog.fxml", "../Dialog.css");
+        loadFXML("SetTitleDialog.fxml", "Dialog.css");
     }
 
     /**

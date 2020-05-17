@@ -43,7 +43,7 @@ public class NewDocumentDialog extends Dialog {
      */
     public NewDocumentDialog() {
         setTitle(SystemUtils.NEW_DOCUMENT);
-        loadFXML("NewDocumentDialog.fxml", "../Dialog.css");
+        loadFXML("NewDocumentDialog.fxml", "Dialog.css");
     }
 
     /**

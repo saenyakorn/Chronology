@@ -122,7 +122,7 @@ public class SetTimePeriodDialog extends Dialog {
     public SetTimePeriodDialog(BasicStoryComponent component) {
         this.component = component;
         setTitle(SystemUtils.EDIT_DATA_TIME);
-        loadFXML("SetTimePeriodDialog.fxml", "../Dialog.css");
+        loadFXML("SetTimePeriodDialog.fxml", "Dialog.css");
     }
 
     /**

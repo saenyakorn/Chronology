@@ -38,7 +38,7 @@ public class NewProjectDialog extends Dialog {
      */
     public NewProjectDialog() {
         setTitle(SystemUtils.NEW_PROJECT);
-        loadFXML("NewProjectDialog.fxml", "../Dialog.css");
+        loadFXML("NewProjectDialog.fxml", "Dialog.css");
     }
 
     /**

@@ -49,7 +49,7 @@ public abstract class Panel<T> extends VBox {
      * </ol>
      */
     public Panel() {
-        getStylesheets().add(getClass().getResource("../SideBar.css").toExternalForm());
+        getStylesheets().add(ClassLoader.getSystemResource("component/layouts/sideBar/SideBar.css").toExternalForm());
         header.getStyleClass().add("heading");
         contextMenu.setAutoHide(true);
         contextMenu.setHideOnEscape(true);

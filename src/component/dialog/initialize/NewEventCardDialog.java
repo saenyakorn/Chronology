@@ -80,7 +80,7 @@ public class NewEventCardDialog extends Dialog {
      */
     public NewEventCardDialog() {
         setTitle(SystemUtils.NEW_EVENT_CARD);
-        loadFXML("NewEventCardDialog.fxml", "../Dialog.css");
+        loadFXML("NewEventCardDialog.fxml", "Dialog.css");
         createChapterComboBox();
         createStorylineComboBox();
     }
@@ -93,7 +93,7 @@ public class NewEventCardDialog extends Dialog {
     public NewEventCardDialog(BasicStoryComponent component) {
         this.component = component;
         setTitle(SystemUtils.NEW_EVENT_CARD);
-        loadFXML("NewEventCardDialog.fxml", "../Dialog.css");
+        loadFXML("NewEventCardDialog.fxml", "Dialog.css");
     }
 
     /**

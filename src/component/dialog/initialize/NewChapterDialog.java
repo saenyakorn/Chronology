@@ -62,7 +62,7 @@ public class NewChapterDialog extends Dialog {
      */
     public NewChapterDialog() {
         setTitle(SystemUtils.NEW_CHAPTER);
-        loadFXML("NewChapterDialog.fxml", "../Dialog.css");
+        loadFXML("NewChapterDialog.fxml", "Dialog.css");
     }
 
     /**

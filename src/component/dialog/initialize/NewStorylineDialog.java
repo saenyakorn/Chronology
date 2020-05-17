@@ -62,7 +62,7 @@ public class NewStorylineDialog extends Dialog {
      */
     public NewStorylineDialog() {
         setTitle(SystemUtils.NEW_STORYLINE);
-        loadFXML("NewStorylineDialog.fxml", "../Dialog.css");
+        loadFXML("NewStorylineDialog.fxml", "Dialog.css");
     }
 
     /**

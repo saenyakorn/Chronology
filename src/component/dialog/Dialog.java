@@ -50,7 +50,7 @@ public abstract class Dialog {
         fxmlLoader.setController(this);
         try {
             Parent root = fxmlLoader.load();
-            root.getStylesheets().add(getClass().getResource(CSSPath).toExternalForm());
+            root.getStylesheets().add(ClassLoader.getSystemResource("component/dialog/" + CSSPath).toExternalForm());
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();

@@ -50,7 +50,7 @@ public class SetNameDialog extends Dialog {
     public SetNameDialog(Document document) {
         this.document = document;
         setTitle(SystemUtils.EDIT_DESCRIPTION);
-        loadFXML("SetNameDialog.fxml", "../Dialog.css");
+        loadFXML("SetNameDialog.fxml", "Dialog.css");
     }
 
     /**
