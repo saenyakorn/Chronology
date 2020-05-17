@@ -218,7 +218,7 @@ public class SystemUtils {
         confirm.setContentText(content);
         confirm.setGraphic(null);
         DialogPane dialogPane = confirm.getDialogPane();
-        dialogPane.getStylesheets().add(SystemUtils.class.getResource("../component/dialog/Dialog.css").toExternalForm());
+        dialogPane.getStylesheets().add(ClassLoader.getSystemResource("component/dialog/Dialog.css").toExternalForm());
         dialogPane.getStyleClass().add("my-dialog");
         return confirm;
     }
@@ -238,7 +238,7 @@ public class SystemUtils {
         information.setContentText(content);
         information.setGraphic(null);
         DialogPane dialogPane = information.getDialogPane();
-        dialogPane.getStylesheets().add(SystemUtils.class.getResource("../component/dialog/Dialog.css").toExternalForm());
+        dialogPane.getStylesheets().add(ClassLoader.getSystemResource("component/dialog/Dialog.css").toExternalForm());
         dialogPane.getStyleClass().add("my-dialog");
         return information;
     }
