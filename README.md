@@ -8,6 +8,7 @@ _(Created as end-of-term assignment for 2110215 PROG METH course, Academic Year 
 - [Dependencies](#Dependencies)
 - [Installation](#Installation)
 - [Usage](#Usage)
+- [Documentation](#Documentation)
 
 ## Features
 ### Organize your story into components
@@ -20,13 +21,17 @@ _(Created as end-of-term assignment for 2110215 PROG METH course, Academic Year 
 - Storylines and chapters are **color coded** throughout the app.
 
 ## Dependencies
-- JavaSE 13
+- JRE 13 or later
 - [JavaFX 14](https://openjfx.io/)
 - [JFXtras 10.0](http://jfxtras.org/)
 - [JSONSimple 1.1.1](https://code.google.com/archive/p/json-simple/)
 
 ## Installation 
-Currently under development, please wait a little longer!
+A JavaFX installation is required. Clone and run `Chronology.jar` on command line using `
+java -jar --module-path <PATH_TO_YOUR_JAVAFX> --add-modules javafx.controls,javafx.fxml Chronology.jar`.
 
 ## Usage
-Please view full guide in project report: https://docs.google.com/document/d/1zvO2xRvUixVaHdnJgo1K5mitnjTlQNSftcyJAPXwWVE/edit?usp=sharing
+View full guide in project report: https://docs.google.com/document/d/1zvO2xRvUixVaHdnJgo1K5mitnjTlQNSftcyJAPXwWVE/edit?usp=sharing 
+
+## Documentation
+Please refer to https://chronology-javadoc.firebaseapp.com/.
