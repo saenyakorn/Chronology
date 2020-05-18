@@ -5,7 +5,7 @@ _(Created as end-of-term assignment for 2110215 PROG METH course, Academic Year 
 
 ## Table of contents
 - [Features](#Features)
-- [Dependencies](#Dependencies)
+- [Project Dependencies](#Project Dependencies)
 - [Installation](#Installation)
 - [Usage](#Usage)
 - [Documentation](#Documentation)
@@ -20,8 +20,8 @@ _(Created as end-of-term assignment for 2110215 PROG METH course, Academic Year 
 - Events are shown in **chronological order** - sorted by date and time!
 - Storylines and chapters are **color coded** throughout the app.
 
-## Dependencies
-- JRE 13 or later
+## Project Dependencies
+- JavaSE or later
 - [JavaFX 14](https://openjfx.io/)
 - [JFXtras 10.0](http://jfxtras.org/)
 - [JSONSimple 1.1.1](https://code.google.com/archive/p/json-simple/)
