@@ -47,6 +47,7 @@ public class EventCardList implements Iterable<EventCard>, SavableAsJSONArray<Ev
             eventCard.setIndex(-1);
             if (eventCard.getStoryline() != null) {
                 eventCard.setIndex(counter++);
+                eventCard.setChapterAndDisplay(eventCard.getChapter());
                 eventCard.getStoryline().getContainer().getChildren().clear(); // clear gridPane
                 eventCard.getStoryline().resetMinMaxIndex();
             }
