@@ -5,7 +5,7 @@ _(Created as end-of-term assignment for 2110215 PROG METH course, Academic Year 
 
 ## Table of contents
 - [Features](#Features)
-- [Project Dependencies](#Project Dependencies)
+- [Dependencies](#Dependencies)
 - [Installation](#Installation)
 - [Usage](#Usage)
 - [Documentation](#Documentation)
@@ -34,4 +34,4 @@ java -jar --module-path <PATH_TO_YOUR_JAVAFX> --add-modules javafx.controls,java
 View full guide in project report: https://docs.google.com/document/d/1zvO2xRvUixVaHdnJgo1K5mitnjTlQNSftcyJAPXwWVE/edit?usp=sharing 
 
 ## Documentation
-Please refer to https://chronology-javadoc.firebaseapp.com/.
+Please refer to the Javadoc at https://chronology-javadoc.firebaseapp.com/.
