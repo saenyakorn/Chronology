@@ -5,7 +5,7 @@ _(Created as end-of-term assignment for 2110215 PROG METH course, Academic Year 
 
 ## Table of contents
 - [Features](#Features)
-- [Dependencies](#Dependencies)
+- [Project Dependencies](#ProjectDependencies)
 - [Installation](#Installation)
 - [Usage](#Usage)
 - [Documentation](#Documentation)
