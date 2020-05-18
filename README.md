@@ -21,7 +21,7 @@ _(Created as end-of-term assignment for 2110215 PROG METH course, Academic Year 
 - Storylines and chapters are **color coded** throughout the app.
 
 ## Project Dependencies
-- JavaSE or later
+- JavaSE 13 or later
 - [JavaFX 14](https://openjfx.io/)
 - [JFXtras 10.0](http://jfxtras.org/)
 - [JSONSimple 1.1.1](https://code.google.com/archive/p/json-simple/)
